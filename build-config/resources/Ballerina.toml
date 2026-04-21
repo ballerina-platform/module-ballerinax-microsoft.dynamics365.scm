@@ -8,6 +8,7 @@ repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.
 icon = "icon.png"
 license = ["Apache-2.0"]
 distribution = "2201.13.0"
+export = ["microsoft.dynamics365.scm", "microsoft.dynamics365.scm.mock.server"]
 
 [build-options]
 observabilityIncluded=true

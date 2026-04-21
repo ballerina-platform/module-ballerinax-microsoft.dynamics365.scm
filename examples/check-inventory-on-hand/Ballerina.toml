@@ -1,0 +1,11 @@
+[package]
+org = "wso2"
+name = "check_inventory_on_hand"
+version = "0.1.0"
+distribution = "2201.13.0"
+
+[[dependency]]
+org = "ballerinax"
+name = "microsoft.dynamics365.scm"
+version = "0.1.0"
+repository = "local"

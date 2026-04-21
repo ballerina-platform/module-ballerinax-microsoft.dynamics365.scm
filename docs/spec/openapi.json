@@ -26,9 +26,8 @@
     }
   ],
   "security": [
-    {
-      "oAuth2": []
-    }
+    { "oAuth2": [] },
+    { "bearerAuth": [] }
   ],
   "tags": [
     { "name": "Warehouses", "description": "Warehouse master data (Warehouses entity set)" },
@@ -607,6 +606,12 @@
             }
           }
         }
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "A pre-acquired Azure AD access token passed as `Authorization: Bearer <token>`. Useful when the caller already has a token from an external identity flow and wants to skip the client-credentials exchange."
       }
     },
     "parameters": {
