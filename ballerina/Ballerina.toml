@@ -5,7 +5,7 @@ version = "0.1.0"
 authors = ["Ballerina"]
 keywords = ["Area/ERP & Business Operations", "Vendor/Microsoft", "Dynamics365", "SupplyChain", "ERP", "Type/Connector"]
 repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.scm"
-# icon = "icon.png" # TODO: add connector icon
+icon = "icon.png"
 license = ["Apache-2.0"]
 distribution = "2201.13.0"
 
