@@ -12,6 +12,3 @@ export = ["microsoft.dynamics365.scm", "microsoft.dynamics365.scm.mock.server"]
 
 [build-options]
 observabilityIncluded=true
-
-[platform.java21]
-graalvmCompatible = true
