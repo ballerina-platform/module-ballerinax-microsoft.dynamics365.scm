@@ -39,7 +39,7 @@ public function main() returns error? {
         crossCompany: true
     });
 
-    scm:InventoryOnHand[] rows = <scm:InventoryOnHand[]>snapshot.value;
+    scm:InventoryOnHand[] rows = snapshot.value ?: [];
     io:println(string `On-hand snapshot for ${ITEM} (${rows.length()} locations):`);
 
     decimal totalAvailable = 0d;

@@ -32,7 +32,7 @@ public function main() returns error? {
 
     io:println("Default company (USMF) warehouses:");
     scm:WarehousesCollection page = check fo->listWarehouses(queries = {top: 10});
-    printWarehouses(<scm:Warehouse[]>page.value);
+    printWarehouses(page.value ?: []);
 
     io:println("");
     io:println("Transit-type warehouses across all companies:");
@@ -40,7 +40,7 @@ public function main() returns error? {
         filter: "WarehouseTypeId eq 'Transit'",
         crossCompany: true
     });
-    printWarehouses(<scm:Warehouse[]>transit.value);
+    printWarehouses(transit.value ?: []);
 
     check mockListener.gracefulStop();
 }

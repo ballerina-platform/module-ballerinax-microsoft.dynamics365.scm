@@ -39,8 +39,9 @@ public function main() returns error? {
     scm:BillOfMaterialLinesCollection lines = check fo->listBillOfMaterialLines(
         queries = {filter: "BillOfMaterialsId eq '" + (template.BillOfMaterialsId ?: "") + "'"}
     );
-    io:println(string `  lines: ${(<scm:BillOfMaterialLine[]>lines.value).length()}`);
-    foreach scm:BillOfMaterialLine l in <scm:BillOfMaterialLine[]>lines.value {
+    scm:BillOfMaterialLine[] lineRows = lines.value ?: [];
+    io:println(string `  lines: ${lineRows.length()}`);
+    foreach scm:BillOfMaterialLine l in lineRows {
         decimal qty = l.Quantity ?: 0d;
         io:println(string `    line ${l.LineNumber ?: 0d}  ${l.ItemNumber ?: ""}  qty=${qty} ${l.UnitSymbol ?: ""}`);
     }
