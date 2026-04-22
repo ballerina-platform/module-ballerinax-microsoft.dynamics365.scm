@@ -88,7 +88,7 @@ isolated function buildCollection(string contextBase, string entitySet, json[] d
     int totalCount = filtered.length();
 
     int? skipN = q.skip;
-    if skipN is int {
+    if skipN is int && skipN >= 0 {
         if skipN < filtered.length() {
             filtered = filtered.slice(skipN);
         } else {
@@ -97,7 +97,7 @@ isolated function buildCollection(string contextBase, string entitySet, json[] d
     }
 
     int? topN = q.top;
-    if topN is int {
+    if topN is int && topN >= 0 {
         if topN < filtered.length() {
             filtered = filtered.slice(0, topN);
         }
@@ -219,13 +219,19 @@ isolated function rowEquals(json row, string fieldName, string rhs) returns bool
     if rhs == "true" || rhs == "false" {
         return val is boolean && val == (rhs == "true");
     }
-    int|error asInt = int:fromString(rhs);
-    if asInt is int && val is int {
-        return val == asInt;
-    }
+    // Numeric comparison: coerce both sides to decimal so `eq 250000` matches
+    // a JSON-parsed 250000.00 and vice versa.
     decimal|error asDec = decimal:fromString(rhs);
-    if asDec is decimal && val is decimal {
-        return val == asDec;
+    if asDec is decimal {
+        decimal? valAsDec = ();
+        if val is int {
+            valAsDec = <decimal>val;
+        } else if val is decimal {
+            valAsDec = val;
+        } else if val is float {
+            valAsDec = <decimal>val;
+        }
+        return valAsDec is decimal && valAsDec == asDec;
     }
     return false;
 }
@@ -240,6 +246,21 @@ isolated function applyOrderBy(json[] data, string expr) returns json[] {
     } else if trimmed.endsWith(" asc") {
         fieldName = trimmed.substring(0, trimmed.length() - 4).trim();
     }
+    // Detect whether the field is numeric by sampling; numeric fields must be
+    // sorted by decimal value so `10` does not lexicographically sort before `2`.
+    boolean numeric = isNumericSortField(data, fieldName);
+    if numeric {
+        if isDesc {
+            return from json row in data
+                let decimal sk = numericSortKey(row, fieldName)
+                order by sk descending
+                select row;
+        }
+        return from json row in data
+            let decimal sk = numericSortKey(row, fieldName)
+            order by sk ascending
+            select row;
+    }
     if isDesc {
         return from json row in data
             let string sk = sortKey(row, fieldName)
@@ -250,6 +271,39 @@ isolated function applyOrderBy(json[] data, string expr) returns json[] {
         let string sk = sortKey(row, fieldName)
         order by sk ascending
         select row;
+}
+
+isolated function isNumericSortField(json[] data, string fieldName) returns boolean {
+    foreach json row in data {
+        if !(row is map<json>) {
+            continue;
+        }
+        json? val = row[fieldName];
+        if val is int || val is float || val is decimal {
+            return true;
+        }
+        if val is string || val is boolean {
+            return false;
+        }
+    }
+    return false;
+}
+
+isolated function numericSortKey(json row, string fieldName) returns decimal {
+    if !(row is map<json>) {
+        return 0d;
+    }
+    json? val = row[fieldName];
+    if val is int {
+        return <decimal>val;
+    }
+    if val is decimal {
+        return val;
+    }
+    if val is float {
+        return <decimal>val;
+    }
+    return 0d;
 }
 
 isolated function sortKey(json row, string fieldName) returns string {

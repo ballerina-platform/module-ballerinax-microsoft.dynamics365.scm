@@ -342,3 +342,51 @@ function testListSalesShipments() returns error? {
     SalesShipmentHeader[] rows = <SalesShipmentHeader[]>response.value;
     test:assertTrue(rows.length() >= 2);
 }
+
+@test:Config
+function testFilterByNumericEqMatchesDecimalSeed() returns error? {
+    // Seeded InventoryOnHand row for ITM-1001 at warehouse 11 has
+    // AvailablePhysicalQuantity = 425.0 (decimal). Filter `eq 425` was
+    // previously lost because int-RHS and decimal-LHS never matched.
+    InventoryOnHandCollection response = check scmClient->listInventoryOnHand(
+        queries = {filter: "AvailablePhysicalQuantity eq 425"}
+    );
+    InventoryOnHand[] rows = <InventoryOnHand[]>response.value;
+    test:assertEquals(rows.length(), 1, "numeric equality should match the seeded decimal row");
+    test:assertEquals(rows[0].ItemNumber, "ITM-1001");
+}
+
+@test:Config
+function testOrderByNumericDescSortsNumerically() returns error? {
+    InventoryOnHandCollection response = check scmClient->listInventoryOnHand(
+        queries = {
+            orderBy: "AvailablePhysicalQuantity desc",
+            crossCompany: true
+        }
+    );
+    InventoryOnHand[] rows = <InventoryOnHand[]>response.value;
+    test:assertTrue(rows.length() >= 3);
+    decimal first = rows[0].AvailablePhysicalQuantity ?: 0d;
+    decimal second = rows[1].AvailablePhysicalQuantity ?: 0d;
+    test:assertTrue(first >= second, "numeric desc should put the larger available quantity first");
+}
+
+@test:Config
+function testUpdateWarehouseMissingKeyReturns404() returns error? {
+    Warehouse patch = {WarehouseName: "ghost"};
+    Warehouse|error result = scmClient->updateWarehouse(
+        dataAreaId = "USMF",
+        warehouseId = "DOES-NOT-EXIST",
+        payload = patch
+    );
+    test:assertTrue(result is error, "PATCH on missing key should surface an error from the 404");
+}
+
+@test:Config
+function testNegativeTopDoesNotPanic() returns error? {
+    WarehousesCollection response = check scmClient->listWarehouses(
+        queries = {top: -1}
+    );
+    Warehouse[] rows = <Warehouse[]>response.value;
+    test:assertTrue(rows.length() > 0, "negative $top should be ignored, not panic");
+}

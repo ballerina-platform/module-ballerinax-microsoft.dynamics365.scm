@@ -567,20 +567,6 @@ final readonly & json[] transferOrders = [
         "TransferStatus": "Received",
         "DeliveryModeCode": "Truck",
         "CurrencyCode": "USD"
-    },
-    {
-        "@odata.etag": "W/\"Jzs7MDs5MTEwMDA0Oyc=\"",
-        "dataAreaId": "GBSI",
-        "TransferOrderNumber": "TO-UK-2026-05",
-        "ShippingWarehouseId": "UK-01",
-        "ShippingSiteId": "UK-1",
-        "ReceivingWarehouseId": "UK-01",
-        "ReceivingSiteId": "UK-1",
-        "ShippingDate": "2026-05-01",
-        "ReceivingDate": "2026-05-02",
-        "TransferStatus": "Shipped",
-        "DeliveryModeCode": "Ground",
-        "CurrencyCode": "GBP"
     }
 ];
 

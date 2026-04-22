@@ -157,6 +157,9 @@ isolated function handleEntity(string method, string entitySet, map<string> key,
     }
     if method == "PATCH" {
         json? existing = findByKey(data, key);
+        if existing is () {
+            return notFoundKey(entitySet, key);
+        }
         json payload = check req.getJsonPayload();
         json merged = payload;
         if existing is map<json> && payload is map<json> {
@@ -175,6 +178,10 @@ isolated function handleEntity(string method, string entitySet, map<string> key,
         return response;
     }
     if method == "DELETE" {
+        json? existing = findByKey(data, key);
+        if existing is () {
+            return notFoundKey(entitySet, key);
+        }
         http:Response response = new;
         response.statusCode = 204;
         return response;
