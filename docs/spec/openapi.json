@@ -1,0 +1,1099 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Microsoft Dynamics 365 Supply Chain Management",
+    "description": "Ballerina connector for a curated subset of the Microsoft Dynamics 365 Supply Chain Management OData REST API. Exposes the warehouse, inventory, BOM, production, transfer, and shipment entities most commonly used in demo scenarios.",
+    "version": "1.0.0",
+    "license": {
+      "name": "Apache-2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    },
+    "contact": {
+      "name": "Ballerina",
+      "url": "https://ballerina.io"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://{tenant}.operations.dynamics.com/data",
+      "description": "Dynamics 365 Supply Chain Management tenant",
+      "variables": {
+        "tenant": {
+          "default": "your-org",
+          "description": "Tenant-specific subdomain (e.g. contoso, contoso-test)"
+        }
+      }
+    }
+  ],
+  "security": [
+    { "oAuth2": [] },
+    { "bearerAuth": [] }
+  ],
+  "tags": [
+    { "name": "Warehouses", "description": "Warehouse master data (Warehouses entity set)" },
+    { "name": "Warehouse Locations", "description": "Warehouse location master data" },
+    { "name": "Sites", "description": "Inventory sites" },
+    { "name": "Item Groups", "description": "Item group reference data" },
+    { "name": "Units of Measure", "description": "Global unit-of-measure reference data" },
+    { "name": "Bills of Materials", "description": "BOM headers and lines" },
+    { "name": "Production Orders", "description": "Production order headers" },
+    { "name": "Transfer Orders", "description": "Transfer order headers" },
+    { "name": "Inventory", "description": "On-hand inventory and inventory journals" },
+    { "name": "Shipments", "description": "Sales shipment (packing slip) headers" }
+  ],
+  "paths": {
+    "/Warehouses": {
+      "get": {
+        "tags": ["Warehouses"],
+        "summary": "List warehouses",
+        "description": "Returns a page of warehouse master records.",
+        "operationId": "listWarehouses",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/expand" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Warehouse collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WarehousesCollection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      },
+      "post": {
+        "tags": ["Warehouses"],
+        "summary": "Create warehouse",
+        "description": "Creates a new warehouse in the specified legal entity.",
+        "operationId": "createWarehouse",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Warehouse" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Warehouse created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Warehouse" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/Warehouses(dataAreaId='{dataAreaId}',WarehouseId='{warehouseId}')": {
+      "parameters": [
+        { "$ref": "#/components/parameters/dataAreaId" },
+        { "$ref": "#/components/parameters/warehouseId" }
+      ],
+      "get": {
+        "tags": ["Warehouses"],
+        "summary": "Get warehouse",
+        "description": "Returns a single warehouse identified by the composite key (`dataAreaId`, `WarehouseId`).",
+        "operationId": "getWarehouse",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/expand" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Warehouse record",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Warehouse" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      },
+      "patch": {
+        "tags": ["Warehouses"],
+        "summary": "Update warehouse",
+        "description": "Partially updates a warehouse. `If-Match` is honoured for optimistic concurrency.",
+        "operationId": "updateWarehouse",
+        "parameters": [
+          { "$ref": "#/components/parameters/ifMatch" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Warehouse" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Warehouse updated",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Warehouse" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/WarehouseLocations": {
+      "get": {
+        "tags": ["Warehouse Locations"],
+        "summary": "List warehouse locations",
+        "description": "Returns a page of warehouse-location records.",
+        "operationId": "listWarehouseLocations",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Warehouse location collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WarehouseLocationsCollection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/Sites": {
+      "get": {
+        "tags": ["Sites"],
+        "summary": "List sites",
+        "description": "Returns the inventory sites configured in each legal entity.",
+        "operationId": "listSites",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Site collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SitesCollection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/ItemGroups": {
+      "get": {
+        "tags": ["Item Groups"],
+        "summary": "List item groups",
+        "description": "Returns the configured item groups.",
+        "operationId": "listItemGroups",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item group collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ItemGroupsCollection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/UnitsOfMeasure": {
+      "get": {
+        "tags": ["Units of Measure"],
+        "summary": "List units of measure",
+        "description": "Returns the global unit-of-measure definitions. Units of measure are system-wide reference data and are not scoped to a legal entity.",
+        "operationId": "listUnitsOfMeasure",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/count" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Unit of measure collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UnitsOfMeasureCollection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/BillsOfMaterials": {
+      "get": {
+        "tags": ["Bills of Materials"],
+        "summary": "List bills of materials",
+        "description": "Returns a page of BOM header records.",
+        "operationId": "listBillsOfMaterials",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/expand" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "BOM header collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BillsOfMaterialsCollection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      },
+      "post": {
+        "tags": ["Bills of Materials"],
+        "summary": "Create bill of materials",
+        "description": "Creates a new BOM header.",
+        "operationId": "createBillOfMaterials",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/BillOfMaterials" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "BOM created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BillOfMaterials" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/BillsOfMaterials(dataAreaId='{dataAreaId}',BillOfMaterialsId='{billOfMaterialsId}')": {
+      "parameters": [
+        { "$ref": "#/components/parameters/dataAreaId" },
+        { "$ref": "#/components/parameters/billOfMaterialsId" }
+      ],
+      "get": {
+        "tags": ["Bills of Materials"],
+        "summary": "Get bill of materials",
+        "description": "Returns a single BOM header identified by the composite key (`dataAreaId`, `BillOfMaterialsId`).",
+        "operationId": "getBillOfMaterials",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/expand" }
+        ],
+        "responses": {
+          "200": {
+            "description": "BOM header record",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BillOfMaterials" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/BillOfMaterialLines": {
+      "get": {
+        "tags": ["Bills of Materials"],
+        "summary": "List bill of materials lines",
+        "description": "Returns a page of BOM line records.",
+        "operationId": "listBillOfMaterialLines",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "BOM line collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BillOfMaterialLinesCollection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/ProductionOrderHeaders": {
+      "get": {
+        "tags": ["Production Orders"],
+        "summary": "List production orders",
+        "description": "Returns a page of production order headers.",
+        "operationId": "listProductionOrders",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/expand" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Production order header collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProductionOrderHeadersCollection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      },
+      "post": {
+        "tags": ["Production Orders"],
+        "summary": "Create production order",
+        "description": "Creates a new production order header.",
+        "operationId": "createProductionOrder",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ProductionOrderHeader" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Production order created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProductionOrderHeader" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/ProductionOrderHeaders(dataAreaId='{dataAreaId}',ProductionOrderNumber='{productionOrderNumber}')": {
+      "parameters": [
+        { "$ref": "#/components/parameters/dataAreaId" },
+        { "$ref": "#/components/parameters/productionOrderNumber" }
+      ],
+      "get": {
+        "tags": ["Production Orders"],
+        "summary": "Get production order",
+        "description": "Returns a single production order header identified by the composite key (`dataAreaId`, `ProductionOrderNumber`).",
+        "operationId": "getProductionOrder",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/expand" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Production order header record",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProductionOrderHeader" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/TransferOrderHeaders": {
+      "get": {
+        "tags": ["Transfer Orders"],
+        "summary": "List transfer orders",
+        "description": "Returns a page of transfer order headers.",
+        "operationId": "listTransferOrders",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/expand" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transfer order header collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/TransferOrderHeadersCollection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/TransferOrderHeaders(dataAreaId='{dataAreaId}',TransferOrderNumber='{transferOrderNumber}')": {
+      "parameters": [
+        { "$ref": "#/components/parameters/dataAreaId" },
+        { "$ref": "#/components/parameters/transferOrderNumber" }
+      ],
+      "get": {
+        "tags": ["Transfer Orders"],
+        "summary": "Get transfer order",
+        "description": "Returns a single transfer order header identified by the composite key (`dataAreaId`, `TransferOrderNumber`).",
+        "operationId": "getTransferOrder",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/expand" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transfer order header record",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/TransferOrderHeader" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/InventoryOnHand": {
+      "get": {
+        "tags": ["Inventory"],
+        "summary": "List inventory on-hand",
+        "description": "Returns a page of on-hand inventory aggregated by item, site, warehouse, location, batch and serial dimensions.",
+        "operationId": "listInventoryOnHand",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Inventory on-hand collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/InventoryOnHandCollection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/InventoryJournalHeaders": {
+      "get": {
+        "tags": ["Inventory"],
+        "summary": "List inventory journal headers",
+        "description": "Returns a page of inventory journal headers (movement, counting, adjustment, transfer).",
+        "operationId": "listInventoryJournalHeaders",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Inventory journal header collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/InventoryJournalHeadersCollection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/SalesShipmentHeaders": {
+      "get": {
+        "tags": ["Shipments"],
+        "summary": "List sales shipments",
+        "description": "Returns a page of sales shipment (packing slip) headers.",
+        "operationId": "listSalesShipments",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sales shipment header collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SalesShipmentHeadersCollection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "oAuth2": {
+        "type": "oauth2",
+        "description": "Azure AD OAuth 2.0. Dynamics 365 Supply Chain Management accepts Bearer tokens acquired against the tenant resource.",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+            "scopes": {
+              "https://erp.dynamics.com/.default": "Access Dynamics 365 Supply Chain Management on behalf of the application"
+            }
+          }
+        }
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "A pre-acquired Azure AD access token passed as `Authorization: Bearer <token>`. Useful when the caller already has a token from an external identity flow and wants to skip the client-credentials exchange."
+      }
+    },
+    "parameters": {
+      "select": {
+        "name": "$select",
+        "in": "query",
+        "description": "OData `$select` — comma-separated list of properties to include in the response.",
+        "required": false,
+        "schema": { "type": "string" },
+        "x-ballerina-name": "selectFields"
+      },
+      "filter": {
+        "name": "$filter",
+        "in": "query",
+        "description": "OData `$filter` — expression used to restrict the records returned.",
+        "required": false,
+        "schema": { "type": "string" },
+        "x-ballerina-name": "filter"
+      },
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "OData `$top` — maximum number of records to return.",
+        "required": false,
+        "schema": { "type": "integer", "format": "int32", "minimum": 0 },
+        "x-ballerina-name": "top"
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "OData `$skip` — number of records to skip.",
+        "required": false,
+        "schema": { "type": "integer", "format": "int32", "minimum": 0 },
+        "x-ballerina-name": "skip"
+      },
+      "orderBy": {
+        "name": "$orderby",
+        "in": "query",
+        "description": "OData `$orderby` — comma-separated list of properties and directions.",
+        "required": false,
+        "schema": { "type": "string" },
+        "x-ballerina-name": "orderBy"
+      },
+      "expand": {
+        "name": "$expand",
+        "in": "query",
+        "description": "OData `$expand` — comma-separated list of navigation properties to inline.",
+        "required": false,
+        "schema": { "type": "string" },
+        "x-ballerina-name": "expand"
+      },
+      "count": {
+        "name": "$count",
+        "in": "query",
+        "description": "OData `$count` — when `true`, the response includes `@odata.count`.",
+        "required": false,
+        "schema": { "type": "boolean" },
+        "x-ballerina-name": "count"
+      },
+      "crossCompany": {
+        "name": "cross-company",
+        "in": "query",
+        "description": "When `true`, queries span all legal entities the caller has access to instead of the default company.",
+        "required": false,
+        "schema": { "type": "boolean" },
+        "x-ballerina-name": "crossCompany"
+      },
+      "ifMatch": {
+        "name": "If-Match",
+        "in": "header",
+        "description": "Optimistic concurrency token. Set to the record's `@odata.etag` to ensure the update only succeeds when the record has not changed.",
+        "required": false,
+        "schema": { "type": "string" }
+      },
+      "dataAreaId": {
+        "name": "dataAreaId",
+        "in": "path",
+        "required": true,
+        "description": "Legal entity identifier (company code).",
+        "schema": { "type": "string" }
+      },
+      "warehouseId": {
+        "name": "warehouseId",
+        "in": "path",
+        "required": true,
+        "description": "Warehouse identifier.",
+        "schema": { "type": "string" }
+      },
+      "billOfMaterialsId": {
+        "name": "billOfMaterialsId",
+        "in": "path",
+        "required": true,
+        "description": "Bill of materials identifier.",
+        "schema": { "type": "string" }
+      },
+      "productionOrderNumber": {
+        "name": "productionOrderNumber",
+        "in": "path",
+        "required": true,
+        "description": "Production order number.",
+        "schema": { "type": "string" }
+      },
+      "transferOrderNumber": {
+        "name": "transferOrderNumber",
+        "in": "path",
+        "required": true,
+        "description": "Transfer order number.",
+        "schema": { "type": "string" }
+      }
+    },
+    "responses": {
+      "ODataError": {
+        "description": "OData error response",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/ODataError" }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "ODataCollection": {
+        "type": "object",
+        "description": "Common envelope wrapped around every OData collection response.",
+        "properties": {
+          "@odata.context": { "type": "string", "description": "Metadata URL describing the shape of the response." },
+          "@odata.count": { "type": "integer", "format": "int64", "description": "Total number of matching records; only returned when `$count=true`." },
+          "@odata.nextLink": { "type": "string", "description": "URL to retrieve the next page of results, if any." }
+        }
+      },
+      "ODataError": {
+        "type": "object",
+        "description": "Standard OData error payload.",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": { "type": "string", "description": "Machine-readable error code." },
+              "message": { "type": "string", "description": "Human-readable error message." },
+              "target": { "type": "string", "description": "Target of the error (optional)." },
+              "innererror": {
+                "type": "object",
+                "description": "Service-specific diagnostic details.",
+                "additionalProperties": true
+              }
+            }
+          }
+        }
+      },
+      "Warehouse": {
+        "type": "object",
+        "description": "Warehouse master record as exposed by the `Warehouses` data entity.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "WarehouseId": { "type": "string", "description": "Warehouse identifier." },
+          "WarehouseName": { "type": "string", "description": "Human-readable warehouse name." },
+          "SiteId": { "type": "string", "description": "Inventory site the warehouse belongs to." },
+          "WarehouseTypeId": { "type": "string", "description": "Warehouse type (Default, Quarantine, Transit, Vendor, Customer)." },
+          "PrimaryAddressStreet": { "type": "string", "description": "Primary street address." },
+          "PrimaryAddressCity": { "type": "string", "description": "Primary address city." },
+          "PrimaryAddressState": { "type": "string", "description": "Primary address state or province." },
+          "PrimaryAddressZipCode": { "type": "string", "description": "Primary address postal code." },
+          "PrimaryAddressCountryRegionId": { "type": "string", "description": "Primary address country/region." },
+          "IsInventoryCountingEnabled": { "type": "string", "enum": ["Yes", "No"], "description": "Whether the warehouse participates in cycle counting." },
+          "IsWMSManaged": { "type": "string", "enum": ["Yes", "No"], "description": "Whether the warehouse is managed by the advanced WMS module." }
+        }
+      },
+      "WarehousesCollection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": "array", "items": { "$ref": "#/components/schemas/Warehouse" } }
+            }
+          }
+        ]
+      },
+      "WarehouseLocation": {
+        "type": "object",
+        "description": "Warehouse location (bin) master record.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "WarehouseId": { "type": "string", "description": "Warehouse the location belongs to." },
+          "LocationId": { "type": "string", "description": "Location (bin) identifier." },
+          "LocationProfileId": { "type": "string", "description": "Location profile." },
+          "ZoneId": { "type": "string", "description": "Zone the location belongs to." },
+          "AisleNumber": { "type": "string", "description": "Aisle designator." },
+          "RackNumber": { "type": "string", "description": "Rack designator." },
+          "ShelfNumber": { "type": "string", "description": "Shelf designator." },
+          "BinNumber": { "type": "string", "description": "Bin designator." },
+          "IsInboundPutawayLocation": { "type": "string", "enum": ["Yes", "No"], "description": "Whether the location is used for putaway." },
+          "IsOutboundPickingLocation": { "type": "string", "enum": ["Yes", "No"], "description": "Whether the location is used for picking." }
+        }
+      },
+      "WarehouseLocationsCollection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": "array", "items": { "$ref": "#/components/schemas/WarehouseLocation" } }
+            }
+          }
+        ]
+      },
+      "Site": {
+        "type": "object",
+        "description": "Inventory site master record.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "SiteId": { "type": "string", "description": "Site identifier." },
+          "SiteName": { "type": "string", "description": "Human-readable site name." },
+          "TimeZoneId": { "type": "string", "description": "Site time zone." },
+          "DefaultWarehouseId": { "type": "string", "description": "Default warehouse for the site." },
+          "PrimaryAddressCountryRegionId": { "type": "string", "description": "Primary address country/region." },
+          "PrimaryAddressCity": { "type": "string", "description": "Primary address city." },
+          "IsActive": { "type": "string", "enum": ["Yes", "No"], "description": "Whether the site is active." }
+        }
+      },
+      "SitesCollection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": "array", "items": { "$ref": "#/components/schemas/Site" } }
+            }
+          }
+        ]
+      },
+      "ItemGroup": {
+        "type": "object",
+        "description": "Item group reference record.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "ItemGroupId": { "type": "string", "description": "Item group identifier." },
+          "ItemGroupName": { "type": "string", "description": "Item group description." },
+          "InventoryAccount": { "type": "string", "description": "Inventory main account." },
+          "CostOfGoodsSoldAccount": { "type": "string", "description": "COGS main account." },
+          "RevenueAccount": { "type": "string", "description": "Revenue main account." }
+        }
+      },
+      "ItemGroupsCollection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": "array", "items": { "$ref": "#/components/schemas/ItemGroup" } }
+            }
+          }
+        ]
+      },
+      "UnitOfMeasure": {
+        "type": "object",
+        "description": "Global unit-of-measure definition (not scoped to a legal entity).",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "Symbol": { "type": "string", "description": "Unit symbol (e.g. `ea`, `kg`, `m`)." },
+          "Description": { "type": "string", "description": "Human-readable description." },
+          "UnitClass": { "type": "string", "description": "Unit class (Quantity, Length, Mass, Time, Volume, etc.)." },
+          "DecimalPrecision": { "type": "integer", "format": "int32", "description": "Number of decimals used when displaying quantities in this unit." },
+          "SystemOfUnits": { "type": "string", "description": "System of units (`Metric`, `Imperial`, `None`)." }
+        }
+      },
+      "UnitsOfMeasureCollection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": "array", "items": { "$ref": "#/components/schemas/UnitOfMeasure" } }
+            }
+          }
+        ]
+      },
+      "BillOfMaterials": {
+        "type": "object",
+        "description": "BOM header record.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "BillOfMaterialsId": { "type": "string", "description": "BOM identifier." },
+          "BillOfMaterialsName": { "type": "string", "description": "Human-readable BOM name." },
+          "SiteId": { "type": "string", "description": "Site the BOM applies to." },
+          "ItemGroupId": { "type": "string", "description": "Item group classification." },
+          "ApprovedByPersonnelNumber": { "type": "string", "description": "Personnel number of the approver." },
+          "IsApproved": { "type": "string", "enum": ["Yes", "No"], "description": "Whether the BOM is approved." },
+          "ActivationDate": { "type": "string", "format": "date", "description": "First date on which the BOM is active." },
+          "ExpirationDate": { "type": "string", "format": "date", "description": "Last date on which the BOM is active." }
+        }
+      },
+      "BillsOfMaterialsCollection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": "array", "items": { "$ref": "#/components/schemas/BillOfMaterials" } }
+            }
+          }
+        ]
+      },
+      "BillOfMaterialLine": {
+        "type": "object",
+        "description": "BOM line record.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "BillOfMaterialsId": { "type": "string", "description": "BOM the line belongs to." },
+          "LineNumber": { "type": "number", "format": "double", "description": "Line sequence." },
+          "ItemNumber": { "type": "string", "description": "Component item number." },
+          "Quantity": { "type": "number", "format": "double", "description": "Required quantity of the component." },
+          "UnitSymbol": { "type": "string", "description": "Unit of measure." },
+          "ConsumptionFormulaId": { "type": "string", "description": "Consumption formula identifier." },
+          "ScrapVariablePercentage": { "type": "number", "format": "double", "description": "Variable scrap as a percentage." },
+          "ScrapConstantQuantity": { "type": "number", "format": "double", "description": "Constant scrap quantity." }
+        }
+      },
+      "BillOfMaterialLinesCollection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": "array", "items": { "$ref": "#/components/schemas/BillOfMaterialLine" } }
+            }
+          }
+        ]
+      },
+      "ProductionOrderHeader": {
+        "type": "object",
+        "description": "Production order header record.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "ProductionOrderNumber": { "type": "string", "description": "Production order number." },
+          "ItemNumber": { "type": "string", "description": "Item being produced." },
+          "ProductionQuantity": { "type": "number", "format": "double", "description": "Quantity to be produced." },
+          "UnitSymbol": { "type": "string", "description": "Unit of measure for the production quantity." },
+          "SiteId": { "type": "string", "description": "Site where the order is produced." },
+          "WarehouseId": { "type": "string", "description": "Warehouse where the order is produced." },
+          "ProductionStatus": { "type": "string", "description": "Status (Created, Estimated, Scheduled, Released, StartedUp, ReportedAsFinished, Ended, Costed)." },
+          "ScheduledStartDate": { "type": "string", "format": "date", "description": "Scheduled start date." },
+          "ScheduledEndDate": { "type": "string", "format": "date", "description": "Scheduled end date." },
+          "BillOfMaterialsId": { "type": "string", "description": "BOM used for the order." },
+          "RouteId": { "type": "string", "description": "Route used for the order." },
+          "ResponsibleWorkerPersonnelNumber": { "type": "string", "description": "Personnel number of the responsible worker." }
+        }
+      },
+      "ProductionOrderHeadersCollection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": "array", "items": { "$ref": "#/components/schemas/ProductionOrderHeader" } }
+            }
+          }
+        ]
+      },
+      "TransferOrderHeader": {
+        "type": "object",
+        "description": "Transfer order header record.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "TransferOrderNumber": { "type": "string", "description": "Transfer order number." },
+          "ShippingWarehouseId": { "type": "string", "description": "Warehouse shipping the inventory." },
+          "ShippingSiteId": { "type": "string", "description": "Site shipping the inventory." },
+          "ReceivingWarehouseId": { "type": "string", "description": "Warehouse receiving the inventory." },
+          "ReceivingSiteId": { "type": "string", "description": "Site receiving the inventory." },
+          "ShippingDate": { "type": "string", "format": "date", "description": "Planned shipping date." },
+          "ReceivingDate": { "type": "string", "format": "date", "description": "Planned receiving date." },
+          "TransferStatus": { "type": "string", "description": "Status (Created, Shipped, Received)." },
+          "DeliveryModeCode": { "type": "string", "description": "Mode of delivery." },
+          "CurrencyCode": { "type": "string", "description": "Transfer currency." }
+        }
+      },
+      "TransferOrderHeadersCollection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": "array", "items": { "$ref": "#/components/schemas/TransferOrderHeader" } }
+            }
+          }
+        ]
+      },
+      "InventoryOnHand": {
+        "type": "object",
+        "description": "On-hand inventory quantities aggregated by dimension.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "ItemNumber": { "type": "string", "description": "Item number." },
+          "SiteId": { "type": "string", "description": "Site." },
+          "WarehouseId": { "type": "string", "description": "Warehouse." },
+          "LocationId": { "type": "string", "description": "Location (bin)." },
+          "BatchNumber": { "type": "string", "description": "Batch number, when batch tracking is enabled." },
+          "SerialNumber": { "type": "string", "description": "Serial number, when serial tracking is enabled." },
+          "InventoryStatusId": { "type": "string", "description": "Inventory status (e.g. Available, Blocked)." },
+          "UnitSymbol": { "type": "string", "description": "Inventory unit of measure." },
+          "PhysicalInventoryQuantity": { "type": "number", "format": "double", "description": "Physical on-hand quantity." },
+          "PhysicalReservedQuantity": { "type": "number", "format": "double", "description": "Quantity physically reserved." },
+          "AvailablePhysicalQuantity": { "type": "number", "format": "double", "description": "Physically available quantity (physical − physical reservations)." },
+          "OrderedInventoryQuantity": { "type": "number", "format": "double", "description": "Quantity ordered in." }
+        }
+      },
+      "InventoryOnHandCollection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": "array", "items": { "$ref": "#/components/schemas/InventoryOnHand" } }
+            }
+          }
+        ]
+      },
+      "InventoryJournalHeader": {
+        "type": "object",
+        "description": "Inventory journal header (movement, counting, adjustment, transfer).",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "JournalNumber": { "type": "string", "description": "Journal batch number." },
+          "JournalName": { "type": "string", "description": "Journal name identifier." },
+          "Description": { "type": "string", "description": "Free-form description." },
+          "JournalType": { "type": "string", "description": "Journal type (Movement, Counting, Transfer, BOM, Item arrival, Production input, Tag counting)." },
+          "IsPosted": { "type": "string", "enum": ["Yes", "No"], "description": "Whether the journal has been posted." },
+          "PostingDate": { "type": "string", "format": "date", "description": "Posting date, when posted." },
+          "SiteId": { "type": "string", "description": "Default site for the journal." },
+          "WarehouseId": { "type": "string", "description": "Default warehouse for the journal." }
+        }
+      },
+      "InventoryJournalHeadersCollection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": "array", "items": { "$ref": "#/components/schemas/InventoryJournalHeader" } }
+            }
+          }
+        ]
+      },
+      "SalesShipmentHeader": {
+        "type": "object",
+        "description": "Sales shipment (packing slip) header record.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "PackingSlipId": { "type": "string", "description": "Packing slip identifier." },
+          "SalesOrderNumber": { "type": "string", "description": "Originating sales order number." },
+          "OrderingCustomerAccountNumber": { "type": "string", "description": "Ordering customer account." },
+          "InvoiceCustomerAccountNumber": { "type": "string", "description": "Invoice customer account." },
+          "PackingSlipDate": { "type": "string", "format": "date", "description": "Packing slip date." },
+          "ShippingDate": { "type": "string", "format": "date", "description": "Actual shipping date." },
+          "DeliveryModeCode": { "type": "string", "description": "Mode of delivery." },
+          "DeliveryTermsCode": { "type": "string", "description": "Incoterms / delivery terms." },
+          "ShippingWarehouseId": { "type": "string", "description": "Warehouse the shipment left from." },
+          "CurrencyCode": { "type": "string", "description": "Transaction currency." }
+        }
+      },
+      "SalesShipmentHeadersCollection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": "array", "items": { "$ref": "#/components/schemas/SalesShipmentHeader" } }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
