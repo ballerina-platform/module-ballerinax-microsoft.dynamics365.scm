@@ -1,10 +1,16 @@
 ## Overview
 
-The `ballerinax/microsoft.dynamics365.scm` connector wraps a curated subset of the Microsoft Dynamics 365 Supply Chain Management OData REST API: warehouses, warehouse locations, sites, item groups, units of measure, bills of materials, production orders, transfer orders, inventory on-hand, inventory journals, and sales shipments. It is generated from the OpenAPI spec in `docs/spec/openapi.json`.
+Microsoft Dynamics 365 Supply Chain Management is Microsoft's cloud enterprise-resource-planning application for end-to-end supply chain operations, covering warehousing, inventory, manufacturing, planning, transportation, and procurement. The Dynamics 365 Supply Chain Management connector enables integration with the Supply Chain OData REST API, providing programmatic access to master and transactional data including warehouses and locations, sites, item groups, units of measure, bills of materials, production orders, transfer orders, on-hand inventory, inventory journals, and sales shipments.
 
-Entities that overlap with the sibling `ballerinax/microsoft.dynamics365.finance` connector (customers, vendors, released products, sales/purchase order headers, GL entries) are intentionally not duplicated here.
+### Key Features
 
-The repository also ships an in-process mock server (`modules/mock.server`) useful for tests and UI demos without a live D365 tenant.
+- Warehouse, location, and site master-data management
+- Bill-of-materials (BOM) header and line access for manufacturing integration
+- Production order and transfer order workflows
+- Real-time on-hand inventory lookups by item, site, warehouse, location, batch, and serial
+- Inventory journal and sales shipment (packing slip) visibility
+- Cross-company queries spanning multiple legal entities (`dataAreaId`)
+- OAuth 2.0 client-credentials and bearer-token authentication against Microsoft Entra ID (Azure AD)
 
 ## Setup
 
