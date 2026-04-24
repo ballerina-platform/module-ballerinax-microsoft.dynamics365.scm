@@ -14,8 +14,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-// List warehouses - showcases default-company scoping, cross-company override,
-// and filtering warehouses by type.
+// Browse released products in the default company.
 
 import ballerina/http;
 import ballerina/io;
@@ -30,23 +29,11 @@ public function main() returns error? {
         serviceUrl = "http://localhost:9091/data"
     );
 
-    io:println("Default company (USMF) warehouses:");
-    scm:WarehousesCollection page = check fo->listWarehouses(queries = {top: 10});
-    printWarehouses(page.value ?: []);
-
-    io:println("");
-    io:println("Transit-type warehouses across all companies:");
-    scm:WarehousesCollection transit = check fo->listWarehouses(queries = {
-        filter: "WarehouseTypeId eq 'Transit'",
-        crossCompany: true
-    });
-    printWarehouses(transit.value ?: []);
+    io:println("Released products:");
+    scm:ReleasedProductsV2Collection page = check fo->listReleasedProductsV2();
+    foreach scm:ReleasedProductV2 p in page.value ?: [] {
+        io:println(string `  ${p.ItemNumber ?: ""}   [${p.dataAreaId ?: ""}]`);
+    }
 
     check mockListener.gracefulStop();
-}
-
-function printWarehouses(scm:Warehouse[] rows) {
-    foreach scm:Warehouse w in rows {
-        io:println(string `  ${w.WarehouseId ?: ""}   ${w.WarehouseName ?: ""}   site=${w.SiteId ?: ""}   type=${w.WarehouseTypeId ?: ""}   [${w.dataAreaId ?: ""}]`);
-    }
 }

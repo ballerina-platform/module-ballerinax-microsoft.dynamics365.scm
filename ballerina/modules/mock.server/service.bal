@@ -14,29 +14,18 @@
 // specific language governing permissions and limitations
 // under the License.
 
-// Mock server for Microsoft Dynamics 365 Supply Chain Management.
-//
-// Hand-written because `bal openapi --mode service` can't handle OData's
-// composite-key path syntax (e.g. `/Warehouses(dataAreaId='USMF',WarehouseId='11')`).
-// A single catch-all resource dispatches on the first path segment, parses the
-// OData key expression if present, and returns hardcoded data from data.bal.
-//
-// POST / PATCH echo the payload back. DELETE returns 204. There is no mutation,
-// so the server is safely concurrent and restart-clean.
+// Mock D365 SCM OData service. Catch-all dispatch on the first path segment,
+// stub data for a handful of highlighted entity sets, empty for the rest.
 
 import ballerina/http;
 import ballerina/lang.regexp;
 
 public type MockServerConfig record {|
-    # Port the mock server will listen on.
     int port = 9091;
-    # Legal entity returned when the caller does not set `cross-company=true`.
     string defaultCompany = "USMF";
-    # Base of the generated `@odata.context` URL.
     string contextBase = "http://localhost:9091/data/";
 |};
 
-# Start the mock on the given port. Returns the listener so the caller can stop it from tests.
 public isolated function startMock(MockServerConfig config = {}) returns http:Listener|error {
     http:Listener ln = check new (config.port);
     MockService svc = new (config);
@@ -55,16 +44,11 @@ isolated service class MockService {
 
     isolated resource function 'default [string... segments](http:Request req) returns http:Response|error {
         http:Response response = new;
-
         if segments.length() == 0 {
             response.statusCode = 200;
-            response.setJsonPayload({
-                "@odata.context": self.config.contextBase + "$metadata",
-                "value": []
-            });
+            response.setJsonPayload({"@odata.context": self.config.contextBase + "$metadata", "value": []});
             return response;
         }
-
         string firstSeg = segments[0];
         if firstSeg == "$metadata" {
             response.statusCode = 200;
@@ -75,10 +59,9 @@ isolated service class MockService {
         [string, map<string>] parsed = parseEntitySetAndKey(firstSeg);
         string entitySet = parsed[0];
         map<string> key = parsed[1];
-        map<string[]> queryParams = req.getQueryParams();
-        ODataQueries q = parseQueries(queryParams);
-
+        ODataQueries q = parseQueries(req.getQueryParams());
         string method = req.method;
+
         if key.length() == 0 {
             return handleCollection(method, entitySet, q, self.config, req);
         }
@@ -87,23 +70,23 @@ isolated service class MockService {
 }
 
 isolated function parseEntitySetAndKey(string segment) returns [string, map<string>] {
-    int? openParen = segment.indexOf("(");
-    if openParen is () {
+    int? open = segment.indexOf("(");
+    if open is () {
         return [segment, {}];
     }
-    string entitySet = segment.substring(0, openParen);
+    string entitySet = segment.substring(0, open);
     int closeIdx = segment.endsWith(")") ? segment.length() - 1 : segment.length();
-    string keyExpr = segment.substring(openParen + 1, closeIdx);
+    string keyExpr = segment.substring(open + 1, closeIdx);
 
     map<string> key = {};
     regexp:RegExp kvRe = re `(\w+)\s*=\s*'([^']*)'`;
-    regexp:Groups[] allGroups = kvRe.findAllGroups(keyExpr);
-    foreach regexp:Groups groups in allGroups {
-        if groups.length() >= 3 {
-            regexp:Span? nameSpan = groups[1];
-            regexp:Span? valueSpan = groups[2];
-            if nameSpan is regexp:Span && valueSpan is regexp:Span {
-                key[nameSpan.substring()] = valueSpan.substring();
+    regexp:Groups[] all = kvRe.findAllGroups(keyExpr);
+    foreach regexp:Groups g in all {
+        if g.length() >= 3 {
+            regexp:Span? n = g[1];
+            regexp:Span? v = g[2];
+            if n is regexp:Span && v is regexp:Span {
+                key[n.substring()] = v.substring();
             }
         }
     }
@@ -113,10 +96,7 @@ isolated function parseEntitySetAndKey(string segment) returns [string, map<stri
 isolated function handleCollection(string method, string entitySet, ODataQueries q,
         MockServerConfig config, http:Request req) returns http:Response|error {
     if method == "GET" {
-        json[]? data = dataFor(entitySet);
-        if data is () {
-            return notFound(entitySet);
-        }
+        json[] data = dataFor(entitySet);
         map<json> envelope = buildCollection(config.contextBase, entitySet, data, q, config.defaultCompany);
         http:Response response = new;
         response.statusCode = 200;
@@ -135,11 +115,7 @@ isolated function handleCollection(string method, string entitySet, ODataQueries
 
 isolated function handleEntity(string method, string entitySet, map<string> key, ODataQueries q,
         MockServerConfig config, http:Request req) returns http:Response|error {
-    json[]? data = dataFor(entitySet);
-    if data is () {
-        return notFound(entitySet);
-    }
-
+    json[] data = dataFor(entitySet);
     if method == "GET" {
         json? found = findByKey(data, key);
         if found is () {
@@ -189,46 +165,22 @@ isolated function handleEntity(string method, string entitySet, map<string> key,
     return methodNotAllowed(method, entitySet);
 }
 
-isolated function dataFor(string entitySet) returns json[]? {
+isolated function dataFor(string entitySet) returns json[] {
     match entitySet {
+        "ReleasedProductsV2" => {
+            return releasedProducts;
+        }
         "Warehouses" => {
             return warehouses;
         }
-        "WarehouseLocations" => {
-            return warehouseLocations;
+        "WarehousesOnHand" => {
+            return warehousesOnHand;
         }
-        "Sites" => {
-            return sites;
-        }
-        "ItemGroups" => {
-            return itemGroups;
-        }
-        "UnitsOfMeasure" => {
-            return unitsOfMeasure;
-        }
-        "BillsOfMaterials" => {
-            return billsOfMaterials;
-        }
-        "BillOfMaterialLines" => {
-            return bomLines;
-        }
-        "ProductionOrderHeaders" => {
-            return productionOrders;
-        }
-        "TransferOrderHeaders" => {
-            return transferOrders;
-        }
-        "InventoryOnHand" => {
-            return inventoryOnHand;
-        }
-        "InventoryJournalHeaders" => {
-            return inventoryJournals;
-        }
-        "SalesShipmentHeaders" => {
-            return salesShipments;
+        "SalesOrderHeadersV2" => {
+            return salesOrderHeadersV2;
         }
     }
-    return ();
+    return [];
 }
 
 isolated function findByKey(json[] data, map<string> key) returns json? {
@@ -261,18 +213,6 @@ isolated function stampEtag(json payload) returns json {
     }
     stamped["@odata.etag"] = "W/\"Jzs7MDsxLTExMTExMTEwOyc=\"";
     return stamped;
-}
-
-isolated function notFound(string entitySet) returns http:Response {
-    http:Response r = new;
-    r.statusCode = 404;
-    r.setJsonPayload({
-        "error": {
-            "code": "Resource_EntityNotFound",
-            "message": string `No entity set with name '${entitySet}' is exposed by this mock.`
-        }
-    });
-    return r;
 }
 
 isolated function notFoundKey(string entitySet, map<string> key) returns http:Response {

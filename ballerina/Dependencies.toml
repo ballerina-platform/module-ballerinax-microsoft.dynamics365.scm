@@ -339,7 +339,7 @@ modules = [
 [[package]]
 org = "ballerinax"
 name = "microsoft.dynamics365.scm"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
 	{org = "ballerina", name = "data.jsondata"},
 	{org = "ballerina", name = "http"},

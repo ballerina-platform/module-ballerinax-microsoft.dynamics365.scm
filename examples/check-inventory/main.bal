@@ -14,9 +14,9 @@
 // specific language governing permissions and limitations
 // under the License.
 
-// Check on-hand inventory for an item across every site/warehouse/status.
-// Demonstrates $filter, cross-company, and reading quantity fields from the
-// response. Typical use: answer "do we have N of item X anywhere?"
+// Check on-hand inventory for an item across every site/warehouse.
+// This is the "Listen and Update order Inventory" read-side of the demo:
+// integrator fans in inventory snapshots and publishes changes downstream.
 
 import ballerina/http;
 import ballerina/io;
@@ -33,24 +33,21 @@ public function main() returns error? {
         serviceUrl = "http://localhost:9091/data"
     );
 
-    scm:InventoryOnHandCollection snapshot = check fo->listInventoryOnHand(queries = {
-        filter: "ItemNumber eq '" + ITEM + "'",
-        orderBy: "AvailablePhysicalQuantity desc",
-        crossCompany: true
+    scm:WarehousesOnHandCollection snapshot = check fo->listWarehousesOnHand(queries = {
+        filter: "ItemNumber eq '" + ITEM + "'"
     });
 
-    scm:InventoryOnHand[] rows = snapshot.value ?: [];
-    io:println(string `On-hand snapshot for ${ITEM} (${rows.length()} locations):`);
+    scm:WarehouseOnHand[] rows = snapshot.value ?: [];
+    io:println(string `On-hand for ${ITEM} (${rows.length()} locations):`);
 
-    decimal totalAvailable = 0d;
-    foreach scm:InventoryOnHand r in rows {
-        decimal avail = r.AvailablePhysicalQuantity ?: 0d;
-        totalAvailable += avail;
-        io:println(string `  [${r.dataAreaId ?: ""}] site=${r.SiteId ?: ""} wh=${r.WarehouseId ?: ""} loc=${r.LocationId ?: ""} status=${r.InventoryStatusId ?: ""}  avail=${avail} ${r.UnitSymbol ?: ""}`);
+    decimal total = 0d;
+    foreach scm:WarehouseOnHand r in rows {
+        decimal avail = r.AvailableOnHandQuantity ?: 0d;
+        total += avail;
+        io:println(string `  [${r.dataAreaId ?: ""}] site=${r.InventorySiteId ?: ""} wh=${r.InventoryWarehouseId ?: ""}   avail=${avail}  reserved=${r.ReservedOnHandQuantity ?: 0d}`);
     }
-
     io:println("");
-    io:println(string `Total available across all locations: ${totalAvailable}`);
+    io:println(string `Total available: ${total}`);
 
     check mockListener.gracefulStop();
 }
