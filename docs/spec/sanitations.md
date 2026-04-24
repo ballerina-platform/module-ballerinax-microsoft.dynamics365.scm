@@ -3,17 +3,7 @@ _Edition_: Swan Lake
 
 # OpenAPI specification — derivation notes
 
-`docs/spec/openapi.json` is **generated from a real Dynamics 365 Finance and Operations CSDL (EDMX) metadata dump** by `docs/spec/tooling/edmx2oas.py`. The source CSDL itself is not in the repo — it's customer-derived data. To regenerate, obtain a fresh `$metadata` dump from any D365 F&O tenant and run:
-
-```bash
-python3 docs/spec/tooling/edmx2oas.py \
-    path/to/metadata.xml \
-    /tmp/finance-out.json \
-    docs/spec/openapi.json \
-    300
-```
-
-The `300` is the per-connector entity-set cap. See the script for the full curation logic.
+`docs/spec/openapi.json` is **generated from a real Dynamics 365 Finance and Operations CSDL (EDMX) metadata dump**. The source CSDL itself is not in the repo — it is customer-derived data. The generator is a maintenance tool held outside the repository; contact the maintainers if you need to regenerate from a fresh metadata dump.
 
 ## What the spec contains
 
@@ -28,11 +18,9 @@ The `300` is the per-connector entity-set cap. See the script for the full curat
 
 The full Supply-Chain-relevant surface from the CSDL is ~2,000 entities. Generating all of them produces a single module the Ballerina compiler cannot type-check within reasonable JVM heap. The 300-entity cap is a compile-survivable subset that still covers the common integration surface.
 
-If you need an entity that isn't in the spec, add it to the priority list in `docs/spec/tooling/edmx2oas.py` (the `SCM_PRIORITY` tuple) and regenerate.
-
 ## How the split between Finance and SCM was decided
 
-Each EntityType in the CSDL is classified by the dominant **label-file prefix** (e.g. `@Ledger`, `@Invent`) across its property `LabelId` annotations. Entities with SCM-side labels go to this connector; Finance-side labels go to the sibling `ballerinax/microsoft.dynamics365.finance`; entities using both (e.g. customers, vendors, products) are `shared` and appear in both connectors. HR, Retail, Commerce, and Enterprise Asset Management entities are excluded entirely. Full rule and tunable sets are in the tooling script.
+Each EntityType in the CSDL is classified by the dominant **label-file prefix** (`@Ledger`, `@Invent`, etc.) across its property `LabelId` annotations. Entities with SCM-side labels go to this connector; Finance-side labels go to the sibling `ballerinax/microsoft.dynamics365.finance`; entities using both (e.g. customers, vendors, products) are shared and appear in both connectors. HR, Retail, Commerce, and Enterprise Asset Management entities are excluded entirely.
 
 ## Known departures
 
@@ -42,7 +30,7 @@ Each EntityType in the CSDL is classified by the dominant **label-file prefix** 
 
 ## Regeneration command
 
-From the repository root:
+From the repository root, to regenerate the Ballerina client from the committed spec:
 
 ```bash
 bal openapi -i docs/spec/openapi.json --mode client --client-methods remote -o ballerina
