@@ -6,5 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0]
+
+### Changed
+- Expanded the connector surface to ~300 entity sets with list / get / create / update / delete operations.
+- Operation names and field names changed vs 0.1.0; consumers depending on 0.1.0 should pin that version explicitly.
+
+## [0.1.0] - 2026-04-22
+
 ### Added
-- Initial implementation of the Microsoft Dynamics 365 Supply Chain Management connector
+- Initial implementation of the Microsoft Dynamics 365 Supply Chain Management connector.

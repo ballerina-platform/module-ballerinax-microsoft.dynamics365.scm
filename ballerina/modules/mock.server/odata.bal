@@ -14,10 +14,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
-// Minimal OData query application — supports what the demo needs:
-// $top, $skip, $count, $select, cross-company, and a subset of $filter
-// (eq on string/number, contains(X,'Y'), and startswith(X,'Y')).
-// Not a complete OData implementation.
+// Minimal OData query application for the mock: $top, $skip, $count, $select,
+// cross-company, and a small subset of $filter (eq, contains, startswith).
 
 import ballerina/lang.regexp;
 
@@ -80,27 +78,18 @@ isolated function buildCollection(string contextBase, string entitySet, json[] d
         filtered = applyFilter(filtered, filterExpr);
     }
 
-    string? orderByExpr = q.orderBy;
-    if orderByExpr is string {
-        filtered = applyOrderBy(filtered, orderByExpr);
-    }
-
     int totalCount = filtered.length();
 
     int? skipN = q.skip;
-    if skipN is int && skipN >= 0 {
-        if skipN < filtered.length() {
-            filtered = filtered.slice(skipN);
-        } else {
-            filtered = [];
-        }
+    if skipN is int && skipN >= 0 && skipN < filtered.length() {
+        filtered = filtered.slice(skipN);
+    } else if skipN is int && skipN >= filtered.length() {
+        filtered = [];
     }
 
     int? topN = q.top;
-    if topN is int && topN >= 0 {
-        if topN < filtered.length() {
-            filtered = filtered.slice(0, topN);
-        }
+    if topN is int && topN >= 0 && topN < filtered.length() {
+        filtered = filtered.slice(0, topN);
     }
 
     string? selectExpr = q.selectFields;
@@ -135,9 +124,6 @@ isolated function projectRow(json row, string[] fields) returns json {
     return projected;
 }
 
-# Very small subset of OData $filter: supports
-#   Field eq 'literal' | Field eq N | contains(Field,'literal') | startswith(Field,'literal')
-# and conjunctions joined by ` and `.
 isolated function applyFilter(json[] data, string expr) returns json[] {
     string[] conjuncts = re ` and `.split(expr.trim());
     json[] result = data;
@@ -149,40 +135,28 @@ isolated function applyFilter(json[] data, string expr) returns json[] {
 
 isolated function applyClause(json[] data, string clause) returns json[] {
     regexp:RegExp containsRe = re `^contains\((\w+),\s*'([^']*)'\)$`;
-    regexp:Groups? containsGroups = containsRe.findGroups(clause);
-    if containsGroups is regexp:Groups && containsGroups.length() >= 3 {
-        string fieldName = getGroup(containsGroups, 1);
-        string needle = getGroup(containsGroups, 2);
+    regexp:Groups? g = containsRe.findGroups(clause);
+    if g is regexp:Groups && g.length() >= 3 {
+        string f = getGroup(g, 1);
+        string needle = getGroup(g, 2);
         return from json row in data
-            where rowContains(row, fieldName, needle)
+            where rowContains(row, f, needle)
             select row;
     }
-
-    regexp:RegExp startsWithRe = re `^startswith\((\w+),\s*'([^']*)'\)$`;
-    regexp:Groups? swGroups = startsWithRe.findGroups(clause);
-    if swGroups is regexp:Groups && swGroups.length() >= 3 {
-        string fieldName = getGroup(swGroups, 1);
-        string prefix = getGroup(swGroups, 2);
-        return from json row in data
-            where rowStartsWith(row, fieldName, prefix)
-            select row;
-    }
-
     regexp:RegExp eqRe = re `^(\w+)\s+eq\s+(.*)$`;
-    regexp:Groups? eqGroups = eqRe.findGroups(clause);
-    if eqGroups is regexp:Groups && eqGroups.length() >= 3 {
-        string fieldName = getGroup(eqGroups, 1);
-        string rhs = getGroup(eqGroups, 2).trim();
+    regexp:Groups? eg = eqRe.findGroups(clause);
+    if eg is regexp:Groups && eg.length() >= 3 {
+        string f = getGroup(eg, 1);
+        string rhs = getGroup(eg, 2).trim();
         return from json row in data
-            where rowEquals(row, fieldName, rhs)
+            where rowEquals(row, f, rhs)
             select row;
     }
-
     return data;
 }
 
-isolated function getGroup(regexp:Groups groups, int i) returns string {
-    regexp:Span? span = groups[i];
+isolated function getGroup(regexp:Groups g, int i) returns string {
+    regexp:Span? span = g[i];
     return span is regexp:Span ? span.substring() : "";
 }
 
@@ -199,11 +173,6 @@ isolated function rowContains(json row, string fieldName, string needle) returns
     return v is string && v.toLowerAscii().includes(needle.toLowerAscii());
 }
 
-isolated function rowStartsWith(json row, string fieldName, string prefix) returns boolean {
-    string? v = lookupString(row, fieldName);
-    return v is string && v.toLowerAscii().startsWith(prefix.toLowerAscii());
-}
-
 isolated function rowEquals(json row, string fieldName, string rhs) returns boolean {
     if !(row is map<json>) {
         return false;
@@ -216,106 +185,5 @@ isolated function rowEquals(json row, string fieldName, string rhs) returns bool
         string literal = rhs.substring(1, rhs.length() - 1);
         return val is string && val == literal;
     }
-    if rhs == "true" || rhs == "false" {
-        return val is boolean && val == (rhs == "true");
-    }
-    // Numeric comparison: coerce both sides to decimal so `eq 250000` matches
-    // a JSON-parsed 250000.00 and vice versa.
-    decimal|error asDec = decimal:fromString(rhs);
-    if asDec is decimal {
-        decimal? valAsDec = ();
-        if val is int {
-            valAsDec = <decimal>val;
-        } else if val is decimal {
-            valAsDec = val;
-        } else if val is float {
-            valAsDec = <decimal>val;
-        }
-        return valAsDec is decimal && valAsDec == asDec;
-    }
     return false;
-}
-
-isolated function applyOrderBy(json[] data, string expr) returns json[] {
-    string trimmed = expr.trim();
-    boolean isDesc = false;
-    string fieldName = trimmed;
-    if trimmed.endsWith(" desc") {
-        isDesc = true;
-        fieldName = trimmed.substring(0, trimmed.length() - 5).trim();
-    } else if trimmed.endsWith(" asc") {
-        fieldName = trimmed.substring(0, trimmed.length() - 4).trim();
-    }
-    // Detect whether the field is numeric by sampling; numeric fields must be
-    // sorted by decimal value so `10` does not lexicographically sort before `2`.
-    boolean numeric = isNumericSortField(data, fieldName);
-    if numeric {
-        if isDesc {
-            return from json row in data
-                let decimal sk = numericSortKey(row, fieldName)
-                order by sk descending
-                select row;
-        }
-        return from json row in data
-            let decimal sk = numericSortKey(row, fieldName)
-            order by sk ascending
-            select row;
-    }
-    if isDesc {
-        return from json row in data
-            let string sk = sortKey(row, fieldName)
-            order by sk descending
-            select row;
-    }
-    return from json row in data
-        let string sk = sortKey(row, fieldName)
-        order by sk ascending
-        select row;
-}
-
-isolated function isNumericSortField(json[] data, string fieldName) returns boolean {
-    foreach json row in data {
-        if !(row is map<json>) {
-            continue;
-        }
-        json? val = row[fieldName];
-        if val is int || val is float || val is decimal {
-            return true;
-        }
-        if val is string || val is boolean {
-            return false;
-        }
-    }
-    return false;
-}
-
-isolated function numericSortKey(json row, string fieldName) returns decimal {
-    if !(row is map<json>) {
-        return 0d;
-    }
-    json? val = row[fieldName];
-    if val is int {
-        return <decimal>val;
-    }
-    if val is decimal {
-        return val;
-    }
-    if val is float {
-        return <decimal>val;
-    }
-    return 0d;
-}
-
-isolated function sortKey(json row, string fieldName) returns string {
-    if !(row is map<json>) {
-        return "";
-    }
-    json? val = row[fieldName];
-    if val is string {
-        return val;
-    }
-    if val is () {
-        return "";
-    }
-    return val.toString();
 }

@@ -12,3 +12,5 @@ jobs:
     secrets: inherit
     with:
       repo-name: module-ballerinax-microsoft.dynamics365.scm
+      additional-build-flags: "-PignoreVersionMismatch"
+      additional-test-flags: "-PignoreVersionMismatch"
