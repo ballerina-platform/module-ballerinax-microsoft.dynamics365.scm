@@ -173,11 +173,29 @@ isolated function dataFor(string entitySet) returns json[] {
         "Warehouses" => {
             return warehouses;
         }
+        "WarehouseLocations" => {
+            return warehouseLocations;
+        }
         "WarehousesOnHand" => {
             return warehousesOnHand;
         }
+        "WarehousesOnHandV2" => {
+            return warehousesOnHandV2;
+        }
         "SalesOrderHeadersV2" => {
             return salesOrderHeadersV2;
+        }
+        "SalesOrderLines" => {
+            return salesOrderLines;
+        }
+        "PurchaseOrderHeadersV2" => {
+            return purchaseOrderHeadersV2;
+        }
+        "TransferOrderHeaders" => {
+            return transferOrderHeaders;
+        }
+        "ProductionOrderHeaders" => {
+            return productionOrderHeaders;
         }
     }
     return [];

@@ -157,6 +157,112 @@ function testGetSalesOrderV2MissingKeyReturns404() returns error? {
     test:assertTrue(result is error);
 }
 
+// ---- WarehouseLocations --------------------------------------------------
+
+@test:Config
+function testListWarehouseLocations() returns error? {
+    WarehouseLocationsCollection response = check scmClient->listWarehouseLocations();
+    WarehouseLocation[] rows = <WarehouseLocation[]>response.value;
+    test:assertTrue(rows.length() >= 3);
+}
+
+@test:Config
+function testListWarehouseLocationsFilterByWarehouse() returns error? {
+    WarehouseLocationsCollection response = check scmClient->listWarehouseLocations(
+        queries = {filter: "WarehouseId eq '11'"}
+    );
+    WarehouseLocation[] rows = <WarehouseLocation[]>response.value;
+    test:assertEquals(rows.length(), 2);
+}
+
+@test:Config
+function testGetWarehouseLocation() returns error? {
+    WarehouseLocation loc = check scmClient->getWarehouseLocations(
+        dataAreaId = "USMF",
+        warehouseId = "11",
+        warehouseLocationId = "A-01-01"
+    );
+    test:assertEquals(loc.WarehouseZoneId, "PICK");
+}
+
+// ---- WarehousesOnHandV2 (richer on-hand surface) -------------------------
+
+@test:Config
+function testListWarehousesOnHandV2() returns error? {
+    WarehousesOnHandV2Collection response = check scmClient->listWarehousesOnHandV2();
+    WarehouseOnHandV2[] rows = <WarehouseOnHandV2[]>response.value;
+    test:assertTrue(rows.length() >= 2);
+    foreach WarehouseOnHandV2 r in rows {
+        test:assertTrue(r.OnHandQuantity is decimal);
+    }
+}
+
+// ---- SalesOrderLines -----------------------------------------------------
+
+@test:Config
+function testListSalesOrderLinesForOrder() returns error? {
+    SalesOrderLinesCollection response = check scmClient->listSalesOrderLines(
+        queries = {filter: "SalesOrderNumber eq 'SO-100045'"}
+    );
+    SalesOrderLine[] rows = <SalesOrderLine[]>response.value;
+    test:assertEquals(rows.length(), 2);
+}
+
+// ---- PurchaseOrderHeadersV2 ----------------------------------------------
+
+@test:Config
+function testListPurchaseOrderHeadersV2() returns error? {
+    PurchaseOrderHeadersV2Collection response = check scmClient->listPurchaseOrderHeadersV2();
+    PurchaseOrderHeaderV2[] rows = <PurchaseOrderHeaderV2[]>response.value;
+    test:assertTrue(rows.length() >= 2);
+}
+
+@test:Config
+function testGetPurchaseOrderHeaderV2() returns error? {
+    PurchaseOrderHeaderV2 po = check scmClient->getPurchaseOrderHeadersV2(
+        dataAreaId = "USMF",
+        purchaseOrderNumber = "PO-200017"
+    );
+    test:assertEquals(po.OrderVendorAccountNumber, "V-001");
+}
+
+// ---- TransferOrderHeaders ------------------------------------------------
+
+@test:Config
+function testListTransferOrderHeaders() returns error? {
+    TransferOrderHeadersCollection response = check scmClient->listTransferOrderHeaders();
+    TransferOrderHeader[] rows = <TransferOrderHeader[]>response.value;
+    test:assertTrue(rows.length() >= 2);
+}
+
+@test:Config
+function testListTransferOrderHeadersFilterByStatus() returns error? {
+    TransferOrderHeadersCollection response = check scmClient->listTransferOrderHeaders(
+        queries = {filter: "TransferOrderStatus eq 'Shipped'"}
+    );
+    TransferOrderHeader[] rows = <TransferOrderHeader[]>response.value;
+    test:assertEquals(rows.length(), 1);
+    test:assertEquals(rows[0].TransferOrderNumber, "TO-300042");
+}
+
+// ---- ProductionOrderHeaders ----------------------------------------------
+
+@test:Config
+function testListProductionOrderHeaders() returns error? {
+    ProductionOrderHeadersCollection response = check scmClient->listProductionOrderHeaders();
+    ProductionOrderHeader[] rows = <ProductionOrderHeader[]>response.value;
+    test:assertTrue(rows.length() >= 2);
+}
+
+@test:Config
+function testGetProductionOrderHeader() returns error? {
+    ProductionOrderHeader prod = check scmClient->getProductionOrderHeaders(
+        dataAreaId = "USMF",
+        productionOrderNumber = "PROD-500011"
+    );
+    test:assertEquals(prod.ItemNumber, "ITM-2001");
+}
+
 // ---- Unmapped entities ---------------------------------------------------
 
 @test:Config
