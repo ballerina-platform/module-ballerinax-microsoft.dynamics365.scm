@@ -1,14 +1,16 @@
 ## Overview
 
-Microsoft Dynamics 365 Supply Chain Management is Microsoft's cloud enterprise-resource-planning application for end-to-end supply chain operations, covering warehousing, inventory, manufacturing, planning, transportation, and procurement. The Dynamics 365 Supply Chain Management connector enables integration with the Supply Chain OData REST API, providing programmatic access to master and transactional data including warehouses and locations, sites, item groups, units of measure, bills of materials, production orders, transfer orders, on-hand inventory, inventory journals, and sales shipments.
+Microsoft Dynamics 365 Supply Chain Management is Microsoft's cloud enterprise-resource-planning application for end-to-end supply chain operations, covering warehousing, inventory, manufacturing, planning, transportation, and procurement. The Dynamics 365 Supply Chain Management connector enables integration with the Supply Chain OData REST API, providing programmatic access to master and transactional data including warehouses and warehouse locations, released products and product variants, bills of materials, production orders and routes, transfer orders, sales and purchase orders, on-hand inventory, and inventory movement / transfer / counting journals.
 
 ### Key Features
 
-- Warehouse, location, and site master-data management
-- Bill-of-materials (BOM) header and line access for manufacturing integration
-- Production order and transfer order workflows
-- Real-time on-hand inventory lookups by item, site, warehouse, location, batch, and serial
-- Inventory journal and sales shipment (packing slip) visibility
+- Warehouse and warehouse-location master-data management
+- Released-product, product-variant, and product-attribute access
+- Bill-of-materials (BOM) headers, lines, and versions for manufacturing integration
+- Production order and transfer order workflows, including routes and operations
+- Sales order and purchase order header / line access with OData-based querying
+- Real-time on-hand inventory lookups by item, warehouse, and location (V1 and V2 surfaces)
+- Inventory movement, transfer, and tag-counting journal visibility
 - Cross-company queries spanning multiple legal entities (`dataAreaId`)
 - OAuth 2.0 client-credentials and bearer-token authentication against Microsoft Entra ID (Azure AD)
 
