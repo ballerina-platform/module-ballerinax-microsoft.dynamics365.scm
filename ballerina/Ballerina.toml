@@ -8,7 +8,29 @@ repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.
 icon = "icon.png"
 license = ["Apache-2.0"]
 distribution = "2201.13.0"
-export = ["microsoft.dynamics365.scm", "microsoft.dynamics365.scm.mock.server"]
+export = [
+    "microsoft.dynamics365.scm",
+    "microsoft.dynamics365.scm.bom",
+    "microsoft.dynamics365.scm.core",
+    "microsoft.dynamics365.scm.customer",
+    "microsoft.dynamics365.scm.engineering",
+    "microsoft.dynamics365.scm.inventory",
+    "microsoft.dynamics365.scm.misc_a",
+    "microsoft.dynamics365.scm.misc_b",
+    "microsoft.dynamics365.scm.misc_c",
+    "microsoft.dynamics365.scm.planning",
+    "microsoft.dynamics365.scm.product",
+    "microsoft.dynamics365.scm.production",
+    "microsoft.dynamics365.scm.purchase",
+    "microsoft.dynamics365.scm.quality",
+    "microsoft.dynamics365.scm.route",
+    "microsoft.dynamics365.scm.sales",
+    "microsoft.dynamics365.scm.transfer",
+    "microsoft.dynamics365.scm.transport",
+    "microsoft.dynamics365.scm.vendor",
+    "microsoft.dynamics365.scm.warehouse",
+    "microsoft.dynamics365.scm.mock.server",
+]
 
 [build-options]
 observabilityIncluded=true

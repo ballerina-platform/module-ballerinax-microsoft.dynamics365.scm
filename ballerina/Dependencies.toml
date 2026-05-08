@@ -73,7 +73,7 @@ dependencies = [
 [[package]]
 org = "ballerina"
 name = "http"
-version = "2.16.1"
+version = "2.16.2"
 dependencies = [
 	{org = "ballerina", name = "auth"},
 	{org = "ballerina", name = "cache"},
@@ -350,6 +350,25 @@ dependencies = [
 ]
 modules = [
 	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm"},
-	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.mock.server"}
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.bom"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.core"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.customer"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.engineering"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.inventory"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.misc_a"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.misc_b"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.misc_c"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.mock.server"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.planning"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.product"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.production"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.purchase"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.quality"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.route"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.sales"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.transfer"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.transport"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.vendor"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.scm", moduleName = "microsoft.dynamics365.scm.warehouse"}
 ]
 
