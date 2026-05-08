@@ -8,7 +8,41 @@ repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.
 icon = "icon.png"
 license = ["Apache-2.0"]
 distribution = "2201.13.0"
-export = ["microsoft.dynamics365.scm", "microsoft.dynamics365.scm.mock.server"]
+export = [
+    "microsoft.dynamics365.scm",
+    "microsoft.dynamics365.scm.common",
+    "microsoft.dynamics365.scm.asset",
+    "microsoft.dynamics365.scm.bank",
+    "microsoft.dynamics365.scm.bom",
+    "microsoft.dynamics365.scm.collections",
+    "microsoft.dynamics365.scm.core",
+    "microsoft.dynamics365.scm.cost",
+    "microsoft.dynamics365.scm.customer",
+    "microsoft.dynamics365.scm.dimension",
+    "microsoft.dynamics365.scm.engineering",
+    "microsoft.dynamics365.scm.expense",
+    "microsoft.dynamics365.scm.fiscal",
+    "microsoft.dynamics365.scm.inventory",
+    "microsoft.dynamics365.scm.ledger",
+    "microsoft.dynamics365.scm.misc",
+    "microsoft.dynamics365.scm.payment",
+    "microsoft.dynamics365.scm.planning",
+    "microsoft.dynamics365.scm.product",
+    "microsoft.dynamics365.scm.production",
+    "microsoft.dynamics365.scm.project",
+    "microsoft.dynamics365.scm.purchase",
+    "microsoft.dynamics365.scm.quality",
+    "microsoft.dynamics365.scm.route",
+    "microsoft.dynamics365.scm.sales",
+    "microsoft.dynamics365.scm.shipping",
+    "microsoft.dynamics365.scm.system",
+    "microsoft.dynamics365.scm.tax",
+    "microsoft.dynamics365.scm.transfer",
+    "microsoft.dynamics365.scm.transport",
+    "microsoft.dynamics365.scm.vendor",
+    "microsoft.dynamics365.scm.warehouse",
+    "microsoft.dynamics365.scm.mock.server",
+]
 
 [build-options]
 observabilityIncluded=true

@@ -15,32 +15,34 @@
 // under the License.
 
 // Create a sales order in D365 from an upstream "order created" signal.
-// Mirrors the write-side of the Shopify -> Integrator -> D365 demo flow.
+// SalesOrderHeadersV2 lives in the `sales` submodule.
 
 import ballerina/http;
 import ballerina/io;
-import ballerinax/microsoft.dynamics365.scm;
+import ballerinax/microsoft.dynamics365.scm.common;
+import ballerinax/microsoft.dynamics365.scm.sales;
 import ballerinax/microsoft.dynamics365.scm.mock.server;
 
 public function main() returns error? {
     http:Listener mockListener = check server:startMock();
 
-    scm:Client fo = check new (
+    common:Connection conn = check new (
         config = {auth: {token: "demo-bearer-token"}},
         serviceUrl = "http://localhost:9091/data"
     );
+    sales:Client so = check new (conn);
 
     io:println("Existing sales orders:");
-    scm:SalesOrderHeadersV2Collection page = check fo->listSalesOrderHeadersV2();
-    foreach scm:SalesOrderHeaderV2 s in page.value ?: [] {
+    sales:SalesOrderHeadersV2Collection page = check so->listSalesOrderHeadersV2();
+    foreach sales:SalesOrderHeaderV2 s in page.value ?: [] {
         io:println(string `  ${s.SalesOrderNumber ?: ""}   [${s.dataAreaId ?: ""}]`);
     }
 
-    scm:SalesOrderHeaderV2 draft = {
+    sales:SalesOrderHeaderV2 draft = {
         dataAreaId: "USMF",
         SalesOrderNumber: "SO-DEMO-001"
     };
-    scm:SalesOrderHeaderV2 created = check fo->createSalesOrderHeadersV2(payload = draft);
+    sales:SalesOrderHeaderV2 created = check so->createSalesOrderHeadersV2(payload = draft);
     io:println("");
     io:println(string `Created ${created.SalesOrderNumber ?: ""}`);
     io:println(string `  etag:  ${created["@odata.etag"].toString()}`);

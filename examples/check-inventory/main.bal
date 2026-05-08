@@ -15,12 +15,12 @@
 // under the License.
 
 // Check on-hand inventory for an item across every site/warehouse.
-// This is the "Listen and Update order Inventory" read-side of the demo:
-// integrator fans in inventory snapshots and publishes changes downstream.
+// WarehousesOnHand lives in the `warehouse` submodule.
 
 import ballerina/http;
 import ballerina/io;
-import ballerinax/microsoft.dynamics365.scm;
+import ballerinax/microsoft.dynamics365.scm.common;
+import ballerinax/microsoft.dynamics365.scm.warehouse;
 import ballerinax/microsoft.dynamics365.scm.mock.server;
 
 const string ITEM = "ITM-1001";
@@ -28,20 +28,21 @@ const string ITEM = "ITM-1001";
 public function main() returns error? {
     http:Listener mockListener = check server:startMock();
 
-    scm:Client fo = check new (
+    common:Connection conn = check new (
         config = {auth: {token: "demo-bearer-token"}},
         serviceUrl = "http://localhost:9091/data"
     );
+    warehouse:Client wh = check new (conn);
 
-    scm:WarehousesOnHandCollection snapshot = check fo->listWarehousesOnHand(queries = {
+    warehouse:WarehousesOnHandCollection snapshot = check wh->listWarehousesOnHand(queries = {
         filter: "ItemNumber eq '" + ITEM + "'"
     });
 
-    scm:WarehouseOnHand[] rows = snapshot.value ?: [];
+    warehouse:WarehouseOnHand[] rows = snapshot.value ?: [];
     io:println(string `On-hand for ${ITEM} (${rows.length()} locations):`);
 
     decimal total = 0d;
-    foreach scm:WarehouseOnHand r in rows {
+    foreach warehouse:WarehouseOnHand r in rows {
         decimal avail = r.AvailableOnHandQuantity ?: 0d;
         total += avail;
         io:println(string `  [${r.dataAreaId ?: ""}] site=${r.InventorySiteId ?: ""} wh=${r.InventoryWarehouseId ?: ""}   avail=${avail}  reserved=${r.ReservedOnHandQuantity ?: 0d}`);

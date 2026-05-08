@@ -14,29 +14,17 @@
 // specific language governing permissions and limitations
 // under the License.
 
-// Browse released products in the default company.
-// ReleasedProductsV2 lives in the `product` submodule.
-
-import ballerina/http;
-import ballerina/io;
+import ballerina/test;
 import ballerinax/microsoft.dynamics365.scm.common;
-import ballerinax/microsoft.dynamics365.scm.product;
-import ballerinax/microsoft.dynamics365.scm.mock.server;
+import ballerinax/microsoft.dynamics365.scm.production;
+import ballerinax/microsoft.dynamics365.scm.warehouse;
 
-public function main() returns error? {
-    http:Listener mockListener = check server:startMock();
-
+@test:Config
+function testSharedConnectionAcrossModules() returns error? {
     common:Connection conn = check new (
         config = {auth: {token: "demo-bearer-token"}},
         serviceUrl = "http://localhost:9091/data"
     );
-    product:Client prod = check new (conn);
-
-    io:println("Released products:");
-    product:ReleasedProductsV2Collection page = check prod->listReleasedProductsV2();
-    foreach product:ReleasedProductV2 p in page.value ?: [] {
-        io:println(string `  ${p.ItemNumber ?: ""}   [${p.dataAreaId ?: ""}]`);
-    }
-
-    check mockListener.gracefulStop();
+    warehouse:Client _ = check new (conn);
+    production:Client _ = check new (conn);
 }
