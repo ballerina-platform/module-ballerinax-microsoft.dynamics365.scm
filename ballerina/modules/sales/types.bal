@@ -19,38 +19,39 @@
 
 import ballerina/http;
 
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-|};
+public type Timezone "GMTMINUS1200INTERNATIONALDATELINEWEST"|"GMTMINUS1100COORDINATEDUNIVERSALTIME"|"GMTMINUS1100MIDWAYISLAND_SAMOA"|"GMTMINUS1000HAWAII"|"GMTMINUS0900ALASKA"|"GMTMINUS0800PACIFICTIME"|"GMTMINUS0800TIJUANA_BAJACALIFORNIA"|"GMTMINUS0700ARIZONA"|"GMTMINUS0700MOUNTAINTIME"|"GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN"|"GMTMINUS0600CENTRALAMERICA"|"GMTMINUS0600CENTRALTIME"|"GMTMINUS0600GUADALAJARA_MEXICOCITY"|"GMTMINUS0600SASKATCHEWAN"|"GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO"|"GMTMINUS0500EASTERNTIME"|"GMTMINUS0500INDIANA"|"GMTMINUS0500CHETUMAL"|"GMTMINUS0400ASUNCION"|"GMTMINUS0400ATLANTICTIME"|"GMTMINUS0400LAPAZ"|"GMTMINUS0400MANAUS"|"GMTMINUS0300SANTIAGO"|"GMTMINUS0430CARACAS"|"GMTMINUS0330NEWFOUNDLAND"|"GMTMINUS0300_SALVADOR"|"GMTMINUS0300BRASILIA"|"GMTMINUS0300BUENOSAIRES"|"GMTMINUS0300BUENOSAIRES_GEORGETOWN"|"GMTMINUS0300GREENLAND"|"GMTMINUS0300MONTEVIDEO"|"GMTMINUS0200MIDATLANTIC"|"GMTMINUS0100AZORES"|"GMTMINUS0100CAPEVERDIS"|"GMT_CASABLANCA"|"GMT_CASABLANCA_MONTROVIA_REYKJAVIK"|"GMT_COORDINATEDUNIVERSALTIME"|"GMT_DUBLIN_EDINBURGH_LISBON_LONDON"|"GMT_PLUS0300KALININGRAD_MINSK"|"GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME"|"GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST"|"GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID"|"GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB"|"GMTPLUS0100TRIPOLI"|"GMTPLUS0100WESTCENTRALAFRICA"|"GMTPLUS0200_DAMASCUS"|"GMTPLUS0200AMMAN"|"GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL"|"GMTPLUS0200BEIRUT"|"GMTPLUS0200MINSK"|"GMTPLUS0200CAIRO"|"GMTPLUS0200HARARE_PRETORIA"|"GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS"|"GMTPLUS0300ISTANBUL"|"GMTPLUS0200JERUSALEM"|"GMTPLUS0200WINDHOEK"|"GMTPLUS0300BAGHDAD"|"GMTPLUS0300KUWAIT_RIYADH"|"GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD"|"GMTPLUS0300NAIROBI"|"GMTPLUS0300TBILISI"|"GMTPLUS0330TEHRAN"|"GMTPLUS0400ABUDHABI_MUSCAT"|"GMTPLUS0400BAKU"|"GMTPLUS0400IZHEVSK_SAMARA"|"GMTPLUS0400CAUCASUSSTANDARDTIME"|"GMTPLUS0400PORTLOUIS"|"GMTPLUS0400YEREVAN"|"GMTPLUS0430KABUL"|"GMTPLUS0500EKATERINBURG"|"GMTPLUS0500ISLAMABAD_KARACHI"|"GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT"|"GMTPLUS0530CHENNAI_KOLKATA_MUMBAI"|"GMTPLUS0530SRIJAYAWARDENEPURA"|"GMTPLUS0545KATHMANDU"|"GMTPLUS0600ALMATY_NOVOSIBIRSK"|"GMTPLUS0600ASTANA_DHAKA"|"GMTPLUS0600DHAKA"|"GMTPLUS0600MAGADAN"|"GMTPLUS0630_YANGON"|"GMTPLUS0700_BANGKOK_HANOI_JAKARTA"|"GMTPLUS0700KRASNOYARSK"|"GMTPLUS0800_ULAANBAATAR"|"GMTPLUS0800BEIJING_CHONGQING_HONGKONG"|"GMTPLUS0800IRKUTSK_ULAANBATAAR"|"GMTPLUS0800KUALALUMPUR_SINGAPORE"|"GMTPLUS0800PERTH"|"GMTPLUS0800TAIPEI"|"GMTPLUS0900OSAKA_SAPPORO_TOKYO"|"GMTPLUS0900SEOUL"|"GMTPLUS0900YAKUTSK"|"GMTPLUS0930ADELAIDE"|"GMTPLUS0930DARWIN"|"GMTPLUS1000BRISBANE"|"GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY"|"GMTPLUS1000GUAM_PORTMORESBY"|"GMTPLUS1000HOBART"|"GMTPLUS1000VLADIVOSTOK"|"GMTPLUS1100CHOKURDAKH"|"GMTPLUS1100MAGADAN_SOLOMONIS"|"GMTPLUS1200ANADYR_PETRO_KAMCHATSKY"|"GMTPLUS1200AUCKLAND_WELLINGTON"|"GMTPLUS1200COORDINATEDUNIVERSALTIME"|"GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS"|"GMTPLUS1300NUKU_ALOFA";
 
-public type SalesInvoice_WCollection record {
+# Represents the Headers record for the operation: deleteReturnPolicyChannels
+public type DeleteReturnPolicyChannelsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateSalesOrderTransTaxInformations
+public type UpdateSalesOrderTransTaxInformationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateSalesTaxHierarchies
+public type UpdateSalesTaxHierarchiesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateReturnOrderLinesV2
+public type UpdateReturnOrderLinesV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesAgreementConfirmationsCollection record {
     *ODataCollection;
-    SalesInvoice_W[] value?;
+    SalesAgreementConfirmation[] value?;
 };
 
-public type DocuRestriction "Internal"|"External";
-
-# Represents the Headers record for the operation: updateSalesInvoiceJournalHeaders
-public type UpdateSalesInvoiceJournalHeadersHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getSalesInvoiceQRCode
-public type GetSalesInvoiceQRCodeQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: listSalesInvoiceQRCode
-public type ListSalesInvoiceQRCodeQueries record {
+# Represents the Queries record for the operation: listSalesAgreementLineNotes
+public type ListSalesAgreementLineNotesQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -77,141 +78,242 @@ public type ListSalesInvoiceQRCodeQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: updateSalesOrderHeaderDocumentAttachments
-public type UpdateSalesOrderHeaderDocumentAttachmentsHeaders record {
+# Represents the Queries record for the operation: getSalesAgreementLines
+public type GetSalesAgreementLinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateReturnFormatErrorCodes
+public type UpdateReturnFormatErrorCodesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-# Represents the Queries record for the operation: getSalesOrderHeaderDocumentAttachments
-public type GetSalesOrderHeaderDocumentAttachmentsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: listSalesOrderHeaderDocumentAttachmentsV2
-public type ListSalesOrderHeaderDocumentAttachmentsV2Queries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type SalesQuotationTemplateGroup record {
+public type SalesOrderLine record {
     string \@odata\.etag?;
     string dataAreaId?;
-    string GroupId?;
-    string GroupDescription?;
+    string InventoryLotId?;
+    string IntrastatSpecialMovementCode?;
+    string GiftCardNumber?;
+    string SalesUnitSymbol?;
+    string GiftCardRecipientEmail?;
+    decimal AllowedUnderdeliveryPercentage?;
+    string IntrastatPortId?;
+    string OrderedInventoryStatusId?;
+    NoYes WillAutomaticInventoryReservationConsiderBatchAttributes?;
+    string ProductStyleId?;
+    string ShippingSiteId?;
+    string DeliveryAddressLocationId?;
+    NoYes CalculateLineAmount?;
+    string DeliveryAddressCountyId?;
+    string SalesRebateProductGroupId?;
+    string IntrastatCommodityCode?;
+    string DeliveryAddressCountryRegionISOCode?;
+    NoYes IsPriceLocked?;
+    string ShippingWarehouseLocationId?;
+    SalesDeliveryDateControlType SalesOrderPromisingMethod?;
+    decimal MultilineDiscountAmount?;
+    NoYes DefaultLineNumberFromLineCreationSequenceNumber?;
+    decimal LineDiscountAmount?;
+    MPSFullRunCTPStatus FullRunCTPStatus?;
+    string DeliveryTermsId?;
+    decimal LineNumber?;
+    string WithholdingTaxGroupCode?;
+    string MainAccountIdDisplayValue?;
+    string LineDescription?;
+    string ItemNumber?;
+    string GiftCardBuyerName?;
+    decimal SalesDeliverNow?;
+    MCRGiftCardType GiftCardType?;
+    string DeliveryAddressZipCode?;
+    string ConfirmedShippingDate?;
+    string RouteId?;
+    decimal RetailCalculatedTenderDiscountAmount?;
+    string ShippingWarehouseId?;
+    string RequestedReceiptDate?;
+    string DeliverySalesTaxGroupCode?;
+    string PackingUnitSymbol?;
+    string ServiceOrderNumber?;
+    string EInvoicePropertyNumber?;
+    string FormattedDelveryAddress?;
+    string GiftCardRecipientName?;
+    decimal OrderedSalesQuantity?;
+    int Catalog?;
+    string InventoryServiceReservationId?;
+    string DeliveryAddressDistrictName?;
+    decimal RetailCalculatedTenderDiscountPercentage?;
+    string DeliveryAddressDunsNumber?;
+    string BOMId?;
+    decimal LineAmount?;
+    string ProductSizeId?;
+    NoYes IsIntrastatTriangularDeal?;
+    string ServiceFiscalInformationCode?;
+    decimal SalesPriceQuantity?;
+    decimal LineDiscountPercentage?;
+    string IntrastatTransactionCode?;
+    int:Signed32 LineCreationSequenceNumber?;
+    decimal FixedPriceCharges?;
+    string DeliverySalesTaxItemGroupCode?;
+    decimal SalesPrice?;
+    string InventoryServiceAdjustmentOffsetDatasource?;
+    string SalesTaxGroupCode?;
+    decimal RetailCalculatedLineDiscountPercentage?;
+    string ItemWithholdingTaxCodeGroupCode?;
+    string SalesOrderNumber?;
+    decimal RetailCalculatedTotalDiscountAmount?;
+    decimal RetailCalculatedPeriodicDiscountAmount?;
+    string DeliveryCFOPCode?;
+    RetailFulfillmentLineStatus FulfillmentStatus?;
+    string CommissionSalesRepresentativeGroupId?;
+    decimal OrderedCatchWeightQuantity?;
+    string IntrastatTransportModeCode?;
+    int NGPCode?;
+    string DeliveryAddressStreet?;
+    NoYes IsDeliveryAddressPrivate?;
+    ItemReservation InventoryReservationMethod?;
+    string DeliveryAddressCity?;
+    NoYes WillRebateCalculationExcludeLine?;
+    decimal SuframaDiscountPercentage?;
+    decimal MultilineDiscountPercentage?;
+    NoYes IsLineStopped?;
+    string ItemSerialNumber?;
+    SalesStatus SalesOrderLineStatus?;
+    string CFOPCode?;
+    string ProductConfigurationId?;
+    string DeliveryAddressCountryRegionId?;
+    string DeliveryBuildingCompliment?;
+    string CreditNoteReasonCode?;
+    string CustomsDocumentName?;
+    NoYes IsSoftReservedExternally?;
+    string InventoryServiceAdjustmentOffsetPhysicalMeasure?;
+    string DeliveryAddressPostBox?;
+    NoYes ExcludeFromMasterPlanning?;
+    string DeliveryAddressDescription?;
+    decimal PlanningPriority?;
+    NoYes SkipCreateAutoCharges?;
+    string RequestedShippingDate?;
+    string GiftCardGiftMessage?;
+    string EInvoiceDimensionAccountCode?;
+    string SalesProductCategoryName?;
+    string SalesTaxItemGroupCode?;
+    string ProductVersionId?;
+    decimal DeliveryAddressLatitude?;
+    string ProjectId?;
+    decimal IntrastatStatisticValue?;
+    string CustomerRequisitionNumber?;
+    decimal AllowedOverdeliveryPercentage?;
+    Timezone DeliveryAddressTimeZone?;
+    string FulfillmentStoreId?;
+    decimal RetailCalculatedTotalDiscountPercentage?;
+    string DeliveryModeCode?;
+    decimal RetailCalculatedManualLineDiscountPercentage?;
+    string CustomsDocumentDate?;
+    string CustomsDocumentNumber?;
+    string ExternalItemNumber?;
+    decimal RetailCalculatedManualLineDiscountAmount?;
+    string GiftCardBuyerEmail?;
+    string ItemBatchNumber?;
+    string DeliveryAddressName?;
+    string OrderLineReference?;
+    string ProductColorId?;
+    string IntrastatStatisticsProcedureCode?;
+    string ConfirmedReceiptDate?;
+    NoYes OverrideSalesTax?;
+    string ProjectCategoryId?;
+    string DeliveryAddressStateId?;
+    int:Signed32 CustomersLineNumber?;
+    decimal RetailCalculatedPeriodicDiscountPercentage?;
+    string ProjectLinePropertyId?;
+    string DeliveryAddressCityInKana?;
+    string DeliveryAddressStreetNumber?;
+    string CurrencyCode?;
+    string DeliveryAddressStreetInKana?;
+    decimal RetailCalculatedLineDiscountAmount?;
+    decimal DeliveryAddressLongitude?;
+    string DefaultLedgerDimensionDisplayValue?;
+    NoYes IsDeliveryAddressOrderSpecific?;
+    string FiscalDocumentTypeId?;
+    SalesSalesOrderCreationMethod SalesOrderLineCreationMethod?;
+    BundleLineType BundleLineType?;
+    BundleLineStatus BundleLineStatus?;
+    NoYes SubBillRevenueSplit?;
+    string RevRecRevenueScheduleId?;
+    decimal RevRecSalesDeliverNow?;
+    string RevRecContractEndDate?;
+    int:Signed32 RevRecOccurrences?;
+    string RevRecContractStartDate?;
+};
+
+# Represents the Queries record for the operation: listSalesQuotationTransTaxInformations
+public type ListSalesQuotationTransTaxInformationsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listTradeAllowanceAgreementProductsV2
+public type ListTradeAllowanceAgreementProductsV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteTradeAllowanceAgreementProductsV2
+public type DeleteTradeAllowanceAgreementProductsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type SalesOrderPoolsCollection record {
     *ODataCollection;
     SalesOrderPool[] value?;
-};
-
-# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
-@display {label: "Connection Config"}
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig|http:BearerTokenConfig auth;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
-
-# Represents the Headers record for the operation: updateSalesInvoiceQRCode
-public type UpdateSalesInvoiceQRCodeHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type SalesOrderHeaderDocumentAttachmentV2 record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string DocumentId?;
-    string FileType?;
-    NoYes IsDefaultAttachment?;
-    string SalesOrderNumber?;
-    DocuRestriction AccessRestriction?;
-    string AttachmentDescription?;
-    string Notes?;
-    string DocumentAttachmentTypeCode?;
-    string FileName?;
-    string Attachment?;
-};
-
-# Represents the Headers record for the operation: deleteSalesQuotationTemplateGroups
-public type DeleteSalesQuotationTemplateGroupsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getSalesInvoiceJournalHeaders
-public type GetSalesInvoiceJournalHeadersQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
 };
 
 # Represents the Headers record for the operation: updateSalesInvoiceHeaders
@@ -220,34 +322,141 @@ public type UpdateSalesInvoiceHeadersHeaders record {
     string If\-Match?;
 };
 
-public type SalesInvoiceJournalHeader record {
+public type SalesQuotationHeadersV2Collection record {
+    *ODataCollection;
+    SalesQuotationHeaderV2[] value?;
+};
+
+# Represents the Queries record for the operation: getReturnOrderHeaderDocumentAttachments
+public type GetReturnOrderHeaderDocumentAttachmentsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listSalesOrderHeaderV2ExistAddrReadOnlys
+public type ListSalesOrderHeaderV2ExistAddrReadOnlysQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type PaymentStub "None"|"FIK"|"BBS"|"ESR_blue_PTT"|"ESR_red_bank"|"FIK762"|"ESR_orange"|"BelSMS101"|"BelSMS102"|"Finnish"|"FIK751"|"FIK752"|"QRBill";
+
+public type SalesAgreement record {
     string \@odata\.etag?;
     string dataAreaId?;
-    string InvoiceNumber?;
-    string InvoiceDate?;
-    string LedgerVoucher?;
-    string InvoiceAddressCountryRegionISOCode?;
-    string InvoiceAddressZipCode?;
-    decimal TotalTaxAmount?;
-    string InvoiceAddressStreetNumber?;
-    decimal TotalDiscountCustomerGroupCode?;
-    string InvoiceAddressStreet?;
-    decimal TotalChargeAmount?;
-    decimal TotalDiscountAmount?;
-    string CurrencyCode?;
-    string SalesOrderNumber?;
-    string DeliveryTermsCode?;
-    string ContactPersonId?;
-    string SalesOrderResponsiblePersonnelNumber?;
+    string SalesAgreementId?;
+    string SalesUnitId?;
+    decimal ReportingCurrencyFixedExchangeRate?;
+    string InternetAddress?;
+    AgreementState AgreementStatus?;
+    decimal AgreementVatAmount?;
+    string DeliveryAddressLocationId?;
+    string DeliveryAddressCountyId?;
+    string DeliveryAddressCountryRegionISOCode?;
+    string TransportationRoutePlanId?;
+    string DeliveryAddressBuildingCompliment?;
+    string LineOfBusiness?;
+    string DocumentTitle?;
+    string ShippingCarrierServiceId?;
+    string DeliveryAddressZipCode?;
+    decimal FixedExchangeRate?;
+    decimal CreditLimit?;
+    string ShippingCarrierId?;
+    string CustomerPaymentMethodName?;
+    NoYes AmountDifferenceInTaxAccounting?;
+    string DeliveryAddressDistrictName?;
+    string DeliveryAddressDunsNumber?;
+    InventProfileType_RU KindOfActivity?;
+    string PaymentScheduleName?;
+    string PostingProfileWithPrepaymentJournalVoucher?;
     string PaymentTermsName?;
-    string DeliveryModeCode?;
+    string CashDiscountCode?;
     string InvoiceCustomerAccountNumber?;
-    string InvoiceAddressCity?;
-    string InvoiceAddressState?;
-    string InvoiceAddressCountryRegionId?;
-    string CustomersOrderReference?;
-    decimal TotalInvoiceAmount?;
-    string SalesOrderOriginCode?;
+    string AgreementCustomerAccountNumber?;
+    string MobilePhone?;
+    string DefaultExpirationDate?;
+    CommitmentType DefaultCommitmentType?;
+    string SalesOrderPoolId?;
+    string DefaultEffectiveDate?;
+    string PaymDay?;
+    string CustomerPaymentMethodSpecificationName?;
+    string CommissionSalesRepresentativeGroupId?;
+    string InventoryProfile?;
+    string DeliveryAddressStreet?;
+    NoYes ExcludeFromReserveInBusinessAccounting?;
+    NoYes ExcludeFromReserveInTaxAccounting?;
+    NoYes IsDeliveryAddressPrivate?;
+    string CustomerReference?;
+    string DeliveryAddressCity?;
+    string DeliveryTermsCode?;
+    string TransportationModeId?;
+    string DeliveryAddressCountryRegionId?;
+    NoYes IsDeliveryAddressAgreementSpecific?;
+    string DeliveryAddressPostBox?;
+    string Extension?;
+    string SalesAgreementClassificationName?;
+    string DeliveryAddressDescription?;
+    AgencyAgreement_RU CommissionAgreement?;
+    decimal DeliveryAddressLatitude?;
+    string ProjectId?;
+    string CustomerRequisitionNumber?;
+    string Telephone?;
+    Timezone DeliveryAddressTimeZone?;
+    string SellingLegalEntityId?;
+    NoYes WillRebateCalculationExcludeLineByDefault?;
+    string CommissionCustomerGroupId?;
+    string PostingProfile?;
+    string DeliveryModeCode?;
+    string FormattedDeliveryAddress?;
+    string PreparerPersonPartyNumber?;
+    string CampaignId?;
+    SalesInvoicePostingType_RU PostingType?;
+    string OrderResponsiblePersonnelNumber?;
+    string DeliveryAddressName?;
+    string ShippingCarrierServiceGroupId?;
+    string TransportationTemplateId?;
+    string TelexNumber?;
+    string LanguageId?;
+    string ChargeCustomerGroupId?;
+    string DeliveryAddressStateId?;
+    string SubjectOfAnAgreement?;
+    string DeliveryAddressCityInKana?;
+    string DeliveryAddressStreetNumber?;
+    string CurrencyCode?;
+    string DeliveryAddressStreetInKana?;
+    decimal DeliveryAddressLongitude?;
+    string DefaultLedgerDimensionDisplayValue?;
+    decimal AgreementSum?;
+    string Fax?;
+    string AgreementDate?;
+    string ContactPersonId?;
+    string ExternalDocumentReference?;
 };
 
 # Represents the Queries record for the operation: getSalesInvoiceHeaders
@@ -260,19 +469,10 @@ public type GetSalesInvoiceHeadersQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: deleteSalesInvoiceW
-public type DeleteSalesInvoiceWHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
+public type NatureOfAssessee_IN "Company"|"HUF"|"Firm"|"Individual"|"AOP"|"BOI"|"LocalAuthority"|"Others";
 
-public type SalesInvoiceChorusProDetailsCollection record {
-    *ODataCollection;
-    SalesInvoiceChorusProDetail[] value?;
-};
-
-# Represents the Headers record for the operation: updateSalesInvoiceChorusProDetails
-public type UpdateSalesInvoiceChorusProDetailsHeaders record {
+# Represents the Headers record for the operation: deleteTradeAllowanceAgreementMerchandisingEventBillBacks
+public type DeleteTradeAllowanceAgreementMerchandisingEventBillBacksHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -284,51 +484,11 @@ public type SalesOrderPool record {
     string PoolName?;
 };
 
-# Represents the Queries record for the operation: listSalesQuotationTemplateGroups
-public type ListSalesQuotationTemplateGroupsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: getSalesOrderPools
-public type GetSalesOrderPoolsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: updateSalesInvoiceHeadersV4
-public type UpdateSalesInvoiceHeadersV4Headers record {
+# Represents the Headers record for the operation: updateSalesQuotationTransTaxInformations
+public type UpdateSalesQuotationTransTaxInformationsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
-
-public type NoYes "No"|"Yes";
 
 # Represents the Queries record for the operation: listSalesOrderPools
 public type ListSalesOrderPoolsQueries record {
@@ -364,14 +524,10 @@ public type UpdateSalesInvoiceHeadersV2Headers record {
     string If\-Match?;
 };
 
-# Represents the Queries record for the operation: getSalesInvoiceHeadersV4
-public type GetSalesInvoiceHeadersV4Queries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
+# Represents the Headers record for the operation: updateSalesAgreementLines
+public type UpdateSalesAgreementLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: getSalesInvoiceHeadersV2
@@ -384,28 +540,36 @@ public type GetSalesInvoiceHeadersV2Queries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: deleteSalesOrderHeaderDocumentAttachments
-public type DeleteSalesOrderHeaderDocumentAttachmentsHeaders record {
+public type ItemReservation "None"|"Automatic"|"Explosion";
+
+# Represents the Headers record for the operation: deleteTradeAllowanceAgreementMerchandisingEventFunds
+public type DeleteTradeAllowanceAgreementMerchandisingEventFundsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-public type SalesInvoiceQRCode record {
+public type SalesOrderHeadersV3Collection record {
+    *ODataCollection;
+    SalesOrderHeaderV3[] value?;
+};
+
+public type SalesInvoice_W record {
     string \@odata\.etag?;
     string dataAreaId?;
     string InvoiceId?;
     string LedgerVoucher?;
     string InvoiceDate?;
-    string QRCode_SA?;
+    string SubmissionUUID_W?;
+    string QRCode_W?;
 };
 
-public type SalesInvoiceJournalHeadersCollection record {
+public type SalesMultiLineDiscountAgreementsCollection record {
     *ODataCollection;
-    SalesInvoiceJournalHeader[] value?;
+    SalesMultiLineDiscountAgreement[] value?;
 };
 
-# Represents the Queries record for the operation: listSalesInvoiceJournalHeaders
-public type ListSalesInvoiceJournalHeadersQueries record {
+# Represents the Queries record for the operation: listSalesOrderTransTaxInformations
+public type ListSalesOrderTransTaxInformationsQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -432,42 +596,65 @@ public type ListSalesInvoiceJournalHeadersQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: deleteSalesInvoiceJournalHeaders
-public type DeleteSalesInvoiceJournalHeadersHeaders record {
+# Represents the Headers record for the operation: deleteReturnFormatErrorCodes
+public type DeleteReturnFormatErrorCodesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-public type SalesInvoice_W record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string InvoiceId?;
-    string LedgerVoucher?;
-    string InvoiceDate?;
-    string SubmissionUUID_W?;
-    string QRCode_W?;
+# Represents the Queries record for the operation: listSalesAgreementConfirmationLines
+public type ListSalesAgreementConfirmationLinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
-# Represents the Headers record for the operation: deleteSalesInvoiceChorusProDetails
-public type DeleteSalesInvoiceChorusProDetailsHeaders record {
+# Represents the Headers record for the operation: deleteSalesAutomaticSalesDocumentHeaderTaxCharges
+public type DeleteSalesAutomaticSalesDocumentHeaderTaxChargesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: deleteSalesInvoiceHeadersV2
-public type DeleteSalesInvoiceHeadersV2Headers record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
+# Represents the Queries record for the operation: getTradeAllowanceAgreementMerchandisingEventBillBackLines
+public type GetTradeAllowanceAgreementMerchandisingEventBillBackLinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
-public type SalesOrderHeaderDocumentAttachmentsV2Collection record {
+public type TradeAllowanceAgreementMerchandisingEventBillBacksCollection record {
     *ODataCollection;
-    SalesOrderHeaderDocumentAttachmentV2[] value?;
+    TradeAllowanceAgreementMerchandisingEventBillBack[] value?;
 };
 
-public type SalesInvoiceHeadersCollection record {
-    *ODataCollection;
-    SalesInvoiceHeader[] value?;
+# Represents the Headers record for the operation: updateTradeAllowanceAgreementProductsV2
+public type UpdateTradeAllowanceAgreementProductsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type SalesInvoiceHeaderV4 record {
@@ -513,25 +700,60 @@ public type GetSalesInvoiceChorusProDetailsQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: getSalesOrderHeaderDocumentAttachmentsV2
-public type GetSalesOrderHeaderDocumentAttachmentsV2Queries record {
+# Represents the Queries record for the operation: listTradeAllowanceAgreementMerchandisingEventBillBackLines
+public type ListTradeAllowanceAgreementMerchandisingEventBillBackLinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
 };
 
-public type SalesInvoiceHeadersV2Collection record {
-    *ODataCollection;
-    SalesInvoiceHeaderV2[] value?;
-};
-
-# Represents the Headers record for the operation: deleteSalesInvoiceHeadersV4
-public type DeleteSalesInvoiceHeadersV4Headers record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
+# Represents the Queries record for the operation: listTradeAllowanceAgreementFunds
+public type ListTradeAllowanceAgreementFundsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Queries record for the operation: listSalesOrderHeaderDocumentAttachments
@@ -560,6 +782,12 @@ public type ListSalesOrderHeaderDocumentAttachmentsQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteTradeD365SalesFeatureManagementStates
+public type DeleteTradeD365SalesFeatureManagementStatesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type SalesInvoiceHeaderV2 record {
@@ -593,6 +821,2731 @@ public type SalesInvoiceHeaderV2 record {
     string SalesOrderOriginCode?;
 };
 
+# Represents the Queries record for the operation: getReturnOrderLinesV2
+public type GetReturnOrderLinesV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateSalesAgreementLineNotes
+public type UpdateSalesAgreementLineNotesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateSalesInvoiceW
+public type UpdateSalesInvoiceWHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ReturnPolicyChannelPaymentMappingsCollection record {
+    *ODataCollection;
+    ReturnPolicyChannelPaymentMapping[] value?;
+};
+
+public type SalesAgreementConfirmation record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SalesAgreementId?;
+    string ConfirmationNumber?;
+    string SalesUnitId?;
+    decimal ReportingCurrencyFixedExchangeRate?;
+    AgreementState AgreementStatus?;
+    string DeliveryAddressLocationId?;
+    string DeliveryAddressCountyId?;
+    string DeliveryAddressCountryRegionISOCode?;
+    string ConfirmationCreationDateTime?;
+    string DeliveryAddressBuildingCompliment?;
+    string DocumentTitle?;
+    string DeliveryAddressZipCode?;
+    decimal FixedExchangeRate?;
+    string CustomerPaymentMethodName?;
+    string DeliveryAddressDistrictName?;
+    string DeliveryAddressDunsNumber?;
+    string PaymentScheduleName?;
+    string PaymentTermsName?;
+    string InvoiceCustomerAccountNumber?;
+    string CashDiscountCode?;
+    string AgreementCustomerAccountNumber?;
+    string DefaultExpirationDate?;
+    CommitmentType DefaultCommitmentType?;
+    string SalesOrderPoolId?;
+    string DefaultEffectiveDate?;
+    string SalesAgreementConfirmationNumber?;
+    string CustomerPaymentMethodSpecificationName?;
+    string CommissionSalesRepresentativeGroupId?;
+    string DeliveryAddressStreet?;
+    NoYes IsDeliveryAddressPrivate?;
+    string CustomerReference?;
+    string DeliveryAddressCity?;
+    string DeliveryTermsCode?;
+    string DeliveryAddressCountryRegionId?;
+    NoYes IsDeliveryAddressAgreementSpecific?;
+    string DeliveryAddressPostBox?;
+    string SalesAgreementClassificationName?;
+    string DeliveryAddressDescription?;
+    decimal DeliveryAddressLatitude?;
+    string ProjectId?;
+    string CustomerRequisitionNumber?;
+    Timezone DeliveryAddressTimeZone?;
+    string SellingLegalEntityId?;
+    string CommissionCustomerGroupId?;
+    string DeliveryModeCode?;
+    string FormattedDeliveryAddress?;
+    string PreparerPersonPartyNumber?;
+    string CampaignId?;
+    string OrderResponsiblePersonnelNumber?;
+    string DeliveryAddressName?;
+    string LanguageId?;
+    string ChargeCustomerGroupId?;
+    string DeliveryAddressStateId?;
+    string DeliveryAddressCityInKana?;
+    string DeliveryAddressStreetNumber?;
+    string CurrencyCode?;
+    string DeliveryAddressStreetInKana?;
+    decimal DeliveryAddressLongitude?;
+    string DefaultLedgerDimensionDisplayValue?;
+    string ContactPersonId?;
+    string ExternalDocumentReference?;
+};
+
+# Represents the Queries record for the operation: getSalesOrderTransTaxInformations
+public type GetSalesOrderTransTaxInformationsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type AgencyAgreement_RU "None"|"PurchaseCommission"|"SaleCommission";
+
+# Represents the Queries record for the operation: listSalesOrderOriginCodes
+public type ListSalesOrderOriginCodesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listTradeD365SalesFeatureParameters
+public type ListTradeD365SalesFeatureParametersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesOrderProcessingStatus "Active"|"Confirmed"|"Picked"|"PartiallyDelivered"|"Delivered"|"Invoiced"|"PartiallyInvoiced"|"Canceled"|"DeliveredPartiallyInvoiced";
+
+# Represents the Headers record for the operation: deleteSalesTotalDiscountAgreements
+public type DeleteSalesTotalDiscountAgreementsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteSalesInvoiceV3Lines
+public type DeleteSalesInvoiceV3LinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getReturnDetails
+public type GetReturnDetailsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type ReturnOrderHeader record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ReturnOrderNumber?;
+    string ReturnAddressDistrictName?;
+    string ReturnAddressLocationId?;
+    string ReturnAddressDunsNumber?;
+    string ReturnAddressStreetNumber?;
+    string ReturnAddressName?;
+    string ContactPersonId?;
+    string ReturnAddressCountryRegionISOCode?;
+    string ReturnDeadline?;
+    string ReturnAddressStreet?;
+    string ReturnAddressStreetInKana?;
+    string CustomersOrderReference?;
+    string LanguageId?;
+    string ReturnAddressCity?;
+    string FormattedReturnAddress?;
+    decimal ReturnAddressLongitude?;
+    string CustomerRequisitionNumber?;
+    string CustomerReturnReasonCode?;
+    string ReturnAddressZipCode?;
+    decimal ReturnAddressLatitude?;
+    string DefaultReturnSiteId?;
+    string CurrencyCode?;
+    string ReplacementSalesOrderNumber?;
+    string RMANumber?;
+    string Email?;
+    NoYes IsReturnAddressPrivate?;
+    string ReturnAddressDescription?;
+    NoYes IsReturnProcessingStopped?;
+    string CustomerAccountNumber?;
+    string ReturnAddressBuildingCompliment?;
+    string ReturnAddressCountryRegionId?;
+    string ReturnAddressCityInKana?;
+    string DefaultReturnWarehouseId?;
+    string ReturnAddressCountyId?;
+    string ReturnAddressStateId?;
+    string ReturnAddressPostBox?;
+    SalesStatus ReturnOrderStatus?;
+    NoYes IsReturnAddressOrderSpecific?;
+    NoYes IsReplacementSalesOrderCreated?;
+    Timezone ReturnAddressTimeZone?;
+};
+
+# Represents the Queries record for the operation: listReturnOrderLines
+public type ListReturnOrderLinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteSalesAgreementLineFulfillment
+public type DeleteSalesAgreementLineFulfillmentHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteSalesInvoiceV4Lines
+public type DeleteSalesInvoiceV4LinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesOrderLinesCollection record {
+    *ODataCollection;
+    SalesOrderLine[] value?;
+};
+
+public type ReturnOrderLineV2 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ReturnOrderNumber?;
+    string ReturnInventoryLotId?;
+    string ReturnAddressZipCode?;
+    string SalesUnitSymbol?;
+    string OrderedInventoryStatusId?;
+    string ProductStyleId?;
+    string OriginStateId?;
+    decimal ReturnUnitCost?;
+    string ReturnClosedDate?;
+    decimal ReturnCatchWeightQuantity?;
+    string ReturnSiteId?;
+    string MainAccountIdDisplayValue?;
+    string LineDescription?;
+    string ItemNumber?;
+    decimal ReturnSalesQuantity?;
+    string ReturnAddressStreet?;
+    InventRefType ReferenceType?;
+    string CustomerAccountNumber?;
+    Timezone ReturnAddressTimeZone?;
+    string ReturnAddressBuildingCompliment?;
+    decimal LineAmount?;
+    string ProductSizeId?;
+    string ReturnWarehouseId?;
+    string ReturnAddressStreetNumber?;
+    string ReturnAddressDunsNumber?;
+    decimal TotalTaxAmount?;
+    string InvoiceCustomerAccountNumber?;
+    string ReturnAddressLocationId?;
+    int:Signed32 LineCreationSequenceNumber?;
+    decimal SalesPrice?;
+    string ReturnAddressCountryRegionISOCode?;
+    NoYes IsReturnAddressOrderSpecific?;
+    string ReturnAddressCountyId?;
+    string ReturningInventoryLotId?;
+    string ReturnAddressName?;
+    string RMANumber?;
+    string ReturnAddressStateId?;
+    string ExpectedReturnArrivalDate?;
+    string ReturnAddressDistrictName?;
+    ReturnStatusLine ReturnStatus?;
+    string ItemSerialNumber?;
+    string ReturnAddressCityInKana?;
+    string ProductConfigurationId?;
+    decimal TotalChargesAmount?;
+    string FormattedReturnAddress?;
+    string ProductVersionId?;
+    decimal TotalDiscountAmount?;
+    string ReturnAddressStreetInKana?;
+    NoYes IsReturnAddressPrivate?;
+    string OriginCountryRegionId?;
+    string ReturnWarehouseLocationId?;
+    string ActualReturnArrivalDate?;
+    string ReturnAddressCountryRegionId?;
+    decimal ReturnedSalesQuantity?;
+    string ExternalItemNumber?;
+    string ReturnAddressCity?;
+    string ReturnDispositionCode?;
+    string ItemBatchNumber?;
+    decimal ReturnAddressLatitude?;
+    string ProductColorId?;
+    string ReturnAddressDescription?;
+    string ReturnAddressPostBox?;
+    string ReferenceNumber?;
+    string ReferenceInventoryLotId?;
+    decimal ReturnAddressLongitude?;
+    NoYes IsReturnedQuantityAvailableForReservation?;
+};
+
+# Represents the Headers record for the operation: deleteSalesInvoiceV2Lines
+public type DeleteSalesInvoiceV2LinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateTradeAllowanceAgreementFunds
+public type UpdateTradeAllowanceAgreementFundsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listTradeAllowanceAgreementMerchandisingEventFunds
+public type ListTradeAllowanceAgreementMerchandisingEventFundsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateSalesOrderHeaderDocumentAttachmentsV2
+public type UpdateSalesOrderHeaderDocumentAttachmentsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+
+public type ReturnPolicyChannel record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string PolicyName?;
+    NoYes IsManagerOverrideEnabled?;
+    string Description?;
+};
+
+# Represents the Headers record for the operation: updateReturnDispositionCodes
+public type UpdateReturnDispositionCodesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesInvoiceV4Line record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string InvoiceNumber?;
+    int:Signed32 LineCreationSequenceNumber?;
+    string InvoiceDate?;
+    string LedgerVoucher?;
+    string DimensionNumber?;
+    string InventorySiteId?;
+    string ItemBatchNumber?;
+    decimal LineTotalDiscountAmount?;
+    string ProductConfigurationId?;
+    string SalesProductCategoryHierarchyName?;
+    decimal LineTotalTaxAmount?;
+    string OrderedInventoryStatusId?;
+    string ProductSizeId?;
+    string CurrencyCode?;
+    string ProductNumber?;
+    string ProductColorId?;
+    string ProductVersionId?;
+    string ProductStyleId?;
+    string ConfirmedShippingDate?;
+    decimal SalesPrice?;
+    string InventoryWarehouseId?;
+    string SalesUnitSymbol?;
+    decimal LineTotalChargeAmount?;
+    string ProductVariantName?;
+    string ProductDescription?;
+    decimal InvoicedQuantity?;
+    decimal LineAmount?;
+    string SalesProductCategoryName?;
+    string ProductName?;
+};
+
+# Represents the Headers record for the operation: deleteSalesMultiLineDiscountAgreements
+public type DeleteSalesMultiLineDiscountAgreementsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listSalesInvoiceQRCode
+public type ListSalesInvoiceQRCodeQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type Direction_IN "Import"|"Export";
+
+public type ReturnFormatErrorCodesCollection record {
+    *ODataCollection;
+    ReturnFormatErrorCodes[] value?;
+};
+
+public type SalesAgreementLineNote record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SalesAgreementId?;
+    decimal LineNumber?;
+    string DocumentAttachmentTypeCode?;
+    string AttachmentDescription?;
+    string AttachedDateTime?;
+    string AttachingUserId?;
+    string SalesAgreementLegalEntityId?;
+    DocuRestriction AccessRestriction?;
+    string Notes?;
+};
+
+# Represents the Queries record for the operation: getSalesOrderHeadersV2
+public type GetSalesOrderHeadersV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesQuotationTemplateGroup record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string GroupId?;
+    string GroupDescription?;
+};
+
+# Represents the Queries record for the operation: listTradeAllowanceAgreementMerchandisingEventProductsV2
+public type ListTradeAllowanceAgreementMerchandisingEventProductsV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteReturnOrderLineDocumentAttachments
+public type DeleteReturnOrderLineDocumentAttachmentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteTradeAllowanceAgreementMerchandisingEventProductsV2
+public type DeleteTradeAllowanceAgreementMerchandisingEventProductsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateSalesAutomaticSalesDocumentHeaderCharges
+public type UpdateSalesAutomaticSalesDocumentHeaderChargesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesRebateAgreementHeaderV2 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string RebateAgreementId?;
+    string ProductStyleId?;
+    NoYes IsGenericCurrencySearchEnabled?;
+    PdsRebateLineBreakType RebateBreakBasis?;
+    string AccrualMainAccountIdDisplayValue?;
+    NoYes IsProductSelectionUsed?;
+    string SalesRebateProductGroupId?;
+    string ItemNumber?;
+    string CustomerAccountNumber?;
+    PdsCumulationPeriod SalesCumulationMethod?;
+    string ProductSizeId?;
+    NoYes IsTaxable?;
+    string ValidTo?;
+    string ValidatingWorkerPersonnelNumber?;
+    string ExpenseMainAccountIdDisplayValue?;
+    string SalesCumulationMethodCustomizedPeriodType?;
+    PdsPaymtType PaymentType?;
+    NoYes IsProductUnitSymbolExact?;
+    string ProductConfigurationId?;
+    string ValidFrom?;
+    PdsRebateCalcDateType CalculationSearchDateType?;
+    string ProductUnitSymbol?;
+    string ProductVersionId?;
+    NoYes IsValidated?;
+    PdsRebateTakenFrom LineAmountBasis?;
+    int:Signed32 MinimumSalesQuantityQualifyingRebate?;
+    string SalesRebateCustomerGroupId?;
+    string QualifyingSiteId?;
+    NoYes IsApprovalRequired?;
+    string Note?;
+    string ProductColorId?;
+    decimal MinimumSalesAmountQualifyingRebate?;
+    string RebateProgramId?;
+    TAMCustRebateApprovalStatus ApprovalStatus?;
+    string CurrencyCode?;
+    PdsUnitType ProductUnitSymbolType?;
+    string QualifyingWarehouseId?;
+};
+
+# Represents the Queries record for the operation: listReturnPolicyChannelPaymentMappings
+public type ListReturnPolicyChannelPaymentMappingsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesPostageDiscountAgreementsCollection record {
+    *ODataCollection;
+    SalesPostageDiscountAgreement[] value?;
+};
+
+# Represents the Queries record for the operation: getTradeAllowanceAgreementMerchandisingEventProductsV2
+public type GetTradeAllowanceAgreementMerchandisingEventProductsV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesQuotationHeadersCollection record {
+    *ODataCollection;
+    SalesQuotationHeader[] value?;
+};
+
+# Represents the Queries record for the operation: listSalesInvoiceV2Lines
+public type ListSalesInvoiceV2LinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesInvoiceChorusProDetailsCollection record {
+    *ODataCollection;
+    SalesInvoiceChorusProDetail[] value?;
+};
+
+# Represents the Queries record for the operation: getSalesTotalDiscountAgreements
+public type GetSalesTotalDiscountAgreementsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listSalesInvoiceV4Lines
+public type ListSalesInvoiceV4LinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateSalesTotalDiscountAgreements
+public type UpdateSalesTotalDiscountAgreementsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getSalesOrderPools
+public type GetSalesOrderPoolsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesLineDiscountAgreementsCollection record {
+    *ODataCollection;
+    SalesLineDiscountAgreement[] value?;
+};
+
+# Represents the Queries record for the operation: listSalesQuotationHeaders
+public type ListSalesQuotationHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesQuotationCreationMethod "SCM"|"Dynamics365Sales";
+
+# Represents the Headers record for the operation: updateReturnOrderLines
+public type UpdateReturnOrderLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ReturnOrderHeaderDocumentAttachmentsCollection record {
+    *ODataCollection;
+    ReturnOrderHeaderDocumentAttachment[] value?;
+};
+
+public type SalesTaxExchangeRateTypeCurrenciesCollection record {
+    *ODataCollection;
+    SalesTaxExchangeRateTypeCurrency[] value?;
+};
+
+# Represents the Headers record for the operation: deleteSalesOrderHeaderV3ExistAddrReadOnlys
+public type DeleteSalesOrderHeaderV3ExistAddrReadOnlysHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteTradeAllowanceAgreementFunds
+public type DeleteTradeAllowanceAgreementFundsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type TransactionType "Purchase"|"Sales";
+
+# Represents the Queries record for the operation: getSalesTaxHierarchies
+public type GetSalesTaxHierarchiesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesContactPersonTitlesCollection record {
+    *ODataCollection;
+    SalesContactPersonTitle[] value?;
+};
+
+# Represents the Queries record for the operation: listSalesContactPersonTitles
+public type ListSalesContactPersonTitlesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type TradeAllowanceAgreementMerchandisingEventLumpSum record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TradeAllowanceAgreementId?;
+    string CustomerAccountNumber?;
+    string TradeAllowanceAgreementMerchandisingEventId?;
+    int LumpSumId?;
+    decimal SuggestedLumpSumAmount?;
+    MCRLumpSumStatus LumpSumApprovalStatus?;
+    decimal ApprovedLumpSumAmount?;
+    string ClaimPaymentRecipientCustomerAccountNumber?;
+    TAMPaymentType ClaimPaymentMethod?;
+    string ClaimPaymentRecipientVendorAccountNumber?;
+    string LumpSumDetails?;
+};
+
+# Represents the Headers record for the operation: updateSalesOrderHeaderV3ExistAddrReadOnlys
+public type UpdateSalesOrderHeaderV3ExistAddrReadOnlysHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteSalesInvoiceHeadersV2
+public type DeleteSalesInvoiceHeadersV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteSalesOrderHeadersV4
+public type DeleteSalesOrderHeadersV4Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateTradeAllowanceAgreementMerchandisingEventBillBacks
+public type UpdateTradeAllowanceAgreementMerchandisingEventBillBacksHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteSalesAgreementLineNotes
+public type DeleteSalesAgreementLineNotesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getSalesOrderHeaderDocumentAttachmentsV2
+public type GetSalesOrderHeaderDocumentAttachmentsV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesOrderHeaderV2 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SalesOrderNumber?;
+    string CustomerRequisitionNumber?;
+    SalesOrderProcessingStatus SalesOrderProcessingStatus?;
+    decimal OrderTotalAmount?;
+    string IntrastatPortId?;
+    string ContactPersonId?;
+    string CustomersOrderReference?;
+    NoYes SkipCreateAutoCharges?;
+    decimal TotalDiscountPercentage?;
+    string CustomerPaymentFineCode?;
+    NoYes IsSalesProcessingStopped?;
+    ItemReservation InventoryReservationMethod?;
+    string IntrastatTransportModeCode?;
+    string InvoiceCustomerAccountNumber?;
+    string URL?;
+    string InvoiceAddressCity?;
+    string BankSpecificSymbol?;
+    string BaseDocumentNumber?;
+    NoYes IsFinalUser?;
+    string CFPSCode?;
+    string InvoiceAddressStreet?;
+    string InvoiceAddressCountyId?;
+    string DeliveryAddressCountryRegionId?;
+    NoYes IsServiceDeliveryAddressBased?;
+    string InvoiceAddressDistrictName?;
+    Timezone InvoiceAddressTimeZone?;
+    EFDocPresenceType_BR FiscalOperationPresenceType?;
+    string MultilineDiscountCustomerGroupCode?;
+    NoYes IsOwnEntryCertificateIssued?;
+    string DeliveryAddressCountyId?;
+    string DefaultShippingWarehouseId?;
+    string DeliveryAddressLocationId?;
+    string CustomerPaymentMethodName?;
+    string SalesUnitId?;
+    string DefaultLedgerDimensionDisplayValue?;
+    string DeliveryAddressCountryRegionISOCode?;
+    NoYes AreTotalsCalculated?;
+    string TaxExemptNumber?;
+    string DeliveryAddressDescription?;
+    decimal DeliveryAddressLongitude?;
+    string DefaultShippingSiteId?;
+    string CashDiscountCode?;
+    string DeliveryReasonCode?;
+    string TotalDiscountCustomerGroupCode?;
+    string CampaignId?;
+    decimal OrderTotalDiscountAmount?;
+    string PaymentTermsName?;
+    string ShippingCarrierServiceGroupId?;
+    string CIPEcode?;
+    string RequestedReceiptDate?;
+    string ConfirmedReceiptDate?;
+    string BaseDocumentDate?;
+    string EInvoiceDimensionAccountCode?;
+    string OrderingCustomerAccountNumber?;
+    decimal OrderTotalChargesAmount?;
+    string SalesRebateCustomerGroupId?;
+    string TransportationBrokerId?;
+    string DirectDebitMandateId?;
+    string CreditNoteReasonCode?;
+    string IntrastatStatisticsProcedureCode?;
+    string TMACustomerGroupId?;
+    NoYes ArePricesIncludingSalesTax?;
+    NoYes IsExportSale?;
+    PaymentStub InvoicePaymentAttachmentType?;
+    decimal ReportingCurrencyFixedExchangeRate?;
+    NoYes IsDeliveryAddressPrivate?;
+    string DeliveryAddressCity?;
+    string DeliveryAddressStreet?;
+    string NumberSequenceGroupId?;
+    decimal OrderTotalTaxAmount?;
+    string DeliveryTermsCode?;
+    string ChargeCustomerGroupId?;
+    NoYes WillAutomaticInventoryReservationConsiderBatchAttributes?;
+    string SalesTaxGroupCode?;
+    NoYes IsInvoiceAddressPrivate?;
+    string ThirdPartySalesDigitalPlatformCNPJ?;
+    decimal OrderHeaderTaxAmount?;
+    string FiscalDocumentOperationTypeId?;
+    string OrderCreationDateTime?;
+    string SalesOrderOriginCode?;
+    string ServiceFiscalInformationCode?;
+    string DeliveryAddressStateId?;
+    string FulfillmentPolicyName?;
+    string CommissionSalesRepresentativeGroupId?;
+    string CustomerPostingProfileId?;
+    SettlementType CustomerTransactionSettlementType?;
+    string BaseDocumentItemNumber?;
+    string TransportationDocumentLineId?;
+    string DeliveryAddressStreetInKana?;
+    string CustomerPaymentFinancialInterestCode?;
+    string PaymentScheduleName?;
+    string InvoiceAddressStreetNumber?;
+    SalesStatus SalesOrderStatus?;
+    string PaymentTermsBaseDate?;
+    string ShippingCarrierId?;
+    string InvoiceAddressPostBox?;
+    string ConfirmedShippingDate?;
+    string TenderCode?;
+    string DeliveryAddressDunsNumber?;
+    NoYes IsEntryCertificateRequired?;
+    NoYes ThirdPartySalesDigitalPlatform?;
+    string DeliveryAddressDistrictName?;
+    SalesDeliveryDateControlType SalesOrderPromisingMethod?;
+    string DeliveryModeCode?;
+    int:Signed32 BaseDocumentLineNumber?;
+    string TransportationModeId?;
+    string SalesOrderName?;
+    string DeliveryAddressStreetNumber?;
+    decimal InvoiceAddressLongitude?;
+    decimal InvoiceAddressLatitude?;
+    DocumentType_IT BaseDocumentType?;
+    string SalesOrderPoolId?;
+    string FormattedInvoiceAddress?;
+    string CustomerPaymentMethodSpecificationName?;
+    string CurrencyCode?;
+    string FormattedDelveryAddress?;
+    string BankConstantSymbol?;
+    string PriceCustomerGroupCode?;
+    Timezone DeliveryAddressTimeZone?;
+    MPSFullRunCTPStatus FullRunCTPStatus?;
+    string Email?;
+    string InvoiceAddressCountryRegionISOCode?;
+    string InvoiceAddressCityInKana?;
+    string TransportationTemplateId?;
+    NoYes IsConsolidatedInvoiceTarget?;
+    string OrderOrAgreementCode?;
+    string TransportationRoutePlanId?;
+    string FixedDueDate?;
+    string DeliveryAddressName?;
+    string ExportReason?;
+    decimal FixedExchangeRate?;
+    string IntrastatTransactionCode?;
+    string InvoiceAddressStreetInKana?;
+    string InvoiceBuildingCompliment?;
+    string InvoiceAddressZipCode?;
+    decimal TotalDiscountAmount?;
+    string ShippingCarrierServiceId?;
+    NoYes IsOneTimeCustomer?;
+    string DeliveryAddressZipCode?;
+    string OrderTakerPersonnelNumber?;
+    string DeliveryAddressCityInKana?;
+    string DeliveryAddressPostBox?;
+    NoYes IsDeliveryAddressOrderSpecific?;
+    string InvoiceAddressStateId?;
+    string RequestedShippingDate?;
+    decimal DeliveryAddressLatitude?;
+    string DeliveryBuildingCompliment?;
+    string InvoiceAddressCountryRegionId?;
+    NoYes IsEInvoiceDimensionAccountCodeSpecifiedPerLine?;
+    InvoiceType_MY InvoiceType?;
+    Listcode EUSalesListCode?;
+    string ProjectId?;
+    NoYes OverrideSalesTax?;
+    string QuotationNumber?;
+    string OrderResponsiblePersonnelNumber?;
+    string CommissionCustomerGroupId?;
+    string LanguageId?;
+    string LineDiscountCustomerGroupCode?;
+    string ShippingCarrierCustomerAccountNumber?;
+    NoYes SubBillCreatedFromSubscriptionBilling?;
+    string RevRecReallocationId?;
+    NoYes RevRecFollowOriginalPricingMethod?;
+    NoYes RevRecMultipleSOReallocation?;
+    string RevRecContractEndDate?;
+    int RevRecLatestReverseJournal?;
+    string RevRecContractStartDate?;
+    NoYes SkipGlobalUnifiedPricingCalculation?;
+};
+
+public type SalesOrderHeaderV4 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SalesOrderNumber?;
+    string CustomerRequisitionNumber?;
+    SalesOrderProcessingStatus SalesOrderProcessingStatus?;
+    decimal OrderTotalAmount?;
+    string IntrastatPortId?;
+    string ContactPersonId?;
+    string CustomersOrderReference?;
+    NoYes SkipCreateAutoCharges?;
+    decimal TotalDiscountPercentage?;
+    string CustomerPaymentFineCode?;
+    NoYes IsSalesProcessingStopped?;
+    string FinTagDisplayValue?;
+    ItemReservation InventoryReservationMethod?;
+    string IntrastatTransportModeCode?;
+    string InvoiceCustomerAccountNumber?;
+    string URL?;
+    string InvoiceAddressCity?;
+    string BankSpecificSymbol?;
+    string BaseDocumentNumber?;
+    NoYes IsFinalUser?;
+    string CFPSCode?;
+    string InvoiceAddressStreet?;
+    string InvoiceAddressCountyId?;
+    string DeliveryAddressCountryRegionId?;
+    NoYes IsServiceDeliveryAddressBased?;
+    string InvoiceAddressDistrictName?;
+    Timezone InvoiceAddressTimeZone?;
+    EFDocPresenceType_BR FiscalOperationPresenceType?;
+    string MultilineDiscountCustomerGroupCode?;
+    NoYes IsOwnEntryCertificateIssued?;
+    string DeliveryAddressCountyId?;
+    string DefaultShippingWarehouseId?;
+    string DeliveryAddressLocationId?;
+    string CustomerPaymentMethodName?;
+    string SalesUnitId?;
+    string DefaultLedgerDimensionDisplayValue?;
+    string DeliveryAddressCountryRegionISOCode?;
+    NoYes AreTotalsCalculated?;
+    string TaxExemptNumber?;
+    string DeliveryAddressDescription?;
+    decimal DeliveryAddressLongitude?;
+    string DefaultShippingSiteId?;
+    string CashDiscountCode?;
+    string DeliveryReasonCode?;
+    string TotalDiscountCustomerGroupCode?;
+    string CampaignId?;
+    decimal OrderTotalDiscountAmount?;
+    string PaymentTermsName?;
+    string ShippingCarrierServiceGroupId?;
+    string CIPEcode?;
+    string RequestedReceiptDate?;
+    string ConfirmedReceiptDate?;
+    string BaseDocumentDate?;
+    string EInvoiceDimensionAccountCode?;
+    string OrderingCustomerAccountNumber?;
+    decimal OrderTotalChargesAmount?;
+    string SalesRebateCustomerGroupId?;
+    string TransportationBrokerId?;
+    string DirectDebitMandateId?;
+    string CreditNoteReasonCode?;
+    string IntrastatStatisticsProcedureCode?;
+    string TMACustomerGroupId?;
+    NoYes ArePricesIncludingSalesTax?;
+    NoYes IsExportSale?;
+    PaymentStub InvoicePaymentAttachmentType?;
+    decimal ReportingCurrencyFixedExchangeRate?;
+    NoYes IsDeliveryAddressPrivate?;
+    string DeliveryAddressCity?;
+    string DeliveryAddressStreet?;
+    string NumberSequenceGroupId?;
+    decimal OrderTotalTaxAmount?;
+    string DeliveryTermsCode?;
+    string ChargeCustomerGroupId?;
+    NoYes WillAutomaticInventoryReservationConsiderBatchAttributes?;
+    string SalesTaxGroupCode?;
+    NoYes IsInvoiceAddressPrivate?;
+    string ThirdPartySalesDigitalPlatformCNPJ?;
+    decimal OrderHeaderTaxAmount?;
+    string FiscalDocumentOperationTypeId?;
+    string OrderCreationDateTime?;
+    string SalesOrderOriginCode?;
+    string ServiceFiscalInformationCode?;
+    string DeliveryAddressStateId?;
+    string FulfillmentPolicyName?;
+    string CommissionSalesRepresentativeGroupId?;
+    string CustomerPostingProfileId?;
+    SettlementType CustomerTransactionSettlementType?;
+    string BaseDocumentItemNumber?;
+    string TransportationDocumentLineId?;
+    string DeliveryAddressStreetInKana?;
+    string CustomerPaymentFinancialInterestCode?;
+    string PaymentScheduleName?;
+    string InvoiceAddressStreetNumber?;
+    SalesStatus SalesOrderStatus?;
+    string PaymentTermsBaseDate?;
+    string ShippingCarrierId?;
+    string InvoiceAddressPostBox?;
+    string ConfirmedShippingDate?;
+    string TenderCode?;
+    string DeliveryAddressDunsNumber?;
+    NoYes IsEntryCertificateRequired?;
+    NoYes ThirdPartySalesDigitalPlatform?;
+    string DeliveryAddressDistrictName?;
+    SalesDeliveryDateControlType SalesOrderPromisingMethod?;
+    string DeliveryModeCode?;
+    int:Signed32 BaseDocumentLineNumber?;
+    string TransportationModeId?;
+    string SalesOrderName?;
+    string DeliveryAddressStreetNumber?;
+    decimal InvoiceAddressLongitude?;
+    decimal InvoiceAddressLatitude?;
+    DocumentType_IT BaseDocumentType?;
+    string SalesOrderPoolId?;
+    string FormattedInvoiceAddress?;
+    string CustomerPaymentMethodSpecificationName?;
+    string CurrencyCode?;
+    string FormattedDelveryAddress?;
+    string BankConstantSymbol?;
+    string PriceCustomerGroupCode?;
+    Timezone DeliveryAddressTimeZone?;
+    MPSFullRunCTPStatus FullRunCTPStatus?;
+    string Email?;
+    NoYes ExcludeFromMasterPlanning?;
+    string InvoiceAddressCountryRegionISOCode?;
+    string InvoiceAddressCityInKana?;
+    string TransportationTemplateId?;
+    NoYes IsConsolidatedInvoiceTarget?;
+    string OrderOrAgreementCode?;
+    string TransportationRoutePlanId?;
+    string FixedDueDate?;
+    string DeliveryAddressName?;
+    string ExportReason?;
+    decimal FixedExchangeRate?;
+    string ShipmentProcessingPolicyName?;
+    string IntrastatTransactionCode?;
+    string InvoiceAddressStreetInKana?;
+    string InvoiceBuildingCompliment?;
+    int RetailChannelTable?;
+    string InvoiceAddressZipCode?;
+    decimal TotalDiscountAmount?;
+    string ShippingCarrierServiceId?;
+    NoYes IsOneTimeCustomer?;
+    string DeliveryAddressZipCode?;
+    string OrderTakerPersonnelNumber?;
+    string DeliveryAddressCityInKana?;
+    string DeliveryAddressPostBox?;
+    NoYes IsDeliveryAddressOrderSpecific?;
+    string InvoiceAddressStateId?;
+    string RequestedShippingDate?;
+    decimal DeliveryAddressLatitude?;
+    string DeliveryBuildingCompliment?;
+    string InvoiceAddressCountryRegionId?;
+    NoYes IsEInvoiceDimensionAccountCodeSpecifiedPerLine?;
+    InvoiceType_MY InvoiceType?;
+    Listcode EUSalesListCode?;
+    string ProjectId?;
+    NoYes OverrideSalesTax?;
+    string QuotationNumber?;
+    string OrderResponsiblePersonnelNumber?;
+    string CommissionCustomerGroupId?;
+    string LanguageId?;
+    string LineDiscountCustomerGroupCode?;
+    string ShippingCarrierCustomerAccountNumber?;
+};
+
+public type SalesOrderHeaderV3 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SalesOrderNumber?;
+    string CustomerRequisitionNumber?;
+    SalesOrderProcessingStatus SalesOrderProcessingStatus?;
+    decimal OrderTotalAmount?;
+    string IntrastatPortId?;
+    string ContactPersonId?;
+    string CustomersOrderReference?;
+    NoYes SkipCreateAutoCharges?;
+    decimal TotalDiscountPercentage?;
+    string CustomerPaymentFineCode?;
+    NoYes IsSalesProcessingStopped?;
+    ItemReservation InventoryReservationMethod?;
+    string IntrastatTransportModeCode?;
+    string InvoiceCustomerAccountNumber?;
+    string URL?;
+    string InvoiceAddressCity?;
+    string BankSpecificSymbol?;
+    string BaseDocumentNumber?;
+    NoYes IsFinalUser?;
+    string CFPSCode?;
+    string InvoiceAddressStreet?;
+    string InvoiceAddressCountyId?;
+    string DeliveryAddressCountryRegionId?;
+    NoYes IsServiceDeliveryAddressBased?;
+    string InvoiceAddressDistrictName?;
+    Timezone InvoiceAddressTimeZone?;
+    EFDocPresenceType_BR FiscalOperationPresenceType?;
+    string MultilineDiscountCustomerGroupCode?;
+    NoYes IsOwnEntryCertificateIssued?;
+    string DeliveryAddressCountyId?;
+    string DefaultShippingWarehouseId?;
+    string DeliveryAddressLocationId?;
+    string CustomerPaymentMethodName?;
+    string SalesUnitId?;
+    string DefaultLedgerDimensionDisplayValue?;
+    string DeliveryAddressCountryRegionISOCode?;
+    NoYes AreTotalsCalculated?;
+    string TaxExemptNumber?;
+    string DeliveryAddressDescription?;
+    decimal DeliveryAddressLongitude?;
+    string DefaultShippingSiteId?;
+    string CashDiscountCode?;
+    string DeliveryReasonCode?;
+    string TotalDiscountCustomerGroupCode?;
+    string CampaignId?;
+    decimal OrderTotalDiscountAmount?;
+    string PaymentTermsName?;
+    string ShippingCarrierServiceGroupId?;
+    string CIPEcode?;
+    string RequestedReceiptDate?;
+    string ConfirmedReceiptDate?;
+    string BaseDocumentDate?;
+    string EInvoiceDimensionAccountCode?;
+    string OrderingCustomerAccountNumber?;
+    decimal OrderTotalChargesAmount?;
+    string SalesRebateCustomerGroupId?;
+    string TransportationBrokerId?;
+    string DirectDebitMandateId?;
+    string CreditNoteReasonCode?;
+    string IntrastatStatisticsProcedureCode?;
+    string TMACustomerGroupId?;
+    NoYes ArePricesIncludingSalesTax?;
+    NoYes IsExportSale?;
+    PaymentStub InvoicePaymentAttachmentType?;
+    decimal ReportingCurrencyFixedExchangeRate?;
+    NoYes IsDeliveryAddressPrivate?;
+    string DeliveryAddressCity?;
+    string DeliveryAddressStreet?;
+    string NumberSequenceGroupId?;
+    decimal OrderTotalTaxAmount?;
+    string DeliveryTermsCode?;
+    string ChargeCustomerGroupId?;
+    NoYes WillAutomaticInventoryReservationConsiderBatchAttributes?;
+    string SalesTaxGroupCode?;
+    NoYes IsInvoiceAddressPrivate?;
+    string ThirdPartySalesDigitalPlatformCNPJ?;
+    decimal OrderHeaderTaxAmount?;
+    string FiscalDocumentOperationTypeId?;
+    string OrderCreationDateTime?;
+    string SalesOrderOriginCode?;
+    string ServiceFiscalInformationCode?;
+    string DeliveryAddressStateId?;
+    string FulfillmentPolicyName?;
+    string CommissionSalesRepresentativeGroupId?;
+    string CustomerPostingProfileId?;
+    SettlementType CustomerTransactionSettlementType?;
+    string BaseDocumentItemNumber?;
+    string TransportationDocumentLineId?;
+    string DeliveryAddressStreetInKana?;
+    string CustomerPaymentFinancialInterestCode?;
+    string PaymentScheduleName?;
+    string InvoiceAddressStreetNumber?;
+    SalesStatus SalesOrderStatus?;
+    string PaymentTermsBaseDate?;
+    string ShippingCarrierId?;
+    string InvoiceAddressPostBox?;
+    string ConfirmedShippingDate?;
+    string TenderCode?;
+    string DeliveryAddressDunsNumber?;
+    NoYes IsEntryCertificateRequired?;
+    NoYes ThirdPartySalesDigitalPlatform?;
+    string DeliveryAddressDistrictName?;
+    SalesDeliveryDateControlType SalesOrderPromisingMethod?;
+    string DeliveryModeCode?;
+    int:Signed32 BaseDocumentLineNumber?;
+    string TransportationModeId?;
+    string SalesOrderName?;
+    string DeliveryAddressStreetNumber?;
+    decimal InvoiceAddressLongitude?;
+    decimal InvoiceAddressLatitude?;
+    DocumentType_IT BaseDocumentType?;
+    string SalesOrderPoolId?;
+    string FormattedInvoiceAddress?;
+    string CustomerPaymentMethodSpecificationName?;
+    string CurrencyCode?;
+    string FormattedDelveryAddress?;
+    string BankConstantSymbol?;
+    string PriceCustomerGroupCode?;
+    Timezone DeliveryAddressTimeZone?;
+    MPSFullRunCTPStatus FullRunCTPStatus?;
+    string Email?;
+    NoYes ExcludeFromMasterPlanning?;
+    string InvoiceAddressCountryRegionISOCode?;
+    string InvoiceAddressCityInKana?;
+    string TransportationTemplateId?;
+    NoYes IsConsolidatedInvoiceTarget?;
+    string OrderOrAgreementCode?;
+    string TransportationRoutePlanId?;
+    string FixedDueDate?;
+    string DeliveryAddressName?;
+    string ExportReason?;
+    decimal FixedExchangeRate?;
+    string IntrastatTransactionCode?;
+    string InvoiceAddressStreetInKana?;
+    string InvoiceBuildingCompliment?;
+    int RetailChannelTable?;
+    string InvoiceAddressZipCode?;
+    decimal TotalDiscountAmount?;
+    string ShippingCarrierServiceId?;
+    NoYes IsOneTimeCustomer?;
+    string DeliveryAddressZipCode?;
+    string OrderTakerPersonnelNumber?;
+    string DeliveryAddressCityInKana?;
+    string DeliveryAddressPostBox?;
+    NoYes IsDeliveryAddressOrderSpecific?;
+    string InvoiceAddressStateId?;
+    string RequestedShippingDate?;
+    decimal DeliveryAddressLatitude?;
+    string DeliveryBuildingCompliment?;
+    string InvoiceAddressCountryRegionId?;
+    NoYes IsEInvoiceDimensionAccountCodeSpecifiedPerLine?;
+    InvoiceType_MY InvoiceType?;
+    Listcode EUSalesListCode?;
+    string ProjectId?;
+    NoYes OverrideSalesTax?;
+    string QuotationNumber?;
+    string OrderResponsiblePersonnelNumber?;
+    string CommissionCustomerGroupId?;
+    string LanguageId?;
+    string LineDiscountCustomerGroupCode?;
+    string ShippingCarrierCustomerAccountNumber?;
+    NoYes SubBillCreatedFromSubscriptionBilling?;
+    string RevRecReallocationId?;
+    NoYes RevRecFollowOriginalPricingMethod?;
+    NoYes RevRecMultipleSOReallocation?;
+    string RevRecContractEndDate?;
+    int RevRecLatestReverseJournal?;
+    string RevRecContractStartDate?;
+    NoYes SkipGlobalUnifiedPricingCalculation?;
+};
+
+# Represents the Queries record for the operation: listSalesTotalDiscountAgreements
+public type ListSalesTotalDiscountAgreementsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesOrderTransTaxInformationsCollection record {
+    *ODataCollection;
+    SalesOrderTransTaxInformation[] value?;
+};
+
+# Represents the Queries record for the operation: getSalesOrderConfirmationHeaders
+public type GetSalesOrderConfirmationHeadersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listSalesAutomaticSalesDocumentHeaderTaxCharges
+public type ListSalesAutomaticSalesDocumentHeaderTaxChargesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesTaxHierarchies record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string HierarchyName?;
+    int:Signed32 HierarchyVersion?;
+    string HierarchyVersionDescription?;
+    NoYes IsSetoffable?;
+    TaxReportHrchyStructDesignType_IN HierarchyStructure?;
+    NoYes IsActiveVersion?;
+};
+
+# Represents the Queries record for the operation: listReturnOrderHeaders
+public type ListReturnOrderHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteSalesOrderPools
+public type DeleteSalesOrderPoolsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesProductCategory record {
+    string \@odata\.etag?;
+    string CategoryName?;
+};
+
+public type TradeAllowanceAgreementProductV2 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TradeAllowanceAgreementId?;
+    string CustomerAccountNumber?;
+    string ItemNumber?;
+    string PromotionalProductUnitSymbol?;
+    string ProductColorId?;
+    string ProductStyleId?;
+    string ProductVersionId?;
+    string ProductSizeId?;
+    string ProductConfigurationId?;
+    decimal WeightingFactor?;
+};
+
+public type SalesContactPersonTitle record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string JobTitleAlias?;
+    string JobTitle?;
+};
+
+public type CommitmentType "ProductQuantity"|"ProductVolume"|"ProductCategory"|"ProductRootCategory";
+
+# Represents the Queries record for the operation: getSalesContactPersonTitles
+public type GetSalesContactPersonTitlesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteSalesTaxHierarchies
+public type DeleteSalesTaxHierarchiesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteSalesAgreementConfirmationLines
+public type DeleteSalesAgreementConfirmationLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type DirectSettlement_IN "None"|"RG23A"|"RG23C"|"PLA";
+
+# Represents the Queries record for the operation: getSalesInvoiceQRCode
+public type GetSalesInvoiceQRCodeQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listReturnLineDetails
+public type ListReturnLineDetailsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type MarkupCategory "Fixed"|"Pcs"|"Percent"|"InterCompanyPercent"|"External"|"Proportional"|"UnitSpecific"|"UnitSpecificMatch";
+
+# Represents the Queries record for the operation: getSalesMultiLineDiscountAgreements
+public type GetSalesMultiLineDiscountAgreementsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getTradeD365SalesFeatureParameters
+public type GetTradeD365SalesFeatureParametersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesOrderLineDocumentAttachmentV2 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string DocumentId?;
+    string FileType?;
+    NoYes IsDefaultAttachment?;
+    string SalesOrderNumber?;
+    DocuRestriction AccessRestriction?;
+    int:Signed32 LineCreationSequenceNumber?;
+    string AttachmentDescription?;
+    string Notes?;
+    string DocumentAttachmentTypeCode?;
+    string FileName?;
+    string Attachment?;
+};
+
+# Represents the Queries record for the operation: getSalesInvoiceV2Lines
+public type GetSalesInvoiceV2LinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesPriceAgreement record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    int RecordId?;
+    string PriceApplicableFromDate?;
+    NoYes WillSearchContinue?;
+    decimal SalesPriceQuantity?;
+    string QuantityUnitySymbol?;
+    string ProductNumber?;
+    string AttributeBasedPricingId?;
+    string ProductSizeId?;
+    string ItemNumber?;
+    string ProductVersionId?;
+    string PriceCurrencyCode?;
+    decimal ToQuantity?;
+    decimal FixedPriceCharges?;
+    NoYes WillDeliveryDateControlDisregardLeadTime?;
+    string PriceApplicableToDate?;
+    string PriceWarehouseId?;
+    int:Signed32 SalesLeadTimeDays?;
+    decimal FromQuantity?;
+    string CustomerAccountNumber?;
+    string PriceCustomerGroupCode?;
+    decimal Price?;
+    string PriceSiteId?;
+    NoYes IsGenericCurrencySearchEnabled?;
+    string ProductColorId?;
+    string ProductconfigurationId?;
+    string ProductStyleId?;
+};
+
+public type ReturnDetailsCollection record {
+    *ODataCollection;
+    ReturnDetail[] value?;
+};
+
+# Represents the Queries record for the operation: getSalesPriceAgreements
+public type GetSalesPriceAgreementsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateSalesInvoiceQRCode
+public type UpdateSalesInvoiceQRCodeHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateTradeAllowanceAgreementMerchandisingEvents
+public type UpdateTradeAllowanceAgreementMerchandisingEventsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type TradeD365SalesFeatureManagementState record {
+    string \@odata\.etag?;
+    string Name?;
+    NoYes IsEnabled?;
+};
+
+# Represents the Headers record for the operation: updateSalesInvoiceV2Lines
+public type UpdateSalesInvoiceV2LinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type TradeD365SalesFeatureManagementStateV2 record {
+    string \@odata\.etag?;
+    string Name?;
+    NoYes IsEnabled?;
+};
+
+# Represents the Headers record for the operation: deleteReturnDispositionCodes
+public type DeleteReturnDispositionCodesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ReturnOrderLine record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ReturnOrderNumber?;
+    string ReturnInventoryLotId?;
+    string ReturnAddressZipCode?;
+    string SalesUnitSymbol?;
+    string OrderedInventoryStatusId?;
+    string ProductStyleId?;
+    NoYes CalculateLineAmount?;
+    string OriginStateId?;
+    decimal ReturnUnitCost?;
+    string ReturnClosedDate?;
+    decimal ReturnCatchWeightQuantity?;
+    string ReturnSiteId?;
+    string MainAccountIdDisplayValue?;
+    string LineDescription?;
+    string ItemNumber?;
+    decimal ReturnSalesQuantity?;
+    string ReturnAddressStreet?;
+    InventRefType ReferenceType?;
+    string CustomerAccountNumber?;
+    Timezone ReturnAddressTimeZone?;
+    string ReturnAddressBuildingCompliment?;
+    decimal LineAmount?;
+    string ProductSizeId?;
+    string ReturnWarehouseId?;
+    string ReturnAddressStreetNumber?;
+    string ReturnAddressDunsNumber?;
+    string InvoiceCustomerAccountNumber?;
+    string ReturnAddressLocationId?;
+    decimal SalesPrice?;
+    string ReturnAddressCountryRegionISOCode?;
+    NoYes IsReturnAddressOrderSpecific?;
+    string ReturnAddressCountyId?;
+    string ReturningInventoryLotId?;
+    string ReturnAddressName?;
+    string RMANumber?;
+    string ReturnAddressStateId?;
+    string ExpectedReturnArrivalDate?;
+    string ReturnAddressDistrictName?;
+    ReturnStatusLine ReturnStatus?;
+    string ReturnAddressCityInKana?;
+    string ProductConfigurationId?;
+    string FormattedReturnAddress?;
+    string ProductVersionId?;
+    string ReturnAddressStreetInKana?;
+    NoYes IsReturnAddressPrivate?;
+    string OriginCountryRegionId?;
+    string ActualReturnArrivalDate?;
+    string ReturnAddressCountryRegionId?;
+    decimal ReturnedSalesQuantity?;
+    string ExternalItemNumber?;
+    string ReturnAddressCity?;
+    string ReturnDispositionCode?;
+    string ItemBatchNumber?;
+    decimal ReturnAddressLatitude?;
+    string ProductColorId?;
+    string ReturnAddressDescription?;
+    string ReturnAddressPostBox?;
+    string ReferenceNumber?;
+    string ReferenceInventoryLotId?;
+    decimal ReturnAddressLongitude?;
+    NoYes IsReturnedQuantityAvailableForReservation?;
+};
+
+# Represents the Queries record for the operation: getSalesInvoiceJournalHeaders
+public type GetSalesInvoiceJournalHeadersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesSalesOrderCreationMethod "SalesOrder"|"RetailStatement";
+
+# Represents the Queries record for the operation: listSalesOrderHeadersV2
+public type ListSalesOrderHeadersV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesOrderConfirmationHeadersCollection record {
+    *ODataCollection;
+    SalesOrderConfirmationHeader[] value?;
+};
+
+# Represents the Headers record for the operation: deleteSalesOrderConfirmationLines
+public type DeleteSalesOrderConfirmationLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type NoYes "No"|"Yes";
+
+public type PdsRebateCalcDateType "CreatedDate"|"RequestedReceiptDate"|"RequestedShipDate";
+
+# Represents the Headers record for the operation: deleteReturnOrderHeaders
+public type DeleteReturnOrderHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listSalesOrderLineDocumentAttachments
+public type ListSalesOrderLineDocumentAttachmentsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteSalesAgreementConfirmations
+public type DeleteSalesAgreementConfirmationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateSalesQuotationHeadersV2
+public type UpdateSalesQuotationHeadersV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listSalesAgreements
+public type ListSalesAgreementsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesOriginType "NotSpecified"|"SalesOrderIntegration"|"WorkOrderIntegration";
+
+# Represents the Queries record for the operation: getSalesAgreementLineNotes
+public type GetSalesAgreementLineNotesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesOrderHeaderDocumentAttachmentsV2Collection record {
+    *ODataCollection;
+    SalesOrderHeaderDocumentAttachmentV2[] value?;
+};
+
+# Represents the Queries record for the operation: getTradeAllowanceAgreementFunds
+public type GetTradeAllowanceAgreementFundsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteReturnOrderHeaderDocumentAttachments
+public type DeleteReturnOrderHeaderDocumentAttachmentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteSalesAgreementLines
+public type DeleteSalesAgreementLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateTradeAllowanceAgreementMerchandisingEventFunds
+public type UpdateTradeAllowanceAgreementMerchandisingEventFundsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getSalesOrderHeaderV3ExistAddrReadOnlys
+public type GetSalesOrderHeaderV3ExistAddrReadOnlysQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteSalesOrderLines
+public type DeleteSalesOrderLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getSalesQuotationTemplateGroups
+public type GetSalesQuotationTemplateGroupsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateReturnPolicyChannels
+public type UpdateReturnPolicyChannelsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateSalesOrderHeaders
+public type UpdateSalesOrderHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type TradeAllowanceAgreementMerchandisingEventBillBackLinesCollection record {
+    *ODataCollection;
+    TradeAllowanceAgreementMerchandisingEventBillBackLine[] value?;
+};
+
+# Represents the Headers record for the operation: deleteSalesAutomaticSalesDocumentHeaderCharges
+public type DeleteSalesAutomaticSalesDocumentHeaderChargesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type InvoiceType_MY "Invoice"|"GST"|"SelfBilled"|"ServiceInvoice";
+
+public type SalesAgreementLinesFulfillment record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SalesAgreementId?;
+    decimal LineNumber?;
+    decimal RemainingAmount?;
+    decimal ReleasedCatchWeightQuantity?;
+    decimal InvoicedAmount?;
+    decimal CommittedQuantity?;
+    decimal DeliveredAmount?;
+    decimal InvoicedCatchWeightQuantity?;
+    decimal RemainingQuantity?;
+    decimal DeliveredQuantity?;
+    decimal RemainingCatchWeightQuantity?;
+    decimal ReleasedQuantity?;
+    decimal ReleasedAmount?;
+    decimal DeliveredCatchWeightQuantity?;
+    string UnitSymbol?;
+    string SalesAgreementLegalEntityId?;
+    decimal CommittedCatchWeightQuantity?;
+    decimal InvoicedQuantity?;
+    decimal CommittedAmount?;
+};
+
+public type SalesQuotationTemplateGroupsCollection record {
+    *ODataCollection;
+    SalesQuotationTemplateGroup[] value?;
+};
+
+# Represents the Headers record for the operation: deleteSalesOrderHeaderDocumentAttachmentsV2
+public type DeleteSalesOrderHeaderDocumentAttachmentsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ReturnDetail record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ReturnID?;
+    string ShipmentDate?;
+    string AccountName?;
+    string AccountNum?;
+    string CarrierServiceCode?;
+    string CarrierReturnTrackingNumber?;
+    string ReturnAddressName?;
+    string ShipmentId?;
+    WHSReturnDetailOrderType OrderType?;
+    string ContainerId?;
+    string PrintedDateAndTime?;
+    string CarrierCode?;
+    string ReturnAddress?;
+    string OrderNumber?;
+};
+
+# Represents the Headers record for the operation: deleteSalesTaxExchangeRateTypeCurrencies
+public type DeleteSalesTaxExchangeRateTypeCurrenciesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listSalesOrderHeaders
+public type ListSalesOrderHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesProductCategoriesCollection record {
+    *ODataCollection;
+    SalesProductCategory[] value?;
+};
+
+public type SalesInvoicePostingType_RU "Standard"|"GoodsInRoute";
+
+# Represents the Headers record for the operation: updateSalesOrderPools
+public type UpdateSalesOrderPoolsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getReturnOrderLineDocumentAttachments
+public type GetReturnOrderLineDocumentAttachmentsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesOrderHeaderV3ExistAddrReadOnlysCollection record {
+    *ODataCollection;
+    SalesOrderHeaderV3ExistAddrReadOnly[] value?;
+};
+
+public type ReturnOrderHeadersCollection record {
+    *ODataCollection;
+    ReturnOrderHeader[] value?;
+};
+
+public type BundleLineType "None"|"BundleParent"|"NestedBundleParent"|"BundleComponent";
+
+public type BundleLineStatus "None"|"Backorder"|"Delivered"|"Invoiced"|"Canceled";
+
+# Represents the Queries record for the operation: getTradeAllowanceAgreementMerchandisingEvents
+public type GetTradeAllowanceAgreementMerchandisingEventsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type ReturnLineDetailsCollection record {
+    *ODataCollection;
+    ReturnLineDetail[] value?;
+};
+
+public type DocuRestriction "Internal"|"External";
+
+# Represents the Headers record for the operation: updateSalesPriceAgreements
+public type UpdateSalesPriceAgreementsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ReturnLineDetail record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ReturnID?;
+    decimal LineNum?;
+    string InventorySiteId?;
+    string ItemId?;
+    string InventDimId?;
+    string ItemBatchNumber?;
+    string ProductConfigurationId?;
+    string WarehouseId?;
+    string InventoryOwnerId?;
+    string ProductSizeId?;
+    string ReturnUntilDate?;
+    string ProductColorId?;
+    string LotId?;
+    string ProductVersionId?;
+    string InventoryStatusId?;
+    string ProductStyleId?;
+    WHSReturnDetailOrderType OrderType?;
+    string ItemSerialNumber?;
+    decimal Quantity?;
+    string Unit?;
+};
+
+# Represents the Queries record for the operation: listSalesTaxHierarchies
+public type ListSalesTaxHierarchiesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getReturnOrderHeaders
+public type GetReturnOrderHeadersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesInvoiceLinesCollection record {
+    *ODataCollection;
+    SalesInvoiceLine[] value?;
+};
+
+# Represents the Headers record for the operation: deleteSalesPostageDiscountAgreements
+public type DeleteSalesPostageDiscountAgreementsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type TransTaxInformationType_IN "Normal"|"InventTransferFrom"|"InventTransferTo";
+
+# Represents the Headers record for the operation: deleteTradeAllowanceAgreementMerchandisingEventBillBackLines
+public type DeleteTradeAllowanceAgreementMerchandisingEventBillBackLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateSalesOrderLineDocumentAttachmentsV2
+public type UpdateSalesOrderLineDocumentAttachmentsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type PdsUnitType "InventoryUnit"|"CWUnit";
+
+public type SalesOrderHeader record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SalesOrderNumber?;
+    decimal OrderTotalChargesAmount?;
+    string FiscalDocumentOperationTypeId?;
+    string OrderTakerPersonnelNumber?;
+    string RequestedReceiptDate?;
+    string EInvoiceDimensionAccountCode?;
+    NoYes IsOwnEntryCertificateIssued?;
+    string InvoiceAddressStreet?;
+    string CampaignId?;
+    string FormattedDelveryAddress?;
+    string Email?;
+    string DefaultShippingSiteId?;
+    string TransportationBrokerId?;
+    string TransportationModeId?;
+    string DeliveryAddressDescription?;
+    string CFPSCode?;
+    NoYes IsInvoiceAddressPrivate?;
+    NoYes IsSalesProcessingStopped?;
+    string TMACustomerGroupId?;
+    string BankSpecificSymbol?;
+    SalesStatus SalesOrderStatus?;
+    string NumberSequenceGroupId?;
+    string SalesOrderOriginCode?;
+    decimal InvoiceAddressLatitude?;
+    string TransportationTemplateId?;
+    string CustomerPaymentFinancialInterestCode?;
+    string BankConstantSymbol?;
+    decimal OrderTotalTaxAmount?;
+    NoYes IsOneTimeCustomer?;
+    string SalesOrderPoolId?;
+    string DeliveryAddressCountryRegionId?;
+    decimal DeliveryAddressLatitude?;
+    string TotalDiscountCustomerGroupCode?;
+    string DeliveryAddressCity?;
+    string SalesRebateCustomerGroupId?;
+    string ThirdPartySalesDigitalPlatformCNPJ?;
+    SalesDeliveryDateControlType SalesOrderPromisingMethod?;
+    string ShippingCarrierId?;
+    decimal TotalDiscountPercentage?;
+    string DeliveryAddressDistrictName?;
+    string DeliveryAddressCountyId?;
+    string ConfirmedReceiptDate?;
+    string DeliveryAddressZipCode?;
+    EFDocPresenceType_BR FiscalOperationPresenceType?;
+    string QuotationNumber?;
+    NoYes IsConsolidatedInvoiceTarget?;
+    string LanguageId?;
+    string DeliveryAddressDunsNumber?;
+    string MultilineDiscountCustomerGroupCode?;
+    string InvoiceAddressStateId?;
+    string ServiceFiscalInformationCode?;
+    string CustomerPaymentMethodSpecificationName?;
+    string CommissionCustomerGroupId?;
+    string DeliveryAddressName?;
+    string InvoiceAddressCountryRegionId?;
+    string PaymentTermsBaseDate?;
+    string DeliveryAddressStreetNumber?;
+    string CreditNoteReasonCode?;
+    string ChargeCustomerGroupId?;
+    string InvoiceAddressStreetNumber?;
+    string TaxExemptNumber?;
+    NoYes IsDeliveryAddressPrivate?;
+    NoYes AreTotalsCalculated?;
+    decimal TotalDiscountAmount?;
+    decimal OrderTotalAmount?;
+    string CustomersOrderReference?;
+    string FormattedInvoiceAddress?;
+    string ExportReason?;
+    string OrderResponsiblePersonnelNumber?;
+    string DeliveryAddressCountryRegionISOCode?;
+    string CashDiscountCode?;
+    string PaymentScheduleName?;
+    string IntrastatTransactionCode?;
+    string URL?;
+    string CurrencyCode?;
+    decimal OrderTotalDiscountAmount?;
+    InvoiceType_MY InvoiceType?;
+    NoYes ArePricesIncludingSalesTax?;
+    string InvoiceCustomerAccountNumber?;
+    string DeliveryAddressLocationId?;
+    string CommissionSalesRepresentativeGroupId?;
+    SettlementType CustomerTransactionSettlementType?;
+    NoYes WillAutomaticInventoryReservationConsiderBatchAttributes?;
+    string IntrastatStatisticsProcedureCode?;
+    NoYes IsEInvoiceDimensionAccountCodeSpecifiedPerLine?;
+    string DeliveryAddressStreet?;
+    string DeliveryModeCode?;
+    NoYes IsExportSale?;
+    string ConfirmedShippingDate?;
+    string FixedDueDate?;
+    string TransportationDocumentLineId?;
+    string SalesTaxGroupCode?;
+    NoYes IsDeliveryAddressOrderSpecific?;
+    string CustomerRequisitionNumber?;
+    decimal InvoiceAddressLongitude?;
+    string FiscalDocumentTypeId?;
+    string InvoiceAddressCity?;
+    NoYes IsFinalUser?;
+    string InvoiceAddressPostBox?;
+    string ShippingCarrierServiceGroupId?;
+    string ContactPersonId?;
+    Listcode EUSalesListCode?;
+    string InvoiceAddressDistrictName?;
+    NoYes ThirdPartySalesDigitalPlatform?;
+    string PaymentTermsName?;
+    string CustomerPostingProfileId?;
+    decimal DeliveryAddressLongitude?;
+    string InvoiceAddressZipCode?;
+    string DeliveryTermsCode?;
+    string ShippingCarrierServiceId?;
+    string DefaultLedgerDimensionDisplayValue?;
+    Timezone DeliveryAddressTimeZone?;
+    string SalesOrderName?;
+    string DefaultShippingWarehouseId?;
+    NoYes IsEntryCertificateRequired?;
+    string DeliveryAddressStateId?;
+    string DeliveryBuildingCompliment?;
+    string IntrastatTransportModeCode?;
+    PaymentStub InvoicePaymentAttachmentType?;
+    string DeliveryAddressPostBox?;
+    Timezone InvoiceAddressTimeZone?;
+    string InvoiceAddressCountyId?;
+    string DirectDebitMandateId?;
+    string LineDiscountCustomerGroupCode?;
+    string IntrastatPortId?;
+    string OrderingCustomerAccountNumber?;
+    string CustomerPaymentFineCode?;
+    string InvoiceBuildingCompliment?;
+    string PriceCustomerGroupCode?;
+    string DeliveryReasonCode?;
+    NoYes IsServiceDeliveryAddressBased?;
+    ItemReservation InventoryReservationMethod?;
+    string RequestedShippingDate?;
+    SalesOrderProcessingStatus SalesOrderProcessingStatus?;
+    string TransportationRoutePlanId?;
+    string CustomerPaymentMethodName?;
+    string SalesUnitId?;
+    decimal FixedExchangeRate?;
+};
+
+# Represents the Headers record for the operation: deleteReturnLineDetails
+public type DeleteReturnLineDetailsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteTradeAllowanceAgreementMerchandisingEventLumpSums
+public type DeleteTradeAllowanceAgreementMerchandisingEventLumpSumsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listSalesOrderHeaderV3ExistAddrReadOnlys
+public type ListSalesOrderHeaderV3ExistAddrReadOnlysQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type ITCCategory_IN "Input"|"CapitalGoods"|"Others";
+
+# Represents the Queries record for the operation: getSalesOrderLineDocumentAttachmentsV2
+public type GetSalesOrderLineDocumentAttachmentsV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listReturnOrderLineDocumentAttachments
+public type ListReturnOrderLineDocumentAttachmentsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteSalesInvoiceW
+public type DeleteSalesInvoiceWHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesStatus "None"|"Backorder"|"Delivered"|"Invoiced"|"Canceled";
+
+# Represents the Headers record for the operation: updateSalesAgreementLineFulfillment
+public type UpdateSalesAgreementLineFulfillmentHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateReturnOrderLineDocumentAttachments
+public type UpdateReturnOrderLineDocumentAttachmentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listSalesInvoiceV3Lines
+public type ListSalesInvoiceV3LinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesInvoiceV3LinesCollection record {
+    *ODataCollection;
+    SalesInvoiceV3Line[] value?;
+};
+
+public type TradeAllowanceAgreementMerchandisingEvent record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TradeAllowanceAgreementId?;
+    string CustomerAccountNumber?;
+    string EventId?;
+    MCRMerchandisingEventCategory StandardMerchandisingEventCategoryType?;
+    string MerchandisingEventCategoryName?;
+    string EventDescription?;
+    decimal EventCostAmount?;
+};
+
+public type WHSReturnDetailOrderType "Unsupported"|"SalesOrder"|"OutboundShipmentOrder";
+
+# Represents the Headers record for the operation: updateSalesOrderOriginCodes
+public type UpdateSalesOrderOriginCodesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesOrderOriginCode record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string OriginCode?;
+    string OriginDescription?;
+    NoYes IsOriginTypeAssigned?;
+    SalesOriginType OriginType?;
+};
+
+# Represents the Queries record for the operation: listReturnOrderLinesV2
+public type ListReturnOrderLinesV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesInvoiceJournalHeadersCollection record {
+    *ODataCollection;
+    SalesInvoiceJournalHeader[] value?;
+};
+
+# Represents the Headers record for the operation: deleteSalesOrderHeaders
+public type DeleteSalesOrderHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type TAMCustRebateApprovalStatus "NotSubmitted"|"Submitted"|"Approved"|"Rejected";
+
+public type SalesOrderConfirmationHeader record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SalesOrderNumber?;
+    string ConfirmationDate?;
+    string ConfirmationNumber?;
+    NoYes IsInventorySiteMandatory?;
+    decimal FixedSecondaryExchangeRate?;
+    string DeliveryAddressLocationId?;
+    string DeliveryAddressCountyId?;
+    string DeliveryAddressCountryRegionISOCode?;
+    decimal TotalNetVolume?;
+    decimal TotalNetWeight?;
+    string ConfirmationDocumentReference?;
+    string DeliveryAddressBuildingCompliment?;
+    string CustomersOrderReference?;
+    decimal TotalRoundOffAmount?;
+    string DeliveryAddressZipCode?;
+    decimal FixedExchangeRate?;
+    string DefaultDimensionDisplayValue?;
+    string DeliveryAddressDistrictName?;
+    string DeliveryAddressDunsNumber?;
+    string PaymentTermsName?;
+    string OrderTakerPersonnelNumber?;
+    string CashDiscountCode?;
+    string InvoiceCustomerAccountNumber?;
+    decimal TotalConfirmedAmount?;
+    string FixedDueDate?;
+    decimal TotalChargeAmount?;
+    string DeliveryAddressStreet?;
+    NoYes IsDeliveryAddressPrivate?;
+    string DeliveryAddressCity?;
+    string DeliveryTermsCode?;
+    decimal CashDiscountPercentage?;
+    string DeliveryAddressCountryRegionId?;
+    string DeliveryAddressPostBox?;
+    string DeliveryAddressDescription?;
+    decimal SubTotalAmount?;
+    decimal TotalDiscountAmount?;
+    NoYes ArePricesIncludingSalesTax?;
+    decimal DeliveryAddressLatitude?;
+    string CustomerRequisitionNumber?;
+    Timezone DeliveryAddressTimeZone?;
+    string OrderingCustomerAccountNumber?;
+    decimal TotalQuantity?;
+    string DeliveryModeCode?;
+    string FormattedDeliveryAddress?;
+    string DeliveryAddressName?;
+    string LanguageId?;
+    string DeliveryAddressStateId?;
+    string DeliveryAddressCityInKana?;
+    decimal TotalCostAmount?;
+    string DeliveryAddressStreetNumber?;
+    string CurrencyCode?;
+    string DeliveryAddressStreetInKana?;
+    decimal DeliveryAddressLongitude?;
+    decimal TotalSalesTaxAmount?;
+    decimal TotalLineDiscountAmount?;
+};
+
+public type SalesInvoiceHeadersCollection record {
+    *ODataCollection;
+    SalesInvoiceHeader[] value?;
+};
+
+# Represents the Headers record for the operation: updateSalesLineDiscountAgreements
+public type UpdateSalesLineDiscountAgreementsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listSalesMultiLineDiscountAgreements
+public type ListSalesMultiLineDiscountAgreementsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Queries record for the operation: listSalesInvoiceHeaders
 public type ListSalesInvoiceHeadersQueries record {
     # Number of records to skip.
@@ -621,8 +3574,13 @@ public type ListSalesInvoiceHeadersQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: getSalesQuotationTemplateGroups
-public type GetSalesQuotationTemplateGroupsQueries record {
+public type SalesAutomaticSalesDocumentHeaderTaxChargesCollection record {
+    *ODataCollection;
+    SalesAutomaticSalesDocumentHeaderTaxCharge[] value?;
+};
+
+# Represents the Queries record for the operation: getSalesQuotationHeadersV2
+public type GetSalesQuotationHeadersV2Queries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
@@ -631,10 +3589,1673 @@ public type GetSalesQuotationTemplateGroupsQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: updateSalesInvoiceW
-public type UpdateSalesInvoiceWHeaders record {
+public type DispositionAction "Credit"|"CreditOnly"|"Scrap"|"ReplaceCredit"|"ReplaceScrap"|"ReturnToCust";
+
+public type PdsRebateUOMOption "Convert"|"ExactMatch";
+
+public type ReturnOrderLineDocumentAttachmentsCollection record {
+    *ODataCollection;
+    ReturnOrderLineDocumentAttachment[] value?;
+};
+
+public type SalesAutomaticSalesDocumentHeaderTaxCharge record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TaxCode?;
+    string ChargingCustomerAccountNumber?;
+    string ChargingChargeCustomerGroupId?;
+    string ChargingDeliveryModeCode?;
+    string ChargingChargeDeliveryGroupId?;
+    decimal LineNumber?;
+    string SalesChargeCode?;
+};
+
+# Represents the Headers record for the operation: deleteSalesOrderLineDocumentAttachments
+public type DeleteSalesOrderLineDocumentAttachmentsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type ExciseRecordType_IN "None"|"RG23A"|"RG23C"|"RG23D";
+
+# Represents the Queries record for the operation: listSalesProductCategories
+public type ListSalesProductCategoriesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type TradeAllowanceAgreementMerchandisingEventLumpSumsCollection record {
+    *ODataCollection;
+    TradeAllowanceAgreementMerchandisingEventLumpSum[] value?;
+};
+
+public type SalesDeliveryDateControlType "None"|"SalesLeadTime"|"ATP"|"ATPPlusIssueMargin"|"CTP"|"FullRunCTP";
+
+public type SalesOrderLineDocumentAttachmentsV2Collection record {
+    *ODataCollection;
+    SalesOrderLineDocumentAttachmentV2[] value?;
+};
+
+public type SalesInvoiceChorusProDetail record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string InvoiceId?;
+    string LedgerVoucher?;
+    string InvoiceDate?;
+    string ChorusProDepositId?;
+    string ChorusProDepositDateTime?;
+    string ChorusProRefusalReason?;
+    string ChorusProInvoiceStatus?;
+};
+
+# Represents the Headers record for the operation: deleteSalesOrderTransTaxInformations
+public type DeleteSalesOrderTransTaxInformationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesQuotationLinesCollection record {
+    *ODataCollection;
+    SalesQuotationLine[] value?;
+};
+
+public type SalesInvoiceQRCodeCollection record {
+    *ODataCollection;
+    SalesInvoiceQRCode[] value?;
+};
+
+public type SalesQuotationHeaderV2 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SalesQuotationNumber?;
+    string FiscalDocumentOperationTypeId?;
+    string SalesQuotationTemplateName?;
+    string InvoiceAddressStreet?;
+    string CampaignId?;
+    NoYes IsCustomerFinalUser?;
+    string SalesQuotationName?;
+    string Email?;
+    string DefaultShippingSiteId?;
+    string DeliveryAddressDescription?;
+    NoYes IsInvoiceAddressPrivate?;
+    string SalesQuotationTypeId?;
+    string QuotationDocumentIntroductionName?;
+    string QuotationResponsiblePersonnelNumber?;
+    string GeneratedSalesOrderNumber?;
+    string TeleMarketingCallListId?;
+    string NumberSequenceGroupId?;
+    string SalesOrderOriginCode?;
+    decimal InvoiceAddressLatitude?;
+    string CustomerPaymentFinancialInterestCode?;
+    string InvoiceAddressStreetInKana?;
+    decimal CashDiscountPercentage?;
+    string SalesOrderPoolId?;
+    string DeliveryAddressCountryRegionId?;
+    decimal DeliveryAddressLatitude?;
+    string TotalDiscountCustomerGroupCode?;
+    string DeliveryAddressCity?;
+    string RequestingCustomerAccountNumber?;
+    SalesDeliveryDateControlType SalesOrderPromisingMethod?;
+    decimal TotalDiscountPercentage?;
+    string DeliveryAddressDistrictName?;
+    string DeliveryAddressCountyId?;
+    string DeliveryAddressZipCode?;
+    string SalesQuotationExpiryDate?;
+    NoYes SkipOpportunityCreationPrompt?;
+    string LanguageId?;
+    string DeliveryAddressDunsNumber?;
+    string MultilineDiscountCustomerGroupCode?;
+    BankLGDocumentType BankDocumentType?;
+    string InvoiceAddressStateId?;
+    string SalesQuotationFollowUpDate?;
+    string CustomerPaymentMethodSpecificationName?;
+    string CommissionCustomerGroupId?;
+    string DeliveryAddressName?;
+    string QuotationFollowUpActivity?;
+    string QuotationReasonCode?;
+    decimal QuotationTotalTaxAmount?;
+    string InvoiceAddressCountryRegionId?;
+    string DeliveryAddressStreetNumber?;
+    string DeliveryAddressStreetInKana?;
+    string QuotationDocumentTitleName?;
+    string ChargeCustomerGroupId?;
+    string InvoiceAddressStreetNumber?;
+    NoYes IsDeliveryAddressPrivate?;
+    string TaxExemptNumber?;
+    NoYes AreTotalsCalculated?;
+    decimal TotalDiscountAmount?;
+    string FormattedInvoiceAddress?;
+    string ExportReason?;
+    string DeliveryAddressCountryRegionISOCode?;
+    string CashDiscountCode?;
+    string InvoiceAddressCountryRegionISOCode?;
+    string IntrastatTransactionCode?;
+    string URL?;
+    string CurrencyCode?;
+    string ServiceAgreementId?;
+    NoYes ArePricesIncludingSalesTax?;
+    string InvoiceCustomerAccountNumber?;
+    string DeliveryAddressLocationId?;
+    string CommissionSalesRepresentativeGroupId?;
+    SettlementType CustomerTransactionSettlementType?;
+    string InvoiceAddressCityInKana?;
+    decimal QuotationTotalDiscountAmount?;
+    string ReceiptDateRequested?;
+    string IntrastatStatisticsProcedureCode?;
+    string ProspectId?;
+    NoYes OverrideSalesTax?;
+    string DeliveryAddressStreet?;
+    string DeliveryModeCode?;
+    string FixedDueDate?;
+    string SalesTaxGroupCode?;
+    NoYes IsDeliveryAddressOrderSpecific?;
+    string CustomerRequisitionNumber?;
+    decimal InvoiceAddressLongitude?;
+    string InvoiceAddressCity?;
+    string InvoiceAddressPostBox?;
+    string ContactPersonId?;
+    Listcode EUSalesListCode?;
+    string InvoiceAddressDistrictName?;
+    SalesQuotationStatus SalesQuotationStatus?;
+    decimal QuotationTotalAmount?;
+    decimal QuotationHeaderTaxAmount?;
+    string SalesQuotationTemplateGroupId?;
+    NoYes IsSalesQuotationTemplateActive?;
+    string PaymentTermsName?;
+    string DeliveryAddressCityInKana?;
+    string CustomerPostingProfileId?;
+    decimal DeliveryAddressLongitude?;
+    string QuotationDocumentConclusionName?;
+    string InvoiceAddressZipCode?;
+    string DeliveryTermsCode?;
+    string DefaultLedgerDimensionDisplayValue?;
+    Timezone DeliveryAddressTimeZone?;
+    string DefaultShippingWarehouseId?;
+    string QuotationTakerPersonnelNumber?;
+    string DeliveryAddressStateId?;
+    SalesQuotationCreationMethod SalesQuotationHeaderCreationMethod?;
+    string DeliveryBuildingCompliment?;
+    string IntrastatTransportModeCode?;
+    string CustomersReference?;
+    string DeliveryAddressPostBox?;
+    Timezone InvoiceAddressTimeZone?;
+    string OpportunityId?;
+    string InvoiceAddressCountyId?;
+    decimal QuotationTotalChargesAmount?;
+    string LineDiscountCustomerGroupCode?;
+    string IntrastatPortId?;
+    string SalesQuotationConfirmationDate?;
+    string CustomerPaymentFineCode?;
+    string InvoiceBuildingCompliment?;
+    string PriceCustomerGroupCode?;
+    string DeliveryReasonCode?;
+    decimal ReportingCurrencyFixedExchangeRate?;
+    string RequestedShippingDate?;
+    string OperatingUnitPartyNumber?;
+    string CustomerPaymentMethodName?;
+    string SalesUnitId?;
+    string FormattedDeliveryAddress?;
+    decimal FixedExchangeRate?;
+    NoYes SkipGlobalUnifiedPricingCalculation?;
+};
+
+public type SalesInvoice_WCollection record {
+    *ODataCollection;
+    SalesInvoice_W[] value?;
+};
+
+# Represents the Queries record for the operation: getSalesOrderHeaders
+public type GetSalesOrderHeadersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listReturnFormatErrorCodes
+public type ListReturnFormatErrorCodesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesOrderHeaderV2ExistAddrReadOnly record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string DeliveryAddressLocationId?;
+    string DeliveryValidFrom?;
+    decimal OrderTotalChargesAmount?;
+    string FiscalDocumentOperationTypeId?;
+    string OrderTakerPersonnelNumber?;
+    string RequestedReceiptDate?;
+    string EInvoiceDimensionAccountCode?;
+    NoYes IsOwnEntryCertificateIssued?;
+    string InvoiceAddressStreet?;
+    string CampaignId?;
+    string FormattedDelveryAddress?;
+    string Email?;
+    int:Signed32 BaseDocumentLineNumber?;
+    DocumentType_IT BaseDocumentType?;
+    string TransportationBrokerId?;
+    string DefaultShippingSiteId?;
+    string TransportationModeId?;
+    string DeliveryAddressDescription?;
+    string CFPSCode?;
+    NoYes IsInvoiceAddressPrivate?;
+    NoYes IsSalesProcessingStopped?;
+    string TMACustomerGroupId?;
+    string BankSpecificSymbol?;
+    SalesStatus SalesOrderStatus?;
+    string NumberSequenceGroupId?;
+    string SalesOrderOriginCode?;
+    decimal InvoiceAddressLatitude?;
+    string TransportationTemplateId?;
+    string CustomerPaymentFinancialInterestCode?;
+    string InvoiceAddressStreetInKana?;
+    string BankConstantSymbol?;
+    decimal OrderTotalTaxAmount?;
+    NoYes IsOneTimeCustomer?;
+    string SalesOrderPoolId?;
+    string DeliveryAddressCountryRegionId?;
+    decimal DeliveryAddressLatitude?;
+    string TotalDiscountCustomerGroupCode?;
+    string DeliveryAddressCity?;
+    string SalesRebateCustomerGroupId?;
+    SalesDeliveryDateControlType SalesOrderPromisingMethod?;
+    string ProjectId?;
+    string ShippingCarrierId?;
+    decimal TotalDiscountPercentage?;
+    string DeliveryAddressDistrictName?;
+    string DeliveryAddressCountyId?;
+    string ConfirmedReceiptDate?;
+    string BaseDocumentItemNumber?;
+    string DeliveryAddressZipCode?;
+    EFDocPresenceType_BR FiscalOperationPresenceType?;
+    string QuotationNumber?;
+    NoYes IsConsolidatedInvoiceTarget?;
+    string LanguageId?;
+    string DeliveryAddressDunsNumber?;
+    string MultilineDiscountCustomerGroupCode?;
+    string BaseDocumentNumber?;
+    string InvoiceAddressStateId?;
+    string ServiceFiscalInformationCode?;
+    string CustomerPaymentMethodSpecificationName?;
+    string CommissionCustomerGroupId?;
+    string DeliveryAddressName?;
+    string InvoiceAddressCountryRegionId?;
+    string PaymentTermsBaseDate?;
+    string DeliveryAddressStreetNumber?;
+    string CreditNoteReasonCode?;
+    string DeliveryAddressStreetInKana?;
+    string ChargeCustomerGroupId?;
+    string InvoiceAddressStreetNumber?;
+    NoYes IsDeliveryAddressPrivate?;
+    string TaxExemptNumber?;
+    NoYes AreTotalsCalculated?;
+    decimal TotalDiscountAmount?;
+    decimal OrderTotalAmount?;
+    string CustomersOrderReference?;
+    string FormattedInvoiceAddress?;
+    string ExportReason?;
+    string OrderResponsiblePersonnelNumber?;
+    string DeliveryAddressCountryRegionISOCode?;
+    string CashDiscountCode?;
+    string OrderOrAgreementCode?;
+    string PaymentScheduleName?;
+    string InvoiceAddressCountryRegionISOCode?;
+    string IntrastatTransactionCode?;
+    string URL?;
+    string CurrencyCode?;
+    decimal OrderTotalDiscountAmount?;
+    InvoiceType_MY InvoiceType?;
+    string OrderCreationDateTime?;
+    NoYes ArePricesIncludingSalesTax?;
+    string InvoiceCustomerAccountNumber?;
+    string CommissionSalesRepresentativeGroupId?;
+    SettlementType CustomerTransactionSettlementType?;
+    string InvoiceAddressCityInKana?;
+    NoYes WillAutomaticInventoryReservationConsiderBatchAttributes?;
+    string IntrastatStatisticsProcedureCode?;
+    NoYes IsEInvoiceDimensionAccountCodeSpecifiedPerLine?;
+    string DeliveryAddressStreet?;
+    string DeliveryModeCode?;
+    NoYes IsExportSale?;
+    string ConfirmedShippingDate?;
+    string FixedDueDate?;
+    string TransportationDocumentLineId?;
+    string SalesTaxGroupCode?;
+    NoYes IsDeliveryAddressOrderSpecific?;
+    string CustomerRequisitionNumber?;
+    string SalesOrderNumber?;
+    decimal InvoiceAddressLongitude?;
+    string InvoiceAddressCity?;
+    NoYes IsFinalUser?;
+    string InvoiceAddressPostBox?;
+    string ShippingCarrierServiceGroupId?;
+    string ContactPersonId?;
+    Listcode EUSalesListCode?;
+    string InvoiceAddressDistrictName?;
+    string PaymentTermsName?;
+    string BaseDocumentDate?;
+    string DeliveryAddressCityInKana?;
+    string CustomerPostingProfileId?;
+    decimal DeliveryAddressLongitude?;
+    string TenderCode?;
+    string InvoiceAddressZipCode?;
+    string DeliveryTermsCode?;
+    string ShippingCarrierServiceId?;
+    string DefaultLedgerDimensionDisplayValue?;
+    Timezone DeliveryAddressTimeZone?;
+    string SalesOrderName?;
+    NoYes IsEntryCertificateRequired?;
+    string DefaultShippingWarehouseId?;
+    string DeliveryAddressStateId?;
+    string DeliveryBuildingCompliment?;
+    string IntrastatTransportModeCode?;
+    PaymentStub InvoicePaymentAttachmentType?;
+    string DeliveryAddressPostBox?;
+    Timezone InvoiceAddressTimeZone?;
+    string InvoiceAddressCountyId?;
+    string DirectDebitMandateId?;
+    string LineDiscountCustomerGroupCode?;
+    string IntrastatPortId?;
+    string CIPEcode?;
+    string OrderingCustomerAccountNumber?;
+    string CustomerPaymentFineCode?;
+    string InvoiceBuildingCompliment?;
+    string PriceCustomerGroupCode?;
+    string DeliveryReasonCode?;
+    NoYes IsServiceDeliveryAddressBased?;
+    decimal ReportingCurrencyFixedExchangeRate?;
+    decimal OrderHeaderTaxAmount?;
+    ItemReservation InventoryReservationMethod?;
+    string RequestedShippingDate?;
+    SalesOrderProcessingStatus SalesOrderProcessingStatus?;
+    string TransportationRoutePlanId?;
+    NoYes SkipCreateAutoCharges?;
+    string CustomerPaymentMethodName?;
+    string SalesUnitId?;
+    decimal FixedExchangeRate?;
+};
+
+# Represents the Headers record for the operation: updateSalesInvoiceJournalHeaders
+public type UpdateSalesInvoiceJournalHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateSalesPostageDiscountAgreements
+public type UpdateSalesPostageDiscountAgreementsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type TradeAllowanceAgreementMerchandisingEventFund record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TradeAllowanceAgreementId?;
+    string CustomerAccountNumber?;
+    string TradeAllowanceAgreementMerchandisingEventId?;
+    string PromotionFundId?;
+    decimal CostAllocationPercentage?;
+};
+
+public type SalesTotalDiscountAgreement record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    int RecordId?;
+    decimal DiscountAmount?;
+    string DiscountCurrencyCode?;
+    string TotalDiscountCustomerGroupCode?;
+    string DiscountApplicableFromDate?;
+    decimal DiscountPercentage2?;
+    decimal DiscountPercentage1?;
+    string DiscountApplicableToDate?;
+    decimal ToOrderSubtotalAmount?;
+    NoYes WillSearchContinue?;
+    string CustomerAccountNumber?;
+    decimal FromOrderSubtotalAmount?;
+};
+
+# Represents the Headers record for the operation: updateSalesAgreementConfirmations
+public type UpdateSalesAgreementConfirmationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateSalesOrderHeaderDocumentAttachments
+public type UpdateSalesOrderHeaderDocumentAttachmentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getSalesQuotationLines
+public type GetSalesQuotationLinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getSalesOrderHeaderDocumentAttachments
+public type GetSalesOrderHeaderDocumentAttachmentsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type PdsRebateTakenFrom "Gross"|"Net";
+
+public type ReturnOrderLinesV2Collection record {
+    *ODataCollection;
+    ReturnOrderLineV2[] value?;
+};
+
+# Represents the Headers record for the operation: deleteTradeD365SalesFeatureManagementStatesV2
+public type DeleteTradeD365SalesFeatureManagementStatesV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteReturnDetails
+public type DeleteReturnDetailsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listSalesAgreementLineFulfillment
+public type ListSalesAgreementLineFulfillmentQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+
+public type SalesOrderOriginCodesCollection record {
+    *ODataCollection;
+    SalesOrderOriginCode[] value?;
+};
+
+# Represents the Headers record for the operation: updateSalesOrderConfirmationHeaders
+public type UpdateSalesOrderConfirmationHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getReturnLineDetails
+public type GetReturnLineDetailsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getReturnPolicyChannelPaymentMappings
+public type GetReturnPolicyChannelPaymentMappingsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesInvoiceJournalHeader record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string InvoiceNumber?;
+    string InvoiceDate?;
+    string LedgerVoucher?;
+    string InvoiceAddressCountryRegionISOCode?;
+    string InvoiceAddressZipCode?;
+    decimal TotalTaxAmount?;
+    string InvoiceAddressStreetNumber?;
+    decimal TotalDiscountCustomerGroupCode?;
+    string InvoiceAddressStreet?;
+    decimal TotalChargeAmount?;
+    decimal TotalDiscountAmount?;
+    string CurrencyCode?;
+    string SalesOrderNumber?;
+    string DeliveryTermsCode?;
+    string ContactPersonId?;
+    string SalesOrderResponsiblePersonnelNumber?;
+    string PaymentTermsName?;
+    string DeliveryModeCode?;
+    string InvoiceCustomerAccountNumber?;
+    string InvoiceAddressCity?;
+    string InvoiceAddressState?;
+    string InvoiceAddressCountryRegionId?;
+    string CustomersOrderReference?;
+    decimal TotalInvoiceAmount?;
+    string SalesOrderOriginCode?;
+};
+
+# Represents the Queries record for the operation: listSalesLineDiscountAgreements
+public type ListSalesLineDiscountAgreementsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getReturnPolicyChannels
+public type GetReturnPolicyChannelsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type TradeD365SalesFeatureManagementStatesV2Collection record {
+    *ODataCollection;
+    TradeD365SalesFeatureManagementStateV2[] value?;
+};
+
+# Represents the Headers record for the operation: updateSalesQuotationLines
+public type UpdateSalesQuotationLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesRebateAgreementHeadersV2Collection record {
+    *ODataCollection;
+    SalesRebateAgreementHeaderV2[] value?;
+};
+
+# Represents the Headers record for the operation: deleteReturnOrderLines
+public type DeleteReturnOrderLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listTradeD365SalesFeatureManagementStatesV2
+public type ListTradeD365SalesFeatureManagementStatesV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateSalesInvoiceHeadersV4
+public type UpdateSalesInvoiceHeadersV4Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getSalesInvoiceHeadersV4
+public type GetSalesInvoiceHeadersV4Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type AgreementState "OnHold"|"Effective"|"Closed";
+
+# Represents the Headers record for the operation: deleteSalesQuotationHeaders
+public type DeleteSalesQuotationHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listSalesInvoiceJournalHeaders
+public type ListSalesInvoiceJournalHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listSalesPostageDiscountAgreements
+public type ListSalesPostageDiscountAgreementsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listSalesQuotationLines
+public type ListSalesQuotationLinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteSalesQuotationHeadersV2
+public type DeleteSalesQuotationHeadersV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateTradeD365SalesFeatureManagementStatesV2
+public type UpdateTradeD365SalesFeatureManagementStatesV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteSalesAgreements
+public type DeleteSalesAgreementsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteSalesOrderHeadersV3
+public type DeleteSalesOrderHeadersV3Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteSalesInvoiceHeadersV4
+public type DeleteSalesInvoiceHeadersV4Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateTradeD365SalesFeatureParameters
+public type UpdateTradeD365SalesFeatureParametersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateSalesQuotationHeaders
+public type UpdateSalesQuotationHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesQuotationTransTaxInformation record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string QuotationId?;
+    int:Signed32 LineCreationSequenceNumber?;
+    string ExciseECCRegistrationNumber?;
+    string CustomerLocation?;
+    string ServiceTaxRegistrationNumber?;
+    Direction_IN Direction?;
+    string TaxID?;
+    string GSTINRegistrationNumber?;
+    string BankTaxInformation?;
+    string HSNCode?;
+    NoYes Exempt?;
+    string TANRegistrationNumber?;
+    string VATSchedule?;
+    NoYes TaxWithholdSoftwareDeclReceived?;
+    string BankLocation?;
+    decimal VATNonRecoverablePercent?;
+    string CustomsIECRegistrationNumber?;
+    decimal NonBusinessUsagePercentage?;
+    string CustomsTariffCode?;
+    string ServiceAccountingCode?;
+    NoYes ServiceTaxIsRecoverable?;
+    string SalesTaxRegistrationNumber?;
+    string TaxWithholdNatureOfRemittance?;
+    ExciseRecordType_IN ExciseRecordType?;
+    string TaxRateType?;
+    string VendorTaxInformation?;
+    NoYes ExciseCENVATCreditAvailed?;
+    NatureOfAssessee_IN TaxWithholdNatureOfAssessee?;
+    NoYes ExciseIsScrap?;
+    DirectSettlement_IN ExciseDirectSettlement?;
+    TransTaxInformationType_IN Type?;
+    string ServiceTaxConsignmentNoteNum?;
+    ITCCategory_IN ITCCategory?;
+    NoYes InclTax?;
+    string SalesTaxFormTypes?;
+    string CompanyTaxInformation?;
+    NoYes NonGST?;
+    VATGoodsType_IN VATGoodsType?;
+    NoYes ExciseConsignment?;
+    string CSTSchedule?;
+    string ExciseTariffCodes?;
+    string CompanyLocation?;
+    string TaxWithholdCountryRegionToRemittance?;
+    string CustomerTaxInformation?;
+    ExciseType_IN ExciseType?;
+    string ServiceCode?;
+    string VATCommodityCode?;
+    GTAServiceCategory_IN ServiceTaxGTAServiceCategory?;
+    string VATTINRegistrationNumber?;
+    NoYes ExciseDSA?;
+    DisposalType_IN ExciseDisposalType?;
+    string TaxInventVATItemId?;
+    string VendorLocation?;
+    string TaxWithholdAcknowledgementNumber?;
+    Direction_IN CustomsTariffDirection?;
+    ServiceCategory_IN ServiceCategory?;
+};
+
+public type SalesInvoiceV2LinesCollection record {
+    *ODataCollection;
+    SalesInvoiceV2Line[] value?;
+};
+
+public type SalesOrderHeadersV4Collection record {
+    *ODataCollection;
+    SalesOrderHeaderV4[] value?;
+};
+
+public type SalesPriceAgreementsCollection record {
+    *ODataCollection;
+    SalesPriceAgreement[] value?;
+};
+
+# Represents the Queries record for the operation: listReturnOrderHeaderDocumentAttachments
+public type ListReturnOrderHeaderDocumentAttachmentsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type ReturnOrderLinesCollection record {
+    *ODataCollection;
+    ReturnOrderLine[] value?;
+};
+
+# Represents the Queries record for the operation: getSalesPostageDiscountAgreements
+public type GetSalesPostageDiscountAgreementsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteSalesQuotationTransTaxInformations
+public type DeleteSalesQuotationTransTaxInformationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesInvoiceV2Line record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string InvoiceNumber?;
+    int:Signed32 LineCreationSequenceNumber?;
+    string InvoiceDate?;
+    string LedgerVoucher?;
+    string DimensionNumber?;
+    string InventorySiteId?;
+    string ItemBatchNumber?;
+    decimal LineTotalDiscountAmount?;
+    string ProductConfigurationId?;
+    string SalesProductCategoryHierarchyName?;
+    decimal LineTotalTaxAmount?;
+    string OrderedInventoryStatusId?;
+    string ProductSizeId?;
+    string CurrencyCode?;
+    string ProductNumber?;
+    string ProductColorId?;
+    string ProductVersionId?;
+    string ProductStyleId?;
+    string ConfirmedShippingDate?;
+    decimal SalesPrice?;
+    string InventoryWarehouseId?;
+    decimal LineTotalChargeAmount?;
+    string SalesUnitSymbol?;
+    string ProductDescription?;
+    decimal InvoicedQuantity?;
+    decimal LineAmount?;
+    string ProductName?;
+    string SalesProductCategoryName?;
+};
+
+# Represents the Headers record for the operation: updateSalesQuotationTemplateGroups
+public type UpdateSalesQuotationTemplateGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ReturnOrderHeaderDocumentAttachment record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string DocumentId?;
+    string FileName?;
+    string ReturnOrderNumber?;
+    string Attachment?;
+    string DocumentAttachmentTypeCode?;
+    DocuRestriction AccessRestriction?;
+    string FileType?;
+    string AttachmentDescription?;
+    string Notes?;
+    NoYes IsDefaultAttachment?;
+};
+
+public type SalesMultiLineDiscountAgreement record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    int RecordId?;
+    NoYes WillSearchContinue?;
+    string QuantityUnitSymbol?;
+    decimal DiscountPercentage2?;
+    decimal DiscountPercentage1?;
+    decimal ToQuantity?;
+    string DiscountApplicableFromDate?;
+    string MultiLineDiscountCustomerGroupCode?;
+    string DiscountApplicableToDate?;
+    decimal DiscountAmount?;
+    string DiscountCurrencyCode?;
+    decimal FromQuantity?;
+    string CustomerAccountNumber?;
+    string MultiLineDiscountProductGroupCode?;
+    NoYes IsGenericCurrencySearchEnabled?;
+};
+
+public type SalesInvoiceHeadersV4Collection record {
+    *ODataCollection;
+    SalesInvoiceHeaderV4[] value?;
+};
+
+# Represents the Headers record for the operation: updateTradeAllowanceAgreementMerchandisingEventProductsV2
+public type UpdateTradeAllowanceAgreementMerchandisingEventProductsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getSalesInvoiceLines
+public type GetSalesInvoiceLinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateSalesAgreementConfirmationLines
+public type UpdateSalesAgreementConfirmationLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateSalesContactPersonTitles
+public type UpdateSalesContactPersonTitlesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesOrderHeadersCollection record {
+    *ODataCollection;
+    SalesOrderHeader[] value?;
+};
+
+public type SalesAgreementsCollection record {
+    *ODataCollection;
+    SalesAgreement[] value?;
+};
+
+# Represents the Headers record for the operation: deleteSalesInvoiceQRCode
+public type DeleteSalesInvoiceQRCodeHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesOrderHeaderDocumentAttachment record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string DocumentId?;
+    string FileType?;
+    NoYes IsDefaultAttachment?;
+    string SalesOrderNumber?;
+    DocuRestriction AccessRestriction?;
+    string AttachmentDescription?;
+    string Notes?;
+    string DocumentAttachmentTypeCode?;
+    string FileName?;
+    string Attachment?;
+};
+
+# Represents the Queries record for the operation: listSalesPriceAgreements
+public type ListSalesPriceAgreementsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateSalesRebateAgreementHeadersV2
+public type UpdateSalesRebateAgreementHeadersV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SettlementType "None"|"OpenTransact"|"SelectedTransact";
+
+# Represents the Queries record for the operation: getSalesOrderHeadersV4
+public type GetSalesOrderHeadersV4Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateSalesOrderLineDocumentAttachments
+public type UpdateSalesOrderLineDocumentAttachmentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type TradeAllowanceAgreementMerchandisingEventsCollection record {
+    *ODataCollection;
+    TradeAllowanceAgreementMerchandisingEvent[] value?;
+};
+
+public type ReturnPolicyChannelPaymentMapping record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string RetailReturnPolicyChannel_PolicyName?;
+    string OriginalTenderTypeId?;
+    decimal LineNumber?;
+    string AllowedReturnTenderTypeId?;
+};
+
+# Represents the Headers record for the operation: updateReturnLineDetails
+public type UpdateReturnLineDetailsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteSalesOrderConfirmationHeaders
+public type DeleteSalesOrderConfirmationHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getSalesOrderConfirmationLines
+public type GetSalesOrderConfirmationLinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesTaxHierarchiesCollection record {
+    *ODataCollection;
+    SalesTaxHierarchies[] value?;
+};
+
+# Represents the Headers record for the operation: deleteSalesOrderOriginCodes
+public type DeleteSalesOrderOriginCodesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateSalesAgreements
+public type UpdateSalesAgreementsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesLineDiscountAgreement record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    int RecordId?;
+    decimal DiscountAmount?;
+    string DiscountCurrencyCode?;
+    string QuantityUnitSymbol?;
+    string ProductConfigurationId?;
+    string DiscountSiteId?;
+    string DiscountApplicableFromDate?;
+    string LineDiscountProductGroupCode?;
+    decimal ToQuantity?;
+    decimal DiscountPercentage2?;
+    decimal DiscountPercentage1?;
+    string ProductSizeId?;
+    string DiscountApplicableToDate?;
+    string ProductNumber?;
+    string ItemNumber?;
+    string ProductColorId?;
+    NoYes IsGenericCurrencySearchEnabled?;
+    string ProductVersionId?;
+    string ProductStyleId?;
+    string LineDiscountCustomerGroupCode?;
+    string CustomerAccountNumber?;
+    NoYes WillSearchContinue?;
+    decimal FromQuantity?;
+    string DiscountWarehouseId?;
+};
+
+# Represents the Queries record for the operation: listReturnDispositionCodes
+public type ListReturnDispositionCodesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesAutomaticSalesDocumentHeaderChargesCollection record {
+    *ODataCollection;
+    SalesAutomaticSalesDocumentHeaderCharge[] value?;
+};
+
+public type SalesInvoiceLine record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string InvoiceNumber?;
+    int:Signed32 LineCreationSequenceNumber?;
+    string InvoiceDate?;
+    string DimensionNumber?;
+    string InventorySiteId?;
+    string ItemBatchNumber?;
+    decimal LineTotalDiscountAmount?;
+    string ProductConfigurationId?;
+    decimal LineTotalTaxAmount?;
+    string OrderedInventoryStatusId?;
+    string ProductSizeId?;
+    string CurrencyCode?;
+    string ProductNumber?;
+    string ProductColorId?;
+    string ProductVersionId?;
+    string ProductStyleId?;
+    string ConfirmedShippingDate?;
+    decimal SalesPrice?;
+    string InventoryWarehouseId?;
+    string SalesUnitSymbol?;
+    decimal LineTotalChargeAmount?;
+    string ProductDescription?;
+    decimal InvoicedQuantity?;
+    decimal LineAmount?;
+    string ProductName?;
+};
+
+# Represents the Queries record for the operation: listSalesAgreementConfirmations
+public type ListSalesAgreementConfirmationsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteSalesRebateAgreementHeadersV2
+public type DeleteSalesRebateAgreementHeadersV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listTradeD365SalesFeatureManagementStates
+public type ListTradeD365SalesFeatureManagementStatesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateSalesOrderHeadersV4
+public type UpdateSalesOrderHeadersV4Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getSalesAgreements
+public type GetSalesAgreementsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesInvoiceV4LinesCollection record {
+    *ODataCollection;
+    SalesInvoiceV4Line[] value?;
+};
+
+# Represents the Queries record for the operation: getTradeD365SalesFeatureManagementStatesV2
+public type GetTradeD365SalesFeatureManagementStatesV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listSalesOrderLines
+public type ListSalesOrderLinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesQuotationHeader record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SalesQuotationNumber?;
+    string FiscalDocumentOperationTypeId?;
+    string SalesQuotationTemplateName?;
+    string InvoiceAddressStreet?;
+    string CampaignId?;
+    NoYes IsCustomerFinalUser?;
+    string SalesQuotationName?;
+    string Email?;
+    string DefaultShippingSiteId?;
+    string DeliveryAddressDescription?;
+    NoYes IsInvoiceAddressPrivate?;
+    string SalesQuotationTypeId?;
+    string QuotationDocumentIntroductionName?;
+    string QuotationResponsiblePersonnelNumber?;
+    string GeneratedSalesOrderNumber?;
+    string TeleMarketingCallListId?;
+    string NumberSequenceGroupId?;
+    string SalesOrderOriginCode?;
+    decimal InvoiceAddressLatitude?;
+    string CustomerPaymentFinancialInterestCode?;
+    decimal CashDiscountPercentage?;
+    string SalesOrderPoolId?;
+    string DeliveryAddressCountryRegionId?;
+    decimal DeliveryAddressLatitude?;
+    string TotalDiscountCustomerGroupCode?;
+    string DeliveryAddressCity?;
+    string RequestingCustomerAccountNumber?;
+    SalesDeliveryDateControlType SalesOrderPromisingMethod?;
+    decimal TotalDiscountPercentage?;
+    string DeliveryAddressDistrictName?;
+    string DeliveryAddressCountyId?;
+    string DeliveryAddressZipCode?;
+    string SalesQuotationExpiryDate?;
+    string LanguageId?;
+    string DeliveryAddressDunsNumber?;
+    string MultilineDiscountCustomerGroupCode?;
+    BankLGDocumentType BankDocumentType?;
+    string InvoiceAddressStateId?;
+    string SalesQuotationFollowUpDate?;
+    string CustomerPaymentMethodSpecificationName?;
+    string CommissionCustomerGroupId?;
+    string DeliveryAddressName?;
+    string QuotationFollowUpActivity?;
+    string QuotationReasonCode?;
+    decimal QuotationTotalTaxAmount?;
+    string InvoiceAddressCountryRegionId?;
+    string DeliveryAddressStreetNumber?;
+    string QuotationDocumentTitleName?;
+    string ChargeCustomerGroupId?;
+    string InvoiceAddressStreetNumber?;
+    NoYes IsDeliveryAddressPrivate?;
+    string TaxExemptNumber?;
+    NoYes AreTotalsCalculated?;
+    decimal TotalDiscountAmount?;
+    string FormattedInvoiceAddress?;
+    string ExportReason?;
+    string DeliveryAddressCountryRegionISOCode?;
+    string CashDiscountCode?;
+    string IntrastatTransactionCode?;
+    string URL?;
+    string CurrencyCode?;
+    string ServiceAgreementId?;
+    NoYes ArePricesIncludingSalesTax?;
+    string InvoiceCustomerAccountNumber?;
+    string DeliveryAddressLocationId?;
+    string CommissionSalesRepresentativeGroupId?;
+    SettlementType CustomerTransactionSettlementType?;
+    decimal QuotationTotalDiscountAmount?;
+    string ReceiptDateRequested?;
+    string IntrastatStatisticsProcedureCode?;
+    string ProspectId?;
+    string DeliveryAddressStreet?;
+    string DeliveryModeCode?;
+    string FixedDueDate?;
+    string SalesTaxGroupCode?;
+    NoYes IsDeliveryAddressOrderSpecific?;
+    string CustomerRequisitionNumber?;
+    decimal InvoiceAddressLongitude?;
+    string InvoiceAddressCity?;
+    string InvoiceAddressPostBox?;
+    string ContactPersonId?;
+    Listcode EUSalesListCode?;
+    string InvoiceAddressDistrictName?;
+    SalesQuotationStatus SalesQuotationStatus?;
+    decimal QuotationTotalAmount?;
+    string SalesQuotationTemplateGroupId?;
+    NoYes IsSalesQuotationTemplateActive?;
+    string PaymentTermsName?;
+    string CustomerPostingProfileId?;
+    decimal DeliveryAddressLongitude?;
+    string QuotationDocumentConclusionName?;
+    string InvoiceAddressZipCode?;
+    string DeliveryTermsCode?;
+    string DefaultLedgerDimensionDisplayValue?;
+    Timezone DeliveryAddressTimeZone?;
+    string DefaultShippingWarehouseId?;
+    string QuotationTakerPersonnelNumber?;
+    string DeliveryAddressStateId?;
+    string DeliveryBuildingCompliment?;
+    string IntrastatTransportModeCode?;
+    string CustomersReference?;
+    string DeliveryAddressPostBox?;
+    Timezone InvoiceAddressTimeZone?;
+    string OpportunityId?;
+    string InvoiceAddressCountyId?;
+    decimal QuotationTotalChargesAmount?;
+    string LineDiscountCustomerGroupCode?;
+    string IntrastatPortId?;
+    string SalesQuotationConfirmationDate?;
+    string CustomerPaymentFineCode?;
+    string InvoiceBuildingCompliment?;
+    string PriceCustomerGroupCode?;
+    string DeliveryReasonCode?;
+    decimal ReportingCurrencyFixedExchangeRate?;
+    string RequestedShippingDate?;
+    string CustomerPaymentMethodName?;
+    string SalesUnitId?;
+    string FormattedDeliveryAddress?;
+    decimal FixedExchangeRate?;
+};
+
+# Represents the Queries record for the operation: getSalesOrderOriginCodes
+public type GetSalesOrderOriginCodesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesAgreementConfirmationLine record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SalesAgreementId?;
+    string ConfirmationNumber?;
+    decimal LineNumber?;
+    string SalesAgreementLegalEntityId?;
+    string ProductStyleId?;
+    string ShippingSiteId?;
+    decimal CommittedAmount?;
+    decimal CommittedQuantity?;
+    decimal CommittedCatchWeightQuantity?;
+    decimal PriceQuantity?;
+    decimal LineDiscountAmount?;
+    string ConfirmationCreationDateTime?;
+    string ItemNumber?;
+    string ShippingWarehouseId?;
+    decimal MaximumReleaseAmount?;
+    string InventoryProfileId?;
+    NoYes IsPriceAndDiscountFixed?;
+    string ProductSizeId?;
+    decimal LineDiscountPercentage?;
+    string InvoiceCustomerAccountNumber?;
+    string AgreementCustomerAccountNumber?;
+    string UnitSymbol?;
+    string SalesAgreementConfirmationNumber?;
+    string CommissionSalesRepresentativeGroupId?;
+    CommitmentType CommitmentType?;
+    string ProductConfigurationId?;
+    string ProjectActivityNumber?;
+    string SalesProductCategoryName?;
+    string ProductVersionId?;
+    string ProjectId?;
+    string EffectiveDate?;
+    string DeliveryModeCode?;
+    NoYes IsCommitmentMaximumEnforced?;
+    decimal Price?;
+    string ProductColorId?;
+    string ProjectCategoryId?;
+    decimal MinimumReleaseAmount?;
+    string DefaultLedgerDimensionDisplayValue?;
+    string ExpirationDate?;
+};
+
+# Represents the Queries record for the operation: listSalesOrderConfirmationLines
+public type ListSalesOrderConfirmationLinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type TAMPaymentType "Cheque"|"CustomerDeduction"|"InvoiceCustomerDeduction";
+
+public type SalesInvoiceHeadersV2Collection record {
+    *ODataCollection;
+    SalesInvoiceHeaderV2[] value?;
+};
+
+public type SalesAgreementLinesCollection record {
+    *ODataCollection;
+    SalesAgreementLine[] value?;
+};
+
+# Represents the Headers record for the operation: updateReturnOrderHeaderDocumentAttachments
+public type UpdateReturnOrderHeaderDocumentAttachmentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type GTAServiceCategory_IN "Inward"|"OutwardInterUnit"|"Others";
+
+# Represents the Queries record for the operation: getReturnFormatErrorCodes
+public type GetReturnFormatErrorCodesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Queries record for the operation: getSalesInvoiceW
@@ -645,6 +5266,681 @@ public type GetSalesInvoiceWQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+public type SalesTotalDiscountAgreementsCollection record {
+    *ODataCollection;
+    SalesTotalDiscountAgreement[] value?;
+};
+
+public type MCRGiftCardType "Email"|"Physical";
+
+public type DocumentType_IT "None"|"PaymentOrder"|"Contract"|"Agreement"|"ManagementSystem"|"OriginalInvoice";
+
+public type PdsPaymtType "Cheque"|"CustomerDeduction"|"TradeSpending"|"Freight"|"InvoiceCustomerDeduction";
+
+public type SalesOrderHeadersV2Collection record {
+    *ODataCollection;
+    SalesOrderHeaderV2[] value?;
+};
+
+public type BankLGDocumentType "None"|"LetterOfGuarantee";
+
+# Represents the Queries record for the operation: listSalesInvoiceHeadersV2
+public type ListSalesInvoiceHeadersV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getSalesQuotationHeaders
+public type GetSalesQuotationHeadersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getTradeAllowanceAgreementProductsV2
+public type GetTradeAllowanceAgreementProductsV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type InventRefType "None"|"Sales"|"Purch"|"Production"|"ProdLine"|"InventJournal"|"CRMQuotation"|"InventTransfer"|"FixedAsset";
+
+# Represents the Headers record for the operation: updateReturnOrderHeaders
+public type UpdateReturnOrderHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getSalesQuotationTransTaxInformations
+public type GetSalesQuotationTransTaxInformationsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listSalesInvoiceW
+public type ListSalesInvoiceWQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesAgreementLineNotesCollection record {
+    *ODataCollection;
+    SalesAgreementLineNote[] value?;
+};
+
+# Represents the Queries record for the operation: listSalesOrderHeadersV3
+public type ListSalesOrderHeadersV3Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getSalesLineDiscountAgreements
+public type GetSalesLineDiscountAgreementsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateSalesOrderHeaderV2ExistAddrReadOnlys
+public type UpdateSalesOrderHeaderV2ExistAddrReadOnlysHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ReturnPolicyChannelsCollection record {
+    *ODataCollection;
+    ReturnPolicyChannel[] value?;
+};
+
+# Represents the Queries record for the operation: getSalesAgreementConfirmations
+public type GetSalesAgreementConfirmationsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type ServiceCategory_IN "Inward"|"InterUnit"|"Others";
+
+# Represents the Queries record for the operation: listTradeAllowanceAgreementMerchandisingEventBillBacks
+public type ListTradeAllowanceAgreementMerchandisingEventBillBacksQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteSalesOrderHeaderV2ExistAddrReadOnlys
+public type DeleteSalesOrderHeaderV2ExistAddrReadOnlysHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesInvoiceV3Line record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string InvoiceNumber?;
+    int:Signed32 LineCreationSequenceNumber?;
+    string InvoiceDate?;
+    string LedgerVoucher?;
+    string DimensionNumber?;
+    string InventorySiteId?;
+    string ItemBatchNumber?;
+    decimal LineTotalDiscountAmount?;
+    string ProductConfigurationId?;
+    string SalesProductCategoryHierarchyName?;
+    decimal LineTotalTaxAmount?;
+    string OrderedInventoryStatusId?;
+    string ProductSizeId?;
+    string CurrencyCode?;
+    string ProductNumber?;
+    string ProductColorId?;
+    string ProductVersionId?;
+    string ProductStyleId?;
+    string ConfirmedShippingDate?;
+    decimal SalesPrice?;
+    string InventoryWarehouseId?;
+    decimal LineTotalChargeAmount?;
+    string SalesUnitSymbol?;
+    string ProductDescription?;
+    decimal InvoicedQuantity?;
+    decimal LineAmount?;
+    string ProductName?;
+    string SalesProductCategoryName?;
+};
+
+# Represents the Queries record for the operation: getSalesInvoiceV4Lines
+public type GetSalesInvoiceV4LinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateTradeD365SalesFeatureManagementStates
+public type UpdateTradeD365SalesFeatureManagementStatesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getSalesInvoiceV3Lines
+public type GetSalesInvoiceV3LinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateSalesInvoiceV4Lines
+public type UpdateSalesInvoiceV4LinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getSalesAutomaticSalesDocumentHeaderTaxCharges
+public type GetSalesAutomaticSalesDocumentHeaderTaxChargesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateSalesInvoiceV3Lines
+public type UpdateSalesInvoiceV3LinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type InventProfileType_RU "NotSpecified"|"General"|"CommissionAgent"|"CommissionPrincipalAgent"|"Bailee";
+
+# Represents the Headers record for the operation: deleteSalesLineDiscountAgreements
+public type DeleteSalesLineDiscountAgreementsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteSalesQuotationTemplateGroups
+public type DeleteSalesQuotationTemplateGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ExciseType_IN "None"|"Manufacturer"|"Trader";
+
+public type TradeAllowanceAgreementMerchandisingEventFundsCollection record {
+    *ODataCollection;
+    TradeAllowanceAgreementMerchandisingEventFund[] value?;
+};
+
+public type TradeAllowanceAgreementFund record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TradeAllowanceAgreementId?;
+    string CustomerAccountNumber?;
+    string PromotionFundId?;
+    decimal CostAllocationPercentage?;
+};
+
+# Represents the Headers record for the operation: deleteTradeD365SalesFeatureParameters
+public type DeleteTradeD365SalesFeatureParametersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type VATGoodsType_IN "Input"|"CapitalGoods";
+
+# Represents the Queries record for the operation: listReturnPolicyChannels
+public type ListReturnPolicyChannelsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type MCRLumpSumStatus "Open"|"Decline"|"Authorize";
+
+public type SalesAgreementLineFulfillmentCollection record {
+    *ODataCollection;
+    SalesAgreementLinesFulfillment[] value?;
+};
+
+# Represents the Queries record for the operation: listSalesInvoiceLines
+public type ListSalesInvoiceLinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listSalesAutomaticSalesDocumentHeaderCharges
+public type ListSalesAutomaticSalesDocumentHeaderChargesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteSalesOrderHeaderDocumentAttachments
+public type DeleteSalesOrderHeaderDocumentAttachmentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listSalesOrderHeadersV4
+public type ListSalesOrderHeadersV4Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type TradeD365SalesFeatureManagementStatesCollection record {
+    *ODataCollection;
+    TradeD365SalesFeatureManagementState[] value?;
+};
+
+# Represents the Headers record for the operation: deleteSalesInvoiceJournalHeaders
+public type DeleteSalesInvoiceJournalHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesOrderConfirmationLinesCollection record {
+    *ODataCollection;
+    SalesOrderConfirmationLine[] value?;
+};
+
+public type ReturnOrderLineDocumentAttachment record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string DocumentId?;
+    string FileName?;
+    string ReturnOrderNumber?;
+    string Attachment?;
+    string DocumentAttachmentTypeCode?;
+    DocuRestriction AccessRestriction?;
+    string FileType?;
+    string AttachmentDescription?;
+    int:Signed32 LineCreationSequenceNumber?;
+    string Notes?;
+    NoYes IsDefaultAttachment?;
+};
+
+public type SalesOrderConfirmationLine record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SalesOrderNumber?;
+    string ConfirmationDate?;
+    string ConfirmationNumber?;
+    decimal LineNumber?;
+    string SalesUnitSymbol?;
+    string ProductStyleId?;
+    string ShippingSiteId?;
+    decimal TotalLineSalesTaxAmount?;
+    decimal MultilineDiscountAmount?;
+    decimal DiscountAmount?;
+    decimal LineDiscountAmount?;
+    string ConfirmationDocumentReference?;
+    string LineDescription?;
+    string ItemNumber?;
+    string ConfirmedShippingDate?;
+    string ConfirmedInventoryStatusId?;
+    string ShippingWarehouseId?;
+    decimal LineAmount?;
+    string ProductSizeId?;
+    decimal SalesPriceQuantity?;
+    decimal LineDiscountPercentage?;
+    string InvoiceCustomerAccountNumber?;
+    string SalesTaxPrintCode?;
+    decimal FixedPriceCharges?;
+    decimal SalesPrice?;
+    string SalesTaxGroupCode?;
+    decimal ConfirmedCatchWeightQuantity?;
+    string CommissionSalesRepresentativeGroupId?;
+    decimal MultilineDiscountPercentage?;
+    string DeliveryTermsCode?;
+    string ProductConfigurationId?;
+    decimal CashDiscountPercentage?;
+    decimal LineAmountSalesTaxAmount?;
+    string SalesProductCategoryName?;
+    string SalesTaxItemGroupCode?;
+    string ProductVersionId?;
+    string SalesOrderLineInventoryLotId?;
+    string OrderingCustomerAccountNumber?;
+    decimal ConfirmedSalesQuantity?;
+    string ExternalItemNumber?;
+    string ItemBatchNumber?;
+    string ProductColorId?;
+    NoYes OverrideSalesTax?;
+    string CurrencyCode?;
+    decimal ConfirmedInventoryQuantity?;
+    string DefaultLedgerDimensionDisplayValue?;
+};
+
+# Represents the Headers record for the operation: updateReturnPolicyChannelPaymentMappings
+public type UpdateReturnPolicyChannelPaymentMappingsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteSalesOrderHeadersV2
+public type DeleteSalesOrderHeadersV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateTradeAllowanceAgreementMerchandisingEventBillBackLines
+public type UpdateTradeAllowanceAgreementMerchandisingEventBillBackLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getSalesProductCategories
+public type GetSalesProductCategoriesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteTradeAllowanceAgreementMerchandisingEvents
+public type DeleteTradeAllowanceAgreementMerchandisingEventsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteSalesPriceAgreements
+public type DeleteSalesPriceAgreementsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type PdsRebateAmtType "AmountPerUnit"|"FixedAmount"|"Percentage";
+
+# Represents the Queries record for the operation: listSalesRebateAgreementHeadersV2
+public type ListSalesRebateAgreementHeadersV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getSalesRebateAgreementHeadersV2
+public type GetSalesRebateAgreementHeadersV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteSalesQuotationLines
+public type DeleteSalesQuotationLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listSalesQuotationHeadersV2
+public type ListSalesQuotationHeadersV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteSalesProductCategories
+public type DeleteSalesProductCategoriesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateSalesTaxExchangeRateTypeCurrencies
+public type UpdateSalesTaxExchangeRateTypeCurrenciesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type TaxReportHrchyStructDesignType_IN "Setoff"|"Reporting"|"GTE";
+
+public type ReturnFormatErrorCodes record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string Code?;
+    string Name?;
+    string Description?;
 };
 
 public type SalesInvoiceHeader record {
@@ -677,6 +5973,28 @@ public type SalesInvoiceHeader record {
     string SalesOrderOriginCode?;
 };
 
+# Represents the Queries record for the operation: getReturnDispositionCodes
+public type GetReturnDispositionCodesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type RetailFulfillmentLineStatus "Unknown"|"Pending"|"Accepted"|"Picking"|"PartiallyPicked"|"Picked"|"PartiallyPacked"|"Packed"|"PartiallyInvoiced"|"Invoiced"|"Rejected";
+
+# Represents the Queries record for the operation: getTradeAllowanceAgreementMerchandisingEventBillBacks
+public type GetTradeAllowanceAgreementMerchandisingEventBillBacksQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Standard OData collection envelope.
 public type ODataCollection record {
     string \@odata\.context?;
@@ -684,19 +6002,8 @@ public type ODataCollection record {
     string \@odata\.nextLink?;
 };
 
-public type SalesOrderHeaderDocumentAttachmentsCollection record {
-    *ODataCollection;
-    SalesOrderHeaderDocumentAttachment[] value?;
-};
-
-# Represents the Headers record for the operation: deleteSalesOrderPools
-public type DeleteSalesOrderPoolsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: listSalesInvoiceHeadersV2
-public type ListSalesInvoiceHeadersV2Queries record {
+# Represents the Queries record for the operation: listSalesOrderLineDocumentAttachmentsV2
+public type ListSalesOrderLineDocumentAttachmentsV2Queries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -723,21 +6030,128 @@ public type ListSalesInvoiceHeadersV2Queries record {
     string selectFields?;
 };
 
-public type SalesQuotationTemplateGroupsCollection record {
+public type SalesOrderHeaderDocumentAttachmentsCollection record {
     *ODataCollection;
-    SalesQuotationTemplateGroup[] value?;
+    SalesOrderHeaderDocumentAttachment[] value?;
 };
 
-# Represents the Headers record for the operation: updateSalesQuotationTemplateGroups
-public type UpdateSalesQuotationTemplateGroupsHeaders record {
+public type SalesQuotationLine record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string InventoryLotId?;
+    SalesQuotationCreationMethod SalesQuotationLineCreationMethod?;
+    string RequestedReceiptDate?;
+    string ShippingWarehouseLocationId?;
+    SalesDeliveryDateControlType SalesQuotationPromisingMethod?;
+    string ItemNumber?;
+    string DeliveryAddressDescription?;
+    decimal MultilineDiscountPercentage?;
+    string ShippingWarehouseId?;
+    decimal LineDiscountAmount?;
+    string ProductStyleId?;
+    string ProductConfigurationId?;
+    NoYes IsIntrastatTriangularDeal?;
+    decimal MultilineDiscountAmount?;
+    string ItemBatchNumber?;
+    string DeliveryAddressCountryRegionId?;
+    decimal DeliveryAddressLatitude?;
+    string DeliveryAddressCity?;
+    string RequestingCustomerAccountNumber?;
+    string SalesProductCategoryName?;
+    string DeliveryAddressDistrictName?;
+    string DeliveryAddressCountyId?;
+    string SalesUnitSymbol?;
+    string ProductSizeId?;
+    decimal FixedPriceCharges?;
+    string DeliveryAddressZipCode?;
+    string DeliveryAddressDunsNumber?;
+    string DeliveryTermsId?;
+    string DeliveryAddressName?;
+    string PackingUnitSymbol?;
+    string BOMId?;
+    string DeliveryAddressStreetNumber?;
+    string DeliveryAddressStreetInKana?;
+    string ShippingSiteId?;
+    NoYes IsDeliveryAddressPrivate?;
+    int:Signed32 LineCreationSequenceNumber?;
+    string MainAccountIdDisplayValue?;
+    decimal RequestedSalesQuantity?;
+    string DeliveryAddressCountryRegionISOCode?;
+    NoYes CalculateLineAmount?;
+    string IntrastatTransactionCode?;
+    string InvoiceCustomerAccountNumber?;
+    string DeliveryAddressLocationId?;
+    string SalesTaxItemGroupCode?;
+    string RouteId?;
+    string ProductVersionId?;
+    string CommissionSalesRepresentativeGroupId?;
+    string IntrastatStatisticsProcedureCode?;
+    string ProspectId?;
+    NoYes OverrideSalesTax?;
+    string LineDescription?;
+    string DeliveryAddressStreet?;
+    string DeliveryModeCode?;
+    string SalesTaxGroupCode?;
+    NoYes IsDeliveryAddressOrderSpecific?;
+    decimal LineDiscountPercentage?;
+    decimal SalesPrice?;
+    SalesQuotationStatus SalesQuotationStatus?;
+    string RequestedInventoryStatusId?;
+    decimal AllowedUnderdeliveryPercentage?;
+    string DeliveryAddressCityInKana?;
+    decimal AllowedOverdeliveryPercentage?;
+    decimal DeliveryAddressLongitude?;
+    string IntrastatCommodityCode?;
+    string DefaultLedgerDimensionDisplayValue?;
+    Timezone DeliveryAddressTimeZone?;
+    string ProductColorId?;
+    string CFOPCode?;
+    string DeliveryAddressStateId?;
+    string DeliveryBuildingCompliment?;
+    string IntrastatTransportModeCode?;
+    string DeliveryAddressPostBox?;
+    decimal LineAmount?;
+    string IntrastatPortId?;
+    decimal SalesPriceQuantity?;
+    decimal SuframaDiscountPercentage?;
+    string RequestedShippingDate?;
+    string SalesQuotationNumber?;
+    string ExternalItemNumber?;
+    string FormattedDeliveryAddress?;
+};
+
+public type EFDocPresenceType_BR "DoesNotApply"|"InPerson"|"Internet"|"Telesales"|"InPersonOut"|"Others";
+
+# Represents the Headers record for the operation: deleteSalesInvoiceLines
+public type DeleteSalesInvoiceLinesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: deleteSalesOrderHeaderDocumentAttachmentsV2
-public type DeleteSalesOrderHeaderDocumentAttachmentsV2Headers record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
+public type TradeAllowanceAgreementMerchandisingEventProductV2 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TradeAllowanceAgreementMerchandisingEventId?;
+    string CustomerAccountNumber?;
+    string TradeAllowanceAgreementId?;
+    string ItemNumber?;
+    string PromotionalProductUnitSymbol?;
+    string ProductColorId?;
+    string ProductStyleId?;
+    string ProductVersionId?;
+    string ProductSizeId?;
+    string ProductConfigurationId?;
+    decimal WeightingFactor?;
+};
+
+# Represents the Queries record for the operation: getSalesAutomaticSalesDocumentHeaderCharges
+public type GetSalesAutomaticSalesDocumentHeaderChargesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Queries record for the operation: listSalesInvoiceHeadersV4
@@ -768,55 +6182,65 @@ public type ListSalesInvoiceHeadersV4Queries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: updateSalesOrderPools
-public type UpdateSalesOrderPoolsHeaders record {
+public type SalesAgreementLine record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SalesAgreementId?;
+    decimal LineNumber?;
+    string SalesAgreementLegalEntityId?;
+    string ProductStyleId?;
+    string ShippingSiteId?;
+    decimal CommittedAmount?;
+    decimal CommittedQuantity?;
+    decimal CommittedCatchWeightQuantity?;
+    decimal PriceQuantity?;
+    decimal LineDiscountAmount?;
+    string ItemNumber?;
+    string ShippingWarehouseId?;
+    decimal MaximumReleaseAmount?;
+    string InventoryProfileId?;
+    NoYes IsPriceAndDiscountFixed?;
+    string ProductSizeId?;
+    decimal LineDiscountPercentage?;
+    string InvoiceCustomerAccountNumber?;
+    string AgreementCustomerAccountNumber?;
+    string UnitSymbol?;
+    string CommissionSalesRepresentativeGroupId?;
+    NoYes WillRebateCalculationExcludeLine?;
+    CommitmentType CommitmentType?;
+    string ProductConfigurationId?;
+    string ProjectActivityNumber?;
+    string SalesProductCategoryName?;
+    string ProductVersionId?;
+    string ProjectId?;
+    string EffectiveDate?;
+    string DeliveryModeCode?;
+    NoYes IsCommitmentMaximumEnforced?;
+    decimal Price?;
+    string ProductColorId?;
+    string ProjectCategoryId?;
+    decimal MinimumReleaseAmount?;
+    string DefaultLedgerDimensionDisplayValue?;
+    string ExpirationDate?;
+    string KittingBOMId?;
+    string KittingInventTransId?;
+};
+
+# Represents the Headers record for the operation: updateSalesProductCategories
+public type UpdateSalesProductCategoriesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-public type SalesInvoiceHeadersV4Collection record {
-    *ODataCollection;
-    SalesInvoiceHeaderV4[] value?;
-};
-
-public type SalesInvoiceChorusProDetail record {
+public type TradeD365SalesFeatureParameter record {
     string \@odata\.etag?;
-    string dataAreaId?;
-    string InvoiceId?;
-    string LedgerVoucher?;
-    string InvoiceDate?;
-    string ChorusProDepositId?;
-    string ChorusProDepositDateTime?;
-    string ChorusProRefusalReason?;
-    string ChorusProInvoiceStatus?;
+    string Name?;
+    NoYes IsEnabled?;
 };
 
-# Represents the Queries record for the operation: listSalesInvoiceW
-public type ListSalesInvoiceWQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
+public type SalesQuotationTransTaxInformationsCollection record {
+    *ODataCollection;
+    SalesQuotationTransTaxInformation[] value?;
 };
 
 # Represents the Queries record for the operation: listSalesInvoiceChorusProDetails
@@ -847,19 +6271,13 @@ public type ListSalesInvoiceChorusProDetailsQueries record {
     string selectFields?;
 };
 
-public type SalesInvoiceQRCodeCollection record {
+public type SalesOrderLineDocumentAttachmentsCollection record {
     *ODataCollection;
-    SalesInvoiceQRCode[] value?;
+    SalesOrderLineDocumentAttachment[] value?;
 };
 
-# Represents the Headers record for the operation: deleteSalesInvoiceQRCode
-public type DeleteSalesInvoiceQRCodeHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateSalesOrderHeaderDocumentAttachmentsV2
-public type UpdateSalesOrderHeaderDocumentAttachmentsV2Headers record {
+# Represents the Headers record for the operation: updateSalesOrderHeadersV3
+public type UpdateSalesOrderHeadersV3Headers record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -870,7 +6288,308 @@ public type DeleteSalesInvoiceHeadersHeaders record {
     string If\-Match?;
 };
 
-public type SalesOrderHeaderDocumentAttachment record {
+public type DisposalType_IN "None"|"Loss"|"Scrap"|"Expiry"|"Damage";
+
+public type SalesOrderHeaderV2ExistAddrReadOnlysCollection record {
+    *ODataCollection;
+    SalesOrderHeaderV2ExistAddrReadOnly[] value?;
+};
+
+# Represents the Headers record for the operation: updateReturnDetails
+public type UpdateReturnDetailsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type TradeAllowanceAgreementMerchandisingEventProductsV2Collection record {
+    *ODataCollection;
+    TradeAllowanceAgreementMerchandisingEventProductV2[] value?;
+};
+
+# Represents the Queries record for the operation: listSalesOrderHeaderDocumentAttachmentsV2
+public type ListSalesOrderHeaderDocumentAttachmentsV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getSalesOrderHeadersV3
+public type GetSalesOrderHeadersV3Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesAutomaticSalesDocumentHeaderCharge record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string Description?;
+    decimal LineNumber?;
+    string ToDate?;
+    decimal Value?;
+    NoYes IsCompound?;
+    decimal ToTotalLineAmount?;
+    string SalesDocumentCurrencyCode?;
+    string SalesTaxGroupCode?;
+    string InventLocationId?;
+    string FromDate?;
+    int:Signed32 Sequence?;
+    string SalesChargeCode?;
+    string ChargeAccountingCurrencyCode?;
+    string InventSiteId?;
+    NoYes WillInvoiceProcessingKeepCharge?;
+    MarkupCategory ChargeCategory?;
+    decimal FromTotalLineAmount?;
+};
+
+# Represents the Queries record for the operation: getSalesOrderHeaderV2ExistAddrReadOnlys
+public type GetSalesOrderHeaderV2ExistAddrReadOnlysQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesOrderHeaderV3ExistAddrReadOnly record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SalesOrderNumber?;
+    string DeliveryAddressLocationId?;
+    string DeliveryValidFrom?;
+    decimal OrderTotalChargesAmount?;
+    string FiscalDocumentOperationTypeId?;
+    string OrderTakerPersonnelNumber?;
+    string RequestedReceiptDate?;
+    string EInvoiceDimensionAccountCode?;
+    NoYes IsOwnEntryCertificateIssued?;
+    string InvoiceAddressStreet?;
+    string CampaignId?;
+    string FormattedDelveryAddress?;
+    string Email?;
+    int:Signed32 BaseDocumentLineNumber?;
+    DocumentType_IT BaseDocumentType?;
+    string TransportationBrokerId?;
+    string DefaultShippingSiteId?;
+    string TransportationModeId?;
+    string DeliveryAddressDescription?;
+    string CFPSCode?;
+    NoYes IsInvoiceAddressPrivate?;
+    NoYes IsSalesProcessingStopped?;
+    string TMACustomerGroupId?;
+    string BankSpecificSymbol?;
+    SalesStatus SalesOrderStatus?;
+    string NumberSequenceGroupId?;
+    string SalesOrderOriginCode?;
+    decimal InvoiceAddressLatitude?;
+    string TransportationTemplateId?;
+    string CustomerPaymentFinancialInterestCode?;
+    string InvoiceAddressStreetInKana?;
+    string BankConstantSymbol?;
+    decimal OrderTotalTaxAmount?;
+    NoYes IsOneTimeCustomer?;
+    string SalesOrderPoolId?;
+    string DeliveryAddressCountryRegionId?;
+    decimal DeliveryAddressLatitude?;
+    string TotalDiscountCustomerGroupCode?;
+    string DeliveryAddressCity?;
+    string SalesRebateCustomerGroupId?;
+    SalesDeliveryDateControlType SalesOrderPromisingMethod?;
+    string ProjectId?;
+    string ShippingCarrierId?;
+    decimal TotalDiscountPercentage?;
+    string DeliveryAddressDistrictName?;
+    string DeliveryAddressCountyId?;
+    string ConfirmedReceiptDate?;
+    string BaseDocumentItemNumber?;
+    string DeliveryAddressZipCode?;
+    EFDocPresenceType_BR FiscalOperationPresenceType?;
+    string QuotationNumber?;
+    NoYes IsConsolidatedInvoiceTarget?;
+    string LanguageId?;
+    string DeliveryAddressDunsNumber?;
+    string MultilineDiscountCustomerGroupCode?;
+    string BaseDocumentNumber?;
+    string InvoiceAddressStateId?;
+    string ServiceFiscalInformationCode?;
+    string CustomerPaymentMethodSpecificationName?;
+    string CommissionCustomerGroupId?;
+    string DeliveryAddressName?;
+    string InvoiceAddressCountryRegionId?;
+    string PaymentTermsBaseDate?;
+    string DeliveryAddressStreetNumber?;
+    string CreditNoteReasonCode?;
+    string DeliveryAddressStreetInKana?;
+    string ChargeCustomerGroupId?;
+    string InvoiceAddressStreetNumber?;
+    NoYes IsDeliveryAddressPrivate?;
+    string TaxExemptNumber?;
+    NoYes AreTotalsCalculated?;
+    decimal TotalDiscountAmount?;
+    decimal OrderTotalAmount?;
+    string CustomersOrderReference?;
+    string FormattedInvoiceAddress?;
+    string ExportReason?;
+    string OrderResponsiblePersonnelNumber?;
+    string DeliveryAddressCountryRegionISOCode?;
+    string CashDiscountCode?;
+    string OrderOrAgreementCode?;
+    string PaymentScheduleName?;
+    string InvoiceAddressCountryRegionISOCode?;
+    string IntrastatTransactionCode?;
+    string URL?;
+    string CurrencyCode?;
+    decimal OrderTotalDiscountAmount?;
+    InvoiceType_MY InvoiceType?;
+    string OrderCreationDateTime?;
+    NoYes ArePricesIncludingSalesTax?;
+    string InvoiceCustomerAccountNumber?;
+    string CommissionSalesRepresentativeGroupId?;
+    SettlementType CustomerTransactionSettlementType?;
+    string InvoiceAddressCityInKana?;
+    NoYes WillAutomaticInventoryReservationConsiderBatchAttributes?;
+    string IntrastatStatisticsProcedureCode?;
+    NoYes IsEInvoiceDimensionAccountCodeSpecifiedPerLine?;
+    string DeliveryAddressStreet?;
+    string DeliveryModeCode?;
+    NoYes IsExportSale?;
+    string ConfirmedShippingDate?;
+    string FixedDueDate?;
+    string TransportationDocumentLineId?;
+    string SalesTaxGroupCode?;
+    NoYes IsDeliveryAddressOrderSpecific?;
+    string CustomerRequisitionNumber?;
+    decimal InvoiceAddressLongitude?;
+    string InvoiceAddressCity?;
+    NoYes IsFinalUser?;
+    string InvoiceAddressPostBox?;
+    string ShippingCarrierServiceGroupId?;
+    string ContactPersonId?;
+    Listcode EUSalesListCode?;
+    string InvoiceAddressDistrictName?;
+    string PaymentTermsName?;
+    string BaseDocumentDate?;
+    string DeliveryAddressCityInKana?;
+    string CustomerPostingProfileId?;
+    decimal DeliveryAddressLongitude?;
+    string TenderCode?;
+    string InvoiceAddressZipCode?;
+    string DeliveryTermsCode?;
+    string ShippingCarrierServiceId?;
+    string DefaultLedgerDimensionDisplayValue?;
+    Timezone DeliveryAddressTimeZone?;
+    string SalesOrderName?;
+    NoYes IsEntryCertificateRequired?;
+    string DefaultShippingWarehouseId?;
+    string DeliveryAddressStateId?;
+    string DeliveryBuildingCompliment?;
+    string IntrastatTransportModeCode?;
+    PaymentStub InvoicePaymentAttachmentType?;
+    string DeliveryAddressPostBox?;
+    Timezone InvoiceAddressTimeZone?;
+    string InvoiceAddressCountyId?;
+    string DirectDebitMandateId?;
+    string LineDiscountCustomerGroupCode?;
+    string IntrastatPortId?;
+    string CIPEcode?;
+    string OrderingCustomerAccountNumber?;
+    string CustomerPaymentFineCode?;
+    string InvoiceBuildingCompliment?;
+    string PriceCustomerGroupCode?;
+    string DeliveryReasonCode?;
+    NoYes IsServiceDeliveryAddressBased?;
+    decimal ReportingCurrencyFixedExchangeRate?;
+    decimal OrderHeaderTaxAmount?;
+    ItemReservation InventoryReservationMethod?;
+    string RequestedShippingDate?;
+    SalesOrderProcessingStatus SalesOrderProcessingStatus?;
+    string TransportationRoutePlanId?;
+    NoYes SkipCreateAutoCharges?;
+    string CustomerPaymentMethodName?;
+    string SalesUnitId?;
+    decimal FixedExchangeRate?;
+};
+
+# Represents the Queries record for the operation: listReturnDetails
+public type ListReturnDetailsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getReturnOrderLines
+public type GetReturnOrderLinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateSalesAutomaticSalesDocumentHeaderTaxCharges
+public type UpdateSalesAutomaticSalesDocumentHeaderTaxChargesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getSalesTaxExchangeRateTypeCurrencies
+public type GetSalesTaxExchangeRateTypeCurrenciesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesOrderHeaderDocumentAttachmentV2 record {
     string \@odata\.etag?;
     string dataAreaId?;
     string DocumentId?;
@@ -883,4 +6602,526 @@ public type SalesOrderHeaderDocumentAttachment record {
     string DocumentAttachmentTypeCode?;
     string FileName?;
     string Attachment?;
+};
+
+public type TradeAllowanceAgreementProductsV2Collection record {
+    *ODataCollection;
+    TradeAllowanceAgreementProductV2[] value?;
+};
+
+# Represents the Headers record for the operation: deleteReturnPolicyChannelPaymentMappings
+public type DeleteReturnPolicyChannelPaymentMappingsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteSalesOrderLineDocumentAttachmentsV2
+public type DeleteSalesOrderLineDocumentAttachmentsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateSalesInvoiceLines
+public type UpdateSalesInvoiceLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getSalesOrderLineDocumentAttachments
+public type GetSalesOrderLineDocumentAttachmentsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateSalesInvoiceChorusProDetails
+public type UpdateSalesInvoiceChorusProDetailsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listSalesQuotationTemplateGroups
+public type ListSalesQuotationTemplateGroupsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateSalesOrderConfirmationLines
+public type UpdateSalesOrderConfirmationLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type TradeAllowanceAgreementMerchandisingEventBillBack record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TradeAllowanceAgreementId?;
+    string CustomerAccountNumber?;
+    string TradeAllowanceAgreementMerchandisingEventId?;
+    string BillBackId?;
+    int:Signed32 MinimumBillBackQuantityQualifyingRebate?;
+    PdsRebateTakenFrom LineAmountBasis?;
+    string SalesRebateProgramTypeId?;
+    string ExpenseMainAccountIdDisplayValue?;
+    string BillBackUnitSymbol?;
+    NoYes IsApprovalRequired?;
+    string SalesCumulationMethodCustomizedPeriodType?;
+    string AccrualMainAccountIdDisplayValue?;
+    NoYes IsTaxable?;
+    decimal MinimumBillBackAmountQualifyingRebate?;
+    PdsUnitType BillBackQuantityType?;
+    PdsRebateUOMOption BillBackAmountCalculationOption?;
+    string BillBackClaimVendorAccountNumber?;
+    PdsRebateLineBreakType RebateBreakBasis?;
+    PdsCumulationPeriod SalesCumulationMethod?;
+    PdsRebateCalcDateType CalculationSearchDateType?;
+};
+
+# Represents the Queries record for the operation: getTradeD365SalesFeatureManagementStates
+public type GetTradeD365SalesFeatureManagementStatesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesOrderLineDocumentAttachment record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string DocumentId?;
+    string FileType?;
+    NoYes IsDefaultAttachment?;
+    string SalesOrderNumber?;
+    DocuRestriction AccessRestriction?;
+    int:Signed32 LineCreationSequenceNumber?;
+    string AttachmentDescription?;
+    string Notes?;
+    string DocumentAttachmentTypeCode?;
+    string FileName?;
+    string Attachment?;
+};
+
+public type TradeAllowanceAgreementMerchandisingEventBillBackLine record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TradeAllowanceAgreementId?;
+    string CustomerAccountNumber?;
+    string TradeAllowanceAgreementMerchandisingEventId?;
+    string TradeAllowanceAgreementMerchandisingEventBillBackId?;
+    decimal LineNumber?;
+    decimal FromBillBackQuantity?;
+    string BillBackAmountCurrencyCode?;
+    string BillBackQuantityUnitSymbol?;
+    PdsRebateAmtType BillBackAmountType?;
+    decimal ToBillBackQuantity?;
+    decimal BillBackAmount?;
+};
+
+# Represents the Queries record for the operation: listSalesAgreementLines
+public type ListSalesAgreementLinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateSalesMultiLineDiscountAgreements
+public type UpdateSalesMultiLineDiscountAgreementsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getSalesOrderLines
+public type GetSalesOrderLinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type TradeD365SalesFeatureParametersCollection record {
+    *ODataCollection;
+    TradeD365SalesFeatureParameter[] value?;
+};
+
+# Represents the Queries record for the operation: getTradeAllowanceAgreementMerchandisingEventFunds
+public type GetTradeAllowanceAgreementMerchandisingEventFundsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateTradeAllowanceAgreementMerchandisingEventLumpSums
+public type UpdateTradeAllowanceAgreementMerchandisingEventLumpSumsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteSalesContactPersonTitles
+public type DeleteSalesContactPersonTitlesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type Listcode "IncludeNot"|"EUTrade"|"ProductionOnToll"|"TriangularEUTrade"|"TriangularProductionOnToll"|"PropertyMoving_CZ"|"TriangularIntermediateRole_HU"|"DEL_EUService"|"PurchasedOnBehalf_LV";
+
+public type SalesInvoiceQRCode record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string InvoiceId?;
+    string LedgerVoucher?;
+    string InvoiceDate?;
+    string QRCode_SA?;
+};
+
+# Represents the Headers record for the operation: updateSalesOrderHeadersV2
+public type UpdateSalesOrderHeadersV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesTaxExchangeRateTypeCurrency record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string Ledger?;
+    string Currency?;
+    TransactionType TransactionType?;
+    string ExchangeRateType?;
+};
+
+# Represents the Queries record for the operation: getTradeAllowanceAgreementMerchandisingEventLumpSums
+public type GetTradeAllowanceAgreementMerchandisingEventLumpSumsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesOrderTransTaxInformation record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SalesOrderNumber?;
+    string SalesOrderLineInventoryLotId?;
+    string ExciseECCRegistrationNumber?;
+    string CustomerLocation?;
+    string ServiceTaxRegistrationNumber?;
+    Direction_IN Direction?;
+    string TaxID?;
+    string GSTINRegistrationNumber?;
+    string BankTaxInformation?;
+    string HSNCode?;
+    NoYes Exempt?;
+    string TANRegistrationNumber?;
+    string VATSchedule?;
+    NoYes TaxWithholdSoftwareDeclReceived?;
+    string BankLocation?;
+    decimal VATNonRecoverablePercent?;
+    string CustomsIECRegistrationNumber?;
+    decimal NonBusinessUsagePercentage?;
+    string CustomsTariffCode?;
+    string ServiceAccountingCode?;
+    NoYes ServiceTaxIsRecoverable?;
+    string SalesTaxRegistrationNumber?;
+    string TaxWithholdNatureOfRemittance?;
+    ExciseRecordType_IN ExciseRecordType?;
+    string TaxRateType?;
+    string VendorTaxInformation?;
+    NoYes ExciseCENVATCreditAvailed?;
+    NatureOfAssessee_IN TaxWithholdNatureOfAssessee?;
+    NoYes ExciseIsScrap?;
+    DirectSettlement_IN ExciseDirectSettlement?;
+    TransTaxInformationType_IN Type?;
+    string ServiceTaxConsignmentNoteNum?;
+    ITCCategory_IN ITCCategory?;
+    NoYes InclTax?;
+    string SalesTaxFormTypes?;
+    string CompanyTaxInformation?;
+    NoYes NonGST?;
+    VATGoodsType_IN VATGoodsType?;
+    NoYes ExciseConsignment?;
+    string CSTSchedule?;
+    string ExciseTariffCodes?;
+    string CompanyLocation?;
+    string TaxWithholdCountryRegionToRemittance?;
+    string CustomerTaxInformation?;
+    ExciseType_IN ExciseType?;
+    string ServiceCode?;
+    string VATCommodityCode?;
+    GTAServiceCategory_IN ServiceTaxGTAServiceCategory?;
+    string VATTINRegistrationNumber?;
+    NoYes ExciseDSA?;
+    DisposalType_IN ExciseDisposalType?;
+    string TaxInventVATItemId?;
+    string VendorLocation?;
+    string TaxWithholdAcknowledgementNumber?;
+    Direction_IN CustomsTariffDirection?;
+    ServiceCategory_IN ServiceCategory?;
+};
+
+# Represents the Queries record for the operation: listTradeAllowanceAgreementMerchandisingEvents
+public type ListTradeAllowanceAgreementMerchandisingEventsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesPostageDiscountAgreement record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    int RecordId?;
+    string DiscountCurrencyCode?;
+    decimal DiscountAmount?;
+    string QuantityUnitSymbol?;
+    string ProductConfigurationId?;
+    string DiscountSiteId?;
+    string DiscountApplicableFromDate?;
+    decimal ToQuantity?;
+    decimal DiscountPercentage2?;
+    decimal DiscountPercentage1?;
+    string ProductSizeId?;
+    string DiscountApplicableToDate?;
+    string ProductNumber?;
+    string ItemNumber?;
+    string ProductColorId?;
+    string ProductVersionId?;
+    string ProductStyleId?;
+    string PostageDiscountCustomerGroupCode?;
+    string CustomerAccountNumber?;
+    NoYes WillSearchContinue?;
+    decimal FromQuantity?;
+    string DiscountWarehouseId?;
+};
+
+# Represents the Headers record for the operation: deleteSalesInvoiceChorusProDetails
+public type DeleteSalesInvoiceChorusProDetailsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type MCRMerchandisingEventCategory "OffInvoice"|"BillBack"|"LumpSum";
+
+# Represents the Queries record for the operation: getSalesAgreementConfirmationLines
+public type GetSalesAgreementConfirmationLinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type MPSFullRunCTPStatus "Ready"|"NotReady";
+
+public type ReturnStatusLine "None"|"Awaiting"|"Registered"|"Quarantine"|"Received"|"Invoiced"|"Canceled";
+
+public type PdsCumulationPeriod "Invoice"|"Week"|"Month"|"Year"|"CustomizedPeriod"|"Lifetime";
+
+# Represents the Queries record for the operation: listSalesOrderConfirmationHeaders
+public type ListSalesOrderConfirmationHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SalesAgreementConfirmationLinesCollection record {
+    *ODataCollection;
+    SalesAgreementConfirmationLine[] value?;
+};
+
+public type TradeAllowanceAgreementFundsCollection record {
+    *ODataCollection;
+    TradeAllowanceAgreementFund[] value?;
+};
+
+public type ReturnDispositionCodesCollection record {
+    *ODataCollection;
+    ReturnDispositionCode[] value?;
+};
+
+public type PdsRebateLineBreakType "Quantity"|"Amount";
+
+public type SalesQuotationStatus "Created"|"Sent"|"Confirmed"|"Lost"|"Cancelled"|"Reset"|"Modified"|"Submitted"|"Approved"|"Revised";
+
+# Represents the Headers record for the operation: deleteReturnOrderLinesV2
+public type DeleteReturnOrderLinesV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getSalesAgreementLineFulfillment
+public type GetSalesAgreementLineFulfillmentQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateSalesOrderLines
+public type UpdateSalesOrderLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ReturnDispositionCode record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string DispositionCode?;
+    string DispositionDescription?;
+    DispositionAction DispositionAction?;
+    string KittingDispositionCodeId?;
+    NoYes QMSMustCheckQualityAssociation?;
+};
+
+# Represents the Queries record for the operation: listSalesTaxExchangeRateTypeCurrencies
+public type ListSalesTaxExchangeRateTypeCurrenciesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listTradeAllowanceAgreementMerchandisingEventLumpSums
+public type ListTradeAllowanceAgreementMerchandisingEventLumpSumsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };

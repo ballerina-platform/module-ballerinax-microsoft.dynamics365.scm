@@ -111,8 +111,6 @@ public type MaterialDisposalCode record {
     string MaterialDisposalDescription?;
 };
 
-public type KMQuestionAnswerInputType "Text"|"Int"|"Real"|"Date"|"Time"|"Note"|"CheckBox"|"RadioButton"|"ComboBox";
-
 # Represents the Queries record for the operation: listEngineeringChangeOrderProductRouteOperationsV2
 public type ListEngineeringChangeOrderProductRouteOperationsV2Queries record {
     # Number of records to skip.
@@ -157,14 +155,64 @@ public type GetEngineeringChangeOrderProductsV3Queries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: getProductReadinessPolicies
-public type GetProductReadinessPoliciesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
+public type EngineeringChangeOrderProductFormulaLine record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string EngineeringChangeOrderNumber?;
+    decimal EngineeringChangeOrderProductLineNumber?;
+    int:Signed32 EngineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber?;
+    int:Signed32 LineCreationSequenceNumber?;
+    string BaseValue?;
+    string VendorAccountNumber?;
+    string ProductStyleId?;
+    NoYes IsScalable?;
+    NoYes WillManufacturedItemInheritShelfLifeDates?;
+    BomWHSReleasePolicy WarehouseBomReleaseReservationRequirementRule?;
+    string CompensatingActiveItemId?;
+    decimal LineNumber?;
+    string ItemNumber?;
+    decimal PhysicalProductDensity?;
+    ProdFlushingPrincipBOM FlushingPrinciple?;
+    string SubstitutionGroupId?;
+    decimal VariableScrapPercentage?;
+    decimal QuantityRoundingUpMultiples?;
+    decimal PhysicalProductHeight?;
+    NoYes IsConsumedAtOperationComplete?;
+    NoYes WillCoByItemInheritShelfLifeDates?;
+    string ProductSizeId?;
+    NoYes WillManufacturedItemInheritBatchAttributes?;
+    decimal PhysicalProductDepth?;
+    BOMRoundUp RoundingUpMethod?;
+    PDSIngredientTypeEnum IngredientType?;
+    decimal FormulaQuantityPercentage?;
+    decimal ConstantScrapQuantity?;
+    int:Signed32 RouteOperationNumber?;
+    decimal ConsumptionCalculationConstant?;
+    string ConsumptionWarehouseId?;
+    string PositionNumber?;
+    string ConfigurationGroupId?;
+    string SubRouteId?;
+    NoYes WillCostCalculationIncludeLine?;
+    NoYes WillSetSubproductionToConsumed?;
+    BOMType LineType?;
+    string ProductConfigurationId?;
+    string ValidToDate?;
+    decimal CatchWeightQuantity?;
+    string ProductUnitSymbol?;
+    boolean IsResourceConsumptionUsed?;
+    string ValidFromDate?;
+    string ConsumptionSiteId?;
+    NoYes IsPercentageControlled?;
+    string SubBOMId?;
+    string ProductColorId?;
+    decimal CompensatingFactor?;
+    decimal Quantity?;
+    decimal PhysicalProductWidth?;
+    NoYes WillCoByItemInheritBatchAttributes?;
+    decimal QuantityDenominator?;
+    BOMConsumpType ConsumptionType?;
+    int:Signed32 SubstitutionPriority?;
+    BOMFormula ConsumptionCalculationMethod?;
 };
 
 # Represents the Headers record for the operation: updateEngineeringChangeOrderProductRouteOperations
@@ -201,73 +249,17 @@ public type ListEngineeringChangeOrderProductBillOfMaterialsLinesV2Queries recor
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: updateEngineeringChangeSeverities
+public type UpdateEngineeringChangeSeveritiesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type RouteOprType "Standard"|"Vendor";
-
-public type ProductOwnerWorker record {
-    string \@odata\.etag?;
-    string ProductOwnerId?;
-    string AssignedPersonnelNumber?;
-};
-
-# Represents the Queries record for the operation: listProductReleaseProductDetails
-public type ListProductReleaseProductDetailsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
 
 public type EngineeringProductVersionNumberingRulesCollection record {
     *ODataCollection;
     EngineeringProductVersionNumberingRule[] value?;
-};
-
-# Represents the Queries record for the operation: listProductOwners
-public type ListProductOwnersQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
 };
 
 # Represents the Queries record for the operation: listEngineeringChangeOrderProductRouteHeadersV2
@@ -293,6 +285,16 @@ public type ListEngineeringChangeOrderProductRouteHeadersV2Queries record {
     # When true, the response includes `@odata.count`.
     @http:Query {name: "$count"}
     boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getEngineeringChangeCategories
+public type GetEngineeringChangeCategoriesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -354,21 +356,14 @@ public type ListEngineeringChangeOrderProductRouteOperationPropertiesDocumentsQu
     string selectFields?;
 };
 
-public type ProductReadinessPoliciesCollection record {
-    *ODataCollection;
-    ProductReadinessPolicy[] value?;
-};
-
-# Represents the Headers record for the operation: updateProductReleaseProductDetails
-public type UpdateProductReleaseProductDetailsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateProductReleasePolicyLegalEntityRules
-public type UpdateProductReleasePolicyLegalEntityRulesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
+# Represents the Queries record for the operation: getEngineeringChangeCategoriesV2
+public type GetEngineeringChangeCategoriesV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Headers record for the operation: deleteEngineeringChangeRequestSources
@@ -384,10 +379,8 @@ public type EngineeringChangeRequestDependenciesCollection record {
     EngineeringChangeRequestDependency[] value?;
 };
 
-public type EngChgEcoResStateBlockRule "Allow"|"Error"|"Warning";
-
-# Represents the Headers record for the operation: deleteProductReleasePolicyLegalEntityRules
-public type DeleteProductReleasePolicyLegalEntityRulesHeaders record {
+# Represents the Headers record for the operation: updateEngineeringChangeSeverityRules
+public type UpdateEngineeringChangeSeverityRulesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -401,15 +394,37 @@ public type EngineeringChangeRequestHeader record {
     string RequesterPersonnelNumber?;
 };
 
-# Represents the Headers record for the operation: updateProductReadinessPolicyChecks
-public type UpdateProductReadinessPolicyChecksHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
 public type ChgSentProductReleaseLinesCollection record {
     *ODataCollection;
     ChgSentProductReleaseLine[] value?;
+};
+
+# Represents the Queries record for the operation: listEngineeringChangeCategoriesV2
+public type ListEngineeringChangeCategoriesV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Queries record for the operation: listEngineeringChangeOrderDependencyActions
@@ -442,6 +457,16 @@ public type ListEngineeringChangeOrderDependencyActionsQueries record {
 
 # Represents the Queries record for the operation: getEngineeringChangeOrderProductReleases
 public type GetEngineeringChangeOrderProductReleasesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getEngineeringChangeOrderProductFormulaLines
+public type GetEngineeringChangeOrderProductFormulaLinesQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
@@ -557,6 +582,12 @@ public type EngineeringChangeOrderProductsV2Collection record {
     EngineeringChangeOrderProductV2[] value?;
 };
 
+# Represents the Headers record for the operation: updateEngineeringProductCategoryAttributeDetailsValues
+public type UpdateEngineeringProductCategoryAttributeDetailsValuesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Queries record for the operation: getReleasedEngineeringProductVersions
 public type GetReleasedEngineeringProductVersionsQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -597,62 +628,6 @@ public type EngineeringChangeOrderProductBillOfMaterialsHeader record {
     string ApproverPersonnelNumber?;
     string BOMName?;
     boolean IsApproved?;
-};
-
-# Represents the Queries record for the operation: listProductReadinessPolicyChecks
-public type ListProductReadinessPolicyChecksQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: listItemSpecificBillOfMaterialsHeadersV3
-public type ListItemSpecificBillOfMaterialsHeadersV3Queries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
 };
 
 public type EngineeringChangeOrderProductRouteOperationPropertiesResourceRequirement record {
@@ -714,12 +689,6 @@ public type GetEngineeringChangeRequestSourcesQueries record {
     string selectFields?;
 };
 
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-|};
 
 # Represents the Queries record for the operation: getReceivedProductReleaseLinesV2
 public type GetReceivedProductReleaseLinesV2Queries record {
@@ -731,12 +700,64 @@ public type GetReceivedProductReleaseLinesV2Queries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: getEngineeringChangeOrderProductFormulaHeaders
+public type GetEngineeringChangeOrderProductFormulaHeadersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type EcoResProductType "Item"|"Service";
+
+public type EngineeringChangeSeverityRule record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SeverityName?;
+    decimal RuleSetSequenceNumber?;
+    string RuleClassName?;
+};
+
+public type EngineeringChangeCategory record {
+    string \@odata\.etag?;
+    string CategoryName?;
+    decimal SequenceNumber?;
+};
 
 # Represents the Headers record for the operation: deleteEngineeringChangeOrderProductDocuments
 public type DeleteEngineeringChangeOrderProductDocumentsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listEngineeringChangeSeverityRules
+public type ListEngineeringChangeSeverityRulesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Headers record for the operation: updateEngineeringChangeOrderProductRouteOperationProperties
@@ -747,6 +768,12 @@ public type UpdateEngineeringChangeOrderProductRouteOperationPropertiesHeaders r
 
 # Represents the Headers record for the operation: updateEngineeringChangeOrderProductBillOfMaterialsLines
 public type UpdateEngineeringChangeOrderProductBillOfMaterialsLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateEngineeringChangeSeverityRuleSets
+public type UpdateEngineeringChangeSeverityRuleSetsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -823,6 +850,12 @@ public type EngineeringChangeOrderProductRelease record {
     string ReleasingSiteId?;
 };
 
+# Represents the Headers record for the operation: deleteEngineeringProductCategoryAttributeDetails
+public type DeleteEngineeringProductCategoryAttributeDetailsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type EcoResProductSubtype "Product"|"ProductMaster"|"ProductVariant";
 
 # Represents the Queries record for the operation: getChgSentProductReleaseLines
@@ -873,6 +906,11 @@ public type DeleteEngineeringChangeOrderProductRouteOperationPropertiesV2Headers
     string If\-Match?;
 };
 
+public type EngineeringChangeSeveritiesCollection record {
+    *ODataCollection;
+    EngineeringChangeSeverity[] value?;
+};
+
 public type EngineeringChangeOrderProductBillOfMaterialsLine record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -921,8 +959,13 @@ public type EngineeringChangeOrderProductBillOfMaterialsLine record {
     NoYes WillSetSubproductionToConsumed?;
 };
 
-# Represents the Headers record for the operation: deleteReleasedProductReadinessChecks
-public type DeleteReleasedProductReadinessChecksHeaders record {
+public type EngineeringProductCategoryAttributeDetailsValuesCollection record {
+    *ODataCollection;
+    EngineeringProductCategoryAttributeDetailsValue[] value?;
+};
+
+# Represents the Headers record for the operation: updateEngineeringChangeOrderProductFormulaCoProducts
+public type UpdateEngineeringChangeOrderProductFormulaCoProductsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -988,12 +1031,6 @@ public type ListEnvironmentalHealthAndSafetyCodesQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: deleteProductLifecycleStateProcesses
-public type DeleteProductLifecycleStateProcessesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
 # Represents the Headers record for the operation: deleteEngineeringChangeOrderHeaders
 public type DeleteEngineeringChangeOrderHeadersHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -1017,6 +1054,21 @@ public type GetEngineeringChangeOrderProductBillOfMaterialsHeadersV2Queries reco
 };
 
 public type RouteOprPriority "Primary"|"Secondary1"|"Secondary2"|"Secondary3"|"Secondary4"|"Secondary5"|"Secondary6"|"Secondary7"|"Secondary8"|"Secondary9"|"Secondary10"|"Secondary11"|"Secondary12"|"Secondary13"|"Secondary14"|"Secondary15"|"Secondary16"|"Secondary17"|"Secondary18"|"Secondary19"|"Secondary20";
+
+public type EngineeringProductCategoryAttributeDetailsValue record {
+    string \@odata\.etag?;
+    string EngineeringProductCategoryName?;
+    string EngineeringProductAttributeTypeName?;
+    string EngineeringProductAttributeName?;
+    NoYes BooleanValue?;
+    int:Signed32 IntegerValue?;
+    string CurrencyCode?;
+    decimal DecimalValue?;
+    string UnitOfMeasure?;
+    string DateTimeValue?;
+    decimal CurrencyValue?;
+    string TextValue?;
+};
 
 public type EngineeringProductCategoryNomenclature record {
     string \@odata\.etag?;
@@ -1060,30 +1112,6 @@ public type EngineeringChangeOrderProductRouteOperationPropertiesCollection reco
 
 public type EngChgEcmRequestSeverity "Low"|"Medium"|"Hgh"|"Critical";
 
-public type ProductLifecycleStateProcessesCollection record {
-    *ODataCollection;
-    ProductLifecycleStateProcess[] value?;
-};
-
-# Represents the Queries record for the operation: getProductOwners
-public type GetProductOwnersQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type ReleasedProductReadinessCheckAppliedAction record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    int ReleasedProductReadinessCheckAppliedActionRecordId?;
-    EngChgReadinessActions AppliedAction?;
-    string ActionLog?;
-    int ReleasedProductReadinessCheckRecordId?;
-};
-
 # Represents the Queries record for the operation: listEngineeringChangeOrderProductRouteHeaders
 public type ListEngineeringChangeOrderProductRouteHeadersQueries record {
     # Number of records to skip.
@@ -1112,19 +1140,18 @@ public type ListEngineeringChangeOrderProductRouteHeadersQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: getEngineeringChangeSeverities
+public type GetEngineeringChangeSeveritiesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: deleteEngineeringProductVersionNumberingRuleListMembers
 public type DeleteEngineeringProductVersionNumberingRuleListMembersHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type ItemSpecificBillOfMaterialsHeadersV3Collection record {
-    *ODataCollection;
-    ItemSpecificBillOfMaterialsHeaderV3[] value?;
-};
-
-# Represents the Headers record for the operation: deleteProductReadinessPolicies
-public type DeleteProductReadinessPoliciesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -1142,6 +1169,34 @@ public type UpdateEngineeringChangeOrderHeadersHeaders record {
 
 # Represents the Queries record for the operation: listEngineeringChangePriorities
 public type ListEngineeringChangePrioritiesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listEngineeringProductCategoryAttributeDetailsValues
+public type ListEngineeringProductCategoryAttributeDetailsValuesQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -1199,6 +1254,32 @@ public type GetSentProductReleaseHeadersQueries record {
     string selectFields?;
 };
 
+public type EngineeringChangeOrderProductFormulaByProduct record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string EngineeringChangeOrderNumber?;
+    decimal EngineeringChangeOrderProductLineNumber?;
+    int:Signed32 EngineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber?;
+    int:Signed32 LineCreationSequenceNumber?;
+    string ConsumptionWarehouseId?;
+    PmfProductType ProductType?;
+    PmfCoByRoundUp RoundingUpMethod?;
+    string ProductConfigurationId?;
+    decimal CatchWeightQuantity?;
+    string ProductSizeId?;
+    decimal QuantityDenominator?;
+    string ItemNumber?;
+    string ProductColorId?;
+    decimal QuantityRoundingUpMultiples?;
+    string ProductVersionId?;
+    decimal BurdenAllocationAmount?;
+    string ProductStyleId?;
+    string ConsumptionSiteId?;
+    decimal Quantity?;
+    PmfBurdenType BurdenAllocationMethod?;
+    decimal LineNumber?;
+};
+
 # Represents the Queries record for the operation: listMaterialDisposalCodes
 public type ListMaterialDisposalCodesQueries record {
     # Number of records to skip.
@@ -1232,13 +1313,18 @@ public type MaterialDisposalCodesCollection record {
     MaterialDisposalCode[] value?;
 };
 
+public type EngineeringChangeOrderProductFormulaCoProductsCollection record {
+    *ODataCollection;
+    EngineeringChangeOrderProductFormulaCoProduct[] value?;
+};
+
 public type EngineeringChangeReasonsCollection record {
     *ODataCollection;
     EngineeringChangeReason[] value?;
 };
 
-# Represents the Headers record for the operation: deleteProductOwnerWorkers
-public type DeleteProductOwnerWorkersHeaders record {
+# Represents the Headers record for the operation: updateEngineeringProductAttributeTranslations
+public type UpdateEngineeringProductAttributeTranslationsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -1363,8 +1449,10 @@ public type EngineeringChangeOrderProductV3 record {
     string NewProductColorId?;
 };
 
-# Represents the Queries record for the operation: listBillOfMaterialsHeaders
-public type ListBillOfMaterialsHeadersQueries record {
+public type BOMConsumpType "Variable"|"Constant";
+
+# Represents the Queries record for the operation: listEngineeringChangeSeverities
+public type ListEngineeringChangeSeveritiesQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -1390,8 +1478,6 @@ public type ListBillOfMaterialsHeadersQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
-
-public type BOMConsumpType "Variable"|"Constant";
 
 # Represents the Queries record for the operation: listEngineeringChangeCustomerApprovalTypes
 public type ListEngineeringChangeCustomerApprovalTypesQueries record {
@@ -1427,8 +1513,42 @@ public type EngineeringChangeRequestProduct record {
     string ProductNumber?;
 };
 
+# Represents the Queries record for the operation: listEngineeringProductAttributeTranslations
+public type ListEngineeringProductAttributeTranslationsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: updateEngineeringChangeCustomerApprovalTypes
 public type UpdateEngineeringChangeCustomerApprovalTypesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateEngineeringChangeOrderProductFormulaHeaders
+public type UpdateEngineeringChangeOrderProductFormulaHeadersHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -1439,9 +1559,11 @@ public type UpdateEngineeringChangeRequestSourcesHeaders record {
     string If\-Match?;
 };
 
-public type RouteHeadersCollection record {
-    *ODataCollection;
-    RouteHeader[] value?;
+public type EngineeringChangeSeverityRuleSet record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SeverityName?;
+    decimal SequenceNumber?;
 };
 
 # Represents the Queries record for the operation: getEngineeringChangePriorities
@@ -1464,10 +1586,25 @@ public type GetEngineeringChangeOrderProductBillOfMaterialsLinesV2Queries record
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: getEngineeringProductAttributes
+public type GetEngineeringProductAttributesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: deleteEngineeringChangeOrderProductFormulaStepConsumption
 public type DeleteEngineeringChangeOrderProductFormulaStepConsumptionHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type EngineeringChangeCategoriesV2Collection record {
+    *ODataCollection;
+    EngineeringChangeCategoryV2[] value?;
 };
 
 public type EngineeringChangeOrderProductBillOfMaterialsLinesCollection record {
@@ -1496,32 +1633,40 @@ public type UpdateEngineeringProductVersionNumberingRulesHeaders record {
     string If\-Match?;
 };
 
-# Represents the Queries record for the operation: getBillOfMaterialsHeaders
-public type GetBillOfMaterialsHeadersQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
 public type NoYes "No"|"Yes";
 
 public type JmgJobPayTypeEnum "Empty"|"Hours"|"PieceRate";
 
-# Represents the Queries record for the operation: getProductOwnerWorkers
-public type GetProductOwnerWorkersQueries record {
+# Represents the Queries record for the operation: listEngineeringChangeCategories
+public type ListEngineeringChangeCategoriesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: updateProductReleasePolicies
-public type UpdateProductReleasePoliciesHeaders record {
+# Represents the Headers record for the operation: deleteEngineeringChangeOrderProductFormulaCoProducts
+public type DeleteEngineeringChangeOrderProductFormulaCoProductsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -1536,35 +1681,11 @@ public type GetEngineeringChangeOrderProductRouteHeadersQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: deleteItemSpecificBillOfMaterialsHeadersV3
-public type DeleteItemSpecificBillOfMaterialsHeadersV3Headers record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
 public type PmfProductType "Co_Product"|"By_Product"|"None"|"MainItem"|"BOM"|"Formula";
 
 public type EnvironmentalHealthAndSafetyCodesCollection record {
     *ODataCollection;
     EnvironmentalHealthAndSafetyCode[] value?;
-};
-
-# Represents the Headers record for the operation: updateBillOfMaterialsHeaders
-public type UpdateBillOfMaterialsHeadersHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateProductLifecycleStateProcesses
-public type UpdateProductLifecycleStateProcessesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateProductReadinessPolicies
-public type UpdateProductReadinessPoliciesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
 };
 
 public type EngineeringChangeOrderProductRouteOperationPropertiesResourceRequirementsCollection record {
@@ -1623,42 +1744,33 @@ public type ListReceivedProductReleaseLinesQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: getReleasedProductReadinessChecks
-public type GetReleasedProductReadinessChecksQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
+public type EngineeringChangeOrderProductFormulaHeader record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string EngineeringChangeOrderNumber?;
+    decimal EngineeringChangeOrderProductLineNumber?;
+    int:Signed32 CreationSequenceNumber?;
+    NoYes IsTotalCostAllocationUsed?;
+    decimal FormulaBatchSizeMultiples?;
+    string FormulaId?;
+    NoYes IsActive?;
+    string BulkItemNumber?;
+    string ApproverPersonnelNumber?;
+    NoYes IsCoProductQuantityVariationAllowed?;
+    boolean IsApproved?;
+    string ChangedDate?;
+    string FormulaName?;
+    NoYes WillCostCalculationIncludeVersion?;
+    decimal YieldPercentage?;
+    string ProductionSiteId?;
+    decimal FromQuantity?;
+    decimal FormulaBatchSize?;
 };
 
-# Represents the Queries record for the operation: listProductOwnerWorkers
-public type ListProductOwnerWorkersQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
+# Represents the Headers record for the operation: updateEngineeringChangeCategories
+public type UpdateEngineeringChangeCategoriesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: listEngineeringChangeRequestDependencyActions
@@ -1765,6 +1877,34 @@ public type EngineeringChangeOrderProductFormulaStepConsumptionCollection record
     EngineeringChangeOrderProductFormulaStepConsumption[] value?;
 };
 
+public type EngineeringChangeOrderProductAttribute record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string EngineeringChangeOrderNumber?;
+    decimal EngineeringChangeOrderProductLineNumber?;
+    string EngineeringProductAttributeName?;
+    string EngineeringProductAttributeTypeName?;
+    int:Signed32 MinimumIntegerTolerance?;
+    string TextValue?;
+    NoYes IsSynchronizedWithBatchAttribute?;
+    int:Signed32 IntegerToleranceIncrement?;
+    decimal DecimalToleranceIncrement?;
+    int:Signed32 MaximumIntegerTolerance?;
+    NoYes IsAttributeMandatory?;
+    NoYes IsInheritedAttribute?;
+    decimal MinimumDecimalTolerance?;
+    decimal CurrencyValue?;
+    decimal MaximumDecimalTolerance?;
+    string CurrencyCode?;
+    int:Signed32 IntegerValue?;
+    NoYes BooleanValue?;
+    PdsBatchAttribToleranceAction ToleranceFailingAction?;
+    NoYes IsInheritingAttribute?;
+    decimal DecimalValue?;
+    EngChgEcmChangeTypes AttributeModificationType?;
+    string DateTimeValue?;
+};
+
 public type SysAttachmentSyncEntity record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -1805,16 +1945,6 @@ public type SysAttachmentSyncEntity record {
     int Docuref_EngChgEngineeringDocument?;
 };
 
-# Represents the Queries record for the operation: getProductReleasePolicies
-public type GetProductReleasePoliciesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
 # Represents the Headers record for the operation: updateEngineeringChangeRequestHeaders
 public type UpdateEngineeringChangeRequestHeadersHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -1826,34 +1956,6 @@ public type EngineeringChangeOrderProductRouteOperationPropertiesDocumentsV2Coll
     EngineeringChangeOrderProductRouteOperationPropertiesDocumentV2[] value?;
 };
 
-# Represents the Queries record for the operation: listItemSpecificBillOfMaterialsHeaders
-public type ListItemSpecificBillOfMaterialsHeadersQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
 # Represents the Queries record for the operation: getEngineeringChangeOrderProductWhereUsedAnalyses
 public type GetEngineeringChangeOrderProductWhereUsedAnalysesQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -1862,21 +1964,6 @@ public type GetEngineeringChangeOrderProductWhereUsedAnalysesQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
-};
-
-public type ProductReleaseProductDetail record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string ProductNumber?;
-    string ProductVersionId?;
-    string TemplateBOMId?;
-    string TemplateItemNumber?;
-    NoYes WillProductReleaseReleaseRoute?;
-    NoYes WillProductReleaseCopyBillOfMaterialsApproval?;
-    string TemplateRouteId?;
-    EngChgProductReleaseStatus ReleaseStatus?;
-    NoYes WillProductReleaseReleaseBillOfMaterials?;
-    NoYes WillProductReleaseCopyRouteApproval?;
 };
 
 public type EngineeringChangeCustomerApprovalType record {
@@ -1946,9 +2033,15 @@ public type UpdateEngineeringChangeOrderProductBillOfMaterialsHeadersV2Headers r
     string If\-Match?;
 };
 
-public type ProductReleasePoliciesCollection record {
+public type EngineeringProductCategoryAttributeDetailsCollection record {
     *ODataCollection;
-    ProductReleasePolicy[] value?;
+    EngineeringProductCategoryAttributeDetails[] value?;
+};
+
+# Represents the Headers record for the operation: updateEngineeringChangeOrderProductAttributes
+public type UpdateEngineeringChangeOrderProductAttributesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Headers record for the operation: updateEngineeringChangeRequestDependencyActions
@@ -2039,49 +2132,6 @@ public type UpdateEngineeringProductVersionNumberingRuleListMembersHeaders recor
     string If\-Match?;
 };
 
-public type ItemSpecificBillOfMaterialsHeaderV3 record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string BOMId?;
-    string ManufacturedItemNumber?;
-    string ProductionSiteId?;
-    string ProductColorId?;
-    string ProductConfigurationId?;
-    string ProductSizeId?;
-    string ProductStyleId?;
-    string ProductVersionId?;
-    NoYes IsActive?;
-    decimal FromQuantity?;
-    string ValidFromDate?;
-    string BOMName?;
-    string ApproverPersonnelNumber?;
-    NoYes IsApproved?;
-    string DisplayProductNumber?;
-    string EngChgEngineeringBomReference?;
-    string EngineeringVersionId?;
-};
-
-# Represents the Headers record for the operation: deleteProductReleaseProductDetails
-public type DeleteProductReleaseProductDetailsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type BillOfMaterialsHeader record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string BOMId?;
-    string ProductionSiteId?;
-    string ProductGroupId?;
-    string ApproverPersonnelNumber?;
-    string BOMName?;
-    NoYes IsApproved?;
-    int EngChgReleasedProductVersion?;
-    string EngineeringVersionId?;
-    string EngChgEngineeringBomReference?;
-    string EngChgDisplayProductNumber?;
-};
-
 # Represents the Headers record for the operation: updateEngineeringChangeRequestDependencies
 public type UpdateEngineeringChangeRequestDependenciesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -2131,7 +2181,33 @@ public type ListEngineeringChangeOrderProductWhereUsedAnalysesQueries record {
     string selectFields?;
 };
 
-public type EngChgProductReleaseApplyTemplateMode "Always"|"Optional"|"Never";
+# Represents the Queries record for the operation: listEngineeringChangeSeverityRuleSets
+public type ListEngineeringChangeSeverityRuleSetsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
 
 # Represents the Headers record for the operation: updateEngineeringOrganizations
 public type UpdateEngineeringOrganizationsHeaders record {
@@ -2169,14 +2245,6 @@ public type ListEngineeringOrganizationsQueries record {
     string selectFields?;
 };
 
-public type EngChgReadinessActions "Created"|"Validated"|"MarkedCompleted"|"Skipped"|"Approved"|"ApprovedAll"|"QuestionnaireStarted";
-
-# Represents the Headers record for the operation: updateItemSpecificBillOfMaterialsHeadersV3
-public type UpdateItemSpecificBillOfMaterialsHeadersV3Headers record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
 # Represents the Queries record for the operation: listChgSentProductReleaseLines
 public type ListChgSentProductReleaseLinesQueries record {
     # Number of records to skip.
@@ -2210,25 +2278,8 @@ public type EngineeringChangeOrderProductRouteOperationsCollection record {
     EngineeringChangeOrderProductRouteOperation[] value?;
 };
 
-public type EngineeringChangeOrderProductRouteOperationPropertiesResourceRequirementsV2Collection record {
-    *ODataCollection;
-    EngineeringChangeOrderProductRouteOperationPropertiesResourceRequirementV2[] value?;
-};
-
-# Represents the Headers record for the operation: updateReleasedProductReadinessChecks
-public type UpdateReleasedProductReadinessChecksHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateEngineeringChangeOrderDependencies
-public type UpdateEngineeringChangeOrderDependenciesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getItemSpecificBillOfMaterialsHeadersV3
-public type GetItemSpecificBillOfMaterialsHeadersV3Queries record {
+# Represents the Queries record for the operation: getEngineeringProductCategoryAttributeDetailsValues
+public type GetEngineeringProductCategoryAttributeDetailsValuesQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
@@ -2237,7 +2288,22 @@ public type GetItemSpecificBillOfMaterialsHeadersV3Queries record {
     string selectFields?;
 };
 
-public type EngChgReadinessCheckType "ReleasedProduct"|"ReleasedVariant"|"EngineeringVersion";
+public type EngineeringChangeOrderProductRouteOperationPropertiesResourceRequirementsV2Collection record {
+    *ODataCollection;
+    EngineeringChangeOrderProductRouteOperationPropertiesResourceRequirementV2[] value?;
+};
+
+public type EngineeringChangeCategoryV2 record {
+    string \@odata\.etag?;
+    string CategoryName?;
+    decimal SequenceNumber?;
+};
+
+# Represents the Headers record for the operation: updateEngineeringChangeOrderDependencies
+public type UpdateEngineeringChangeOrderDependenciesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
 
 # Represents the Headers record for the operation: deleteEngineeringChangeOrderProductRouteOperationsV2
 public type DeleteEngineeringChangeOrderProductRouteOperationsV2Headers record {
@@ -2261,10 +2327,9 @@ public type GetReceivedProductReleaseHeadersQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: deleteProductReadinessPolicyChecks
-public type DeleteProductReadinessPolicyChecksHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
+public type EngineeringChangeOrderProductFormulaHeadersCollection record {
+    *ODataCollection;
+    EngineeringChangeOrderProductFormulaHeader[] value?;
 };
 
 public type ProdFlushingPrincipBOM "Blank"|"Start"|"Finish"|"Manual"|"Picked";
@@ -2295,6 +2360,11 @@ public type ListEngineeringChangeOrderProductRouteOperationPropertiesDocumentsV2
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+public type EngineeringChangeCategoriesCollection record {
+    *ODataCollection;
+    EngineeringChangeCategory[] value?;
 };
 
 # Represents the Headers record for the operation: deleteEngineeringChangePriorities
@@ -2357,36 +2427,14 @@ public type EngineeringChangeRequestProductsCollection record {
     EngineeringChangeRequestProduct[] value?;
 };
 
-# Represents the Queries record for the operation: listEngineeringChangeOrderHeaders
-public type ListEngineeringChangeOrderHeadersQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
+# Represents the Headers record for the operation: deleteEngineeringChangeSeverityRuleSets
+public type DeleteEngineeringChangeSeverityRuleSetsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
-# Represents the Queries record for the operation: listProductReadinessPolicies
-public type ListProductReadinessPoliciesQueries record {
+# Represents the Queries record for the operation: listEngineeringChangeOrderHeaders
+public type ListEngineeringChangeOrderHeadersQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -2419,10 +2467,48 @@ public type UpdateReleasedEngineeringProductVersionAttributesHeaders record {
     string If\-Match?;
 };
 
+# Represents the Queries record for the operation: listEngineeringProductCategoryAttributeDetails
+public type ListEngineeringProductCategoryAttributeDetailsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: updateReceivedProductReleaseLines
 public type UpdateReceivedProductReleaseLinesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getEngineeringChangeOrderProductAttributes
+public type GetEngineeringChangeOrderProductAttributesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type EngineeringProductVersionNumberingRuleListMember record {
@@ -2430,11 +2516,6 @@ public type EngineeringProductVersionNumberingRuleListMember record {
     string VersionNumberingRuleName?;
     string ProductVersionName?;
     decimal SequenceNumber?;
-};
-
-public type ReleasedProductReadinessChecksCollection record {
-    *ODataCollection;
-    ReleasedProductReadinessCheck[] value?;
 };
 
 # Represents the Queries record for the operation: listEngineeringChangeOrderProductRouteOperationPropertiesResourceRequirements
@@ -2483,14 +2564,14 @@ public type DeleteEngineeringChangeOrderProductsHeaders record {
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: updateProductOwners
-public type UpdateProductOwnersHeaders record {
+# Represents the Headers record for the operation: updateReceivedProductReleaseLinesV2
+public type UpdateReceivedProductReleaseLinesV2Headers record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: updateReceivedProductReleaseLinesV2
-public type UpdateReceivedProductReleaseLinesV2Headers record {
+# Represents the Headers record for the operation: deleteEngineeringChangeCategories
+public type DeleteEngineeringChangeCategoriesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -2501,59 +2582,11 @@ public type DeleteEngineeringProductVersionsHeaders record {
     string If\-Match?;
 };
 
-public type ProductReleasePolicyLegalEntityRulesCollection record {
+public type EngineeringChangeOrderProductFormulaLinesCollection record {
     *ODataCollection;
-    ProductReleasePolicyLegalEntityRule[] value?;
+    EngineeringChangeOrderProductFormulaLine[] value?;
 };
 
-# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
-@display {label: "Connection Config"}
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig|http:BearerTokenConfig auth;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
-
-public type ProductReleaseProductDetailsCollection record {
-    *ODataCollection;
-    ProductReleaseProductDetail[] value?;
-};
 
 public type ReceivedProductReleaseLinesCollection record {
     *ODataCollection;
@@ -2564,6 +2597,34 @@ public type ReceivedProductReleaseLinesCollection record {
 public type UpdateEngineeringChangeOrderProductRouteOperationPropertiesResourceRequirementsV2Headers record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listEngineeringProductAttributes
+public type ListEngineeringProductAttributesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type EngineeringChangeRequestDependencyActionsCollection record {
@@ -2599,11 +2660,29 @@ public type ListSentProductReleaseHeadersQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: getItemSpecificBillOfMaterialsHeaders
-public type GetItemSpecificBillOfMaterialsHeadersQueries record {
+# Represents the Queries record for the operation: listEngineeringChangeOrderProductAttributes
+public type ListEngineeringChangeOrderProductAttributesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -2628,10 +2707,13 @@ public type GetEngineeringChangeOrderProductRouteOperationPropertiesDocumentsQue
     string selectFields?;
 };
 
-public type ProductOwner record {
+public type EngineeringProductAttributeTranslation record {
     string \@odata\.etag?;
-    string ProductOwnerId?;
-    string ProductOwnerName?;
+    string EngineeringProductAttributeName?;
+    string LanguageId?;
+    string TranslatedAttributeHelpText?;
+    string TranslatedAttributeDescription?;
+    string TranslatedFriendlyAttributeName?;
 };
 
 public type ReceivedProductReleaseHeader record {
@@ -2651,6 +2733,18 @@ public type ReceivedProductReleaseHeader record {
     string EngineeringChangeOrderNumber?;
     string CancelledDateTime?;
     string ReleasingSiteId?;
+};
+
+# Represents the Headers record for the operation: deleteEngineeringChangeOrderProductAttributes
+public type DeleteEngineeringChangeOrderProductAttributesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteEngineeringChangeCategoriesV2
+public type DeleteEngineeringChangeCategoriesV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type ReleasedEngineeringProductCreationsV2Collection record {
@@ -2700,34 +2794,6 @@ public type ReceivedProductReleaseLineV2 record {
     string ActiveBOMId?;
     string LineProductNumber?;
     string CoByProductItemNumber?;
-};
-
-# Represents the Queries record for the operation: listRouteHeaders
-public type ListRouteHeadersQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
 };
 
 # Represents the Queries record for the operation: getEngineeringOrganizations
@@ -2797,6 +2863,11 @@ public type ListEngineeringProductVersionNumberingRuleListMembersQueries record 
     string selectFields?;
 };
 
+public type EngineeringProductAttributeTranslationsCollection record {
+    *ODataCollection;
+    EngineeringProductAttributeTranslation[] value?;
+};
+
 public type SentProductReleaseHeader record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -2815,11 +2886,6 @@ public type SentProductReleaseHeader record {
 
 public type BOMType "Item"|"Phantom"|"PeggedSupply"|"Vendor";
 
-public type ProductOwnersCollection record {
-    *ODataCollection;
-    ProductOwner[] value?;
-};
-
 public type EngineeringChangePrioritiesCollection record {
     *ODataCollection;
     EngineeringChangePriority[] value?;
@@ -2833,9 +2899,13 @@ public type EngineeringChangeRequestSource record {
     string SourceTransactionDescription?;
 };
 
-public type EngChgEcmImpact "None"|"NewVersion"|"NewVariant"|"NewProduct";
+# Represents the Headers record for the operation: deleteEngineeringChangeOrderProductFormulaByProducts
+public type DeleteEngineeringChangeOrderProductFormulaByProductsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
 
-public type EngChgReadinessStatus "Pending"|"Open"|"Passed"|"Failed"|"Skipped";
+public type EngChgEcmImpact "None"|"NewVersion"|"NewVariant"|"NewProduct";
 
 # Represents the Queries record for the operation: listEngineeringChangeOrderProductReleases
 public type ListEngineeringChangeOrderProductReleasesQueries record {
@@ -2898,6 +2968,11 @@ public type EngineeringChangeOrderProductRouteOperationProperties record {
     string ProcessCostCategoryId?;
 };
 
+public type EngineeringChangeSeverityRulesCollection record {
+    *ODataCollection;
+    EngineeringChangeSeverityRule[] value?;
+};
+
 public type SentProductReleaseHeadersCollection record {
     *ODataCollection;
     SentProductReleaseHeader[] value?;
@@ -2910,6 +2985,11 @@ public type DeleteReceivedProductReleaseLinesV2Headers record {
 };
 
 public type EngChgReleaseTreeNodeType "Item"|"CoProductHeader"|"CoProduct"|"ByProductHeader"|"ByProduct"|"BOMTable"|"BOMLine"|"FormulaTable"|"FormulaLine";
+
+public type EngineeringChangeOrderProductFormulaByProductsCollection record {
+    *ODataCollection;
+    EngineeringChangeOrderProductFormulaByProduct[] value?;
+};
 
 public type EngineeringProductVersionNumberingRule record {
     string \@odata\.etag?;
@@ -2990,12 +3070,6 @@ public type UpdateEngineeringChangeOrderProductRouteHeadersV2Headers record {
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: updateReleasedProductReadinessCheckAppliedActions
-public type UpdateReleasedProductReadinessCheckAppliedActionsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
 # Represents the Headers record for the operation: deleteReleasedEngineeringProductCreationsV2
 public type DeleteReleasedEngineeringProductCreationsV2Headers record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -3036,28 +3110,37 @@ public type GetEngineeringChangeOrderProductBillOfMaterialsLinesQueries record {
     string selectFields?;
 };
 
+public type EngineeringChangeOrderProductFormulaCoProduct record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string EngineeringChangeOrderNumber?;
+    decimal EngineeringChangeOrderProductLineNumber?;
+    int:Signed32 EngineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber?;
+    int:Signed32 LineCreationSequenceNumber?;
+    string ConsumptionWarehouseId?;
+    PmfProductType ProductType?;
+    PmfCoByRoundUp RoundingUpMethod?;
+    string ProductConfigurationId?;
+    decimal CatchWeightQuantity?;
+    string ProductSizeId?;
+    decimal QuantityDenominator?;
+    string ItemNumber?;
+    string ProductColorId?;
+    decimal QuantityRoundingUpMultiples?;
+    string ProductVersionId?;
+    decimal BurdenAllocationAmount?;
+    string ProductStyleId?;
+    PmfCostAllocationMethod CostAllocationMethod?;
+    string ConsumptionSiteId?;
+    decimal Quantity?;
+    decimal CostAllocationPercentage?;
+    PmfBurdenType BurdenAllocationMethod?;
+    decimal LineNumber?;
+};
+
 public type EngineeringChangeRequestHeadersCollection record {
     *ODataCollection;
     EngineeringChangeRequestHeader[] value?;
-};
-
-public type ProductReadinessPolicyCheck record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string ProductReadinessPolicyName?;
-    string CheckName?;
-    string LegalEntityId?;
-    EngChgReadinessModule ProcessArea?;
-    EngChgReadinessType CheckType?;
-    string OwningTeamName?;
-    string CheckListQuestionnaireId?;
-    string CheckDescription?;
-    NoYes IsCheckMandatory?;
-    EngChgReadinessCheckType CheckReleaseCategory?;
-    NoYes WillCheckAutomaticallyApproveResult?;
-    string CheckClassName?;
-    EngChgReadinessExecute ExecutionScope?;
-    string OwningPersonPartyNumber?;
 };
 
 # Represents the Queries record for the operation: listReleasedEngineeringProductVersionAttributes
@@ -3094,16 +3177,6 @@ public type InterCompanySkipUpdate "No"|"Internal"|"InterCompany"|"Both";
 public type DeleteEngineeringChangeOrderDependenciesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getProductLifecycleStateProcesses
-public type GetProductLifecycleStateProcessesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
 };
 
 # Represents the Queries record for the operation: listEngineeringChangeOrderProductEnvironmentalHealthAndSafetyCodes
@@ -3172,29 +3245,23 @@ public type GetEnvironmentalHealthAndSafetyCodesQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: listReleasedProductReadinessChecks
-public type ListReleasedProductReadinessChecksQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
+# Represents the Headers record for the operation: updateEngineeringChangeOrderProductFormulaLines
+public type UpdateEngineeringChangeOrderProductFormulaLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteEngineeringProductAttributes
+public type DeleteEngineeringProductAttributesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getEngineeringProductCategoryAttributeDetails
+public type GetEngineeringProductCategoryAttributeDetailsQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -3234,6 +3301,16 @@ public type UpdateEngineeringChangeOrderProductBillOfMaterialsLinesV2Headers rec
     string If\-Match?;
 };
 
+# Represents the Queries record for the operation: getEngineeringChangeOrderProductFormulaCoProducts
+public type GetEngineeringChangeOrderProductFormulaCoProductsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: updateEngineeringChangeOrderProductRouteOperationPropertiesResourceRequirements
 public type UpdateEngineeringChangeOrderProductRouteOperationPropertiesResourceRequirementsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -3271,11 +3348,6 @@ public type ListEngineeringChangeOrderProductsV3Queries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
-};
-
-public type ProductReadinessPolicyChecksCollection record {
-    *ODataCollection;
-    ProductReadinessPolicyCheck[] value?;
 };
 
 public type EngineeringChangeOrderProductRouteOperationPropertiesDocumentV2 record {
@@ -3332,12 +3404,17 @@ public type ListReceivedProductReleaseHeadersQueries record {
     string selectFields?;
 };
 
+public type EngineeringProductAttributesCollection record {
+    *ODataCollection;
+    EngineeringProductAttribute[] value?;
+};
+
 public type ReceivedProductReleaseLinesV2Collection record {
     *ODataCollection;
     ReceivedProductReleaseLineV2[] value?;
 };
 
-public type EngChgProductReleaseStatus "Pending"|"Released";
+public type PmfCostAllocationMethod "None"|"Manual"|"DEL_ProRata"|"TCA";
 
 public type EngineeringChangeOrderProductRouteOperationV2 record {
     string \@odata\.etag?;
@@ -3371,12 +3448,6 @@ public type EngineeringChangeOrderHeadersCollection record {
 
 # Represents the Headers record for the operation: deleteReleasedEngineeringProductVersions
 public type DeleteReleasedEngineeringProductVersionsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: deleteProductReleasePolicies
-public type DeleteProductReleasePoliciesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -3431,16 +3502,6 @@ public type ListEngineeringChangeOrderProductBillOfMaterialsLinesQueries record 
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: getProductReleasePolicyLegalEntityRules
-public type GetProductReleasePolicyLegalEntityRulesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
 public type EngineeringChangeOrderDependency record {
     string \@odata\.etag?;
     string DependentProductNumber?;
@@ -3471,12 +3532,6 @@ public type UpdateEngineeringChangeOrderProductEnvironmentalHealthAndSafetyCodes
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: updateProductOwnerWorkers
-public type UpdateProductOwnerWorkersHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
 public type ReleasedEngineeringProductVersionAttribute record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -3497,7 +3552,17 @@ public type ReleasedEngineeringProductVersionAttribute record {
     NoYes IsInheritingAttribute?;
 };
 
-public type EngChgReadinessExecute "All"|"Single";
+# Represents the Headers record for the operation: updateEngineeringProductAttributes
+public type UpdateEngineeringProductAttributesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateEngineeringChangeOrderProductFormulaByProducts
+public type UpdateEngineeringChangeOrderProductFormulaByProductsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
 
 public type EngineeringChangeOrderProductWhereUsedAnalysesCollection record {
     *ODataCollection;
@@ -3568,23 +3633,6 @@ public type GetEngineeringChangeReasonsQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
-};
-
-public type ProductReleasePolicyLegalEntityRule record {
-    string \@odata\.etag?;
-    string LegalEntityId?;
-    string ProductReleasePolicyName?;
-    string TemplateBOMId?;
-    string TemplateItemNumber?;
-    NoYes WillProductReleaseCopyDateEffectivity?;
-    NoYes WillProductReleaseCopyBOMApproval?;
-    string TemplateRouteId?;
-    NoYes WillProductReleaseCreateBOM?;
-    NoYes WillProductReleaseCreateRoute?;
-    NoYes WillProductReleaseCopyBOMActivation?;
-    NoYes WillProductReleaseCopyRouteApproval?;
-    NoYes WillProductReleaseCopyRouteActivation?;
-    NoYes WillEngineeringChangeOrderImpactedProductSearchAutoRelease?;
 };
 
 # Represents the Queries record for the operation: listEngineeringProductVersions
@@ -3677,16 +3725,6 @@ public type ListEngineeringChangeRequestDependenciesQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: getReleasedProductReadinessCheckAppliedActions
-public type GetReleasedProductReadinessCheckAppliedActionsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
 # Represents the Headers record for the operation: updateSysAttachmentSyncEntities
 public type UpdateSysAttachmentSyncEntitiesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -3699,20 +3737,10 @@ public type DeleteReleasedEngineeringProductVersionAttributesHeaders record {
     string If\-Match?;
 };
 
-public type ItemSpecificBillOfMaterialsHeadersCollection record {
-    *ODataCollection;
-    ItemSpecificBillOfMaterialsHeader[] value?;
-};
-
-# Represents the Headers record for the operation: updateItemSpecificBillOfMaterialsHeaders
-public type UpdateItemSpecificBillOfMaterialsHeadersHeaders record {
+# Represents the Headers record for the operation: deleteEngineeringChangeOrderProductFormulaLines
+public type DeleteEngineeringChangeOrderProductFormulaLinesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
-};
-
-public type BillOfMaterialsHeadersCollection record {
-    *ODataCollection;
-    BillOfMaterialsHeader[] value?;
 };
 
 public type EngineeringProductCategoryNomenclaturesCollection record {
@@ -3733,6 +3761,12 @@ public type GetEngineeringChangeOrderProductsV2Queries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteEngineeringProductAttributeTranslations
+public type DeleteEngineeringProductAttributeTranslationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type EngineeringChangeOrderProductBillOfMaterialsHeaderV2 record {
@@ -3803,44 +3837,10 @@ public type EngineeringChangeOrderProductWhereUsedAnalysis record {
     string ReviewerPersonnelNumber?;
 };
 
-# Represents the Queries record for the operation: listProductReleasePolicyLegalEntityRules
-public type ListProductReleasePolicyLegalEntityRulesQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
+public type PdsBatchAttribToleranceAction "Warning"|"NotAllowed";
 
 # Represents the Headers record for the operation: deleteEngineeringChangeOrderProductRouteOperationPropertiesDocumentsV2
 public type DeleteEngineeringChangeOrderProductRouteOperationPropertiesDocumentsV2Headers record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type PdsBatchAttribToleranceAction "Warning"|"NotAllowed";
-
-# Represents the Headers record for the operation: deleteBillOfMaterialsHeaders
-public type DeleteBillOfMaterialsHeadersHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -3896,14 +3896,15 @@ public type UpdateEngineeringProductCategoryNomenclaturesHeaders record {
     string If\-Match?;
 };
 
+# Represents the Headers record for the operation: deleteEngineeringChangeSeverities
+public type DeleteEngineeringChangeSeveritiesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type EngineeringChangeOrderProductBillOfMaterialsLinesV2Collection record {
     *ODataCollection;
     EngineeringChangeOrderProductBillOfMaterialsLineV2[] value?;
-};
-
-public type ProductOwnerWorkersCollection record {
-    *ODataCollection;
-    ProductOwnerWorker[] value?;
 };
 
 # Represents the Headers record for the operation: updateEngineeringChangeOrderProductRouteOperationPropertiesDocuments
@@ -3912,14 +3913,8 @@ public type UpdateEngineeringChangeOrderProductRouteOperationPropertiesDocuments
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: updateEngineeringChangeOrderProductReleases
-public type UpdateEngineeringChangeOrderProductReleasesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: listProductReleasePolicies
-public type ListProductReleasePoliciesQueries record {
+# Represents the Queries record for the operation: listEngineeringChangeOrderProductFormulaLines
+public type ListEngineeringChangeOrderProductFormulaLinesQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -3946,6 +3941,18 @@ public type ListProductReleasePoliciesQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: updateEngineeringChangeOrderProductReleases
+public type UpdateEngineeringChangeOrderProductReleasesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteEngineeringProductCategoryAttributeDetailsValues
+public type DeleteEngineeringProductCategoryAttributeDetailsValuesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: updateMaterialDisposalCodes
 public type UpdateMaterialDisposalCodesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -3955,14 +3962,6 @@ public type UpdateMaterialDisposalCodesHeaders record {
 public type EngineeringChangeOrderProductRouteOperationPropertiesV2Collection record {
     *ODataCollection;
     EngineeringChangeOrderProductRouteOperationPropertiesV2[] value?;
-};
-
-public type ProductLifecycleStateProcess record {
-    string \@odata\.etag?;
-    string ProductLifecycleStateId?;
-    string ProcessName?;
-    EngChgReadinessModule ApplicableProcessArea?;
-    EngChgEcoResStateBlockRule ProcessPolicy?;
 };
 
 # Represents the Queries record for the operation: listReleasedEngineeringProductVersions
@@ -4009,6 +4008,16 @@ public type ReleasedEngineeringProductCreationV2 record {
     string Description?;
 };
 
+# Represents the Queries record for the operation: getEngineeringProductAttributeTranslations
+public type GetEngineeringProductAttributeTranslationsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type EngineeringChangeOrderHeader record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -4040,6 +4049,34 @@ public type EngineeringChangeOrderDependencyAction record {
 public type UpdateEngineeringChangeOrderProductDocumentsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listEngineeringChangeOrderProductFormulaByProducts
+public type ListEngineeringChangeOrderProductFormulaByProductsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type EngineeringChangeOrderProductRouteOperationPropertiesV2 record {
@@ -4140,26 +4177,49 @@ public type ListEngineeringChangeOrderProductRouteOperationPropertiesV2Queries r
 
 public type EngChgVersionNumberRuleType "Manual"|"Auto"|"List";
 
+# Represents the Queries record for the operation: listEngineeringChangeOrderProductFormulaHeaders
+public type ListEngineeringChangeOrderProductFormulaHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: updateReleasedEngineeringProductCreationsV2
 public type UpdateReleasedEngineeringProductCreationsV2Headers record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
+public type EngineeringChangeSeverityRuleSetsCollection record {
+    *ODataCollection;
+    EngineeringChangeSeverityRuleSet[] value?;
+};
+
 # Represents the Headers record for the operation: deleteEngineeringProductCategoryNomenclatures
 public type DeleteEngineeringProductCategoryNomenclaturesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getProductReleaseProductDetails
-public type GetProductReleaseProductDetailsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
 };
 
 # Represents the Headers record for the operation: deleteSysAttachmentSyncEntities
@@ -4195,6 +4255,8 @@ public type UpdateEngineeringChangeOrderProductRouteOperationPropertiesV2Headers
     string If\-Match?;
 };
 
+public type PDSIngredientTypeEnum "None"|"Active"|"Compensating"|"Filler";
+
 public type ReleasedEngineeringProductVersion record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -4209,6 +4271,12 @@ public type ReleasedEngineeringProductVersion record {
     NoYes IsVersionActive?;
     string ProductColorId?;
     string ProductSizeId?;
+};
+
+# Represents the Headers record for the operation: deleteEngineeringChangeOrderProductFormulaHeaders
+public type DeleteEngineeringChangeOrderProductFormulaHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Headers record for the operation: updateReleasedEngineeringProductVersionAttributeValues
@@ -4229,8 +4297,6 @@ public type DeleteEngineeringChangeOrderProductEnvironmentalHealthAndSafetyCodes
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
-
-public type EngChgReadinessType "Auto"|"Manual"|"CheckList";
 
 public type EngineeringProductVersionsCollection record {
     *ODataCollection;
@@ -4271,8 +4337,14 @@ public type ListEngineeringChangeRequestHeadersQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: getProductReadinessPolicyChecks
-public type GetProductReadinessPolicyChecksQueries record {
+# Represents the Headers record for the operation: updateEngineeringChangeCategoriesV2
+public type UpdateEngineeringChangeCategoriesV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getEngineeringChangeOrderProductFormulaByProducts
+public type GetEngineeringChangeOrderProductFormulaByProductsQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
@@ -4281,43 +4353,14 @@ public type GetProductReadinessPolicyChecksQueries record {
     string selectFields?;
 };
 
-public type EngChgReadinessModule "Costing"|"Inventory"|"Planning"|"Production"|"Purchasing"|"Sales"|"Warehouse";
-
-public type ReleasedProductReadinessCheck record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    int ProductReadinessCheckRecordId?;
-    string ProductReadinessPolicyCheckName?;
-    string QuestionnaireQuestionId?;
-    string ProductConfigurationId?;
-    string OwningPersonPartyNumber?;
-    string ApprovedDateTime?;
-    string OwningTeamName?;
-    EngChgReadinessModule ProcessArea?;
-    string CheckNotes?;
-    string ProductSizeId?;
-    string ItemNumber?;
-    EngChgReadinessStatus CheckStatus?;
-    string QuestionnaireAnswerText?;
-    string ApproverPersonPartyNumber?;
-    string ProductReadinessPolicyCheckLegalEntityId?;
-    string EngineeringProductVersionId?;
-    EngChgReadinessModule ProductReadinessPolicyCheckProcessArea?;
-    int:Signed32 QuestionnaireQuestionSequenceNumber?;
-    string EngineeringProductNumber?;
-    KMQuestionAnswerInputType QuestionnaireQuestionInputType?;
-    string QuestionnaireAnswerComment?;
-    string QuestionnaireQuestionText?;
-    string ProductReadinessPolicyName?;
-    string ProductColorId?;
-    string CheckLog?;
-    string QuestionnaireQuestionInstruction?;
-    NoYes IsCheckMandatory?;
-    string ProductStyleId?;
-};
-
 # Represents the Headers record for the operation: updateEnvironmentalHealthAndSafetyCodes
 public type UpdateEnvironmentalHealthAndSafetyCodesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteEngineeringChangeSeverityRules
+public type DeleteEngineeringChangeSeverityRulesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -4342,12 +4385,6 @@ public type ChgSentProductReleaseLine record {
     string ActiveBOMId?;
     string LineProductNumber?;
     string CoByProductItemNumber?;
-};
-
-# Represents the Headers record for the operation: deleteProductOwners
-public type DeleteProductOwnersHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
 };
 
 public type EngineeringChangeOrderProductBillOfMaterialsHeadersV2Collection record {
@@ -4401,6 +4438,16 @@ public type DeleteEngineeringChangeOrderProductRouteOperationPropertiesHeaders r
     string If\-Match?;
 };
 
+# Represents the Queries record for the operation: getEngineeringChangeSeverityRuleSets
+public type GetEngineeringChangeSeverityRuleSetsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Queries record for the operation: listEngineeringProductVersionNumberingRules
 public type ListEngineeringProductVersionNumberingRulesQueries record {
     # Number of records to skip.
@@ -4450,21 +4497,34 @@ public type EngineeringChangeOrderProductReleasesCollection record {
     EngineeringChangeOrderProductRelease[] value?;
 };
 
-public type ReleasedProductReadinessCheckAppliedActionsCollection record {
-    *ODataCollection;
-    ReleasedProductReadinessCheckAppliedAction[] value?;
-};
-
-# Represents the Headers record for the operation: deleteReleasedProductReadinessCheckAppliedActions
-public type DeleteReleasedProductReadinessCheckAppliedActionsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
+public type EngineeringProductCategoryAttributeDetails record {
+    string \@odata\.etag?;
+    string EngineeringProductCategoryName?;
+    string EngineeringProductAttributeTypeName?;
+    string EngineeringProductAttributeName?;
+    NoYes IsInheritingAttribute?;
+    NoYes IsMandatoryAttribute?;
+    NoYes IsSynchronisedWithBatchAttribute?;
+    decimal IntegerToleranceIncrement?;
+    decimal MaximumIntegerTolerance?;
+    decimal MinimumIntegerTolerance?;
+    PdsBatchAttribToleranceAction ToleranceFailingAction?;
 };
 
 public type EngineeringChangeReason record {
     string \@odata\.etag?;
     string ReasonName?;
     string ReasonDescription?;
+};
+
+# Represents the Queries record for the operation: getEngineeringChangeSeverityRules
+public type GetEngineeringChangeSeverityRulesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type BOMRoundUp "No"|"Qty"|"MeasureConfig"|"Consumption";
@@ -4491,12 +4551,6 @@ public type EngineeringProductVersion record {
     string PreviousEngineeringVersionId?;
     string EngineeringOrganizationId?;
     decimal VersionNumber?;
-};
-
-# Represents the Headers record for the operation: deleteRouteHeaders
-public type DeleteRouteHeadersHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
 };
 
 # Represents the Headers record for the operation: deleteEngineeringChangeReasons
@@ -4554,34 +4608,6 @@ public type UpdateReleasedEngineeringProductVersionsHeaders record {
 
 public type EcoResVariantConfigurationTechnologyType "PredefinedVariants"|"DimensionBased"|"ConstraintBased";
 
-# Represents the Queries record for the operation: listProductLifecycleStateProcesses
-public type ListProductLifecycleStateProcessesQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
 public type EngineeringChangeOrderProductEnvironmentalHealthAndSafetyCode record {
     string \@odata\.etag?;
     string EngineeringChangeOrderNumber?;
@@ -4589,60 +4615,11 @@ public type EngineeringChangeOrderProductEnvironmentalHealthAndSafetyCode record
     string EnvironmentalHealthAndSafetyCode?;
 };
 
-public type ProductReadinessPolicy record {
-    string \@odata\.etag?;
-    string PolicyName?;
-    EcoResProductType ApplicableProductType?;
-    NoYes IsPolicyActive?;
-    string PolicyDescription?;
-};
-
-public type RouteHeader record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string RouteId?;
-    string ProductGroupId?;
-    string RouteName?;
-    string ApproverPersonnelNumber?;
-    NoYes IsApproved?;
-    string DisplayProductNumber?;
-    string EngineeringVersionId?;
-    string EngChgEngineeringReference?;
-};
-
 # Represents the Queries record for the operation: getReleasedEngineeringProductVersionAttributeValues
 public type GetReleasedEngineeringProductVersionAttributeValuesQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: listReleasedProductReadinessCheckAppliedActions
-public type ListReleasedProductReadinessCheckAppliedActionsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -4682,6 +4659,8 @@ public type UpdateReceivedProductReleaseHeadersHeaders record {
     string If\-Match?;
 };
 
+public type PmfCoByRoundUp "No"|"Qty"|"MeasureConfig"|"Consumption";
+
 # Represents the Queries record for the operation: getSysAttachmentSyncEntities
 public type GetSysAttachmentSyncEntitiesQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -4692,17 +4671,6 @@ public type GetSysAttachmentSyncEntitiesQueries record {
     string selectFields?;
 };
 
-public type ProductReleasePolicy record {
-    string \@odata\.etag?;
-    string PolicyName?;
-    EcoResProductType ApplicableProductType?;
-    PmfProductType PmfProductType?;
-    NoYes IsPolicyActive?;
-    NoYes WillProductReleaseEnforceDateRule?;
-    EngChgProductReleaseApplyTemplateMode ApplyTemplatesRule?;
-    string PolicyDescription?;
-};
-
 # Represents the Queries record for the operation: getEngineeringChangeOrderProductRouteOperations
 public type GetEngineeringChangeOrderProductRouteOperationsQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -4711,12 +4679,6 @@ public type GetEngineeringChangeOrderProductRouteOperationsQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
-};
-
-# Represents the Headers record for the operation: deleteItemSpecificBillOfMaterialsHeaders
-public type DeleteItemSpecificBillOfMaterialsHeadersHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
 };
 
 # Represents the Headers record for the operation: deleteEngineeringProductCategoryDetails
@@ -4731,10 +4693,10 @@ public type UpdateEngineeringProductVersionsHeaders record {
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: updateRouteHeaders
-public type UpdateRouteHeadersHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
+public type EngineeringChangeSeverity record {
+    string \@odata\.etag?;
+    string SeverityName?;
+    decimal SequenceNumber?;
 };
 
 # Represents the Queries record for the operation: getEngineeringChangeRequestDependencyActions
@@ -4765,11 +4727,40 @@ public type EngineeringChangeOrderProductBillOfMaterialsHeadersCollection record
 
 public type EngChgEcmWhereUsedStatusType "None"|"Skipped"|"Added";
 
-# Represents the Queries record for the operation: getRouteHeaders
-public type GetRouteHeadersQueries record {
+# Represents the Headers record for the operation: updateEngineeringProductCategoryAttributeDetails
+public type UpdateEngineeringProductCategoryAttributeDetailsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type EngineeringChangeOrderProductAttributesCollection record {
+    *ODataCollection;
+    EngineeringChangeOrderProductAttribute[] value?;
+};
+
+# Represents the Queries record for the operation: listEngineeringChangeOrderProductFormulaCoProducts
+public type ListEngineeringChangeOrderProductFormulaCoProductsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -4785,6 +4776,29 @@ public type UpdateEngineeringChangeOrderProductRouteOperationPropertiesDocuments
 public type DeleteEngineeringChangeRequestProductsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type EngineeringProductAttribute record {
+    string \@odata\.etag?;
+    string AttributeName?;
+    decimal DefaultMinimumDecimalTolerance?;
+    string DefaultCurrencyCode?;
+    decimal DefaultDecimalToleranceIncrement?;
+    int:Signed32 DefaultMinimumIntegerTolerance?;
+    int:Signed32 DefaultIntegerToleranceIncrement?;
+    decimal DefaultMaximumDecimalTolerance?;
+    NoYes DefaultBooleanValue?;
+    decimal DefaultCurrencyValue?;
+    string AttributeHelpText?;
+    string AttributeDescription?;
+    decimal DefaultDecimalValue?;
+    int:Signed32 DefaultMaximumIntegerTolerance?;
+    int:Signed32 DefaultIntegerValue?;
+    PdsBatchAttribToleranceAction ToleranceFailingAction?;
+    string FriendlyAttributeName?;
+    string ProductAttributeTypeName?;
+    string DefaultTextValue?;
+    string DefaultDateTimeValue?;
 };
 
 # Represents the Queries record for the operation: listEngineeringChangeRequestSources
@@ -4815,26 +4829,10 @@ public type ListEngineeringChangeRequestSourcesQueries record {
     string selectFields?;
 };
 
-public type ItemSpecificBillOfMaterialsHeader record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string BOMId?;
-    string ManufacturedItemNumber?;
-    string ProductionSiteId?;
-    string ProductColorId?;
-    string ProductConfigurationId?;
-    string ProductSizeId?;
-    string ProductStyleId?;
-    string BOMName?;
-    NoYes IsActive?;
-    string ApproverPersonnelNumber?;
-    NoYes IsApproved?;
-    string EngChgEngineeringBomReference?;
-    string EngChgEngineeringVersion?;
-};
-
 # Represents the Headers record for the operation: updateEngineeringChangeOrderProducts
 public type UpdateEngineeringChangeOrderProductsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
+
+public type PmfBurdenType "None"|"Percent"|"PerSeries"|"PerQuantity"|"Recycled";

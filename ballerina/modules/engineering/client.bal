@@ -19,75 +19,17 @@
 
 import ballerina/data.jsondata;
 import ballerina/http;
+import ballerinax/microsoft.dynamics365.scm.common as d365;
 
 # Ballerina connector module for the 'engineering' slice of the Microsoft Dynamics 365 Supply Chain Management OData REST API.
 public isolated client class Client {
     final http:Client clientEp;
     # Gets invoked to initialize the `connector`.
     #
-    # + config - The configurations to be used when initializing the `connector` 
-    # + serviceUrl - URL of the target service 
-    # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://your-org.operations.dynamics.com/data") returns error? {
-        http:ClientConfiguration httpClientConfig = {auth: config.auth, httpVersion: config.httpVersion, http1Settings: config.http1Settings, http2Settings: config.http2Settings, timeout: config.timeout, forwarded: config.forwarded, followRedirects: config.followRedirects, poolConfig: config.poolConfig, cache: config.cache, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, cookieConfig: config.cookieConfig, responseLimits: config.responseLimits, secureSocket: config.secureSocket, proxy: config.proxy, socketConfig: config.socketConfig, validation: config.validation, laxDataBinding: config.laxDataBinding};
-        self.clientEp = check new (serviceUrl, httpClientConfig);
-    }
-
-    # List BillOfMaterialsHeaders
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of BillOfMaterialsHeader 
-    remote isolated function listBillOfMaterialsHeaders(map<string|string[]> headers = {}, *ListBillOfMaterialsHeadersQueries queries) returns BillOfMaterialsHeadersCollection|error {
-        string resourcePath = string `/BillOfMaterialsHeaders`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create BillOfMaterialsHeader
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - BillOfMaterialsHeader created 
-    remote isolated function createBillOfMaterialsHeaders(BillOfMaterialsHeader payload, map<string|string[]> headers = {}) returns BillOfMaterialsHeader|error {
-        string resourcePath = string `/BillOfMaterialsHeaders`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get BillOfMaterialsHeader by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - BillOfMaterialsHeader record 
-    remote isolated function getBillOfMaterialsHeaders(string dataAreaId, string bOMId, map<string|string[]> headers = {}, *GetBillOfMaterialsHeadersQueries queries) returns BillOfMaterialsHeader|error {
-        string resourcePath = string `/BillOfMaterialsHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete BillOfMaterialsHeader
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - BillOfMaterialsHeader deleted 
-    remote isolated function deleteBillOfMaterialsHeaders(string dataAreaId, string bOMId, DeleteBillOfMaterialsHeadersHeaders headers = {}) returns error? {
-        string resourcePath = string `/BillOfMaterialsHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update BillOfMaterialsHeader
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - BillOfMaterialsHeader updated 
-    remote isolated function updateBillOfMaterialsHeaders(string dataAreaId, string bOMId, BillOfMaterialsHeader payload, UpdateBillOfMaterialsHeadersHeaders headers = {}) returns BillOfMaterialsHeader|error {
-        string resourcePath = string `/BillOfMaterialsHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    # + conn - The shared D365 connection (built once at the top level)
+    # + return - An error if connector initialization failed
+    public isolated function init(d365:Connection conn) returns error? {
+        self.clientEp = conn.getHttpClient();
     }
 
     # List ChgSentProductReleaseLines
@@ -140,6 +82,120 @@ public isolated client class Client {
     # + return - ChgSentProductReleaseLine updated 
     remote isolated function updateChgSentProductReleaseLines(string dataAreaId, string headerProductNumber, string headerProductVersionId, decimal lineNumber, string releasingLegalEntityId, string releaseStatus, ChgSentProductReleaseLine payload, UpdateChgSentProductReleaseLinesHeaders headers = {}) returns ChgSentProductReleaseLine|error {
         string resourcePath = string `/ChgSentProductReleaseLines(dataAreaId='${getEncodedUri(dataAreaId)}',HeaderProductNumber='${getEncodedUri(headerProductNumber)}',HeaderProductVersionId='${getEncodedUri(headerProductVersionId)}',LineNumber=${getEncodedUri(lineNumber)},ReleasingLegalEntityId='${getEncodedUri(releasingLegalEntityId)}',ReleaseStatus='${getEncodedUri(releaseStatus)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List EngineeringChangeCategories
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of EngineeringChangeCategory 
+    remote isolated function listEngineeringChangeCategories(map<string|string[]> headers = {}, *ListEngineeringChangeCategoriesQueries queries) returns EngineeringChangeCategoriesCollection|error {
+        string resourcePath = string `/EngineeringChangeCategories`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create EngineeringChangeCategory
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeCategory created 
+    remote isolated function createEngineeringChangeCategories(EngineeringChangeCategory payload, map<string|string[]> headers = {}) returns EngineeringChangeCategory|error {
+        string resourcePath = string `/EngineeringChangeCategories`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get EngineeringChangeCategory by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - EngineeringChangeCategory record 
+    remote isolated function getEngineeringChangeCategories(string categoryName, map<string|string[]> headers = {}, *GetEngineeringChangeCategoriesQueries queries) returns EngineeringChangeCategory|error {
+        string resourcePath = string `/EngineeringChangeCategories(CategoryName='${getEncodedUri(categoryName)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete EngineeringChangeCategory
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeCategory deleted 
+    remote isolated function deleteEngineeringChangeCategories(string categoryName, DeleteEngineeringChangeCategoriesHeaders headers = {}) returns error? {
+        string resourcePath = string `/EngineeringChangeCategories(CategoryName='${getEncodedUri(categoryName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update EngineeringChangeCategory
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeCategory updated 
+    remote isolated function updateEngineeringChangeCategories(string categoryName, EngineeringChangeCategory payload, UpdateEngineeringChangeCategoriesHeaders headers = {}) returns EngineeringChangeCategory|error {
+        string resourcePath = string `/EngineeringChangeCategories(CategoryName='${getEncodedUri(categoryName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List EngineeringChangeCategoriesV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of EngineeringChangeCategoryV2 
+    remote isolated function listEngineeringChangeCategoriesV2(map<string|string[]> headers = {}, *ListEngineeringChangeCategoriesV2Queries queries) returns EngineeringChangeCategoriesV2Collection|error {
+        string resourcePath = string `/EngineeringChangeCategoriesV2`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create EngineeringChangeCategoryV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeCategoryV2 created 
+    remote isolated function createEngineeringChangeCategoriesV2(EngineeringChangeCategoryV2 payload, map<string|string[]> headers = {}) returns EngineeringChangeCategoryV2|error {
+        string resourcePath = string `/EngineeringChangeCategoriesV2`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get EngineeringChangeCategoryV2 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - EngineeringChangeCategoryV2 record 
+    remote isolated function getEngineeringChangeCategoriesV2(string categoryName, map<string|string[]> headers = {}, *GetEngineeringChangeCategoriesV2Queries queries) returns EngineeringChangeCategoryV2|error {
+        string resourcePath = string `/EngineeringChangeCategoriesV2(CategoryName='${getEncodedUri(categoryName)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete EngineeringChangeCategoryV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeCategoryV2 deleted 
+    remote isolated function deleteEngineeringChangeCategoriesV2(string categoryName, DeleteEngineeringChangeCategoriesV2Headers headers = {}) returns error? {
+        string resourcePath = string `/EngineeringChangeCategoriesV2(CategoryName='${getEncodedUri(categoryName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update EngineeringChangeCategoryV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeCategoryV2 updated 
+    remote isolated function updateEngineeringChangeCategoriesV2(string categoryName, EngineeringChangeCategoryV2 payload, UpdateEngineeringChangeCategoriesV2Headers headers = {}) returns EngineeringChangeCategoryV2|error {
+        string resourcePath = string `/EngineeringChangeCategoriesV2(CategoryName='${getEncodedUri(categoryName)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -368,6 +424,63 @@ public isolated client class Client {
     # + return - EngineeringChangeOrderHeader updated 
     remote isolated function updateEngineeringChangeOrderHeaders(string dataAreaId, string orderNumber, EngineeringChangeOrderHeader payload, UpdateEngineeringChangeOrderHeadersHeaders headers = {}) returns EngineeringChangeOrderHeader|error {
         string resourcePath = string `/EngineeringChangeOrderHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',OrderNumber='${getEncodedUri(orderNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List EngineeringChangeOrderProductAttributes
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of EngineeringChangeOrderProductAttribute 
+    remote isolated function listEngineeringChangeOrderProductAttributes(map<string|string[]> headers = {}, *ListEngineeringChangeOrderProductAttributesQueries queries) returns EngineeringChangeOrderProductAttributesCollection|error {
+        string resourcePath = string `/EngineeringChangeOrderProductAttributes`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create EngineeringChangeOrderProductAttribute
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeOrderProductAttribute created 
+    remote isolated function createEngineeringChangeOrderProductAttributes(EngineeringChangeOrderProductAttribute payload, map<string|string[]> headers = {}) returns EngineeringChangeOrderProductAttribute|error {
+        string resourcePath = string `/EngineeringChangeOrderProductAttributes`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get EngineeringChangeOrderProductAttribute by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - EngineeringChangeOrderProductAttribute record 
+    remote isolated function getEngineeringChangeOrderProductAttributes(string dataAreaId, string engineeringChangeOrderNumber, decimal engineeringChangeOrderProductLineNumber, string engineeringProductAttributeName, string engineeringProductAttributeTypeName, map<string|string[]> headers = {}, *GetEngineeringChangeOrderProductAttributesQueries queries) returns EngineeringChangeOrderProductAttribute|error {
+        string resourcePath = string `/EngineeringChangeOrderProductAttributes(dataAreaId='${getEncodedUri(dataAreaId)}',EngineeringChangeOrderNumber='${getEncodedUri(engineeringChangeOrderNumber)}',EngineeringChangeOrderProductLineNumber=${getEncodedUri(engineeringChangeOrderProductLineNumber)},EngineeringProductAttributeName='${getEncodedUri(engineeringProductAttributeName)}',EngineeringProductAttributeTypeName='${getEncodedUri(engineeringProductAttributeTypeName)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete EngineeringChangeOrderProductAttribute
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeOrderProductAttribute deleted 
+    remote isolated function deleteEngineeringChangeOrderProductAttributes(string dataAreaId, string engineeringChangeOrderNumber, decimal engineeringChangeOrderProductLineNumber, string engineeringProductAttributeName, string engineeringProductAttributeTypeName, DeleteEngineeringChangeOrderProductAttributesHeaders headers = {}) returns error? {
+        string resourcePath = string `/EngineeringChangeOrderProductAttributes(dataAreaId='${getEncodedUri(dataAreaId)}',EngineeringChangeOrderNumber='${getEncodedUri(engineeringChangeOrderNumber)}',EngineeringChangeOrderProductLineNumber=${getEncodedUri(engineeringChangeOrderProductLineNumber)},EngineeringProductAttributeName='${getEncodedUri(engineeringProductAttributeName)}',EngineeringProductAttributeTypeName='${getEncodedUri(engineeringProductAttributeTypeName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update EngineeringChangeOrderProductAttribute
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeOrderProductAttribute updated 
+    remote isolated function updateEngineeringChangeOrderProductAttributes(string dataAreaId, string engineeringChangeOrderNumber, decimal engineeringChangeOrderProductLineNumber, string engineeringProductAttributeName, string engineeringProductAttributeTypeName, EngineeringChangeOrderProductAttribute payload, UpdateEngineeringChangeOrderProductAttributesHeaders headers = {}) returns EngineeringChangeOrderProductAttribute|error {
+        string resourcePath = string `/EngineeringChangeOrderProductAttributes(dataAreaId='${getEncodedUri(dataAreaId)}',EngineeringChangeOrderNumber='${getEncodedUri(engineeringChangeOrderNumber)}',EngineeringChangeOrderProductLineNumber=${getEncodedUri(engineeringChangeOrderProductLineNumber)},EngineeringProductAttributeName='${getEncodedUri(engineeringProductAttributeName)}',EngineeringProductAttributeTypeName='${getEncodedUri(engineeringProductAttributeTypeName)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -710,6 +823,234 @@ public isolated client class Client {
     # + return - EngineeringChangeOrderProductEnvironmentalHealthAndSafetyCode updated 
     remote isolated function updateEngineeringChangeOrderProductEnvironmentalHealthAndSafetyCodes(string engineeringChangeOrderNumber, decimal engineeringChangeOrderProductLineNumber, string environmentalHealthAndSafetyCode, EngineeringChangeOrderProductEnvironmentalHealthAndSafetyCode payload, UpdateEngineeringChangeOrderProductEnvironmentalHealthAndSafetyCodesHeaders headers = {}) returns EngineeringChangeOrderProductEnvironmentalHealthAndSafetyCode|error {
         string resourcePath = string `/EngineeringChangeOrderProductEnvironmentalHealthAndSafetyCodes(EngineeringChangeOrderNumber='${getEncodedUri(engineeringChangeOrderNumber)}',EngineeringChangeOrderProductLineNumber=${getEncodedUri(engineeringChangeOrderProductLineNumber)},EnvironmentalHealthAndSafetyCode='${getEncodedUri(environmentalHealthAndSafetyCode)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List EngineeringChangeOrderProductFormulaByProducts
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of EngineeringChangeOrderProductFormulaByProduct 
+    remote isolated function listEngineeringChangeOrderProductFormulaByProducts(map<string|string[]> headers = {}, *ListEngineeringChangeOrderProductFormulaByProductsQueries queries) returns EngineeringChangeOrderProductFormulaByProductsCollection|error {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaByProducts`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create EngineeringChangeOrderProductFormulaByProduct
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeOrderProductFormulaByProduct created 
+    remote isolated function createEngineeringChangeOrderProductFormulaByProducts(EngineeringChangeOrderProductFormulaByProduct payload, map<string|string[]> headers = {}) returns EngineeringChangeOrderProductFormulaByProduct|error {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaByProducts`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get EngineeringChangeOrderProductFormulaByProduct by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - EngineeringChangeOrderProductFormulaByProduct record 
+    remote isolated function getEngineeringChangeOrderProductFormulaByProducts(string dataAreaId, string engineeringChangeOrderNumber, decimal engineeringChangeOrderProductLineNumber, int:Signed32 engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber, int:Signed32 lineCreationSequenceNumber, map<string|string[]> headers = {}, *GetEngineeringChangeOrderProductFormulaByProductsQueries queries) returns EngineeringChangeOrderProductFormulaByProduct|error {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaByProducts(dataAreaId='${getEncodedUri(dataAreaId)}',EngineeringChangeOrderNumber='${getEncodedUri(engineeringChangeOrderNumber)}',EngineeringChangeOrderProductLineNumber=${getEncodedUri(engineeringChangeOrderProductLineNumber)},EngineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber=${getEncodedUri(engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber)},LineCreationSequenceNumber=${getEncodedUri(lineCreationSequenceNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete EngineeringChangeOrderProductFormulaByProduct
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeOrderProductFormulaByProduct deleted 
+    remote isolated function deleteEngineeringChangeOrderProductFormulaByProducts(string dataAreaId, string engineeringChangeOrderNumber, decimal engineeringChangeOrderProductLineNumber, int:Signed32 engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber, int:Signed32 lineCreationSequenceNumber, DeleteEngineeringChangeOrderProductFormulaByProductsHeaders headers = {}) returns error? {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaByProducts(dataAreaId='${getEncodedUri(dataAreaId)}',EngineeringChangeOrderNumber='${getEncodedUri(engineeringChangeOrderNumber)}',EngineeringChangeOrderProductLineNumber=${getEncodedUri(engineeringChangeOrderProductLineNumber)},EngineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber=${getEncodedUri(engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber)},LineCreationSequenceNumber=${getEncodedUri(lineCreationSequenceNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update EngineeringChangeOrderProductFormulaByProduct
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeOrderProductFormulaByProduct updated 
+    remote isolated function updateEngineeringChangeOrderProductFormulaByProducts(string dataAreaId, string engineeringChangeOrderNumber, decimal engineeringChangeOrderProductLineNumber, int:Signed32 engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber, int:Signed32 lineCreationSequenceNumber, EngineeringChangeOrderProductFormulaByProduct payload, UpdateEngineeringChangeOrderProductFormulaByProductsHeaders headers = {}) returns EngineeringChangeOrderProductFormulaByProduct|error {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaByProducts(dataAreaId='${getEncodedUri(dataAreaId)}',EngineeringChangeOrderNumber='${getEncodedUri(engineeringChangeOrderNumber)}',EngineeringChangeOrderProductLineNumber=${getEncodedUri(engineeringChangeOrderProductLineNumber)},EngineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber=${getEncodedUri(engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber)},LineCreationSequenceNumber=${getEncodedUri(lineCreationSequenceNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List EngineeringChangeOrderProductFormulaCoProducts
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of EngineeringChangeOrderProductFormulaCoProduct 
+    remote isolated function listEngineeringChangeOrderProductFormulaCoProducts(map<string|string[]> headers = {}, *ListEngineeringChangeOrderProductFormulaCoProductsQueries queries) returns EngineeringChangeOrderProductFormulaCoProductsCollection|error {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaCoProducts`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create EngineeringChangeOrderProductFormulaCoProduct
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeOrderProductFormulaCoProduct created 
+    remote isolated function createEngineeringChangeOrderProductFormulaCoProducts(EngineeringChangeOrderProductFormulaCoProduct payload, map<string|string[]> headers = {}) returns EngineeringChangeOrderProductFormulaCoProduct|error {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaCoProducts`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get EngineeringChangeOrderProductFormulaCoProduct by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - EngineeringChangeOrderProductFormulaCoProduct record 
+    remote isolated function getEngineeringChangeOrderProductFormulaCoProducts(string dataAreaId, string engineeringChangeOrderNumber, decimal engineeringChangeOrderProductLineNumber, int:Signed32 engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber, int:Signed32 lineCreationSequenceNumber, map<string|string[]> headers = {}, *GetEngineeringChangeOrderProductFormulaCoProductsQueries queries) returns EngineeringChangeOrderProductFormulaCoProduct|error {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaCoProducts(dataAreaId='${getEncodedUri(dataAreaId)}',EngineeringChangeOrderNumber='${getEncodedUri(engineeringChangeOrderNumber)}',EngineeringChangeOrderProductLineNumber=${getEncodedUri(engineeringChangeOrderProductLineNumber)},EngineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber=${getEncodedUri(engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber)},LineCreationSequenceNumber=${getEncodedUri(lineCreationSequenceNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete EngineeringChangeOrderProductFormulaCoProduct
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeOrderProductFormulaCoProduct deleted 
+    remote isolated function deleteEngineeringChangeOrderProductFormulaCoProducts(string dataAreaId, string engineeringChangeOrderNumber, decimal engineeringChangeOrderProductLineNumber, int:Signed32 engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber, int:Signed32 lineCreationSequenceNumber, DeleteEngineeringChangeOrderProductFormulaCoProductsHeaders headers = {}) returns error? {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaCoProducts(dataAreaId='${getEncodedUri(dataAreaId)}',EngineeringChangeOrderNumber='${getEncodedUri(engineeringChangeOrderNumber)}',EngineeringChangeOrderProductLineNumber=${getEncodedUri(engineeringChangeOrderProductLineNumber)},EngineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber=${getEncodedUri(engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber)},LineCreationSequenceNumber=${getEncodedUri(lineCreationSequenceNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update EngineeringChangeOrderProductFormulaCoProduct
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeOrderProductFormulaCoProduct updated 
+    remote isolated function updateEngineeringChangeOrderProductFormulaCoProducts(string dataAreaId, string engineeringChangeOrderNumber, decimal engineeringChangeOrderProductLineNumber, int:Signed32 engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber, int:Signed32 lineCreationSequenceNumber, EngineeringChangeOrderProductFormulaCoProduct payload, UpdateEngineeringChangeOrderProductFormulaCoProductsHeaders headers = {}) returns EngineeringChangeOrderProductFormulaCoProduct|error {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaCoProducts(dataAreaId='${getEncodedUri(dataAreaId)}',EngineeringChangeOrderNumber='${getEncodedUri(engineeringChangeOrderNumber)}',EngineeringChangeOrderProductLineNumber=${getEncodedUri(engineeringChangeOrderProductLineNumber)},EngineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber=${getEncodedUri(engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber)},LineCreationSequenceNumber=${getEncodedUri(lineCreationSequenceNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List EngineeringChangeOrderProductFormulaHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of EngineeringChangeOrderProductFormulaHeader 
+    remote isolated function listEngineeringChangeOrderProductFormulaHeaders(map<string|string[]> headers = {}, *ListEngineeringChangeOrderProductFormulaHeadersQueries queries) returns EngineeringChangeOrderProductFormulaHeadersCollection|error {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create EngineeringChangeOrderProductFormulaHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeOrderProductFormulaHeader created 
+    remote isolated function createEngineeringChangeOrderProductFormulaHeaders(EngineeringChangeOrderProductFormulaHeader payload, map<string|string[]> headers = {}) returns EngineeringChangeOrderProductFormulaHeader|error {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get EngineeringChangeOrderProductFormulaHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - EngineeringChangeOrderProductFormulaHeader record 
+    remote isolated function getEngineeringChangeOrderProductFormulaHeaders(string dataAreaId, string engineeringChangeOrderNumber, decimal engineeringChangeOrderProductLineNumber, int:Signed32 creationSequenceNumber, map<string|string[]> headers = {}, *GetEngineeringChangeOrderProductFormulaHeadersQueries queries) returns EngineeringChangeOrderProductFormulaHeader|error {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',EngineeringChangeOrderNumber='${getEncodedUri(engineeringChangeOrderNumber)}',EngineeringChangeOrderProductLineNumber=${getEncodedUri(engineeringChangeOrderProductLineNumber)},CreationSequenceNumber=${getEncodedUri(creationSequenceNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete EngineeringChangeOrderProductFormulaHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeOrderProductFormulaHeader deleted 
+    remote isolated function deleteEngineeringChangeOrderProductFormulaHeaders(string dataAreaId, string engineeringChangeOrderNumber, decimal engineeringChangeOrderProductLineNumber, int:Signed32 creationSequenceNumber, DeleteEngineeringChangeOrderProductFormulaHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',EngineeringChangeOrderNumber='${getEncodedUri(engineeringChangeOrderNumber)}',EngineeringChangeOrderProductLineNumber=${getEncodedUri(engineeringChangeOrderProductLineNumber)},CreationSequenceNumber=${getEncodedUri(creationSequenceNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update EngineeringChangeOrderProductFormulaHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeOrderProductFormulaHeader updated 
+    remote isolated function updateEngineeringChangeOrderProductFormulaHeaders(string dataAreaId, string engineeringChangeOrderNumber, decimal engineeringChangeOrderProductLineNumber, int:Signed32 creationSequenceNumber, EngineeringChangeOrderProductFormulaHeader payload, UpdateEngineeringChangeOrderProductFormulaHeadersHeaders headers = {}) returns EngineeringChangeOrderProductFormulaHeader|error {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',EngineeringChangeOrderNumber='${getEncodedUri(engineeringChangeOrderNumber)}',EngineeringChangeOrderProductLineNumber=${getEncodedUri(engineeringChangeOrderProductLineNumber)},CreationSequenceNumber=${getEncodedUri(creationSequenceNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List EngineeringChangeOrderProductFormulaLines
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of EngineeringChangeOrderProductFormulaLine 
+    remote isolated function listEngineeringChangeOrderProductFormulaLines(map<string|string[]> headers = {}, *ListEngineeringChangeOrderProductFormulaLinesQueries queries) returns EngineeringChangeOrderProductFormulaLinesCollection|error {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaLines`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create EngineeringChangeOrderProductFormulaLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeOrderProductFormulaLine created 
+    remote isolated function createEngineeringChangeOrderProductFormulaLines(EngineeringChangeOrderProductFormulaLine payload, map<string|string[]> headers = {}) returns EngineeringChangeOrderProductFormulaLine|error {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaLines`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get EngineeringChangeOrderProductFormulaLine by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - EngineeringChangeOrderProductFormulaLine record 
+    remote isolated function getEngineeringChangeOrderProductFormulaLines(string dataAreaId, string engineeringChangeOrderNumber, decimal engineeringChangeOrderProductLineNumber, int:Signed32 engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber, int:Signed32 lineCreationSequenceNumber, map<string|string[]> headers = {}, *GetEngineeringChangeOrderProductFormulaLinesQueries queries) returns EngineeringChangeOrderProductFormulaLine|error {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaLines(dataAreaId='${getEncodedUri(dataAreaId)}',EngineeringChangeOrderNumber='${getEncodedUri(engineeringChangeOrderNumber)}',EngineeringChangeOrderProductLineNumber=${getEncodedUri(engineeringChangeOrderProductLineNumber)},EngineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber=${getEncodedUri(engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber)},LineCreationSequenceNumber=${getEncodedUri(lineCreationSequenceNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete EngineeringChangeOrderProductFormulaLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeOrderProductFormulaLine deleted 
+    remote isolated function deleteEngineeringChangeOrderProductFormulaLines(string dataAreaId, string engineeringChangeOrderNumber, decimal engineeringChangeOrderProductLineNumber, int:Signed32 engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber, int:Signed32 lineCreationSequenceNumber, DeleteEngineeringChangeOrderProductFormulaLinesHeaders headers = {}) returns error? {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaLines(dataAreaId='${getEncodedUri(dataAreaId)}',EngineeringChangeOrderNumber='${getEncodedUri(engineeringChangeOrderNumber)}',EngineeringChangeOrderProductLineNumber=${getEncodedUri(engineeringChangeOrderProductLineNumber)},EngineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber=${getEncodedUri(engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber)},LineCreationSequenceNumber=${getEncodedUri(lineCreationSequenceNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update EngineeringChangeOrderProductFormulaLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeOrderProductFormulaLine updated 
+    remote isolated function updateEngineeringChangeOrderProductFormulaLines(string dataAreaId, string engineeringChangeOrderNumber, decimal engineeringChangeOrderProductLineNumber, int:Signed32 engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber, int:Signed32 lineCreationSequenceNumber, EngineeringChangeOrderProductFormulaLine payload, UpdateEngineeringChangeOrderProductFormulaLinesHeaders headers = {}) returns EngineeringChangeOrderProductFormulaLine|error {
+        string resourcePath = string `/EngineeringChangeOrderProductFormulaLines(dataAreaId='${getEncodedUri(dataAreaId)}',EngineeringChangeOrderNumber='${getEncodedUri(engineeringChangeOrderNumber)}',EngineeringChangeOrderProductLineNumber=${getEncodedUri(engineeringChangeOrderProductLineNumber)},EngineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber=${getEncodedUri(engineeringChangeOrderProductBillOfMaterialsHeaderCreationSequenceNumber)},LineCreationSequenceNumber=${getEncodedUri(lineCreationSequenceNumber)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -2028,6 +2369,177 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List EngineeringChangeSeverities
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of EngineeringChangeSeverity 
+    remote isolated function listEngineeringChangeSeverities(map<string|string[]> headers = {}, *ListEngineeringChangeSeveritiesQueries queries) returns EngineeringChangeSeveritiesCollection|error {
+        string resourcePath = string `/EngineeringChangeSeverities`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create EngineeringChangeSeverity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeSeverity created 
+    remote isolated function createEngineeringChangeSeverities(EngineeringChangeSeverity payload, map<string|string[]> headers = {}) returns EngineeringChangeSeverity|error {
+        string resourcePath = string `/EngineeringChangeSeverities`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get EngineeringChangeSeverity by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - EngineeringChangeSeverity record 
+    remote isolated function getEngineeringChangeSeverities(string severityName, map<string|string[]> headers = {}, *GetEngineeringChangeSeveritiesQueries queries) returns EngineeringChangeSeverity|error {
+        string resourcePath = string `/EngineeringChangeSeverities(SeverityName='${getEncodedUri(severityName)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete EngineeringChangeSeverity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeSeverity deleted 
+    remote isolated function deleteEngineeringChangeSeverities(string severityName, DeleteEngineeringChangeSeveritiesHeaders headers = {}) returns error? {
+        string resourcePath = string `/EngineeringChangeSeverities(SeverityName='${getEncodedUri(severityName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update EngineeringChangeSeverity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeSeverity updated 
+    remote isolated function updateEngineeringChangeSeverities(string severityName, EngineeringChangeSeverity payload, UpdateEngineeringChangeSeveritiesHeaders headers = {}) returns EngineeringChangeSeverity|error {
+        string resourcePath = string `/EngineeringChangeSeverities(SeverityName='${getEncodedUri(severityName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List EngineeringChangeSeverityRuleSets
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of EngineeringChangeSeverityRuleSet 
+    remote isolated function listEngineeringChangeSeverityRuleSets(map<string|string[]> headers = {}, *ListEngineeringChangeSeverityRuleSetsQueries queries) returns EngineeringChangeSeverityRuleSetsCollection|error {
+        string resourcePath = string `/EngineeringChangeSeverityRuleSets`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create EngineeringChangeSeverityRuleSet
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeSeverityRuleSet created 
+    remote isolated function createEngineeringChangeSeverityRuleSets(EngineeringChangeSeverityRuleSet payload, map<string|string[]> headers = {}) returns EngineeringChangeSeverityRuleSet|error {
+        string resourcePath = string `/EngineeringChangeSeverityRuleSets`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get EngineeringChangeSeverityRuleSet by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - EngineeringChangeSeverityRuleSet record 
+    remote isolated function getEngineeringChangeSeverityRuleSets(string dataAreaId, string severityName, decimal sequenceNumber, map<string|string[]> headers = {}, *GetEngineeringChangeSeverityRuleSetsQueries queries) returns EngineeringChangeSeverityRuleSet|error {
+        string resourcePath = string `/EngineeringChangeSeverityRuleSets(dataAreaId='${getEncodedUri(dataAreaId)}',SeverityName='${getEncodedUri(severityName)}',SequenceNumber=${getEncodedUri(sequenceNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete EngineeringChangeSeverityRuleSet
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeSeverityRuleSet deleted 
+    remote isolated function deleteEngineeringChangeSeverityRuleSets(string dataAreaId, string severityName, decimal sequenceNumber, DeleteEngineeringChangeSeverityRuleSetsHeaders headers = {}) returns error? {
+        string resourcePath = string `/EngineeringChangeSeverityRuleSets(dataAreaId='${getEncodedUri(dataAreaId)}',SeverityName='${getEncodedUri(severityName)}',SequenceNumber=${getEncodedUri(sequenceNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update EngineeringChangeSeverityRuleSet
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeSeverityRuleSet updated 
+    remote isolated function updateEngineeringChangeSeverityRuleSets(string dataAreaId, string severityName, decimal sequenceNumber, EngineeringChangeSeverityRuleSet payload, UpdateEngineeringChangeSeverityRuleSetsHeaders headers = {}) returns EngineeringChangeSeverityRuleSet|error {
+        string resourcePath = string `/EngineeringChangeSeverityRuleSets(dataAreaId='${getEncodedUri(dataAreaId)}',SeverityName='${getEncodedUri(severityName)}',SequenceNumber=${getEncodedUri(sequenceNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List EngineeringChangeSeverityRules
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of EngineeringChangeSeverityRule 
+    remote isolated function listEngineeringChangeSeverityRules(map<string|string[]> headers = {}, *ListEngineeringChangeSeverityRulesQueries queries) returns EngineeringChangeSeverityRulesCollection|error {
+        string resourcePath = string `/EngineeringChangeSeverityRules`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create EngineeringChangeSeverityRule
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeSeverityRule created 
+    remote isolated function createEngineeringChangeSeverityRules(EngineeringChangeSeverityRule payload, map<string|string[]> headers = {}) returns EngineeringChangeSeverityRule|error {
+        string resourcePath = string `/EngineeringChangeSeverityRules`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get EngineeringChangeSeverityRule by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - EngineeringChangeSeverityRule record 
+    remote isolated function getEngineeringChangeSeverityRules(string dataAreaId, string severityName, decimal ruleSetSequenceNumber, string ruleClassName, map<string|string[]> headers = {}, *GetEngineeringChangeSeverityRulesQueries queries) returns EngineeringChangeSeverityRule|error {
+        string resourcePath = string `/EngineeringChangeSeverityRules(dataAreaId='${getEncodedUri(dataAreaId)}',SeverityName='${getEncodedUri(severityName)}',RuleSetSequenceNumber=${getEncodedUri(ruleSetSequenceNumber)},RuleClassName='${getEncodedUri(ruleClassName)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete EngineeringChangeSeverityRule
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeSeverityRule deleted 
+    remote isolated function deleteEngineeringChangeSeverityRules(string dataAreaId, string severityName, decimal ruleSetSequenceNumber, string ruleClassName, DeleteEngineeringChangeSeverityRulesHeaders headers = {}) returns error? {
+        string resourcePath = string `/EngineeringChangeSeverityRules(dataAreaId='${getEncodedUri(dataAreaId)}',SeverityName='${getEncodedUri(severityName)}',RuleSetSequenceNumber=${getEncodedUri(ruleSetSequenceNumber)},RuleClassName='${getEncodedUri(ruleClassName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update EngineeringChangeSeverityRule
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringChangeSeverityRule updated 
+    remote isolated function updateEngineeringChangeSeverityRules(string dataAreaId, string severityName, decimal ruleSetSequenceNumber, string ruleClassName, EngineeringChangeSeverityRule payload, UpdateEngineeringChangeSeverityRulesHeaders headers = {}) returns EngineeringChangeSeverityRule|error {
+        string resourcePath = string `/EngineeringChangeSeverityRules(dataAreaId='${getEncodedUri(dataAreaId)}',SeverityName='${getEncodedUri(severityName)}',RuleSetSequenceNumber=${getEncodedUri(ruleSetSequenceNumber)},RuleClassName='${getEncodedUri(ruleClassName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List EngineeringOrganizations
     #
     # + headers - Headers to be sent with the request 
@@ -2078,6 +2590,234 @@ public isolated client class Client {
     # + return - EngineeringOrganization updated 
     remote isolated function updateEngineeringOrganizations(string engineeringOrganizationId, EngineeringOrganization payload, UpdateEngineeringOrganizationsHeaders headers = {}) returns EngineeringOrganization|error {
         string resourcePath = string `/EngineeringOrganizations(EngineeringOrganizationId='${getEncodedUri(engineeringOrganizationId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List EngineeringProductAttributeTranslations
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of EngineeringProductAttributeTranslation 
+    remote isolated function listEngineeringProductAttributeTranslations(map<string|string[]> headers = {}, *ListEngineeringProductAttributeTranslationsQueries queries) returns EngineeringProductAttributeTranslationsCollection|error {
+        string resourcePath = string `/EngineeringProductAttributeTranslations`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create EngineeringProductAttributeTranslation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringProductAttributeTranslation created 
+    remote isolated function createEngineeringProductAttributeTranslations(EngineeringProductAttributeTranslation payload, map<string|string[]> headers = {}) returns EngineeringProductAttributeTranslation|error {
+        string resourcePath = string `/EngineeringProductAttributeTranslations`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get EngineeringProductAttributeTranslation by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - EngineeringProductAttributeTranslation record 
+    remote isolated function getEngineeringProductAttributeTranslations(string engineeringProductAttributeName, string languageId, map<string|string[]> headers = {}, *GetEngineeringProductAttributeTranslationsQueries queries) returns EngineeringProductAttributeTranslation|error {
+        string resourcePath = string `/EngineeringProductAttributeTranslations(EngineeringProductAttributeName='${getEncodedUri(engineeringProductAttributeName)}',LanguageId='${getEncodedUri(languageId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete EngineeringProductAttributeTranslation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringProductAttributeTranslation deleted 
+    remote isolated function deleteEngineeringProductAttributeTranslations(string engineeringProductAttributeName, string languageId, DeleteEngineeringProductAttributeTranslationsHeaders headers = {}) returns error? {
+        string resourcePath = string `/EngineeringProductAttributeTranslations(EngineeringProductAttributeName='${getEncodedUri(engineeringProductAttributeName)}',LanguageId='${getEncodedUri(languageId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update EngineeringProductAttributeTranslation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringProductAttributeTranslation updated 
+    remote isolated function updateEngineeringProductAttributeTranslations(string engineeringProductAttributeName, string languageId, EngineeringProductAttributeTranslation payload, UpdateEngineeringProductAttributeTranslationsHeaders headers = {}) returns EngineeringProductAttributeTranslation|error {
+        string resourcePath = string `/EngineeringProductAttributeTranslations(EngineeringProductAttributeName='${getEncodedUri(engineeringProductAttributeName)}',LanguageId='${getEncodedUri(languageId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List EngineeringProductAttributes
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of EngineeringProductAttribute 
+    remote isolated function listEngineeringProductAttributes(map<string|string[]> headers = {}, *ListEngineeringProductAttributesQueries queries) returns EngineeringProductAttributesCollection|error {
+        string resourcePath = string `/EngineeringProductAttributes`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create EngineeringProductAttribute
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringProductAttribute created 
+    remote isolated function createEngineeringProductAttributes(EngineeringProductAttribute payload, map<string|string[]> headers = {}) returns EngineeringProductAttribute|error {
+        string resourcePath = string `/EngineeringProductAttributes`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get EngineeringProductAttribute by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - EngineeringProductAttribute record 
+    remote isolated function getEngineeringProductAttributes(string attributeName, map<string|string[]> headers = {}, *GetEngineeringProductAttributesQueries queries) returns EngineeringProductAttribute|error {
+        string resourcePath = string `/EngineeringProductAttributes(AttributeName='${getEncodedUri(attributeName)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete EngineeringProductAttribute
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringProductAttribute deleted 
+    remote isolated function deleteEngineeringProductAttributes(string attributeName, DeleteEngineeringProductAttributesHeaders headers = {}) returns error? {
+        string resourcePath = string `/EngineeringProductAttributes(AttributeName='${getEncodedUri(attributeName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update EngineeringProductAttribute
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringProductAttribute updated 
+    remote isolated function updateEngineeringProductAttributes(string attributeName, EngineeringProductAttribute payload, UpdateEngineeringProductAttributesHeaders headers = {}) returns EngineeringProductAttribute|error {
+        string resourcePath = string `/EngineeringProductAttributes(AttributeName='${getEncodedUri(attributeName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List EngineeringProductCategoryAttributeDetails
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of EngineeringProductCategoryAttributeDetails 
+    remote isolated function listEngineeringProductCategoryAttributeDetails(map<string|string[]> headers = {}, *ListEngineeringProductCategoryAttributeDetailsQueries queries) returns EngineeringProductCategoryAttributeDetailsCollection|error {
+        string resourcePath = string `/EngineeringProductCategoryAttributeDetails`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create EngineeringProductCategoryAttributeDetails
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringProductCategoryAttributeDetails created 
+    remote isolated function createEngineeringProductCategoryAttributeDetails(EngineeringProductCategoryAttributeDetails payload, map<string|string[]> headers = {}) returns EngineeringProductCategoryAttributeDetails|error {
+        string resourcePath = string `/EngineeringProductCategoryAttributeDetails`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get EngineeringProductCategoryAttributeDetails by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - EngineeringProductCategoryAttributeDetails record 
+    remote isolated function getEngineeringProductCategoryAttributeDetails(string engineeringProductCategoryName, string engineeringProductAttributeTypeName, string engineeringProductAttributeName, map<string|string[]> headers = {}, *GetEngineeringProductCategoryAttributeDetailsQueries queries) returns EngineeringProductCategoryAttributeDetails|error {
+        string resourcePath = string `/EngineeringProductCategoryAttributeDetails(EngineeringProductCategoryName='${getEncodedUri(engineeringProductCategoryName)}',EngineeringProductAttributeTypeName='${getEncodedUri(engineeringProductAttributeTypeName)}',EngineeringProductAttributeName='${getEncodedUri(engineeringProductAttributeName)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete EngineeringProductCategoryAttributeDetails
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringProductCategoryAttributeDetails deleted 
+    remote isolated function deleteEngineeringProductCategoryAttributeDetails(string engineeringProductCategoryName, string engineeringProductAttributeTypeName, string engineeringProductAttributeName, DeleteEngineeringProductCategoryAttributeDetailsHeaders headers = {}) returns error? {
+        string resourcePath = string `/EngineeringProductCategoryAttributeDetails(EngineeringProductCategoryName='${getEncodedUri(engineeringProductCategoryName)}',EngineeringProductAttributeTypeName='${getEncodedUri(engineeringProductAttributeTypeName)}',EngineeringProductAttributeName='${getEncodedUri(engineeringProductAttributeName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update EngineeringProductCategoryAttributeDetails
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringProductCategoryAttributeDetails updated 
+    remote isolated function updateEngineeringProductCategoryAttributeDetails(string engineeringProductCategoryName, string engineeringProductAttributeTypeName, string engineeringProductAttributeName, EngineeringProductCategoryAttributeDetails payload, UpdateEngineeringProductCategoryAttributeDetailsHeaders headers = {}) returns EngineeringProductCategoryAttributeDetails|error {
+        string resourcePath = string `/EngineeringProductCategoryAttributeDetails(EngineeringProductCategoryName='${getEncodedUri(engineeringProductCategoryName)}',EngineeringProductAttributeTypeName='${getEncodedUri(engineeringProductAttributeTypeName)}',EngineeringProductAttributeName='${getEncodedUri(engineeringProductAttributeName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List EngineeringProductCategoryAttributeDetailsValues
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of EngineeringProductCategoryAttributeDetailsValue 
+    remote isolated function listEngineeringProductCategoryAttributeDetailsValues(map<string|string[]> headers = {}, *ListEngineeringProductCategoryAttributeDetailsValuesQueries queries) returns EngineeringProductCategoryAttributeDetailsValuesCollection|error {
+        string resourcePath = string `/EngineeringProductCategoryAttributeDetailsValues`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create EngineeringProductCategoryAttributeDetailsValue
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringProductCategoryAttributeDetailsValue created 
+    remote isolated function createEngineeringProductCategoryAttributeDetailsValues(EngineeringProductCategoryAttributeDetailsValue payload, map<string|string[]> headers = {}) returns EngineeringProductCategoryAttributeDetailsValue|error {
+        string resourcePath = string `/EngineeringProductCategoryAttributeDetailsValues`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get EngineeringProductCategoryAttributeDetailsValue by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - EngineeringProductCategoryAttributeDetailsValue record 
+    remote isolated function getEngineeringProductCategoryAttributeDetailsValues(string engineeringProductCategoryName, string engineeringProductAttributeTypeName, string engineeringProductAttributeName, map<string|string[]> headers = {}, *GetEngineeringProductCategoryAttributeDetailsValuesQueries queries) returns EngineeringProductCategoryAttributeDetailsValue|error {
+        string resourcePath = string `/EngineeringProductCategoryAttributeDetailsValues(EngineeringProductCategoryName='${getEncodedUri(engineeringProductCategoryName)}',EngineeringProductAttributeTypeName='${getEncodedUri(engineeringProductAttributeTypeName)}',EngineeringProductAttributeName='${getEncodedUri(engineeringProductAttributeName)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete EngineeringProductCategoryAttributeDetailsValue
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringProductCategoryAttributeDetailsValue deleted 
+    remote isolated function deleteEngineeringProductCategoryAttributeDetailsValues(string engineeringProductCategoryName, string engineeringProductAttributeTypeName, string engineeringProductAttributeName, DeleteEngineeringProductCategoryAttributeDetailsValuesHeaders headers = {}) returns error? {
+        string resourcePath = string `/EngineeringProductCategoryAttributeDetailsValues(EngineeringProductCategoryName='${getEncodedUri(engineeringProductCategoryName)}',EngineeringProductAttributeTypeName='${getEncodedUri(engineeringProductAttributeTypeName)}',EngineeringProductAttributeName='${getEncodedUri(engineeringProductAttributeName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update EngineeringProductCategoryAttributeDetailsValue
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - EngineeringProductCategoryAttributeDetailsValue updated 
+    remote isolated function updateEngineeringProductCategoryAttributeDetailsValues(string engineeringProductCategoryName, string engineeringProductAttributeTypeName, string engineeringProductAttributeName, EngineeringProductCategoryAttributeDetailsValue payload, UpdateEngineeringProductCategoryAttributeDetailsValuesHeaders headers = {}) returns EngineeringProductCategoryAttributeDetailsValue|error {
+        string resourcePath = string `/EngineeringProductCategoryAttributeDetailsValues(EngineeringProductCategoryName='${getEncodedUri(engineeringProductCategoryName)}',EngineeringProductAttributeTypeName='${getEncodedUri(engineeringProductAttributeTypeName)}',EngineeringProductAttributeName='${getEncodedUri(engineeringProductAttributeName)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -2427,120 +3167,6 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
-    # List ItemSpecificBillOfMaterialsHeaders
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of ItemSpecificBillOfMaterialsHeader 
-    remote isolated function listItemSpecificBillOfMaterialsHeaders(map<string|string[]> headers = {}, *ListItemSpecificBillOfMaterialsHeadersQueries queries) returns ItemSpecificBillOfMaterialsHeadersCollection|error {
-        string resourcePath = string `/ItemSpecificBillOfMaterialsHeaders`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create ItemSpecificBillOfMaterialsHeader
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ItemSpecificBillOfMaterialsHeader created 
-    remote isolated function createItemSpecificBillOfMaterialsHeaders(ItemSpecificBillOfMaterialsHeader payload, map<string|string[]> headers = {}) returns ItemSpecificBillOfMaterialsHeader|error {
-        string resourcePath = string `/ItemSpecificBillOfMaterialsHeaders`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get ItemSpecificBillOfMaterialsHeader by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - ItemSpecificBillOfMaterialsHeader record 
-    remote isolated function getItemSpecificBillOfMaterialsHeaders(string dataAreaId, string bOMId, string manufacturedItemNumber, string productionSiteId, string productColorId, string productConfigurationId, string productSizeId, string productStyleId, map<string|string[]> headers = {}, *GetItemSpecificBillOfMaterialsHeadersQueries queries) returns ItemSpecificBillOfMaterialsHeader|error {
-        string resourcePath = string `/ItemSpecificBillOfMaterialsHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}',ManufacturedItemNumber='${getEncodedUri(manufacturedItemNumber)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete ItemSpecificBillOfMaterialsHeader
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ItemSpecificBillOfMaterialsHeader deleted 
-    remote isolated function deleteItemSpecificBillOfMaterialsHeaders(string dataAreaId, string bOMId, string manufacturedItemNumber, string productionSiteId, string productColorId, string productConfigurationId, string productSizeId, string productStyleId, DeleteItemSpecificBillOfMaterialsHeadersHeaders headers = {}) returns error? {
-        string resourcePath = string `/ItemSpecificBillOfMaterialsHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}',ManufacturedItemNumber='${getEncodedUri(manufacturedItemNumber)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update ItemSpecificBillOfMaterialsHeader
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ItemSpecificBillOfMaterialsHeader updated 
-    remote isolated function updateItemSpecificBillOfMaterialsHeaders(string dataAreaId, string bOMId, string manufacturedItemNumber, string productionSiteId, string productColorId, string productConfigurationId, string productSizeId, string productStyleId, ItemSpecificBillOfMaterialsHeader payload, UpdateItemSpecificBillOfMaterialsHeadersHeaders headers = {}) returns ItemSpecificBillOfMaterialsHeader|error {
-        string resourcePath = string `/ItemSpecificBillOfMaterialsHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}',ManufacturedItemNumber='${getEncodedUri(manufacturedItemNumber)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List ItemSpecificBillOfMaterialsHeadersV3
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of ItemSpecificBillOfMaterialsHeaderV3 
-    remote isolated function listItemSpecificBillOfMaterialsHeadersV3(map<string|string[]> headers = {}, *ListItemSpecificBillOfMaterialsHeadersV3Queries queries) returns ItemSpecificBillOfMaterialsHeadersV3Collection|error {
-        string resourcePath = string `/ItemSpecificBillOfMaterialsHeadersV3`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create ItemSpecificBillOfMaterialsHeaderV3
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ItemSpecificBillOfMaterialsHeaderV3 created 
-    remote isolated function createItemSpecificBillOfMaterialsHeadersV3(ItemSpecificBillOfMaterialsHeaderV3 payload, map<string|string[]> headers = {}) returns ItemSpecificBillOfMaterialsHeaderV3|error {
-        string resourcePath = string `/ItemSpecificBillOfMaterialsHeadersV3`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get ItemSpecificBillOfMaterialsHeaderV3 by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - ItemSpecificBillOfMaterialsHeaderV3 record 
-    remote isolated function getItemSpecificBillOfMaterialsHeadersV3(string dataAreaId, string bOMId, string manufacturedItemNumber, string productionSiteId, string productColorId, string productConfigurationId, string productSizeId, string productStyleId, string productVersionId, string isActive, decimal fromQuantity, string validFromDate, map<string|string[]> headers = {}, *GetItemSpecificBillOfMaterialsHeadersV3Queries queries) returns ItemSpecificBillOfMaterialsHeaderV3|error {
-        string resourcePath = string `/ItemSpecificBillOfMaterialsHeadersV3(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}',ManufacturedItemNumber='${getEncodedUri(manufacturedItemNumber)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive='${getEncodedUri(isActive)}',FromQuantity=${getEncodedUri(fromQuantity)},ValidFromDate=${getEncodedUri(validFromDate)})`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete ItemSpecificBillOfMaterialsHeaderV3
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ItemSpecificBillOfMaterialsHeaderV3 deleted 
-    remote isolated function deleteItemSpecificBillOfMaterialsHeadersV3(string dataAreaId, string bOMId, string manufacturedItemNumber, string productionSiteId, string productColorId, string productConfigurationId, string productSizeId, string productStyleId, string productVersionId, string isActive, decimal fromQuantity, string validFromDate, DeleteItemSpecificBillOfMaterialsHeadersV3Headers headers = {}) returns error? {
-        string resourcePath = string `/ItemSpecificBillOfMaterialsHeadersV3(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}',ManufacturedItemNumber='${getEncodedUri(manufacturedItemNumber)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive='${getEncodedUri(isActive)}',FromQuantity=${getEncodedUri(fromQuantity)},ValidFromDate=${getEncodedUri(validFromDate)})`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update ItemSpecificBillOfMaterialsHeaderV3
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ItemSpecificBillOfMaterialsHeaderV3 updated 
-    remote isolated function updateItemSpecificBillOfMaterialsHeadersV3(string dataAreaId, string bOMId, string manufacturedItemNumber, string productionSiteId, string productColorId, string productConfigurationId, string productSizeId, string productStyleId, string productVersionId, string isActive, decimal fromQuantity, string validFromDate, ItemSpecificBillOfMaterialsHeaderV3 payload, UpdateItemSpecificBillOfMaterialsHeadersV3Headers headers = {}) returns ItemSpecificBillOfMaterialsHeaderV3|error {
-        string resourcePath = string `/ItemSpecificBillOfMaterialsHeadersV3(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}',ManufacturedItemNumber='${getEncodedUri(manufacturedItemNumber)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive='${getEncodedUri(isActive)}',FromQuantity=${getEncodedUri(fromQuantity)},ValidFromDate=${getEncodedUri(validFromDate)})`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
     # List MaterialDisposalCodes
     #
     # + headers - Headers to be sent with the request 
@@ -2591,462 +3217,6 @@ public isolated client class Client {
     # + return - MaterialDisposalCode updated 
     remote isolated function updateMaterialDisposalCodes(string materialDisposalCode, MaterialDisposalCode payload, UpdateMaterialDisposalCodesHeaders headers = {}) returns MaterialDisposalCode|error {
         string resourcePath = string `/MaterialDisposalCodes(MaterialDisposalCode='${getEncodedUri(materialDisposalCode)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List ProductLifecycleStateProcesses
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of ProductLifecycleStateProcess 
-    remote isolated function listProductLifecycleStateProcesses(map<string|string[]> headers = {}, *ListProductLifecycleStateProcessesQueries queries) returns ProductLifecycleStateProcessesCollection|error {
-        string resourcePath = string `/ProductLifecycleStateProcesses`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create ProductLifecycleStateProcess
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductLifecycleStateProcess created 
-    remote isolated function createProductLifecycleStateProcesses(ProductLifecycleStateProcess payload, map<string|string[]> headers = {}) returns ProductLifecycleStateProcess|error {
-        string resourcePath = string `/ProductLifecycleStateProcesses`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get ProductLifecycleStateProcess by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - ProductLifecycleStateProcess record 
-    remote isolated function getProductLifecycleStateProcesses(string productLifecycleStateId, string processName, map<string|string[]> headers = {}, *GetProductLifecycleStateProcessesQueries queries) returns ProductLifecycleStateProcess|error {
-        string resourcePath = string `/ProductLifecycleStateProcesses(ProductLifecycleStateId='${getEncodedUri(productLifecycleStateId)}',ProcessName='${getEncodedUri(processName)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete ProductLifecycleStateProcess
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductLifecycleStateProcess deleted 
-    remote isolated function deleteProductLifecycleStateProcesses(string productLifecycleStateId, string processName, DeleteProductLifecycleStateProcessesHeaders headers = {}) returns error? {
-        string resourcePath = string `/ProductLifecycleStateProcesses(ProductLifecycleStateId='${getEncodedUri(productLifecycleStateId)}',ProcessName='${getEncodedUri(processName)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update ProductLifecycleStateProcess
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductLifecycleStateProcess updated 
-    remote isolated function updateProductLifecycleStateProcesses(string productLifecycleStateId, string processName, ProductLifecycleStateProcess payload, UpdateProductLifecycleStateProcessesHeaders headers = {}) returns ProductLifecycleStateProcess|error {
-        string resourcePath = string `/ProductLifecycleStateProcesses(ProductLifecycleStateId='${getEncodedUri(productLifecycleStateId)}',ProcessName='${getEncodedUri(processName)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List ProductOwnerWorkers
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of ProductOwnerWorker 
-    remote isolated function listProductOwnerWorkers(map<string|string[]> headers = {}, *ListProductOwnerWorkersQueries queries) returns ProductOwnerWorkersCollection|error {
-        string resourcePath = string `/ProductOwnerWorkers`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create ProductOwnerWorker
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductOwnerWorker created 
-    remote isolated function createProductOwnerWorkers(ProductOwnerWorker payload, map<string|string[]> headers = {}) returns ProductOwnerWorker|error {
-        string resourcePath = string `/ProductOwnerWorkers`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get ProductOwnerWorker by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - ProductOwnerWorker record 
-    remote isolated function getProductOwnerWorkers(string productOwnerId, string assignedPersonnelNumber, map<string|string[]> headers = {}, *GetProductOwnerWorkersQueries queries) returns ProductOwnerWorker|error {
-        string resourcePath = string `/ProductOwnerWorkers(ProductOwnerId='${getEncodedUri(productOwnerId)}',AssignedPersonnelNumber='${getEncodedUri(assignedPersonnelNumber)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete ProductOwnerWorker
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductOwnerWorker deleted 
-    remote isolated function deleteProductOwnerWorkers(string productOwnerId, string assignedPersonnelNumber, DeleteProductOwnerWorkersHeaders headers = {}) returns error? {
-        string resourcePath = string `/ProductOwnerWorkers(ProductOwnerId='${getEncodedUri(productOwnerId)}',AssignedPersonnelNumber='${getEncodedUri(assignedPersonnelNumber)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update ProductOwnerWorker
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductOwnerWorker updated 
-    remote isolated function updateProductOwnerWorkers(string productOwnerId, string assignedPersonnelNumber, ProductOwnerWorker payload, UpdateProductOwnerWorkersHeaders headers = {}) returns ProductOwnerWorker|error {
-        string resourcePath = string `/ProductOwnerWorkers(ProductOwnerId='${getEncodedUri(productOwnerId)}',AssignedPersonnelNumber='${getEncodedUri(assignedPersonnelNumber)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List ProductOwners
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of ProductOwner 
-    remote isolated function listProductOwners(map<string|string[]> headers = {}, *ListProductOwnersQueries queries) returns ProductOwnersCollection|error {
-        string resourcePath = string `/ProductOwners`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create ProductOwner
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductOwner created 
-    remote isolated function createProductOwners(ProductOwner payload, map<string|string[]> headers = {}) returns ProductOwner|error {
-        string resourcePath = string `/ProductOwners`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get ProductOwner by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - ProductOwner record 
-    remote isolated function getProductOwners(string productOwnerId, map<string|string[]> headers = {}, *GetProductOwnersQueries queries) returns ProductOwner|error {
-        string resourcePath = string `/ProductOwners(ProductOwnerId='${getEncodedUri(productOwnerId)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete ProductOwner
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductOwner deleted 
-    remote isolated function deleteProductOwners(string productOwnerId, DeleteProductOwnersHeaders headers = {}) returns error? {
-        string resourcePath = string `/ProductOwners(ProductOwnerId='${getEncodedUri(productOwnerId)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update ProductOwner
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductOwner updated 
-    remote isolated function updateProductOwners(string productOwnerId, ProductOwner payload, UpdateProductOwnersHeaders headers = {}) returns ProductOwner|error {
-        string resourcePath = string `/ProductOwners(ProductOwnerId='${getEncodedUri(productOwnerId)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List ProductReadinessPolicies
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of ProductReadinessPolicy 
-    remote isolated function listProductReadinessPolicies(map<string|string[]> headers = {}, *ListProductReadinessPoliciesQueries queries) returns ProductReadinessPoliciesCollection|error {
-        string resourcePath = string `/ProductReadinessPolicies`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create ProductReadinessPolicy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductReadinessPolicy created 
-    remote isolated function createProductReadinessPolicies(ProductReadinessPolicy payload, map<string|string[]> headers = {}) returns ProductReadinessPolicy|error {
-        string resourcePath = string `/ProductReadinessPolicies`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get ProductReadinessPolicy by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - ProductReadinessPolicy record 
-    remote isolated function getProductReadinessPolicies(string policyName, map<string|string[]> headers = {}, *GetProductReadinessPoliciesQueries queries) returns ProductReadinessPolicy|error {
-        string resourcePath = string `/ProductReadinessPolicies(PolicyName='${getEncodedUri(policyName)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete ProductReadinessPolicy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductReadinessPolicy deleted 
-    remote isolated function deleteProductReadinessPolicies(string policyName, DeleteProductReadinessPoliciesHeaders headers = {}) returns error? {
-        string resourcePath = string `/ProductReadinessPolicies(PolicyName='${getEncodedUri(policyName)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update ProductReadinessPolicy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductReadinessPolicy updated 
-    remote isolated function updateProductReadinessPolicies(string policyName, ProductReadinessPolicy payload, UpdateProductReadinessPoliciesHeaders headers = {}) returns ProductReadinessPolicy|error {
-        string resourcePath = string `/ProductReadinessPolicies(PolicyName='${getEncodedUri(policyName)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List ProductReadinessPolicyChecks
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of ProductReadinessPolicyCheck 
-    remote isolated function listProductReadinessPolicyChecks(map<string|string[]> headers = {}, *ListProductReadinessPolicyChecksQueries queries) returns ProductReadinessPolicyChecksCollection|error {
-        string resourcePath = string `/ProductReadinessPolicyChecks`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create ProductReadinessPolicyCheck
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductReadinessPolicyCheck created 
-    remote isolated function createProductReadinessPolicyChecks(ProductReadinessPolicyCheck payload, map<string|string[]> headers = {}) returns ProductReadinessPolicyCheck|error {
-        string resourcePath = string `/ProductReadinessPolicyChecks`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get ProductReadinessPolicyCheck by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - ProductReadinessPolicyCheck record 
-    remote isolated function getProductReadinessPolicyChecks(string dataAreaId, string productReadinessPolicyName, string checkName, string legalEntityId, string processArea, map<string|string[]> headers = {}, *GetProductReadinessPolicyChecksQueries queries) returns ProductReadinessPolicyCheck|error {
-        string resourcePath = string `/ProductReadinessPolicyChecks(dataAreaId='${getEncodedUri(dataAreaId)}',ProductReadinessPolicyName='${getEncodedUri(productReadinessPolicyName)}',CheckName='${getEncodedUri(checkName)}',LegalEntityId='${getEncodedUri(legalEntityId)}',ProcessArea='${getEncodedUri(processArea)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete ProductReadinessPolicyCheck
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductReadinessPolicyCheck deleted 
-    remote isolated function deleteProductReadinessPolicyChecks(string dataAreaId, string productReadinessPolicyName, string checkName, string legalEntityId, string processArea, DeleteProductReadinessPolicyChecksHeaders headers = {}) returns error? {
-        string resourcePath = string `/ProductReadinessPolicyChecks(dataAreaId='${getEncodedUri(dataAreaId)}',ProductReadinessPolicyName='${getEncodedUri(productReadinessPolicyName)}',CheckName='${getEncodedUri(checkName)}',LegalEntityId='${getEncodedUri(legalEntityId)}',ProcessArea='${getEncodedUri(processArea)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update ProductReadinessPolicyCheck
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductReadinessPolicyCheck updated 
-    remote isolated function updateProductReadinessPolicyChecks(string dataAreaId, string productReadinessPolicyName, string checkName, string legalEntityId, string processArea, ProductReadinessPolicyCheck payload, UpdateProductReadinessPolicyChecksHeaders headers = {}) returns ProductReadinessPolicyCheck|error {
-        string resourcePath = string `/ProductReadinessPolicyChecks(dataAreaId='${getEncodedUri(dataAreaId)}',ProductReadinessPolicyName='${getEncodedUri(productReadinessPolicyName)}',CheckName='${getEncodedUri(checkName)}',LegalEntityId='${getEncodedUri(legalEntityId)}',ProcessArea='${getEncodedUri(processArea)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List ProductReleasePolicies
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of ProductReleasePolicy 
-    remote isolated function listProductReleasePolicies(map<string|string[]> headers = {}, *ListProductReleasePoliciesQueries queries) returns ProductReleasePoliciesCollection|error {
-        string resourcePath = string `/ProductReleasePolicies`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create ProductReleasePolicy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductReleasePolicy created 
-    remote isolated function createProductReleasePolicies(ProductReleasePolicy payload, map<string|string[]> headers = {}) returns ProductReleasePolicy|error {
-        string resourcePath = string `/ProductReleasePolicies`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get ProductReleasePolicy by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - ProductReleasePolicy record 
-    remote isolated function getProductReleasePolicies(string policyName, map<string|string[]> headers = {}, *GetProductReleasePoliciesQueries queries) returns ProductReleasePolicy|error {
-        string resourcePath = string `/ProductReleasePolicies(PolicyName='${getEncodedUri(policyName)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete ProductReleasePolicy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductReleasePolicy deleted 
-    remote isolated function deleteProductReleasePolicies(string policyName, DeleteProductReleasePoliciesHeaders headers = {}) returns error? {
-        string resourcePath = string `/ProductReleasePolicies(PolicyName='${getEncodedUri(policyName)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update ProductReleasePolicy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductReleasePolicy updated 
-    remote isolated function updateProductReleasePolicies(string policyName, ProductReleasePolicy payload, UpdateProductReleasePoliciesHeaders headers = {}) returns ProductReleasePolicy|error {
-        string resourcePath = string `/ProductReleasePolicies(PolicyName='${getEncodedUri(policyName)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List ProductReleasePolicyLegalEntityRules
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of ProductReleasePolicyLegalEntityRule 
-    remote isolated function listProductReleasePolicyLegalEntityRules(map<string|string[]> headers = {}, *ListProductReleasePolicyLegalEntityRulesQueries queries) returns ProductReleasePolicyLegalEntityRulesCollection|error {
-        string resourcePath = string `/ProductReleasePolicyLegalEntityRules`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create ProductReleasePolicyLegalEntityRule
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductReleasePolicyLegalEntityRule created 
-    remote isolated function createProductReleasePolicyLegalEntityRules(ProductReleasePolicyLegalEntityRule payload, map<string|string[]> headers = {}) returns ProductReleasePolicyLegalEntityRule|error {
-        string resourcePath = string `/ProductReleasePolicyLegalEntityRules`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get ProductReleasePolicyLegalEntityRule by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - ProductReleasePolicyLegalEntityRule record 
-    remote isolated function getProductReleasePolicyLegalEntityRules(string legalEntityId, string productReleasePolicyName, map<string|string[]> headers = {}, *GetProductReleasePolicyLegalEntityRulesQueries queries) returns ProductReleasePolicyLegalEntityRule|error {
-        string resourcePath = string `/ProductReleasePolicyLegalEntityRules(LegalEntityId='${getEncodedUri(legalEntityId)}',ProductReleasePolicyName='${getEncodedUri(productReleasePolicyName)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete ProductReleasePolicyLegalEntityRule
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductReleasePolicyLegalEntityRule deleted 
-    remote isolated function deleteProductReleasePolicyLegalEntityRules(string legalEntityId, string productReleasePolicyName, DeleteProductReleasePolicyLegalEntityRulesHeaders headers = {}) returns error? {
-        string resourcePath = string `/ProductReleasePolicyLegalEntityRules(LegalEntityId='${getEncodedUri(legalEntityId)}',ProductReleasePolicyName='${getEncodedUri(productReleasePolicyName)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update ProductReleasePolicyLegalEntityRule
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductReleasePolicyLegalEntityRule updated 
-    remote isolated function updateProductReleasePolicyLegalEntityRules(string legalEntityId, string productReleasePolicyName, ProductReleasePolicyLegalEntityRule payload, UpdateProductReleasePolicyLegalEntityRulesHeaders headers = {}) returns ProductReleasePolicyLegalEntityRule|error {
-        string resourcePath = string `/ProductReleasePolicyLegalEntityRules(LegalEntityId='${getEncodedUri(legalEntityId)}',ProductReleasePolicyName='${getEncodedUri(productReleasePolicyName)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List ProductReleaseProductDetails
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of ProductReleaseProductDetail 
-    remote isolated function listProductReleaseProductDetails(map<string|string[]> headers = {}, *ListProductReleaseProductDetailsQueries queries) returns ProductReleaseProductDetailsCollection|error {
-        string resourcePath = string `/ProductReleaseProductDetails`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create ProductReleaseProductDetail
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductReleaseProductDetail created 
-    remote isolated function createProductReleaseProductDetails(ProductReleaseProductDetail payload, map<string|string[]> headers = {}) returns ProductReleaseProductDetail|error {
-        string resourcePath = string `/ProductReleaseProductDetails`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get ProductReleaseProductDetail by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - ProductReleaseProductDetail record 
-    remote isolated function getProductReleaseProductDetails(string dataAreaId, string productNumber, string productVersionId, map<string|string[]> headers = {}, *GetProductReleaseProductDetailsQueries queries) returns ProductReleaseProductDetail|error {
-        string resourcePath = string `/ProductReleaseProductDetails(dataAreaId='${getEncodedUri(dataAreaId)}',ProductNumber='${getEncodedUri(productNumber)}',ProductVersionId='${getEncodedUri(productVersionId)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete ProductReleaseProductDetail
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductReleaseProductDetail deleted 
-    remote isolated function deleteProductReleaseProductDetails(string dataAreaId, string productNumber, string productVersionId, DeleteProductReleaseProductDetailsHeaders headers = {}) returns error? {
-        string resourcePath = string `/ProductReleaseProductDetails(dataAreaId='${getEncodedUri(dataAreaId)}',ProductNumber='${getEncodedUri(productNumber)}',ProductVersionId='${getEncodedUri(productVersionId)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update ProductReleaseProductDetail
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ProductReleaseProductDetail updated 
-    remote isolated function updateProductReleaseProductDetails(string dataAreaId, string productNumber, string productVersionId, ProductReleaseProductDetail payload, UpdateProductReleaseProductDetailsHeaders headers = {}) returns ProductReleaseProductDetail|error {
-        string resourcePath = string `/ProductReleaseProductDetails(dataAreaId='${getEncodedUri(dataAreaId)}',ProductNumber='${getEncodedUri(productNumber)}',ProductVersionId='${getEncodedUri(productVersionId)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -3446,177 +3616,6 @@ public isolated client class Client {
     # + return - ReleasedEngineeringProductVersion updated 
     remote isolated function updateReleasedEngineeringProductVersions(string dataAreaId, string engineeringProductNumber, string engineeringProductVersionId, ReleasedEngineeringProductVersion payload, UpdateReleasedEngineeringProductVersionsHeaders headers = {}) returns ReleasedEngineeringProductVersion|error {
         string resourcePath = string `/ReleasedEngineeringProductVersions(dataAreaId='${getEncodedUri(dataAreaId)}',EngineeringProductNumber='${getEncodedUri(engineeringProductNumber)}',EngineeringProductVersionId='${getEncodedUri(engineeringProductVersionId)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List ReleasedProductReadinessCheckAppliedActions
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of ReleasedProductReadinessCheckAppliedAction 
-    remote isolated function listReleasedProductReadinessCheckAppliedActions(map<string|string[]> headers = {}, *ListReleasedProductReadinessCheckAppliedActionsQueries queries) returns ReleasedProductReadinessCheckAppliedActionsCollection|error {
-        string resourcePath = string `/ReleasedProductReadinessCheckAppliedActions`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create ReleasedProductReadinessCheckAppliedAction
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ReleasedProductReadinessCheckAppliedAction created 
-    remote isolated function createReleasedProductReadinessCheckAppliedActions(ReleasedProductReadinessCheckAppliedAction payload, map<string|string[]> headers = {}) returns ReleasedProductReadinessCheckAppliedAction|error {
-        string resourcePath = string `/ReleasedProductReadinessCheckAppliedActions`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get ReleasedProductReadinessCheckAppliedAction by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - ReleasedProductReadinessCheckAppliedAction record 
-    remote isolated function getReleasedProductReadinessCheckAppliedActions(string dataAreaId, int releasedProductReadinessCheckAppliedActionRecordId, map<string|string[]> headers = {}, *GetReleasedProductReadinessCheckAppliedActionsQueries queries) returns ReleasedProductReadinessCheckAppliedAction|error {
-        string resourcePath = string `/ReleasedProductReadinessCheckAppliedActions(dataAreaId='${getEncodedUri(dataAreaId)}',ReleasedProductReadinessCheckAppliedActionRecordId=${getEncodedUri(releasedProductReadinessCheckAppliedActionRecordId)})`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete ReleasedProductReadinessCheckAppliedAction
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ReleasedProductReadinessCheckAppliedAction deleted 
-    remote isolated function deleteReleasedProductReadinessCheckAppliedActions(string dataAreaId, int releasedProductReadinessCheckAppliedActionRecordId, DeleteReleasedProductReadinessCheckAppliedActionsHeaders headers = {}) returns error? {
-        string resourcePath = string `/ReleasedProductReadinessCheckAppliedActions(dataAreaId='${getEncodedUri(dataAreaId)}',ReleasedProductReadinessCheckAppliedActionRecordId=${getEncodedUri(releasedProductReadinessCheckAppliedActionRecordId)})`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update ReleasedProductReadinessCheckAppliedAction
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ReleasedProductReadinessCheckAppliedAction updated 
-    remote isolated function updateReleasedProductReadinessCheckAppliedActions(string dataAreaId, int releasedProductReadinessCheckAppliedActionRecordId, ReleasedProductReadinessCheckAppliedAction payload, UpdateReleasedProductReadinessCheckAppliedActionsHeaders headers = {}) returns ReleasedProductReadinessCheckAppliedAction|error {
-        string resourcePath = string `/ReleasedProductReadinessCheckAppliedActions(dataAreaId='${getEncodedUri(dataAreaId)}',ReleasedProductReadinessCheckAppliedActionRecordId=${getEncodedUri(releasedProductReadinessCheckAppliedActionRecordId)})`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List ReleasedProductReadinessChecks
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of ReleasedProductReadinessCheck 
-    remote isolated function listReleasedProductReadinessChecks(map<string|string[]> headers = {}, *ListReleasedProductReadinessChecksQueries queries) returns ReleasedProductReadinessChecksCollection|error {
-        string resourcePath = string `/ReleasedProductReadinessChecks`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create ReleasedProductReadinessCheck
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ReleasedProductReadinessCheck created 
-    remote isolated function createReleasedProductReadinessChecks(ReleasedProductReadinessCheck payload, map<string|string[]> headers = {}) returns ReleasedProductReadinessCheck|error {
-        string resourcePath = string `/ReleasedProductReadinessChecks`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get ReleasedProductReadinessCheck by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - ReleasedProductReadinessCheck record 
-    remote isolated function getReleasedProductReadinessChecks(string dataAreaId, int productReadinessCheckRecordId, map<string|string[]> headers = {}, *GetReleasedProductReadinessChecksQueries queries) returns ReleasedProductReadinessCheck|error {
-        string resourcePath = string `/ReleasedProductReadinessChecks(dataAreaId='${getEncodedUri(dataAreaId)}',ProductReadinessCheckRecordId=${getEncodedUri(productReadinessCheckRecordId)})`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete ReleasedProductReadinessCheck
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ReleasedProductReadinessCheck deleted 
-    remote isolated function deleteReleasedProductReadinessChecks(string dataAreaId, int productReadinessCheckRecordId, DeleteReleasedProductReadinessChecksHeaders headers = {}) returns error? {
-        string resourcePath = string `/ReleasedProductReadinessChecks(dataAreaId='${getEncodedUri(dataAreaId)}',ProductReadinessCheckRecordId=${getEncodedUri(productReadinessCheckRecordId)})`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update ReleasedProductReadinessCheck
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ReleasedProductReadinessCheck updated 
-    remote isolated function updateReleasedProductReadinessChecks(string dataAreaId, int productReadinessCheckRecordId, ReleasedProductReadinessCheck payload, UpdateReleasedProductReadinessChecksHeaders headers = {}) returns ReleasedProductReadinessCheck|error {
-        string resourcePath = string `/ReleasedProductReadinessChecks(dataAreaId='${getEncodedUri(dataAreaId)}',ProductReadinessCheckRecordId=${getEncodedUri(productReadinessCheckRecordId)})`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List RouteHeaders
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of RouteHeader 
-    remote isolated function listRouteHeaders(map<string|string[]> headers = {}, *ListRouteHeadersQueries queries) returns RouteHeadersCollection|error {
-        string resourcePath = string `/RouteHeaders`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create RouteHeader
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - RouteHeader created 
-    remote isolated function createRouteHeaders(RouteHeader payload, map<string|string[]> headers = {}) returns RouteHeader|error {
-        string resourcePath = string `/RouteHeaders`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get RouteHeader by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - RouteHeader record 
-    remote isolated function getRouteHeaders(string dataAreaId, string routeId, map<string|string[]> headers = {}, *GetRouteHeadersQueries queries) returns RouteHeader|error {
-        string resourcePath = string `/RouteHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',RouteId='${getEncodedUri(routeId)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete RouteHeader
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - RouteHeader deleted 
-    remote isolated function deleteRouteHeaders(string dataAreaId, string routeId, DeleteRouteHeadersHeaders headers = {}) returns error? {
-        string resourcePath = string `/RouteHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',RouteId='${getEncodedUri(routeId)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update RouteHeader
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - RouteHeader updated 
-    remote isolated function updateRouteHeaders(string dataAreaId, string routeId, RouteHeader payload, UpdateRouteHeadersHeaders headers = {}) returns RouteHeader|error {
-        string resourcePath = string `/RouteHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',RouteId='${getEncodedUri(routeId)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);

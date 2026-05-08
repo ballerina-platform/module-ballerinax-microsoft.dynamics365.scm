@@ -19,22 +19,17 @@
 
 import ballerina/http;
 
-public type VendorPaymentJournalFee record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string SourceJournalBatchNumber?;
-    decimal SourceJournalLineNumber?;
-    string PaymentFeeId?;
-    string SalesTaxGroup?;
-    string CurrencyCode?;
-    string ItemSalesTaxGroup?;
-    decimal Amount?;
-    string ItemWithholdingTaxGroupCode?;
-    VendPaymFeeTaxDirection_JP SalesTaxDirection?;
-    NoYes IsPaymFeeCoveredByVendor?;
-    LedgerJournalACType AccountType?;
-    string AccountDisplayValue?;
-    string DefaultDimensionDisplayValue?;
+public type Timezone "GMTMINUS1200INTERNATIONALDATELINEWEST"|"GMTMINUS1100COORDINATEDUNIVERSALTIME"|"GMTMINUS1100MIDWAYISLAND_SAMOA"|"GMTMINUS1000HAWAII"|"GMTMINUS0900ALASKA"|"GMTMINUS0800PACIFICTIME"|"GMTMINUS0800TIJUANA_BAJACALIFORNIA"|"GMTMINUS0700ARIZONA"|"GMTMINUS0700MOUNTAINTIME"|"GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN"|"GMTMINUS0600CENTRALAMERICA"|"GMTMINUS0600CENTRALTIME"|"GMTMINUS0600GUADALAJARA_MEXICOCITY"|"GMTMINUS0600SASKATCHEWAN"|"GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO"|"GMTMINUS0500EASTERNTIME"|"GMTMINUS0500INDIANA"|"GMTMINUS0500CHETUMAL"|"GMTMINUS0400ASUNCION"|"GMTMINUS0400ATLANTICTIME"|"GMTMINUS0400LAPAZ"|"GMTMINUS0400MANAUS"|"GMTMINUS0300SANTIAGO"|"GMTMINUS0430CARACAS"|"GMTMINUS0330NEWFOUNDLAND"|"GMTMINUS0300_SALVADOR"|"GMTMINUS0300BRASILIA"|"GMTMINUS0300BUENOSAIRES"|"GMTMINUS0300BUENOSAIRES_GEORGETOWN"|"GMTMINUS0300GREENLAND"|"GMTMINUS0300MONTEVIDEO"|"GMTMINUS0200MIDATLANTIC"|"GMTMINUS0100AZORES"|"GMTMINUS0100CAPEVERDIS"|"GMT_CASABLANCA"|"GMT_CASABLANCA_MONTROVIA_REYKJAVIK"|"GMT_COORDINATEDUNIVERSALTIME"|"GMT_DUBLIN_EDINBURGH_LISBON_LONDON"|"GMT_PLUS0300KALININGRAD_MINSK"|"GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME"|"GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST"|"GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID"|"GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB"|"GMTPLUS0100TRIPOLI"|"GMTPLUS0100WESTCENTRALAFRICA"|"GMTPLUS0200_DAMASCUS"|"GMTPLUS0200AMMAN"|"GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL"|"GMTPLUS0200BEIRUT"|"GMTPLUS0200MINSK"|"GMTPLUS0200CAIRO"|"GMTPLUS0200HARARE_PRETORIA"|"GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS"|"GMTPLUS0300ISTANBUL"|"GMTPLUS0200JERUSALEM"|"GMTPLUS0200WINDHOEK"|"GMTPLUS0300BAGHDAD"|"GMTPLUS0300KUWAIT_RIYADH"|"GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD"|"GMTPLUS0300NAIROBI"|"GMTPLUS0300TBILISI"|"GMTPLUS0330TEHRAN"|"GMTPLUS0400ABUDHABI_MUSCAT"|"GMTPLUS0400BAKU"|"GMTPLUS0400IZHEVSK_SAMARA"|"GMTPLUS0400CAUCASUSSTANDARDTIME"|"GMTPLUS0400PORTLOUIS"|"GMTPLUS0400YEREVAN"|"GMTPLUS0430KABUL"|"GMTPLUS0500EKATERINBURG"|"GMTPLUS0500ISLAMABAD_KARACHI"|"GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT"|"GMTPLUS0530CHENNAI_KOLKATA_MUMBAI"|"GMTPLUS0530SRIJAYAWARDENEPURA"|"GMTPLUS0545KATHMANDU"|"GMTPLUS0600ALMATY_NOVOSIBIRSK"|"GMTPLUS0600ASTANA_DHAKA"|"GMTPLUS0600DHAKA"|"GMTPLUS0600MAGADAN"|"GMTPLUS0630_YANGON"|"GMTPLUS0700_BANGKOK_HANOI_JAKARTA"|"GMTPLUS0700KRASNOYARSK"|"GMTPLUS0800_ULAANBAATAR"|"GMTPLUS0800BEIJING_CHONGQING_HONGKONG"|"GMTPLUS0800IRKUTSK_ULAANBATAAR"|"GMTPLUS0800KUALALUMPUR_SINGAPORE"|"GMTPLUS0800PERTH"|"GMTPLUS0800TAIPEI"|"GMTPLUS0900OSAKA_SAPPORO_TOKYO"|"GMTPLUS0900SEOUL"|"GMTPLUS0900YAKUTSK"|"GMTPLUS0930ADELAIDE"|"GMTPLUS0930DARWIN"|"GMTPLUS1000BRISBANE"|"GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY"|"GMTPLUS1000GUAM_PORTMORESBY"|"GMTPLUS1000HOBART"|"GMTPLUS1000VLADIVOSTOK"|"GMTPLUS1100CHOKURDAKH"|"GMTPLUS1100MAGADAN_SOLOMONIS"|"GMTPLUS1200ANADYR_PETRO_KAMCHATSKY"|"GMTPLUS1200AUCKLAND_WELLINGTON"|"GMTPLUS1200COORDINATEDUNIVERSALTIME"|"GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS"|"GMTPLUS1300NUKU_ALOFA";
+
+# Represents the Headers record for the operation: deleteVendPriceAdmTrans
+public type DeleteVendPriceAdmTransHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type VendorsV2Collection record {
+    *ODataCollection;
+    VendorV2[] value?;
 };
 
 # Represents the Headers record for the operation: updateVendorInvoiceDeclarations
@@ -70,7 +65,7 @@ public type VendorInvoiceDeclarationsCollection record {
     VendorInvoiceDeclaration[] value?;
 };
 
-public type MarkupCategory "Fixed"|"Pcs"|"Percent"|"InterCompanyPercent"|"External"|"Proportional"|"UnitSpecific"|"UnitSpecificMatch";
+public type Gender "Unknown"|"Male"|"Female"|"NonSpecific";
 
 public type LedgerJournalType "Daily"|"Periodic"|"PurchaseLedger"|"Approval"|"Payment"|"CustPayment"|"Cost"|"VendInvoiceRegister"|"VendInvoicePool"|"Assets"|"AssetBudgets"|"CustPaymRemittance"|"CustBillOfExchangeDraw"|"CustBillOfExchangeProtest"|"CustBillOfExchangeRedraw"|"VendPromissoryNoteDraw"|"CustBillOfExchangeAccept"|"VendPromissoryNoteRedraw"|"VendPaymRemittance"|"CustBillOfExchangeSettle"|"VendPromissoryNoteSettle"|"RDeferrals"|"RCash"|"Assets_RU"|"AssetBudgets_RU"|"RTax25"|"RTax25AmountDifference"|"RTax25ExchDifference"|"RAssetAssessedTax"|"RAssetTransportTax"|"RAssetLandTax"|"StatTrans"|"Allocation"|"Elimination"|"BankChequeReversal"|"BankDepositPaymCancel"|"Budget"|"Payroll"|"PayrollDisbursement"|"RTax25TaxRemainGoods"|"Payroll_RU"|"FBTaxAssessmentAdjustments_BR"|"None"|"VendInvoice"|"Netting"|"CustomsDeclaration_IT"|"ReportingCurrencyAdjustment"|"RTax25DebtDebitReserve"|"RTax25TaxDiffByBalance"|"CustVendNetting"|"AssetLease"|"RevenueRecognition";
 
@@ -85,10 +80,65 @@ public type VendorProductDescriptionsCollection record {
     VendorProductDescription[] value?;
 };
 
+public type VendorRebateAgreementLine record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string RebateAgreementId?;
+    decimal LineNumber?;
+    string VendorAccountNumber?;
+    decimal FromNetPurchaseAmount?;
+    decimal FromGrossPurchaseAmount?;
+    string CurrencyCode?;
+    decimal FixedRebateAmount?;
+    decimal ToNetPurchaseAmount?;
+    decimal RebatePercentage?;
+    decimal RebateAmountPerProductUnitSold?;
+    decimal ToGrossPurchaseAmount?;
+    string UnitSymbol?;
+};
+
+# Represents the Queries record for the operation: getVendWithholdings
+public type GetVendWithholdingsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: updateVendorRetentionTermSchedules
 public type UpdateVendorRetentionTermSchedulesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listVendWithholdings
+public type ListVendWithholdingsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Headers record for the operation: updateVendorInvoiceHeaderCharges
@@ -97,16 +147,7 @@ public type UpdateVendorInvoiceHeaderChargesHeaders record {
     string If\-Match?;
 };
 
-public type VendorFormSetupsCollection record {
-    *ODataCollection;
-    VendorFormSetup[] value?;
-};
-
-# Represents the Headers record for the operation: updateVendorFormSetups
-public type UpdateVendorFormSetupsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
+public type DirPersonMaritalStatus "None"|"Single"|"Married"|"Divorced"|"Widowhood";
 
 # Represents the Queries record for the operation: listVendorRetentionTermSchedules
 public type ListVendorRetentionTermSchedulesQueries record {
@@ -136,60 +177,12 @@ public type ListVendorRetentionTermSchedulesQueries record {
     string selectFields?;
 };
 
+public type LedgerTransType "None"|"Transfer"|"Sales"|"Purch"|"Invent"|"Production"|"Project"|"Interest"|"Cust"|"ExchAdjustment"|"SummedUp"|"Payroll"|"FixedAssets"|"CollectionLetter"|"Vend"|"Payment"|"Tax"|"Bank"|"Conversion"|"BillOfExchange"|"PromissoryNote"|"Cost"|"Work"|"Fee"|"Settlement"|"Allocation"|"Elimination"|"CashDiscount"|"OverUnder"|"PennyDifference"|"CrossCompanySettlement"|"PurchReq"|"InflationAdjustment_MX"|"PurchAdvanceApplication"|"ConversionReporting"|"FixedAssets_RU"|"RTax25_BadDebtDebitAmortisation"|"RDeferrals"|"RTax25_BadDebtCreditAmortisation"|"AdvanceAdjustment_RU"|"VATTaxAgent_RU"|"GainLossCurrencyDeal_RU"|"PdsRebateCreditNote"|"PdsRebatePassToAP"|"WriteOff"|"GeneralJournal"|"MCRUnderpayWriteOff"|"CustVendNetting"|"SalesPrepayment"|"ReportingCurrencyAdjustment"|"LedgerSettlement"|"LedgerSettlementReversal"|"AssetLeaseLeaseIR"|"AssetLeaseLeaseInterest"|"AssetLeaseLeasePayment"|"AssetLeaseLeaseAdjustment"|"AssetLeaseLeaseIRReversal"|"AssetLeaseLeaseInterestReversal"|"AssetLeaseLeasePaymentReversal"|"AssetLeaseLeaseROUDepreciation"|"AssetLeaseLeaseROUDepreciationReversal"|"AssetLeaseLeaseAdjustmentIncrease"|"AssetLeaseLeaseAdjustmentDecrease"|"AssetLeaseReversePriorLeaseClassification"|"AssetLeaseRecordNewLeaseClassification"|"AssetLeaseLeaseAdjustmentReversal"|"AssetLeaseLeaseAdjustmentIncreaseReversal"|"AssetLeaseLeaseAdjustmentDecreaseReversal"|"AssetLeaseReversePriorLeaseClassificationReversal"|"AssetLeaseRecordNewLeaseClassificationReversal"|"AssetLeaseLeaseExpense"|"AssetLeaseLeaseExpenseReversal"|"AssetLeaseLeaseLiabilityShortTermReclass"|"AssetLeaseLeaseLiabilityShortTermReclassReversal"|"AssetLeaseAssetImpairment"|"AssetLeaseLeaseAssetImpairmentReversal"|"AssetLeaseLeaseTermination"|"AssetLeaseLeaseTerminationReversal"|"LTMInflationAdjustment_AR"|"RevRecSalesOrderRevenueAdjustment";
+
 public type FirstLast "First"|"Last";
 
-public type VendorInvoiceDeclaration record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string InvoiceDeclarationId?;
-    InvoiceRecordType_IS RecordType?;
-    string ReportingCode?;
-    string Description?;
-};
+public type FiscalDocumentSpecie_BR "NFF"|"NF"|"CTRC"|"CF";
 
-# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
-@display {label: "Connection Config"}
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig|http:BearerTokenConfig auth;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
 
 # Represents the Headers record for the operation: deleteVendorInvoiceTotalTolerances
 public type DeleteVendorInvoiceTotalTolerancesHeaders record {
@@ -197,46 +190,8 @@ public type DeleteVendorInvoiceTotalTolerancesHeaders record {
     string If\-Match?;
 };
 
-public type VendorExceptionGroup record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string GroupId?;
-    string Description?;
-};
-
-public type VendorInvoiceDocumentAttachment record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string HeaderReference?;
-    string FileContents?;
-    string FileType?;
-    string Name?;
-    string TypeId?;
-    DocuRestriction Restriction?;
-    string Notes?;
-    string FileName?;
-    NoYes DefaultAttachment?;
-};
-
-# Represents the Headers record for the operation: updateVendorPriceToleranceGroups
-public type UpdateVendorPriceToleranceGroupsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type InvoiceRecordType_IS "LS"|"LA";
-
-public type PaymFeePostingVend "Vendor"|"Cost";
-
-public type LedgerJournalACType "Ledger"|"Cust"|"Vend"|"Project"|"FixedAssets"|"Bank"|"FixedAssets_RU"|"Employee_RU"|"RDeferrals"|"RCash";
-
-public type VendorPaymentFeesCollection record {
-    *ODataCollection;
-    VendorPaymentFee[] value?;
-};
-
-# Represents the Queries record for the operation: getVendorRetentionTermSchedules
-public type GetVendorRetentionTermSchedulesQueries record {
+# Represents the Queries record for the operation: getVendors
+public type GetVendorsQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
@@ -245,14 +200,18 @@ public type GetVendorRetentionTermSchedulesQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: deleteVendorInvoiceDeclarations
-public type DeleteVendorInvoiceDeclarationsHeaders record {
+public type VendVendorRequestNewCategoryOriginType "Vendor"|"ExternalImport";
+
+# Represents the Headers record for the operation: updateVendorPriceToleranceGroups
+public type UpdateVendorPriceToleranceGroupsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-# Represents the Queries record for the operation: listVendorProductDescriptions
-public type ListVendorProductDescriptionsQueries record {
+public type CompanyType_MX "Blank"|"LegalEntity"|"LegalPerson"|"ForeignCompany";
+
+# Represents the Queries record for the operation: listVendorOverUnderDeliveryToleranceGroups
+public type ListVendorOverUnderDeliveryToleranceGroupsQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -279,7 +238,76 @@ public type ListVendorProductDescriptionsQueries record {
     string selectFields?;
 };
 
-public type NoYes "No"|"Yes";
+public type InvoiceRecordType_IS "LS"|"LA";
+
+public type VendDefaultDocumentClassV2Collection record {
+    *ODataCollection;
+    VendDefaultDocumentClassV2[] value?;
+};
+
+# Represents the Queries record for the operation: getVendorParameters
+public type GetVendorParametersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type VendorType_MX "Blank"|"DomesticVendor"|"ForeignVendor"|"DomesticGlobal";
+
+public type PaymFeePostingVend "Vendor"|"Cost";
+
+public type LedgerJournalACType "Ledger"|"Cust"|"Vend"|"Project"|"FixedAssets"|"Bank"|"FixedAssets_RU"|"Employee_RU"|"RDeferrals"|"RCash";
+
+# Represents the Headers record for the operation: updateVendorInvoiceHeaders
+public type UpdateVendorInvoiceHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type NatureOfAssessee_IN "Company"|"HUF"|"Firm"|"Individual"|"AOP"|"BOI"|"LocalAuthority"|"Others";
+
+public type VendorCollaborationUserRequestsCollection record {
+    *ODataCollection;
+    VendorCollaborationUserRequest[] value?;
+};
+
+# Represents the Headers record for the operation: updateVendorsV2
+public type UpdateVendorsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type WeekDays "None"|"Monday"|"Tuesday"|"Wednesday"|"Thursday"|"Friday"|"Saturday"|"Sunday";
+
+# Represents the Headers record for the operation: deleteVendorInvoiceDeclarations
+public type DeleteVendorInvoiceDeclarationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type VATPartnerKind_RU "NA"|"NonResident"|"StateStructure";
+
+# Represents the Queries record for the operation: getVendorInvoiceLines
+public type GetVendorInvoiceLinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type GSTHSTTaxType_CA "None"|"Rebates111"|"TaxOnAcquisition205"|"SelfAssessment405";
+
+public type WMSFreightedBy "Carrier"|"Shipper"|"Recipient";
+
+public type VendorRebateAgreementLinesCollection record {
+    *ODataCollection;
+    VendorRebateAgreementLine[] value?;
+};
 
 # Represents the Queries record for the operation: getVendorFormSetups
 public type GetVendorFormSetupsQueries record {
@@ -296,6 +324,8 @@ public type UpdateVendorInvoiceLineChargesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
+
+public type DisplayPriceMatchOption "GreaterThan"|"GreaterOrLessThan";
 
 public type ABC "None"|"A"|"B"|"C";
 
@@ -333,20 +363,32 @@ public type UpdateVendorPaymentJournalLineSettledInvoicesHeaders record {
     string If\-Match?;
 };
 
-# Represents the Queries record for the operation: getVendorPriceToleranceGroups
-public type GetVendorPriceToleranceGroupsQueries record {
+# Represents the Queries record for the operation: listVendorInvoiceLines
+public type ListVendorInvoiceLinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
-};
-
-# Represents the Headers record for the operation: deleteVendorInvoiceHeaderCharges
-public type DeleteVendorInvoiceHeaderChargesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: listVendorInvoiceHeaderCharges
@@ -377,19 +419,176 @@ public type ListVendorInvoiceHeaderChargesQueries record {
     string selectFields?;
 };
 
-public type VendorPaymentJournalLineSettledInvoice record {
+public type VendorInvoiceLine record {
     string \@odata\.etag?;
-    string JournalLineCompany?;
-    string JournalBatchNumber?;
-    decimal JournalLineNumber?;
-    string InvoiceNumber?;
-    string InvoiceCompany?;
-    string InvoiceDueDate?;
-    decimal InvoiceToPaymentCrossRate?;
-    decimal SettlementAmountInInvoiceCurrency?;
-    decimal CashDiscountToTakeInInvoiceCurrency?;
-    string invoiceAccount?;
-    string AccountDisplayValue?;
+    string dataAreaId?;
+    string HeaderReference?;
+    decimal InvoiceLineNumber?;
+    string ProcurementCategoryHierarchyName?;
+    string Tax1099SAddressOrLegalDescription?;
+    decimal PriceUnit?;
+    int:Signed32 Tax1099GTaxYear?;
+    string InvoiceAccount?;
+    string ItemNumber?;
+    string ItemName?;
+    decimal MultilineDiscountPercentage?;
+    decimal InventNow?;
+    string ItemSalesTax?;
+    string MainAccountDisplayValue?;
+    string WithholdingTaxGroup?;
+    decimal RemainAfterInvent?;
+    string ProcurementCategoryName?;
+    NoYes IsTax1099SPropertyOrServices?;
+    string ProductStyleId?;
+    NoYes ReleaseAllRetainedAmount?;
+    string TaxWithholdGroup?;
+    string ProductConfigurationId?;
+    string PartyID?;
+    string Tax1099GVendorStateId?;
+    decimal DiscountPercent?;
+    decimal AdjustedUnitPrice?;
+    Tax1099Type Tax1099Type?;
+    decimal MultilineDiscount?;
+    string ItemBatchNumber?;
+    NoYes ChangeQuantityManually?;
+    string Port?;
+    string TransactionCode?;
+    NoYes IsTax1099GTradeOrBusinessIncome?;
+    string InventoryWarehouseId?;
+    decimal TotalRetainedAmount?;
+    decimal Tax1099SBuyerPartOfRealEstateTaxAmount?;
+    string DimensionDisplayValue?;
+    string ProductSizeId?;
+    decimal OriginalDeliverRemainder?;
+    string Tax1099SClosingDate?;
+    string Unit?;
+    VendInvoiceRequestStatus VendorInvoiceLineReviewStatus?;
+    decimal ReceiveNow?;
+    string Transport?;
+    int:Signed32 BudgetReservationLineNumber?;
+    decimal Amount?;
+    string StateOfOrigin?;
+    decimal RemainBefore?;
+    PurchInvoiceLineType LineType?;
+    string Currency?;
+    string DataAreaCompany?;
+    int PurchLineNumber?;
+    string OrderedInventoryStatusId?;
+    string CountyOrigDest?;
+    decimal RetainageAmount?;
+    decimal Percentage?;
+    decimal NetAmount?;
+    decimal CWUpdate?;
+    string PurchaseOrder?;
+    DocumentStatus Ordering?;
+    string ProductVersionId?;
+    decimal Tax1099GStateTaxWithheldAmount?;
+    string OrigCountryRegionId?;
+    NoYes OverrideSalesTax?;
+    string LineDescription?;
+    decimal RetainPercentage?;
+    decimal RemainBeforeInvent?;
+    string PackedExtensions?;
+    decimal ImportedTaxRate?;
+    string DeliveryName?;
+    string Tax1099Box?;
+    decimal CWDeliveryRemainder?;
+    string TaxServiceCode?;
+    string VendorAccount?;
+    NoYes CloseForReceipt?;
+    decimal RemainAfter?;
+    decimal LineNumber?;
+    decimal UnitPrice?;
+    string BudgetReservationDocumentNumber?;
+    string SalesTaxGroup?;
+    decimal ChargesOnPurchases?;
+    string ProductColorId?;
+    string TaxWithholdItemGroupName?;
+    string CFOPCode?;
+    decimal Tax1099StateAmount?;
+    string AccountingDistributionTemplateId?;
+    string StatisticsProcedure?;
+    decimal CWRemainingQuantity?;
+    string DimensionNumber?;
+    decimal Tax1099Amount?;
+    string FinTagDisplayValue?;
+    string PDSCalculationId?;
+    string Tax1099GVendorStateTaxId?;
+    string WithholdingTaxItemGroup?;
+    decimal ImportedTax?;
+    decimal Discount?;
+    string DeliveryState?;
+    string InventorySiteId?;
+    string Commodity?;
+    VendorOperationType_MX DiotOperationType?;
+};
+
+# Represents the Headers record for the operation: updateAgreementTerms
+public type UpdateAgreementTermsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type DisplayTotalPriceMatchOption "GreaterThan"|"GreaterOrLessThan";
+
+# Represents the Queries record for the operation: listVendorRebateAgreementProductSelectionsV2
+public type ListVendorRebateAgreementProductSelectionsV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type DimSettlementCtrlType_RU "None"|"Auto"|"Manual"|"Always";
+
+public type UnspecificSpecific "Unspecific"|"Specific";
+
+# Represents the Queries record for the operation: listVendorRelationshipManagementVendors
+public type ListVendorRelationshipManagementVendorsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Headers record for the operation: deleteVendorPaymentJournalFees
@@ -398,8 +597,10 @@ public type DeleteVendorPaymentJournalFeesHeaders record {
     string If\-Match?;
 };
 
-# Represents the Queries record for the operation: getVendorPaymentJournalFees
-public type GetVendorPaymentJournalFeesQueries record {
+public type CustVendShowTransaction "All"|"Open"|"Closed"|"OpenAsOf";
+
+# Represents the Queries record for the operation: getVendorsV3
+public type GetVendorsV3Queries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
@@ -408,52 +609,232 @@ public type GetVendorPaymentJournalFeesQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: deleteVendorFormSetups
-public type DeleteVendorFormSetupsHeaders record {
+# Represents the Headers record for the operation: updateVendDefaultDocumentClassV2
+public type UpdateVendDefaultDocumentClassV2Headers record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: updateVendorRetentionTerms
-public type UpdateVendorRetentionTermsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
+public type VendorRebateAgreementHeader record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string RebateAgreementId?;
+    string ProductConfigurationId?;
+    string QualifyingWarehouseId?;
+    TAMRebateUnitType ProductUnitSymbolType?;
+    string ExpirationDate?;
+    string ProductSizeId?;
+    string ItemNumber?;
+    string ExpenseMainAccountIdDisplayValue?;
+    string ProductVersionId?;
+    NoYes isAgreementValidated?;
+    TAMVendRebateCalcDateType CalculationSearchDateType?;
+    string PurchaseCumulationMethodCustomizedPeriodType?;
+    string QualifyingSiteId?;
+    string ProductUnitSymbol?;
+    NoYes IsApprovalRequired?;
+    NoYes IsTaxable?;
+    string CurrencyCode?;
+    string EffectiveDate?;
+    string AgreementNote?;
+    string AccrualMainAccountIdDisplayValue?;
+    NoYes IsProductSelectionUsed?;
+    string VendorRebateVendorGroupId?;
+    int:Signed32 MinimumPurchaseQuantityQualifyingRebate?;
+    TAMRebateLineBreakType RebateBreakBasis?;
+    string VendorAccountNumber?;
+    TAMVendRebateTakenFrom LineAmountBasis?;
+    string RebateProgramId?;
+    string ProductColorId?;
+    TAMCumulationPeriod PurchaseCumulationMethod?;
+    decimal MinimumPurchaseAmountQualifyingRebate?;
+    string VendorRebateProductGroupId?;
+    NoYes IsProductUnitSymbolExact?;
+    TAMVendRebateApprovalStatus WorkflowApprovalStatus?;
+    int ValidatingWorkerPersonnelNumber?;
+    string ProductStyleId?;
 };
 
-# Represents the Queries record for the operation: getVendorInvoiceDocumentAttachments
-public type GetVendorInvoiceDocumentAttachmentsQueries record {
+# Represents the Queries record for the operation: listVendorParameters
+public type ListVendorParametersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
 };
 
-# Standard OData collection envelope.
-public type ODataCollection record {
-    string \@odata\.context?;
-    int \@odata\.count?;
-    string \@odata\.nextLink?;
-};
-
-public type VendorPriceToleranceGroupsCollection record {
+public type VendInvoiceJournalLinesCollection record {
     *ODataCollection;
-    VendorPriceToleranceGroup[] value?;
+    VendInvoiceJournalLine[] value?;
 };
 
-# Represents the Queries record for the operation: getVendorDocumentAttachments
-public type GetVendorDocumentAttachmentsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
+public type PurchMatchingPolicyOverrideOption "HigherOnly"|"LowerOrHigher";
+
+public type VendorRelationshipManagementVendor record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string VendorAccountNumber?;
+    string PaymentId?;
+    string AddressStateId?;
+    string DefaultPaymentDayName?;
+    string AddressDescription?;
+    string PurchaseWorkCalendarId?;
+    NoYes IsMinorityOwned?;
+    string AddressCity?;
+    string DefaultPurchaseOrderPoolId?;
+    decimal AddressLatitude?;
+    NoYes SecondTIN?;
+    NoYes IsVendorLocatedInHUBZone?;
+    string AddressZipCode?;
+    string BlockedReason?;
+    NoYes IsW9Received?;
+    string AddressBuildingCompliment?;
+    string BusinessSegmentCode?;
+    string PrimaryFacebookDescription?;
+    string DefaultTotalDiscountVendorGroupCode?;
+    string DefaultDeliveryModeId?;
+    string PrimaryPhoneNumber?;
+    string AddressLocationId?;
+    string PrimaryURLPurpose?;
+    string PurchaseShipCalendarId?;
+    string AddressPostBox?;
+    string NumberSequenceGroupId?;
+    NoYes IsServiceVeteranOwned?;
+    string PrimaryTelexPurpose?;
+    string PrimaryTelexDescription?;
+    PurchMatchingPolicyWithNotSetOption VendorInvoiceLineMatchingPolicy?;
+    string PrimaryFaxNumberExtension?;
+    string MultilineDiscountVendorGroupCode?;
+    NoYes FATCAFilingRequirement?;
+    string AddressStreet?;
+    string PurchaseRebateVendorGroupId?;
+    NoYes IsSmallBusiness?;
+    string ResidenceForeignCountryRegionId?;
+    string ChargeVendorGroupId?;
+    string PrimaryFaxNumberDescription?;
+    string AddressValidTo?;
+    NoYes IsVendorLocallyOwned?;
+    string AddressCountyId?;
+    InvestorType InvestorType?;
+    string PrimaryEmailAddressPurpose?;
+    string PrimaryPhoneNumberDescription?;
+    LedgerJournalACType DefaultOffsetAccountType?;
+    string PrimaryLinkedInDescription?;
+    string LanguageId?;
+    Timezone AddressTimeZone?;
+    string ForeignVendorTaxRegistrationId?;
+    string AddressCountryRegionId?;
+    string CUSIPDetails?;
+    string CompanyIdSiret?;
+    string OurAccountNumber?;
+    string FormattedPrimaryAddress?;
+    string PrimaryFacebookPurpose?;
+    string CUSIPId?;
+    string FiscalCode?;
+    NoYes OneTimeVendor?;
+    TaxIDType TaxIDType?;
+    string DefaultDeliveryTermsCode?;
+    ABC OrganizationABCCode?;
+    string PrimaryTelex?;
+    NoYes HasOnlyTakenBids?;
+    string PrimaryURLDescription?;
+    string TaxExemptNumber?;
+    CustVendorBlocked Blocked?;
+    string PrimaryLinkedInPurpose?;
+    string VendorGroupId?;
+    string PrimaryFaxNumberPurpose?;
+    string DBA?;
+    string AddressCountryRegionISOCode?;
+    string BuyerGroupId?;
+    NoYes CUSIP?;
+    string BankAccountId?;
+    string CashDiscountCode?;
+    string VendorPartyType?;
+    NoYes IsPrimaryPhoneNumberMobile?;
+    string DefaultPaymentScheduleName?;
+    string CurrencyCode?;
+    string PrimaryPhoneNumberExtension?;
+    NoYes ArePricesIncludingSalesTax?;
+    string AddressValidFrom?;
+    string DefaultPaymentTermsName?;
+    int:Signed32 OrganizationEmployeeAmount?;
+    NoYes W9Included?;
+    string PrimaryTwitterDescription?;
+    string PrimaryEmailAddressDescription?;
+    VendVendorCollaborationType VendorPortalCollaborationMethod?;
+    string InvoiceVendorAccountNumber?;
+    NoYes WillPurchaseOrderIncludePricesAndAmounts?;
+    string AddressDistrictName?;
+    string ProductDescriptionVendorGroupId?;
+    string NomineeDetails?;
+    string AddressLocationRoles?;
+    string PrimaryEmailAddress?;
+    Tax1099NameChoice Tax1099NameChoice?;
+    string DefaultProcumentWarehouseId?;
+    string PrimaryPhoneNumberPurpose?;
+    string SalesTaxGroupCode?;
+    string Tax1099RegistrationNumber?;
+    string Name?;
+    string DefaultSupplementaryProductVendorGroupId?;
+    string PrimaryContactPersonId?;
+    string AddressStreetNumber?;
+    string Tax1099Box?;
+    string PrimaryTwitterPurpose?;
+    string PrimaryLinkedIn?;
+    NoYes IsOwnerDisabled?;
+    string NameAlias?;
+    NoYes IsForeignEntity?;
+    string OrganizationPhoneticName?;
+    string PaymentSpecificationId?;
+    string BirthPlace?;
+    string DefaultVendorPaymentMethodName?;
+    string PrimaryURL?;
+    NoYes IsReportingTax1099?;
+    string DefaultPurchaseSiteId?;
+    string PrimaryFacebook?;
+    decimal AddressLongitude?;
+    string PriceVendorGroupId?;
+    string OrgId?;
+    NoYes CashAccountingRegime?;
+    string OrganizationNumber?;
+    string GlobalVendorNumber?;
+    UseCashDisc DefaultCashDiscountUsage?;
+    string StateInscription?;
+    NoYes IsWomanOwner?;
+    string PrimaryTwitter?;
+    string VendorPartyNumber?;
+    string KnownAs?;
+    NoYes IsPrimaryEmailAddressIMEnabled?;
+    string PrimaryFaxNumber?;
+    string BlockedReleaseDate?;
+    string LineDiscountVendorGroupCode?;
+    string WithholdingTaxGroupCode?;
+    string EthnicOriginId?;
+    string VendorDUNSNumber?;
 };
 
-# Represents the Headers record for the operation: updateVendorDocumentAttachments
-public type UpdateVendorDocumentAttachmentsHeaders record {
+# Represents the Headers record for the operation: updateVendorOverUnderDeliveryToleranceGroups
+public type UpdateVendorOverUnderDeliveryToleranceGroupsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -486,10 +867,36 @@ public type ListVendorPaymentJournalFeesQueries record {
     string selectFields?;
 };
 
-public type VendorPaymentJournalLineSettledInvoicesCollection record {
-    *ODataCollection;
-    VendorPaymentJournalLineSettledInvoice[] value?;
+# Represents the Headers record for the operation: updateVendorRebateAgreementLines
+public type UpdateVendorRebateAgreementLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
+
+public type VendorsV3Collection record {
+    *ODataCollection;
+    VendorV3[] value?;
+};
+
+public type DocumentStatus "None"|"Quotation"|"PurchaseOrder"|"Confirmation"|"PickingList"|"PackingSlip"|"ReceiptsList"|"Invoice"|"ApproveJournal"|"ProjectInvoice"|"ProjectPackingSlip"|"CRMQuotation"|"Lost"|"Cancelled"|"FreeTextInvoice"|"RFQ"|"RFQAccept"|"RFQReject"|"PurchReq"|"RFQReSend"|"ConfirmationRequest"|"InvoiceRegistration_IN"|"BillOfEntry_IN"|"ShippingBill_IN"|"Invoice4Paym_RU"|"Facture_RU"|"FreeTextInvoice4Paym_RU"|"DeliverySlip_BR"|"PlSAD"|"DeliverySlipProject_BR"|"Note"|"ProjectPickingList"|"ITMGoodsInTransitReceive"|"RevRecRevenueCancelation"|"RevRecDeferredRevenueInvoice";
+
+# Represents the Queries record for the operation: getVendInvoiceJournalLines
+public type GetVendInvoiceJournalLinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateVendorRequestNewCategories
+public type UpdateVendorRequestNewCategoriesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ItemVend "Item"|"Vend";
 
 public type VendorDocumentAttachment record {
     string \@odata\.etag?;
@@ -506,32 +913,33 @@ public type VendorDocumentAttachment record {
     NoYes IsDefaultAttachment?;
 };
 
-# Represents the Queries record for the operation: listVendorInvoiceDocumentAttachments
-public type ListVendorInvoiceDocumentAttachmentsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
+public type VendWithholding record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string WithholdingSetID?;
+    string AccountNum?;
+    string WithholdingCode?;
+    string FromDate?;
+    string ToDate?;
+    decimal Value?;
+    NoYes VoucherSelection?;
+    string PublicationDate?;
+    LTMTaxesFilter TaxesFilter?;
+    NoYes EnableReduction?;
+    NoYes EnableValue?;
+    decimal WithholdingReduction?;
+    LTMTaxOperationType OperationType?;
+};
+
+public type VendorInvoiceLinesCollection record {
+    *ODataCollection;
+    VendorInvoiceLine[] value?;
+};
+
+# Represents the Headers record for the operation: deleteAgreementTerms
+public type DeleteAgreementTermsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type VendorInvoiceHeaderCharge record {
@@ -553,12 +961,8 @@ public type VendorInvoiceHeaderCharge record {
     decimal FixedChargeAmount?;
 };
 
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-|};
+public type UseFiscalInvoiceAccount "Never"|"Always"|"Ask";
+
 
 # Represents the Headers record for the operation: updateVendorExceptionGroups
 public type UpdateVendorExceptionGroupsHeaders record {
@@ -566,20 +970,14 @@ public type UpdateVendorExceptionGroupsHeaders record {
     string If\-Match?;
 };
 
-public type VendorReasons record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string ReasonCode?;
-    NoYes PurposeCode?;
-    NoYes ForVendorTransactionType?;
-    string DefaultComment?;
-    NoYes CancellationReason?;
+# Represents the Headers record for the operation: updateVendorRelationshipManagementVendors
+public type UpdateVendorRelationshipManagementVendorsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
-public type DocuRestriction "Internal"|"External";
-
-# Represents the Headers record for the operation: deleteVendorProductDescriptions
-public type DeleteVendorProductDescriptionsHeaders record {
+# Represents the Headers record for the operation: deleteVendorLandedCostTypeGroups
+public type DeleteVendorLandedCostTypeGroupsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -589,19 +987,12 @@ public type VendorExceptionGroupsCollection record {
     VendorExceptionGroup[] value?;
 };
 
-# Represents the Headers record for the operation: deleteVendorPaymentJournalLineSettledInvoices
-public type DeleteVendorPaymentJournalLineSettledInvoicesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
+public type SettlementType "None"|"OpenTransact"|"SelectedTransact";
 
-public type VendorRetentionTermSchedulesCollection record {
-    *ODataCollection;
-    VendorRetentionTermSchedule[] value?;
-};
+public type TypeOfCTe_BR "Normal"|"AddOnValues"|"IssuedOnCancellation"|"Replacement"|"Blank";
 
-# Represents the Queries record for the operation: listVendorInvoiceLineCharges
-public type ListVendorInvoiceLineChargesQueries record {
+# Represents the Queries record for the operation: listVendors
+public type ListVendorsQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -628,17 +1019,9 @@ public type ListVendorInvoiceLineChargesQueries record {
     string selectFields?;
 };
 
-public type VendorInvoiceTotalTolerance record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string VendorAccount?;
-    decimal InvoiceTotalsPercentage?;
-    string VendorName?;
-};
-
-public type VendorInvoiceDocumentAttachmentsCollection record {
+public type VendorLandedCostTypeGroupsCollection record {
     *ODataCollection;
-    VendorInvoiceDocumentAttachment[] value?;
+    VendorLandedCostTypeGroup[] value?;
 };
 
 # Represents the Queries record for the operation: getVendorProductDescriptions
@@ -651,16 +1034,212 @@ public type GetVendorProductDescriptionsQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: deleteVendorRetentionTermSchedules
-public type DeleteVendorRetentionTermSchedulesHeaders record {
+public type VendorParameter record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    NoYes Draft?;
+    NoYes IsCashDiscountCalculatedOnAmountIncludingSalesTax?;
+    string BrokerCategoryName?;
+    decimal PurchasePriceTotalTolerance?;
+    UseFiscalInvoiceAccount UseFiscalDataFromInvoiceAccount?;
+    SettlementType DefaultSettlementTypeForCreditNotes?;
+    NoYes AutomationTotalsReqForWorkflowSubmission?;
+    int:Signed32 AutomationProductReceiptMatchingMaxAttempts?;
+    string PostingProfile?;
+    NoYes ValidateTaxGroupCompleteness?;
+    string SettlementWriteOffReasonCode?;
+    NoYes MandatoryTaxGroup?;
+    UnknownNoYes AutomaticHeaderMatching?;
+    string AccrualAccountDisplayValue?;
+    ItemVend PrimaryDiscountPosting?;
+    int SequenceNumber?;
+    ReuseVoucher CheckTheTaxInvoiceNumberUsed?;
+    NoYes VendInvoiceInUseRecoverEnable?;
+    string DimensionTreeName?;
+    NoYes VendBankIbanSwiftRequired?;
+    NoYes ApplyPriceDiscOnPurchLineEntity?;
+    ItemVend PrimaryRelationTaxMatrix?;
+    NoYes ManualPosting?;
+    string RemitPromissoryNote?;
+    string TermsOfPayment?;
+    NoYes AllowCancelInvoiceEnable?;
+    NoYes ChangeProposalIsEnabled?;
+    VendTableChangeProposalDataEntityBehavior ChangeProposalDataEntityBehavior?;
+    NoYes EditCashDiscountsWhenDueDateChanged?;
+    UnspecificSpecific CashDiscountAdministration?;
+    NoYes ValidationsOnPromissoryNotesJournals?;
+    NoYes UseConsolidatedInvoice?;
+    NoYes IsPrintTransportationDetails?;
+    string AccountingCurrencyExchangeRateType?;
+    PurchPrepayApplicationPolicy PurchPrepayApplicationPolicy?;
+    NoYes RoyaltyPostManually?;
+    NoYes BypassValidationOfAccountingDistributions?;
+    decimal InvoiceTotalsTolerancePercentage?;
+    decimal PurchasePriceTotalTolerancePercent?;
+    string DifferentialJournalName?;
+    string CategoryHierarchyName?;
+    string InvoicingPeriod?;
+    string AllocationKey?;
+    ItemVend PrimaryReceiptPosting?;
+    NoYes DimensionHierarchyIsSystemGenerated?;
+    VendInvoiceDocDate RequireDocumentDateOnVendorInvoice?;
+    decimal MaximumOverpaymentOrUnderpayment?;
+    NoYes PostProductReceiptInLedger?;
+    DisplayTotalPriceMatchOption DisplayInvoiceTotalsMatchIcon?;
+    NoYes CreditNoteAsCorrection?;
+    InvoicePolicyViolationStatus ResponseToInvoicesThatFailValidation?;
+    NoYes InvoiceJoiningPreventionOnPromissoryNoteJournals?;
+    NoYes AutomationProductReceiptMatching?;
+    NoYes AutomationWorkflowSubmission?;
+    string ExpenseJournalName?;
+    NoYes ExcludeCancelledLinesFromTotalsCalculation?;
+    NoYes PurchLineDefaultSalesTaxGroupFromHeaderAddress?;
+    NoYes IsCashDiscountCalculatedForPartialPayments?;
+    NoYes PostToChargeAccountInLedger?;
+    int:Signed32 PollingInterval_Minutes?;
+    string BrokerCategoryHierarchyName?;
+    string SettlePeriod?;
+    string TaxWithholdCompany?;
+    InvoiceMatchPostingOption PostInvoiceMatchDiscrepancies?;
+    NoYes SettlementIsPriorityUsedOnAutoSettlement?;
+    VendTaxRegisterApproval TimeOfSalesTaxPosting?;
+    string CashFlowLiquidityAccountForPaymentsDisplayValue?;
+    ExtendedPriceMatching MatchPriceTotals?;
+    string SettlementWriteOffJournalName?;
+    string CashFlowPercentageOfAmountToAllocateToCashFlowForecast?;
+    ReuseVoucher IsCheckInvoiceNumberUsed?;
+    CustVendExchAdjRateSource ExchAdjRateSource?;
+    TypeOfCreditmaxCheck CreditMaxCheck?;
+    ExtendedPriceMatchIcon DisplayPriceTotalMatchIcon?;
+    DisplayInvoiceMiscChargeMatchOption DisplayMiscChargeToleranceIcon?;
+    NoYes AutomationMatchingPriorToWorkflow?;
+    string CashFlowTimeBetweenDeliveryDateAndInvoiceDate?;
+    DimensionHierarchyType DimensionHierarchyType?;
+    NoYes SettlementIsPriorityUsed?;
+    string InvoiceRemit?;
+    string RoyaltyExpenseAccountDisplayValue?;
+    NoYes SplitDeliveryInvoice?;
+    NoYes IsCashDiscountCalculatedForCreditNotes?;
+    UnknownNoYes EnableInvoiceMatchingValidation?;
+    NoYes TaxWithholdCalculateCrossCompany?;
+    string CashFlowTimeBetweenInvoiceDueDateAndPaymentDate?;
+    NoYes Include3wayMatching?;
+    NoYes IsW9Validation?;
+    string PostingProfileForPaymentJournalWithPrepayment?;
+    NoYes IsAutomaticSettlement?;
+    NoYes ValidateInvoicesInTheJournal?;
+    string PrepaymentInvoicePostingProfile?;
+    int:Signed32 FactureIssuePeriod?;
+    string PromissoryNotes?;
+    string CategoryName?;
+    DisplayPriceMatchOption DisplayPriceMatchIcon?;
+    string CustomCodeForInvoiceGroups?;
+    decimal ChargesTolerancePercentage?;
+    NoYes IsMatchCharges?;
+    PurchMatchingPolicyOverrideOption AllowMatchingPolicyOverride?;
+    NoYes SettlementWriteOffEnabled?;
+    NoYes UseDocumentDate?;
+    string DefaultVend?;
+    NoYes IsShowAmountDebitCredit?;
+    NoYes IsMatchInvoiceTotals?;
+    TaxVATNumCountryRegionType MandatoryVATNum?;
+    TaxVATNumCountryRegionType TaxExemptNumberRequirement?;
+    CustVendShowTransaction DefaultFilterForVendorTransactions?;
+    string CustomCodeForWebServiceInvoices?;
+    string ReportingCurrencyExchangeRateType?;
+    NoYes DateTreatmentOnPromissoryNoteJournals?;
+    DiscountOffsetMethod DiscountOffsetAccounts?;
+    string RoyaltyAccrualJournalName?;
+    decimal MaximumPennyDifference?;
+    NoYes InterCompanyAutoCreatePurchaseOrder?;
+    NoYes UseInvoiceGroupsForThisCompany?;
+    NoYes SplitDeliveryPackingSlip?;
+    WeekDays StartingDayOfWeek?;
+    int:Signed32 MaxWaitTimeForInvoiceScheduledStatus_Hours?;
+    NoYes ActivateInvoicePaymentGroups?;
+    NoYes KeepSalesTaxAdjustmentsForPOInvoices?;
+    PurchMatchingPolicyOption LineMatchingPolicy?;
+    string PurchAgreementDimensionName?;
+    VendInvoiceDefaultGroupType DefaultCodeForInvoiceGroups?;
+    NoYes WarnIfPaymentProposalUsesMultipleMethodsOfPayment?;
+    NoYes SalesTaxOnPrepaymentInPaymentJournal?;
+    int:Signed32 MaxInvoicesPerBatch?;
+    string CashFlowTermsOfPayment?;
+    NoYes AdvanceHoldersAutoSettle?;
+    CustSettlePrepaymentVATType_RU SettlePrepaymentVATType?;
+    string TaxItemGroup?;
+    string ImportFormatMappingNameQRBill?;
+    string AdvanceHoldersPostingProfile?;
+    DimSettlementCtrlType_RU AdvanceHoldersSettlementByDimension?;
+    string TaxGroup?;
+    NoYes ReversePrepayment?;
+    NoYes DisablePaymentIDValidation?;
+    string PSNPostingDefinitionCode?;
+    NoYes PSNActivatePurchasingCard?;
+};
+
+public type PANStatus_IN "NotAvailable"|"Received"|"Applied"|"Invalid";
+
+# Represents the Headers record for the operation: deleteVendorsV3
+public type DeleteVendorsV3Headers record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: updateVendorInvoiceTotalTolerances
-public type UpdateVendorInvoiceTotalTolerancesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
+# Represents the Queries record for the operation: listVendorRequestNewCategories
+public type ListVendorRequestNewCategoriesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listVendorInvoiceHeaders
+public type ListVendorInvoiceHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type VendorPaymentJournalFeesCollection record {
@@ -678,9 +1257,104 @@ public type GetVendorExceptionGroupsQueries record {
     string selectFields?;
 };
 
-public type VendorInvoiceTotalTolerancesCollection record {
-    *ODataCollection;
-    VendorInvoiceTotalTolerance[] value?;
+# Represents the Queries record for the operation: listVendDefaultDocumentClassV2
+public type ListVendDefaultDocumentClassV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getVendPriceAdmTrans
+public type GetVendPriceAdmTransQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateVendorRebateAgreementProductSelectionsV2
+public type UpdateVendorRebateAgreementProductSelectionsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listVendInvoiceJournalLines
+public type ListVendInvoiceJournalLinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listVendorProductDescriptionsV2
+public type ListVendorProductDescriptionsV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Queries record for the operation: listVendorDocumentAttachments
@@ -733,8 +1407,8 @@ public type DeleteVendorInvoiceDocumentAttachmentsHeaders record {
     string If\-Match?;
 };
 
-# Represents the Queries record for the operation: listVendorInvoiceTotalTolerances
-public type ListVendorInvoiceTotalTolerancesQueries record {
+# Represents the Queries record for the operation: listVendorsV2
+public type ListVendorsV2Queries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -767,16 +1441,6 @@ public type DeleteVendorPriceToleranceGroupsHeaders record {
     string If\-Match?;
 };
 
-# Represents the Queries record for the operation: getVendorReasons
-public type GetVendorReasonsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
 # Represents the Queries record for the operation: listVendorPaymentJournalLineSettledInvoices
 public type ListVendorPaymentJournalLineSettledInvoicesQueries record {
     # Number of records to skip.
@@ -805,30 +1469,53 @@ public type ListVendorPaymentJournalLineSettledInvoicesQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: getVendorInvoiceTotalTolerances
-public type GetVendorInvoiceTotalTolerancesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
+public type VendVendorRequestStatus "Draft"|"WorkflowSubmitted"|"PendingApproval"|"WorkflowCanceled"|"Rejected"|"Approved"|"ChangeRequested"|"ReviewTaskPending"|"ReviewTaskCompleted";
 
-# Represents the Queries record for the operation: getVendorInvoiceLineCharges
-public type GetVendorInvoiceLineChargesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type VendorInvoiceLineChargesCollection record {
+public type AgreementTermsCollection record {
     *ODataCollection;
-    VendorInvoicelineCharge[] value?;
+    AgreementTerm[] value?;
 };
+
+# Represents the Headers record for the operation: updateVendInvoiceJournalLines
+public type UpdateVendInvoiceJournalLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateVendorCollaborationUserRequests
+public type UpdateVendorCollaborationUserRequestsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type VendWithholdingsCollection record {
+    *ODataCollection;
+    VendWithholding[] value?;
+};
+
+# Represents the Headers record for the operation: deleteVendorOverUnderDeliveryToleranceGroups
+public type DeleteVendorOverUnderDeliveryToleranceGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type CustVendExchAdjRateSource "Ledger"|"Specific"|"Group";
+
+# Represents the Queries record for the operation: getVendorInvoiceHeaders
+public type GetVendorInvoiceHeadersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type UseCashDisc "Normal"|"Always"|"Never";
+
+public type PurchMatchingPolicyWithNotSetOption "NotSet"|"ThreeWayMatch"|"TwoWayMatch"|"NoMatch";
+
+public type RetailRoundingTypeBase "Up"|"Down"|"Nearest";
 
 # Represents the Queries record for the operation: listVendorExceptionGroups
 public type ListVendorExceptionGroupsQueries record {
@@ -858,38 +1545,20 @@ public type ListVendorExceptionGroupsQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: listVendorReasons
-public type ListVendorReasonsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
+public type DiscountOffsetMethod "AccountReceived"|"InvoiceAccount";
+
+# Represents the Headers record for the operation: deleteVendInvoiceJournalLines
+public type DeleteVendInvoiceJournalLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type VendorInvoiceHeaderChargesCollection record {
     *ODataCollection;
     VendorInvoiceHeaderCharge[] value?;
 };
+
+public type PurchMatchingPolicyOption "ThreeWayMatch"|"TwoWayMatch"|"NoMatch";
 
 # Represents the Headers record for the operation: updateVendorPaymentFees
 public type UpdateVendorPaymentFeesHeaders record {
@@ -925,36 +1594,10 @@ public type ListVendorRetentionTermsQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: updateVendorReasons
-public type UpdateVendorReasonsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getVendorInvoiceDeclarations
-public type GetVendorInvoiceDeclarationsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
 # Represents the Headers record for the operation: updateVendorInvoiceDocumentAttachments
 public type UpdateVendorInvoiceDocumentAttachmentsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getVendorPaymentJournalLineSettledInvoices
-public type GetVendorPaymentJournalLineSettledInvoicesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
 };
 
 # Represents the Queries record for the operation: getVendorPaymentFees
@@ -967,16 +1610,17 @@ public type GetVendorPaymentFeesQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: deleteVendorPaymentFees
-public type DeleteVendorPaymentFeesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
+public type TAMRebateLineBreakType "Quantity"|"Amount";
 
 # Represents the Headers record for the operation: updateVendorPaymentJournalFees
 public type UpdateVendorPaymentJournalFeesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type VendorParametersCollection record {
+    *ODataCollection;
+    VendorParameter[] value?;
 };
 
 public type VendPaymFeeTaxDirection_JP "IncomingTax"|"OutgoingTax"|"Automatic";
@@ -992,11 +1636,6 @@ public type VendorPriceToleranceGroup record {
 public type UpdateVendorProductDescriptionsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
-};
-
-public type VendorDocumentAttachmentsCollection record {
-    *ODataCollection;
-    VendorDocumentAttachment[] value?;
 };
 
 # Represents the Queries record for the operation: getVendorInvoiceHeaderCharges
@@ -1015,13 +1654,40 @@ public type DeleteVendorInvoiceLineChargesHeaders record {
     string If\-Match?;
 };
 
-public type VendorRetentionTermsCollection record {
-    *ODataCollection;
-    VendorRetentionTerm[] value?;
+# Represents the Queries record for the operation: getVendorProductDescriptionsV2
+public type GetVendorProductDescriptionsV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type PurchInvoiceType "Standard"|"VendorAdvance"|"InvoicePool";
+
+# Represents the Queries record for the operation: getVendorRebateAgreementProductSelections
+public type GetVendorRebateAgreementProductSelectionsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Queries record for the operation: getVendorRetentionTerms
 public type GetVendorRetentionTermsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getVendorRequestNewCategories
+public type GetVendorRequestNewCategoriesQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
@@ -1064,8 +1730,39 @@ public type ListVendorPaymentFeesQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: listVendorPriceToleranceGroups
-public type ListVendorPriceToleranceGroupsQueries record {
+public type AgreementTerm record {
+    string \@odata\.etag?;
+    string TermsOfEmployment?;
+    string Description?;
+};
+
+public type VendorReasonsCollection record {
+    *ODataCollection;
+    VendorReasons[] value?;
+};
+
+public type VendorRetentionTerm record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string RuleID?;
+    string Description?;
+};
+
+public type VendorPaymentFee record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string Name?;
+    string FeeLedgerAccountDisplayValue?;
+    LedgerJournalType JournalType?;
+    string VendorCoveredFeeLedgerAccountDisplayValue?;
+    string TransactionText?;
+    PaymFeePostingVend ChargeType?;
+    string Description?;
+    string MainAccountIdForLedgerFeeTypesDisplayValue?;
+};
+
+# Represents the Queries record for the operation: listVendorRebateAgreementProductSelections
+public type ListVendorRebateAgreementProductSelectionsQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -1091,59 +1788,6 @@ public type ListVendorPriceToleranceGroupsQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
-
-# Represents the Headers record for the operation: deleteVendorDocumentAttachments
-public type DeleteVendorDocumentAttachmentsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type VendorRetentionTermSchedule record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string RuleID?;
-    decimal PercentageOfUnitsDelivered?;
-    decimal PercentageToRetain?;
-    decimal PercentageToRelease?;
-};
-
-public type VendorReasonsCollection record {
-    *ODataCollection;
-    VendorReasons[] value?;
-};
-
-public type VendorRetentionTerm record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string RuleID?;
-    string Description?;
-};
-
-public type VendorFormSetup record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    NoYes IsSeparateTaxExemptBalanceInForms?;
-    TaxSpecPrintLevel SalesTaxSpecification?;
-    NoYes PrintTaxExemptNumberOnInvoice?;
-    FirstLast Totals?;
-    int:Signed32 InventoryDimensionsForPrintingInvoice?;
-    NoYes PrintAmountInEuroCurrency?;
-};
-
-public type VendorPaymentFee record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string Name?;
-    string FeeLedgerAccountDisplayValue?;
-    LedgerJournalType JournalType?;
-    string VendorCoveredFeeLedgerAccountDisplayValue?;
-    string TransactionText?;
-    PaymFeePostingVend ChargeType?;
-    string Description?;
-    string MainAccountIdForLedgerFeeTypesDisplayValue?;
-};
-
-public type TaxSpecPrintLevel "None"|"Currency"|"CurrencyMST";
 
 # Represents the Queries record for the operation: listVendorInvoiceDeclarations
 public type ListVendorInvoiceDeclarationsQueries record {
@@ -1173,8 +1817,2290 @@ public type ListVendorInvoiceDeclarationsQueries record {
     string selectFields?;
 };
 
+public type ITMCostArea "Shipment"|"Container"|"Folio"|"PurchOrder"|"Item"|"TransferOrderLine";
+
+public type VendorRebateAgreementHeadersCollection record {
+    *ODataCollection;
+    VendorRebateAgreementHeader[] value?;
+};
+
 # Represents the Headers record for the operation: deleteVendorReasons
 public type DeleteVendorReasonsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
+
+public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
+
+public type VendorPaymentJournalFee record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SourceJournalBatchNumber?;
+    decimal SourceJournalLineNumber?;
+    string PaymentFeeId?;
+    string SalesTaxGroup?;
+    string CurrencyCode?;
+    string ItemSalesTaxGroup?;
+    decimal Amount?;
+    string ItemWithholdingTaxGroupCode?;
+    VendPaymFeeTaxDirection_JP SalesTaxDirection?;
+    NoYes IsPaymFeeCoveredByVendor?;
+    LedgerJournalACType AccountType?;
+    string AccountDisplayValue?;
+    string DefaultDimensionDisplayValue?;
+};
+
+# Represents the Headers record for the operation: updateVendPriceAdmTrans
+public type UpdateVendPriceAdmTransHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type VendorRebateAgreementProductSelectionsCollection record {
+    *ODataCollection;
+    VendorRebateAgreementProductSelection[] value?;
+};
+
+public type SysUserRequestAction "AddUser"|"InactivateUser"|"MaintainUser";
+
+# Represents the Queries record for the operation: listVendorLandedCostTypeGroups
+public type ListVendorLandedCostTypeGroupsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type PurchPrepayApplicationPolicy "Notification"|"Automatic";
+
+# Represents the Queries record for the operation: getVendDefaultDocumentClassV2
+public type GetVendDefaultDocumentClassV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type InvestorType "None"|"Owner"|"Broker";
+
+public type VendorOperationType_MX "Blank"|"SalesGoods"|"ProServices"|"RentLease"|"ImportGoodsServices"|"ImportVirtualTransfer"|"Other"|"GlobalOperations";
+
+public type MarkupCategory "Fixed"|"Pcs"|"Percent"|"InterCompanyPercent"|"External"|"Proportional"|"UnitSpecific"|"UnitSpecificMatch";
+
+public type VendorOverUnderDeliveryToleranceGroupsCollection record {
+    *ODataCollection;
+    VendorOverUnderDeliveryToleranceGroup[] value?;
+};
+
+public type VendInvoiceJournalLine record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string JournalBatchNumber?;
+    decimal LineNumber?;
+    string AccountDisplayValue?;
+    string InvoiceDeclarationId?;
+    decimal CashDiscountAmount?;
+    string UUID?;
+    string OffsetFinTagDisplayValue?;
+    string PostingProfile?;
+    Listcode Listcode?;
+    string OffsetDefaultDimensionDisplayValue?;
+    decimal ReportingCurrencyExchRate?;
+    string PaymId?;
+    LedgerJournalACType AccountType?;
+    string TermsOfPayment?;
+    string RemittanceAddressStreet?;
+    string RemittanceAddressDistrictName?;
+    decimal ExchRateSecond?;
+    LedgerTransType TransactionType?;
+    string ChineseVoucher?;
+    int Tax1099Fields?;
+    string MethodOfPayment?;
+    string ChineseVoucherType?;
+    string AssetId?;
+    string RemittanceAddressCity?;
+    decimal ExchRate?;
+    string Document?;
+    string Description?;
+    string RemittanceAddressState?;
+    string RemittanceAddressZipCode?;
+    string Invoice?;
+    string DeliveryDate?;
+    NoYes OverrideSalesTax_BR?;
+    string RemittanceAddressCounty?;
+    string Date?;
+    string RemittanceAddressLocationId?;
+    string Voucher?;
+    string ApproverNumber?;
+    NoYes Approved?;
+    string CashDiscount?;
+    string TaxExemptNumber?;
+    string Currency?;
+    string ItemWithholdingTaxGroupCode?;
+    LedgerJournalACType OffsetAccountType?;
+    string InvoiceDate?;
+    string BankAccountId?;
+    string RemittanceAddressCountryISOCode?;
+    string CashDiscountDate?;
+    decimal Debit?;
+    decimal ImportedSalesTax?;
+    string OffsetCompany?;
+    string TaxGroup_BR?;
+    string DueDate?;
+    NoYes OverrideSalesTax?;
+    Timezone RemittanceAddressTimeZone?;
+    string RemittanceAddressDescription?;
+    decimal Credit?;
+    GSTHSTTaxType_CA GSTHSTTaxType?;
+    AssetTransTypeJournal AssetTransType?;
+    string TaxItemGroup_BR?;
+    string Company?;
+    string RemittanceAddressValidFrom?;
+    string CustVendBankAccountId?;
+    NoYes IsWithholdingTaxCalculate?;
+    string RemittanceAddressValidTo?;
+    string OffsetAccountDisplayValue?;
+    string SalesTaxGroup?;
+    string DefaultDimensionDisplayValue?;
+    decimal RemittanceAddressLatitude?;
+    string SalesTaxCode?;
+    string FullPrimaryRemittanceAddress?;
+    string ItemSalesTaxGroup?;
+    string RemittanceAddressCountry?;
+    string FinTagDisplayValue?;
+    string OffsetTransactionText?;
+    VendorOperationType_MX TypeOfOperation?;
+    string BookId?;
+    string PaymentSpecification?;
+    decimal RemittanceAddressLongitude?;
+    string ITMCostTypeId?;
+    ITMCostArea ITMCostArea?;
+};
+
+public type VendorProductDescriptionsV2Collection record {
+    *ODataCollection;
+    VendorProductDescriptionV2[] value?;
+};
+
+public type VendorFormSetupsCollection record {
+    *ODataCollection;
+    VendorFormSetup[] value?;
+};
+
+# Represents the Headers record for the operation: updateVendorFormSetups
+public type UpdateVendorFormSetupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type DisplayInvoiceMiscChargeMatchOption "GreaterThan"|"GreaterOrLessThan";
+
+public type VendorInvoiceDeclaration record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string InvoiceDeclarationId?;
+    InvoiceRecordType_IS RecordType?;
+    string ReportingCode?;
+    string Description?;
+};
+
+public type ReuseVoucher "NoDuplicate"|"NoDuplicateInYear"|"AcceptDuplicate"|"WarnDuplicate";
+
+public type VendTaxRegisterApproval "Register"|"Approval";
+
+public type SysUserRequestStatus "Draft"|"WorkflowSubmitted"|"ApprovalPending"|"ApprovalDenied"|"ApprovalApproved"|"UserTaskPending"|"UserTaskCompleted"|"WorkflowCanceled"|"WorkflowCompleted"|"B2BUserInvitationPending"|"B2BUserInvitationCompleted";
+
+# Represents the Queries record for the operation: getVendorOverUnderDeliveryToleranceGroups
+public type GetVendorOverUnderDeliveryToleranceGroupsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type VendorExceptionGroup record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string GroupId?;
+    string Description?;
+};
+
+public type Tax1099Type "F1099DIV"|"F1099INT"|"F1099MISC"|"F1099OID"|"F1099G"|"F1099S"|"F1099NEC";
+
+public type InventProfileType_RU "NotSpecified"|"General"|"CommissionAgent"|"CommissionPrincipalAgent"|"Bailee";
+
+public type VendorInvoiceDocumentAttachment record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string HeaderReference?;
+    string FileContents?;
+    string FileType?;
+    string Name?;
+    string TypeId?;
+    DocuRestriction Restriction?;
+    string Notes?;
+    string FileName?;
+    NoYes DefaultAttachment?;
+};
+
+public type TAMVendRebateTakenFrom "Gross"|"Net";
+
+public type TAMVendRebateCalcDateType "CreatedDate"|"RequestedDeliveryDate";
+
+public type TaxVATNumCountryRegionType "None"|"DomesticEU"|"EU";
+
+# Represents the Headers record for the operation: updateVendorParameters
+public type UpdateVendorParametersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type VendRequestWorkflowState "NotSubmitted"|"Submitted"|"PendingApproval"|"Approved"|"PendingCompletion"|"Complete"|"WorkflowComplete";
+
+public type VendorRequestNewCategoriesCollection record {
+    *ODataCollection;
+    VendorRequestNewCategory[] value?;
+};
+
+public type VendorPaymentFeesCollection record {
+    *ODataCollection;
+    VendorPaymentFee[] value?;
+};
+
+# Represents the Queries record for the operation: getVendorRetentionTermSchedules
+public type GetVendorRetentionTermSchedulesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listVendorProductDescriptions
+public type ListVendorProductDescriptionsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type NoYes "No"|"Yes";
+
+# Represents the Headers record for the operation: deleteVendorInvoiceHeaders
+public type DeleteVendorInvoiceHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type VendorsCollection record {
+    *ODataCollection;
+    Vendor[] value?;
+};
+
+# Represents the Queries record for the operation: getVendorPriceToleranceGroups
+public type GetVendorPriceToleranceGroupsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type TaxWithholdVendorType_TH "Blank"|"Domestic"|"Foreign"|"Individual";
+
+# Represents the Headers record for the operation: deleteVendorInvoiceHeaderCharges
+public type DeleteVendorInvoiceHeaderChargesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type VendorRebateAgreementProductSelectionV2 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string RebateAgreementId?;
+    string ItemNumber?;
+    string ProductConfigurationId?;
+    string ProductColorId?;
+    string QualifyingWarehouseId?;
+    string QualifyingSiteId?;
+    string ProductSizeId?;
+    string ProductStyleId?;
+    string ProductVersionId?;
+    string VendorAccountNumber?;
+    string ProductUnitSymbol?;
+};
+
+public type VendorPaymentJournalLineSettledInvoice record {
+    string \@odata\.etag?;
+    string JournalLineCompany?;
+    string JournalBatchNumber?;
+    decimal JournalLineNumber?;
+    string InvoiceNumber?;
+    string InvoiceCompany?;
+    string InvoiceDueDate?;
+    decimal InvoiceToPaymentCrossRate?;
+    decimal SettlementAmountInInvoiceCurrency?;
+    decimal CashDiscountToTakeInInvoiceCurrency?;
+    string invoiceAccount?;
+    string AccountDisplayValue?;
+};
+
+# Represents the Headers record for the operation: updateVendorRebateAgreementProductSelections
+public type UpdateVendorRebateAgreementProductSelectionsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listVendorCollaborationUserRequests
+public type ListVendorCollaborationUserRequestsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getVendorsV2
+public type GetVendorsV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getVendorPaymentJournalFees
+public type GetVendorPaymentJournalFeesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type VendorRelationshipManagementVendorsCollection record {
+    *ODataCollection;
+    VendorRelationshipManagementVendor[] value?;
+};
+
+# Represents the Headers record for the operation: updateVendorLandedCostTypeGroups
+public type UpdateVendorLandedCostTypeGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type CustSettlePrepaymentVATType_RU "Storno"|"Reversal";
+
+# Represents the Headers record for the operation: deleteVendorFormSetups
+public type DeleteVendorFormSetupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ExtendedPriceMatching "None"|"Percentage"|"Amount"|"PercentAndAmount";
+
+# Represents the Headers record for the operation: updateVendorRetentionTerms
+public type UpdateVendorRetentionTermsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type RetailVendTypeBase "None"|"Own"|"ThirdParty"|"Concession";
+
+# Represents the Queries record for the operation: getVendorInvoiceDocumentAttachments
+public type GetVendorInvoiceDocumentAttachmentsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Standard OData collection envelope.
+public type ODataCollection record {
+    string \@odata\.context?;
+    int \@odata\.count?;
+    string \@odata\.nextLink?;
+};
+
+public type VendorPriceToleranceGroupsCollection record {
+    *ODataCollection;
+    VendorPriceToleranceGroup[] value?;
+};
+
+# Represents the Headers record for the operation: updateVendors
+public type UpdateVendorsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type VendInvoiceRequestStatus "Draft"|"InReview"|"Approved"|"Rejected"|"Cancelled";
+
+# Represents the Headers record for the operation: deleteVendDefaultDocumentClassV2
+public type DeleteVendDefaultDocumentClassV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type InvoiceType_MY "Invoice"|"GST"|"SelfBilled"|"ServiceInvoice";
+
+# Represents the Queries record for the operation: getVendorDocumentAttachments
+public type GetVendorDocumentAttachmentsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateVendorDocumentAttachments
+public type UpdateVendorDocumentAttachmentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listVendorsV3
+public type ListVendorsV3Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type UnknownNoYes "Unknown"|"No"|"Yes";
+
+public type TaxIDType "Unknown"|"EIN"|"SSN"|"ITIN"|"ATIN";
+
+public type VendorInvoiceHeadersCollection record {
+    *ODataCollection;
+    VendorInvoiceHeader[] value?;
+};
+
+public type EFDocPresenceType_BR "DoesNotApply"|"InPerson"|"Internet"|"Telesales"|"InPersonOut"|"Others";
+
+# Represents the Headers record for the operation: deleteVendorProductDescriptionsV2
+public type DeleteVendorProductDescriptionsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getAgreementTerms
+public type GetAgreementTermsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type SysUserRequestUserType "Normal"|"B2B";
+
+public type VendorPaymentJournalLineSettledInvoicesCollection record {
+    *ODataCollection;
+    VendorPaymentJournalLineSettledInvoice[] value?;
+};
+
+# Represents the Headers record for the operation: deleteVendorRebateAgreementLines
+public type DeleteVendorRebateAgreementLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listVendorInvoiceDocumentAttachments
+public type ListVendorInvoiceDocumentAttachmentsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteVendorRelationshipManagementVendors
+public type DeleteVendorRelationshipManagementVendorsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type VendPriceAdmTrans record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string JournalNum?;
+    int LineNum?;
+    string Size?;
+    string SerialNumber?;
+    string Color?;
+    string InventoryStatus?;
+    string Owner?;
+    string Warehouse?;
+    string Currency?;
+    string ToDate?;
+    string ProductProfile?;
+    string ItemNum?;
+    decimal PriceUnit?;
+    string BatchNumber?;
+    decimal Amount?;
+    string FromDate?;
+    string NameSim?;
+    string Configuration?;
+    string UnitId?;
+    string LicensePlate?;
+    string ProductGtd?;
+    string Site?;
+    string Style?;
+    string Location?;
+    decimal PriceCharges?;
+};
+
+# Represents the Headers record for the operation: deleteVendorRequestNewCategories
+public type DeleteVendorRequestNewCategoriesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type InvoicePolicyViolationStatus "Warning"|"Reject";
+
+public type VendorReasons record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ReasonCode?;
+    NoYes PurposeCode?;
+    NoYes ForVendorTransactionType?;
+    string DefaultComment?;
+    NoYes CancellationReason?;
+};
+
+public type DocuRestriction "Internal"|"External";
+
+public type LTMTaxesFilter "All"|"Assigned";
+
+# Represents the Headers record for the operation: deleteVendorProductDescriptions
+public type DeleteVendorProductDescriptionsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteVendorPaymentJournalLineSettledInvoices
+public type DeleteVendorPaymentJournalLineSettledInvoicesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listAgreementTerms
+public type ListAgreementTermsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type VendorRetentionTermSchedulesCollection record {
+    *ODataCollection;
+    VendorRetentionTermSchedule[] value?;
+};
+
+# Represents the Queries record for the operation: getVendorRelationshipManagementVendors
+public type GetVendorRelationshipManagementVendorsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listVendPriceAdmTrans
+public type ListVendPriceAdmTransQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type WMSFreightChargeTerms "Prepaid"|"Collect"|"ThirdParty"|"Nofreight"|"ConsigneeParty";
+
+# Represents the Queries record for the operation: listVendorInvoiceLineCharges
+public type ListVendorInvoiceLineChargesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type VendorInvoiceTotalTolerance record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string VendorAccount?;
+    decimal InvoiceTotalsPercentage?;
+    string VendorName?;
+};
+
+public type VendorInvoiceDocumentAttachmentsCollection record {
+    *ODataCollection;
+    VendorInvoiceDocumentAttachment[] value?;
+};
+
+public type Tax1099NameChoice "VendorName"|"DBA";
+
+# Represents the Headers record for the operation: deleteVendorRetentionTermSchedules
+public type DeleteVendorRetentionTermSchedulesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteVendorsV2
+public type DeleteVendorsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateVendorInvoiceTotalTolerances
+public type UpdateVendorInvoiceTotalTolerancesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type TAMRebateUnitType "InventoryUnit"|"CWUnit";
+
+# Represents the Headers record for the operation: deleteVendorRebateAgreementProductSelectionsV2
+public type DeleteVendorRebateAgreementProductSelectionsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ITMVendType "None"|"ShipVend"|"CustomsBroker"|"Agent";
+
+public type VendorInvoiceHeader record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string HeaderReference?;
+    decimal InvoiceRoundOff?;
+    NoYes FixedRate?;
+    string CashDiscountDate?;
+    string ApproverPersonnelNumber?;
+    NoYes ServiceCodeOnDeliveryAddress?;
+    string DimensionDisplayValue?;
+    string TermsOfPayment?;
+    string BusinessDocumentSubmissionId_W?;
+    TypeOfCTe_BR CTeType?;
+    string InvoicePaymentReleaseDate?;
+    string VariancePersonnelNumber?;
+    WMSFreightChargeTerms DeliveryFreightChargeTerms?;
+    string BankAccount?;
+    string GSTImportDeclarationNumber?;
+    string DeliveryTransportBrand?;
+    string DocumentNumber?;
+    string VendorAccount?;
+    string MethodOfPayment?;
+    string FiscalDocumentSeries?;
+    string EndDateTime?;
+    SettlementType SettleVoucher?;
+    EFDocPresenceType_BR FiscalOperationPresenceType?;
+    string BankConstantSymbol?;
+    string FiscalEstablishmentId?;
+    decimal ImportedAmount?;
+    string InvoiceGroup?;
+    string EnterpriseNumber?;
+    string Warehouse?;
+    string Comment?;
+    string PurchaseOrderNumber?;
+    NoYes IsBatch?;
+    string UUID?;
+    string PurchReceiptDate_W?;
+    string VendorPaymentFineCode?;
+    string InvoiceReceivedDate?;
+    string VarianceApprovedDateTime?;
+    string InvoiceUUID?;
+    string CashDiscountCode?;
+    string InvoiceDate?;
+    decimal TotalDiscount?;
+    string DeliveryVehicleNumber?;
+    NoYes IsOnHold?;
+    PurchInvoiceType VendorInvoiceType?;
+    string CFPSCode?;
+    FiscalDocumentSpecie_BR FiscalDocumentSpecie?;
+    string Transport?;
+    string InvoiceDescription?;
+    decimal CashDiscount?;
+    string Site?;
+    string NumberSequenceGroup?;
+    decimal ReportingCurrencyExchangeRate?;
+    NoYes ApprovePostingWithMatchingDiscrepancies?;
+    string FiscalDocumentModel?;
+    string PackingslipRange?;
+    string ReleaseDateComment?;
+    string DeliveryPackingName?;
+    string PaymentSpecification?;
+    string CountyOrigDest?;
+    NoYes IsFinalUser?;
+    string SalesTaxGroup?;
+    string TransactionCode?;
+    string VendorPaymentFinancialInterestCode?;
+    string StatisticsProcedure?;
+    string DueDate?;
+    NoYes ErrorInvalidDistribution?;
+    decimal ExchangeRate?;
+    decimal ImportedSalesTax?;
+    Listcode ListCode?;
+    boolean Recalculation?;
+    string BankSpecificSymbol?;
+    string FinTagDisplayValue?;
+    string Log?;
+    NoYes CreditCorrection?;
+    string DeliveryName?;
+    VendInvoiceRequestStatus VendorInvoiceReviewStatus?;
+    string PaymentId?;
+    string ImportDeclarationNumber?;
+    NoYes HeaderOnlyImport?;
+    WMSFreightedBy FreightedBy?;
+    string FiscalDocumentOperationTypeId?;
+    string PostingProfile?;
+    string PaymentSchedule?;
+    InvoiceType_MY GSTInvoiceType?;
+    string PaymentGroupCode?;
+    string VendorName?;
+    string CarrierName?;
+    string ChargesGroup?;
+    string InvoiceNumber?;
+    decimal SalesTaxRounding?;
+    NoYes IgnoreCalculatedSalesTax?;
+    NoYes IsElectronicInvoiceForService?;
+    NoYes OverrideSalesTax?;
+    string Port?;
+    string VendorRequestedWorkerEmail?;
+    string AccessKey?;
+    string InvoiceAccount?;
+    string TaxExemptNumber?;
+    string Currency?;
+    NoYes Triangulation?;
+    NoYes IsPricesIncludeSalesTax?;
+    decimal SecondaryExchangeRate?;
+    string FiscalDocumentTypeId?;
+    string StartDateTime?;
+    string Date?;
+    string PurchIdRange?;
+    string InvoiceSeries?;
+    decimal DiscountPercentage?;
+    NoYes IsApproved?;
+    string DeliveryStateRegistered?;
+    string ProjectManager_FR?;
+    string InvoiceAccountServiceCode_FR?;
+    int ElectronicInvoiceFrameworkType_FR?;
+    string ProjectManagerServiceCode_FR?;
+    string PSNPostingDefinitionCode?;
+    string PSNVendorAccountForBalancePayoff?;
+    string PSNReferenceInvoiceNumber?;
+    string PSNBankAccountId?;
+    PSNPurchasingCardTransactionType PSNPurchasingCardTransactionType?;
+    string PSNCardNumberDigits?;
+    string PSNCardHolderName?;
+    string DTEFileName?;
+    string DTEDigest?;
+    string DocumentClassificationId?;
+    string DTEShipmentID?;
+    string WithholdingSetID?;
+    string DocumentClassificationNumber?;
+};
+
+public type VendorInvoiceTotalTolerancesCollection record {
+    *ODataCollection;
+    VendorInvoiceTotalTolerance[] value?;
+};
+
+# Represents the Headers record for the operation: deleteVendorParameters
+public type DeleteVendorParametersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type VendInvoiceDefaultGroupType "Username"|"Date"|"Custom";
+
+public type PurchInvoiceLineType "Standard"|"Advance"|"AdvanceApplication"|"ReverseAdvanceApplication";
+
+# Represents the Headers record for the operation: updateVendorInvoiceLines
+public type UpdateVendorInvoiceLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type LTMTaxOperationType "Add"|"Update"|"Delete";
+
+# Represents the Queries record for the operation: listVendorRebateAgreementLines
+public type ListVendorRebateAgreementLinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listVendorInvoiceTotalTolerances
+public type ListVendorInvoiceTotalTolerancesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type VendorRebateAgreementProductSelectionsV2Collection record {
+    *ODataCollection;
+    VendorRebateAgreementProductSelectionV2[] value?;
+};
+
+# Represents the Queries record for the operation: getVendorLandedCostTypeGroups
+public type GetVendorLandedCostTypeGroupsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type VendInvoiceDocDate "None"|"Error"|"Warning";
+
+# Represents the Queries record for the operation: getVendorReasons
+public type GetVendorReasonsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type AssetTransTypeJournal "None"|"Acquisition"|"AcquisitionAdj"|"Depreciation"|"DepreciationAdj"|"Revaluation"|"WriteUpAdj"|"WriteDownAdj"|"DisposalSale"|"DisposalScrap"|"CapitalReserve"|"CapitalReserveTransfer"|"ExtraordinaryDepreciation"|"DerogatoryIncrease"|"DerogatoryDecrease"|"BonusDepreciation"|"Preacquisition_CZ"|"NotCostAllocatedPart_PL"|"AccumulatedDepreciation_PL"|"PostingOffAccDepreciation_PL"|"ExpensedRetirmentObligation_JP"|"ReductionEntryRepaymentSubsidy_JP"|"ReductionEntryRepayment_JP"|"ReductionEntryRepaymentProportional_JP"|"MajorRepairs_RU"|"PartialTakeDown_RU"|"Disposal_RU"|"Lending_RU"|"LendingRet_RU"|"CompanyIssue_RU"|"CompanyReceipt_RU"|"Other_RU"|"CurrencyWriteUpAdj_RU"|"CurrencyWriteDownAdj_RU"|"RevAcqTR"|"RevDepTR"|"RevDepPastTR";
+
+# Represents the Queries record for the operation: getVendorInvoiceTotalTolerances
+public type GetVendorInvoiceTotalTolerancesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type TypeOfCreditmaxCheck "None"|"Balance"|"BalanceDelivered"|"BalanceAll";
+
+# Represents the Queries record for the operation: getVendorRebateAgreementProductSelectionsV2
+public type GetVendorRebateAgreementProductSelectionsV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getVendorInvoiceLineCharges
+public type GetVendorInvoiceLineChargesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateVendWithholdings
+public type UpdateVendWithholdingsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteVendorRebateAgreementHeaders
+public type DeleteVendorRebateAgreementHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type VendDefaultDocumentClassV2 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string AccountTypeGroupId?;
+    string CreditJournalLineVCId?;
+    string PackingSlipVCId?;
+    string RefoundRemissionVCId?;
+    string DefaultPaymentDocumentClassId?;
+    string PurchCreditNoteVCId?;
+    string PurchInvoiceVCId?;
+    string DebitJournalLineVCId?;
+};
+
+public type DimensionHierarchyType "AccountStructure"|"AccountRuleStructure"|"JournalControlStructure"|"Focus"|"Customer"|"Vendor"|"Project"|"FixedAsset"|"BankAccount"|"Employee"|"Item"|"SingleAttributeStructure"|"DefaultAccount"|"FixedAssets_RU"|"RDeferrals"|"RCash"|"Employee_RU"|"AllAttributeStructure"|"DataEntityDefaultDimensionFormat"|"DataEntityLedgerDimensionFormat"|"DataEntityBudgetDimensionFormat"|"DataEntityBudgetPlanningDimensionFormat"|"FinancialReportingDimensionFormat"|"DerivedDimension"|"CashFlowForecast";
+
+# Represents the Headers record for the operation: deleteVendWithholdings
+public type DeleteVendWithholdingsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type VendorProductDescriptionV2 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ItemNumber?;
+    string ProductColorId?;
+    string ProductConfigurationId?;
+    string ProductSizeId?;
+    string ProductStyleId?;
+    string ProductVersionId?;
+    string VendorAccountNumber?;
+    string ProductDescriptionVendorGroupId?;
+    ABC VendorABCCode?;
+    string VendorProductNumber?;
+    string VendorProductDescription?;
+    string VendorABCCodeNote?;
+};
+
+public type TAMVendRebateApprovalStatus "NotSubmitted"|"Submitted"|"Approved"|"Rejected";
+
+public type Listcode "IncludeNot"|"EUTrade"|"ProductionOnToll"|"TriangularEUTrade"|"TriangularProductionOnToll"|"PropertyMoving_CZ"|"TriangularIntermediateRole_HU"|"DEL_EUService"|"PurchasedOnBehalf_LV";
+
+# Represents the Headers record for the operation: deleteVendorCollaborationUserRequests
+public type DeleteVendorCollaborationUserRequestsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type InvoiceMatchPostingOption "AllowWithWarning"|"RequireApproval";
+
+public type VendorInvoiceLineChargesCollection record {
+    *ODataCollection;
+    VendorInvoicelineCharge[] value?;
+};
+
+public type ExtendedPriceMatchIcon "GreaterThan"|"GreaterOrLessThan";
+
+# Represents the Queries record for the operation: listVendorReasons
+public type ListVendorReasonsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listVendorRebateAgreementHeaders
+public type ListVendorRebateAgreementHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type VendorRequestNewCategory record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string RequestId?;
+    int InstanceRelationType?;
+    string VendorName?;
+    VendVendorRequestNewCategoryOriginType VendRequestOriginType?;
+    NoYes VendorPortalAccessAllowed?;
+    string AccountNum?;
+    string DateSubmitted?;
+    string DateResolved?;
+    VendVendorRequestStatus RequestStatus?;
+    string SponsoredBy?;
+    string CompletedDateTime?;
+    VendVendorRequestEntityType RequestEntityType?;
+    VendRequestWorkflowState VendRequestWorkflowState?;
+};
+
+# Represents the Queries record for the operation: getVendorCollaborationUserRequests
+public type GetVendorCollaborationUserRequestsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateVendorRebateAgreementHeaders
+public type UpdateVendorRebateAgreementHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateVendorReasons
+public type UpdateVendorReasonsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type RetailSalesPriceRoundingBase "None"|"Rounding"|"PricePoints";
+
+# Represents the Queries record for the operation: getVendorInvoiceDeclarations
+public type GetVendorInvoiceDeclarationsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getVendorPaymentJournalLineSettledInvoices
+public type GetVendorPaymentJournalLineSettledInvoicesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteVendorPaymentFees
+public type DeleteVendorPaymentFeesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type VendorCollaborationUserRequest record {
+    string \@odata\.etag?;
+    string RequestId?;
+    string UserAlias?;
+    string ResolvedDateTime?;
+    SysUserRequestUserType UserType?;
+    string UserNetworkDomain?;
+    string UsersLanguageId?;
+    SysUserRequestStatus RequestStatus?;
+    string UserEmail?;
+    SysUserRequestAction RequestAction?;
+    string SubmittedDateTime?;
+    string UsersFullName?;
+    string UserId?;
+    string BusinessJustification?;
+};
+
+public type VendVendorCollaborationType "Disabled"|"WithoutAutoConfirmation"|"WithAutoConfirmation";
+
+public type VendCISStatus "None"|"Gross"|"Standard"|"Higher";
+
+# Represents the Queries record for the operation: getVendorRebateAgreementHeaders
+public type GetVendorRebateAgreementHeadersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type VendorLandedCostTypeGroup record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string GroupId?;
+    string GroupDescription?;
+};
+
+# Represents the Queries record for the operation: getVendorRebateAgreementLines
+public type GetVendorRebateAgreementLinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type VendorDocumentAttachmentsCollection record {
+    *ODataCollection;
+    VendorDocumentAttachment[] value?;
+};
+
+public type VendorV2 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string VendorAccountNumber?;
+    string CompanyChainName?;
+    string AddressValidFrom?;
+    string PrimaryLinkedIn?;
+    Tax1099Type Tax1099Type?;
+    string CentralBankPurposeCode?;
+    string InventoryProfile?;
+    string PrimaryFaxNumberExtension?;
+    string LineOfBusinessId?;
+    string FactoringVendorAccountNumber?;
+    string NAFCode?;
+    string AddressCity?;
+    string VendorGroupId?;
+    NoYes IsServiceDeliveryAddressBased?;
+    string PersonMiddleName?;
+    string BrazilianIE?;
+    NoYes FixedExchangeRate?;
+    string VendorExceptionGroupId?;
+    string CommercialRegisterName?;
+    string CommercialRegisterInsetNumber?;
+    string FiscalCode?;
+    MonthsOfYear PersonBirthMonth?;
+    string CISNationalInsuranceNumber?;
+    string StyleIdPrefix?;
+    string AddressDistrictName?;
+    string PrimaryFacebook?;
+    string NumberSequenceGroupId?;
+    string AddressBrazilianIE?;
+    NoYes SSIVendor?;
+    string StructureDepartment?;
+    string PrimaryContactPersonId?;
+    string VendorKnownAsName?;
+    ABC OrganizationABCCode?;
+    NoYes WillInvoiceProcessingSummaryUpdatePurchaseOrder?;
+    string AddressCountyId?;
+    string TCSGroup?;
+    string PersonPersonalTitle?;
+    NoYes OverrideSalesTax?;
+    NoYes IsWomanOwner?;
+    string AddressStateId?;
+    NoYes IsMinorityOwned?;
+    RetailRoundingTypeBase PricePointRoundingType?;
+    string Tax1099FederalTaxId?;
+    string SiretNumber?;
+    string DefaultOffsetLedgerAccountDisplayValue?;
+    NoYes WillReceiptsListProcessingSummaryUpdatePurchaseOrder?;
+    NoYes IsPurchaseConsumed?;
+    NoYes IsReportingTax1099?;
+    int VendorProductHierarchyId?;
+    NoYes IsVendorLocallyOwned?;
+    string VendorInvoiceDeclarationId?;
+    PurchMatchingPolicyWithNotSetOption VendorInvoiceLineMatchingPolicy?;
+    string PrimaryTelexPurpose?;
+    int:Signed32 OrganizationEmployeeAmount?;
+    string BrazilianINSSCEI?;
+    string PaymentId?;
+    string VendorDUNSNumber?;
+    string ElectronicLocationId?;
+    string ChargeVendorGroupId?;
+    string PricePointGroupId?;
+    NoYes IsServiceVeteranOwned?;
+    string FormattedPrimaryAddress?;
+    string DefaultTotalDiscountVendorGroupCode?;
+    UseCashDisc DefaultCashDiscountUsage?;
+    NoYes IsIncomingFiscalDocumentGenerated?;
+    string AddressLocationId?;
+    int PrimaryContactPhoneRecordId?;
+    string PrimaryURLDescription?;
+    string AddressCityInKana?;
+    string PurchaseShipCalendarId?;
+    string BankTransactionType?;
+    Tax1099NameChoice Tax1099NameToUse?;
+    string UniquePopulationRegistryCode?;
+    string AddressBuildingCompliment?;
+    decimal AddressLatitude?;
+    NoYes ForeignResident?;
+    string PrimaryFaxNumber?;
+    string SalesTaxGroupCode?;
+    string PersonProfessionalSuffix?;
+    int PrimaryContactFaxRecordId?;
+    string OIDNomineeDetails?;
+    string PANNumber?;
+    string PrimaryFaxNumberPurpose?;
+    string PrimaryURLPurpose?;
+    string CISVerificationNumber?;
+    string OrganizationPhoneticName?;
+    string StateInscription?;
+    string BankAccountId?;
+    RetailVendTypeBase VendorType?;
+    string BrazilianNIT?;
+    Timezone AddressTimeZone?;
+    string VendorPriceToleranceGroupId?;
+    string Tax1099DoingBusinessAsName?;
+    string CommercialRegisterSection?;
+    string PrimaryFacebookPurpose?;
+    string ColorIdPrefix?;
+    string PersonFirstName?;
+    string TaxOperationCode?;
+    string PriceVendorGroupId?;
+    decimal AddressLongitude?;
+    string PrimaryURL?;
+    string VendorPartyNumber?;
+    string DefaultPurchaseSiteId?;
+    string CISUniqueTaxPayerReference?;
+    NoYes IsW9Received?;
+    NoYes IsPurchaseOrderChangeRequestOverrideAllowed?;
+    string VendorSearchName?;
+    string RFCFederalTaxNumber?;
+    NoYes IsPrimaryPhoneNumberMobile?;
+    RetailSalesPriceRoundingBase SalesPriceRounding?;
+    string PersonLastName?;
+    string PrimaryPhoneNumberDescription?;
+    string ZakatRegistrationNumber?;
+    MonthsOfYear PersonAnniversaryMonth?;
+    VendorType_MX DIOTVendorType?;
+    string PurchaseWorkCalendarId?;
+    decimal ExchangeRate?;
+    string DefaultPaymentDayName?;
+    string Tax1099BoxId?;
+    CustVendorBlocked OnHoldStatus?;
+    string RoundingMethod?;
+    string DefaultDeliveryTermsCode?;
+    string ProductDescriptionVendorGroupId?;
+    NoYes IsOwnerDisabled?;
+    decimal CreditLimit?;
+    string WithholdingTaxGroupCode?;
+    NoYes HasOnlyTakenBids?;
+    string AddressCountryRegionISOCode?;
+    TaxIDType Tax1099IdType?;
+    string DUNSNumber?;
+    string CashDiscountCode?;
+    string PrimaryPhoneNumber?;
+    NoYes CreateBarcodeIfNeeded?;
+    string PersonPhoneticMiddleName?;
+    string DefaultInventoryStatusId?;
+    string DefaultPaymentTermsName?;
+    string VendorHoldReleaseDate?;
+    string NameControl?;
+    NoYes IsICMSContributor?;
+    string BrazilianCCM?;
+    NoYes ForeignVendor?;
+    NoYes IsVendorPayingBankPaymentFee?;
+    string InvoiceVendorAccountNumber?;
+    string PurchaseRebateVendorGroupId?;
+    string DIOTCountryCode?;
+    string AddressBrazilianCNPJOrCPF?;
+    string PrimaryPhoneNumberPurpose?;
+    string FiscalDocumentIncomeCode?;
+    PANStatus_IN PANStatus?;
+    string OrganizationNumber?;
+    string PaymentTransactionCode?;
+    string AddressStreet?;
+    string BankOrderOfPayment?;
+    string BarcodeNumberSequence?;
+    string PrimaryEmailAddressPurpose?;
+    NoYes IsOneTimeVendor?;
+    string PrimaryEmailAddress?;
+    NoYes IsCUSIPIdentificationNumberApplicable?;
+    VATPartnerKind_RU TaxPartnerKind?;
+    NoYes CompositionScheme?;
+    string AddressLocationRoles?;
+    string PrimaryTelex?;
+    string MainContactPersonnelNumber?;
+    NoYes TaxAgent?;
+    string VendorOrganizationName?;
+    string SizeIdPrefix?;
+    string Nationality?;
+    string AddressCountryRegionId?;
+    string PrimaryTwitterDescription?;
+    string PersonProfessionalTitle?;
+    string AddressDescription?;
+    string VendorPaymentFineCode?;
+    string ResidenceForeignCountryRegionId?;
+    string DefaultPaymentScheduleName?;
+    CompanyType_MX CompanyType?;
+    int:Signed32 PersonBirthDay?;
+    string LineDiscountVendorGroupCode?;
+    string ForeignVendorTaxRegistrationId?;
+    TaxWithholdVendorType_TH WithholdingTaxVendorType?;
+    EFDocPresenceType_BR FiscalOperationPresenceType?;
+    NoYes WillPurchaseOrderProcessingSummaryUpdatePurchaseOrder?;
+    string PersonHobbies?;
+    int AddressRecordId?;
+    NoYes IsGSTCompositionSchemeEnabled?;
+    string PrimaryFaxNumberDescription?;
+    string DefaultPurchaseOrderPoolId?;
+    InventProfileType_RU InventoryProfileType?;
+    string ForeignerId?;
+    string PrimaryTwitter?;
+    string BirthPlace?;
+    NoYes IsVendorLocatedInHUBZone?;
+    string CreditRating?;
+    string Notes?;
+    string PrimaryFacebookDescription?;
+    NoYes ArePricesIncludingSalesTax?;
+    string PrimaryTwitterPurpose?;
+    string BuyerGroupId?;
+    NoYes IsForeignEntity?;
+    string CentralBankPurposeText?;
+    string ZakatServiceType?;
+    string DefaultProcumentWarehouseId?;
+    VendorOperationType_MX DIOTOperationType?;
+    string PersonPersonalSuffix?;
+    string VendorPartyType?;
+    string AddressStreetNumber?;
+    NoYes IsChangeManagementActivated?;
+    string BrazilianCNPJOrCPF?;
+    NoYes WillProductReceiptProcessingSummaryUpdatePurchaseOrder?;
+    string CUSIPDetails?;
+    VendVendorCollaborationType VendorPortalCollaborationMethod?;
+    string AddressStreetInKana?;
+    string PersonLastNamePrefix?;
+    string LanguageId?;
+    string CUSIPIdentificationNumber?;
+    string MultilineDiscountVendorGroupCode?;
+    string BirthCountyCode?;
+    string PersonPhoneticFirstName?;
+    string AddressValidTo?;
+    string DefaultVendorPaymentMethodName?;
+    string AddressPostBox?;
+    NoYes WillPurchaseOrderIncludePricesAndAmounts?;
+    int:Signed32 VendorLeadTime?;
+    string PrimaryLinkedInPurpose?;
+    string AddressZipCode?;
+    int PrimaryContactEmailRecordId?;
+    VendCISStatus CISStatus?;
+    NoYes GTAVendor?;
+    string VendorPaymentFinancialInterestCode?;
+    string PrimaryLinkedInDescription?;
+    string TDSGroup?;
+    string ISNationalRegistryNumber?;
+    string PrimaryPhoneNumberExtension?;
+    string DefaultSupplementaryProductVendorGroupId?;
+    NoYes IsPrimaryEmailAddressIMEnabled?;
+    string BrazilianCNAE?;
+    Gender PersonGender?;
+    int PrimaryContactURLRecordId?;
+    string CISVerificationDate?;
+    NoYes IsW9CheckingEnabled?;
+    string BusinessSegmentCode?;
+    string PaymentFeeGroupId?;
+    string SeparateDivisionId?;
+    LedgerJournalACType DefaultOffsetAccountType?;
+    string AddressBooks?;
+    int:Signed32 PersonBirthYear?;
+    NoYes IsSmallBusiness?;
+    string NationalRegistryNumberId?;
+    string CurrencyCode?;
+    string DefaultLedgerDimensionDisplayValue?;
+    string SSIValidityDate?;
+    int:Signed32 PersonAnniversaryDay?;
+    int:Signed32 PurchaseOrderConsolidationDayOfMonth?;
+    string DefaultDeliveryModeId?;
+    string BusinessSubsegmentCode?;
+    DirPersonMaritalStatus PersonMaritalStatus?;
+    string ZakatFileNumber?;
+    string UPSFreightZone?;
+    NoYes IsSubcontractor?;
+    InvestorType OIDInvestorType?;
+    string PaymentSpecificationId?;
+    NoYes PreferentialVendor?;
+    string TaxExemptNumber?;
+    string ClearingPeriodPaymentTermsId?;
+    NoYes IsFlaggedWithSecondTIN?;
+    string PersonPhoneticLastName?;
+    string ServiceCategory?;
+    string DestinationCode?;
+    string PrimaryEmailAddressDescription?;
+    string PersonInitials?;
+    int:Signed32 PersonAnniversaryYear?;
+    string OurAccountNumber?;
+    string PANReferenceNumber?;
+    string EnterpriseNumber?;
+    string PrimaryTelexDescription?;
+    string PersonChildrenNames?;
+    NatureOfAssessee_IN NatureOfAssessee?;
+    string CISCompanyRegistrationNumber?;
+    NoYes IsChangeMangementOverrideByVendorAllowed?;
+    string EthnicOriginId?;
+    NoYes IsWithholdingTaxCalculated?;
+    NoYes IsTaxationOverPayroll_BR?;
+    NoYes IsPublicSector_IT?;
+    string DefaultAgentVendorAccountNumber?;
+    string VendorOverUnderdeliveryToleranceGroupId?;
+    NoYes IsTransportationServicesProvider?;
+    ITMVendType ShippingVendorType?;
+    string VendorCostTypeGroup?;
+    string DefaultFromShippingPortId?;
+    NoYes IsImportCostingVendor?;
+    string ShippingVendorAccountNumber?;
+};
+
+public type VendorOverUnderDeliveryToleranceGroup record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string GroupId?;
+    string GroupDescription?;
+};
+
+public type VendorV3 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string VendorAccountNumber?;
+    string CompanyChainName?;
+    string AddressValidFrom?;
+    string PrimaryLinkedIn?;
+    Tax1099Type Tax1099Type?;
+    string CentralBankPurposeCode?;
+    string InventoryProfile?;
+    string PrimaryFaxNumberExtension?;
+    string LineOfBusinessId?;
+    string FactoringVendorAccountNumber?;
+    string NAFCode?;
+    string AddressCity?;
+    string VendorGroupId?;
+    NoYes IsServiceDeliveryAddressBased?;
+    string PersonMiddleName?;
+    string BrazilianIE?;
+    NoYes FixedExchangeRate?;
+    string VendorExceptionGroupId?;
+    string CommercialRegisterName?;
+    string CommercialRegisterInsetNumber?;
+    string FiscalCode?;
+    MonthsOfYear PersonBirthMonth?;
+    string CISNationalInsuranceNumber?;
+    string StyleIdPrefix?;
+    string AddressDistrictName?;
+    string PrimaryFacebook?;
+    string NumberSequenceGroupId?;
+    string AddressBrazilianIE?;
+    NoYes SSIVendor?;
+    string StructureDepartment?;
+    string PrimaryContactPersonId?;
+    string VendorKnownAsName?;
+    ABC OrganizationABCCode?;
+    NoYes WillInvoiceProcessingSummaryUpdatePurchaseOrder?;
+    string AddressCountyId?;
+    string TCSGroup?;
+    string PersonPersonalTitle?;
+    NoYes OverrideSalesTax?;
+    NoYes IsWomanOwner?;
+    string AddressStateId?;
+    NoYes IsMinorityOwned?;
+    RetailRoundingTypeBase PricePointRoundingType?;
+    string Tax1099FederalTaxId?;
+    string SiretNumber?;
+    string DefaultOffsetLedgerAccountDisplayValue?;
+    NoYes WillReceiptsListProcessingSummaryUpdatePurchaseOrder?;
+    NoYes IsPurchaseConsumed?;
+    NoYes IsReportingTax1099?;
+    int VendorProductHierarchyId?;
+    NoYes IsVendorLocallyOwned?;
+    string VendorInvoiceDeclarationId?;
+    PurchMatchingPolicyWithNotSetOption VendorInvoiceLineMatchingPolicy?;
+    string PrimaryTelexPurpose?;
+    int:Signed32 OrganizationEmployeeAmount?;
+    string BrazilianINSSCEI?;
+    string PaymentId?;
+    string VendorDUNSNumber?;
+    string ElectronicLocationId?;
+    string ChargeVendorGroupId?;
+    string PricePointGroupId?;
+    NoYes IsServiceVeteranOwned?;
+    string FormattedPrimaryAddress?;
+    string DefaultTotalDiscountVendorGroupCode?;
+    UseCashDisc DefaultCashDiscountUsage?;
+    NoYes IsIncomingFiscalDocumentGenerated?;
+    string AddressLocationId?;
+    int PrimaryContactPhoneRecordId?;
+    string PrimaryURLDescription?;
+    string AddressCityInKana?;
+    string BankTransactionType?;
+    Tax1099NameChoice Tax1099NameToUse?;
+    string UniquePopulationRegistryCode?;
+    string AddressBuildingCompliment?;
+    decimal AddressLatitude?;
+    NoYes ForeignResident?;
+    string PrimaryFaxNumber?;
+    string SalesTaxGroupCode?;
+    string PersonProfessionalSuffix?;
+    int PrimaryContactFaxRecordId?;
+    string OIDNomineeDetails?;
+    string PANNumber?;
+    string PrimaryFaxNumberPurpose?;
+    string PrimaryURLPurpose?;
+    string CISVerificationNumber?;
+    string OrganizationPhoneticName?;
+    string StateInscription?;
+    string BankAccountId?;
+    RetailVendTypeBase VendorType?;
+    string BrazilianNIT?;
+    Timezone AddressTimeZone?;
+    string VendorPriceToleranceGroupId?;
+    string Tax1099DoingBusinessAsName?;
+    string CommercialRegisterSection?;
+    string PrimaryFacebookPurpose?;
+    string ColorIdPrefix?;
+    string PersonFirstName?;
+    string TaxOperationCode?;
+    string PriceVendorGroupId?;
+    decimal AddressLongitude?;
+    string PrimaryURL?;
+    string VendorPartyNumber?;
+    string DefaultPurchaseSiteId?;
+    string CISUniqueTaxPayerReference?;
+    NoYes IsW9Received?;
+    NoYes IsPurchaseOrderChangeRequestOverrideAllowed?;
+    string VendorSearchName?;
+    string RFCFederalTaxNumber?;
+    NoYes IsPrimaryPhoneNumberMobile?;
+    RetailSalesPriceRoundingBase SalesPriceRounding?;
+    string PersonLastName?;
+    string PrimaryPhoneNumberDescription?;
+    string ZakatRegistrationNumber?;
+    MonthsOfYear PersonAnniversaryMonth?;
+    VendorType_MX DIOTVendorType?;
+    string PurchaseWorkCalendarId?;
+    decimal ExchangeRate?;
+    string DefaultPaymentDayName?;
+    string Tax1099BoxId?;
+    CustVendorBlocked OnHoldStatus?;
+    string RoundingMethod?;
+    string DefaultDeliveryTermsCode?;
+    string ProductDescriptionVendorGroupId?;
+    NoYes IsOwnerDisabled?;
+    decimal CreditLimit?;
+    string WithholdingTaxGroupCode?;
+    NoYes HasOnlyTakenBids?;
+    string AddressCountryRegionISOCode?;
+    TaxIDType Tax1099IdType?;
+    string DUNSNumber?;
+    string CashDiscountCode?;
+    string PrimaryPhoneNumber?;
+    NoYes CreateBarcodeIfNeeded?;
+    string PersonPhoneticMiddleName?;
+    string DefaultInventoryStatusId?;
+    string DefaultPaymentTermsName?;
+    string VendorHoldReleaseDate?;
+    string NameControl?;
+    NoYes IsICMSContributor?;
+    string BrazilianCCM?;
+    NoYes ForeignVendor?;
+    NoYes IsVendorPayingBankPaymentFee?;
+    string InvoiceVendorAccountNumber?;
+    string PurchaseRebateVendorGroupId?;
+    string DIOTCountryCode?;
+    string AddressBrazilianCNPJOrCPF?;
+    string PrimaryPhoneNumberPurpose?;
+    string FiscalDocumentIncomeCode?;
+    PANStatus_IN PANStatus?;
+    string OrganizationNumber?;
+    string PaymentTransactionCode?;
+    string AddressStreet?;
+    string BankOrderOfPayment?;
+    string BarcodeNumberSequence?;
+    string PrimaryEmailAddressPurpose?;
+    NoYes IsOneTimeVendor?;
+    string PrimaryEmailAddress?;
+    NoYes IsCUSIPIdentificationNumberApplicable?;
+    VATPartnerKind_RU TaxPartnerKind?;
+    NoYes CompositionScheme?;
+    string AddressLocationRoles?;
+    string PrimaryTelex?;
+    string MainContactPersonnelNumber?;
+    NoYes TaxAgent?;
+    string VendorOrganizationName?;
+    string SizeIdPrefix?;
+    string Nationality?;
+    string AddressCountryRegionId?;
+    string PrimaryTwitterDescription?;
+    string PersonProfessionalTitle?;
+    string AddressDescription?;
+    string VendorPaymentFineCode?;
+    string ResidenceForeignCountryRegionId?;
+    string DefaultPaymentScheduleName?;
+    CompanyType_MX CompanyType?;
+    int:Signed32 PersonBirthDay?;
+    string LineDiscountVendorGroupCode?;
+    string ForeignVendorTaxRegistrationId?;
+    TaxWithholdVendorType_TH WithholdingTaxVendorType?;
+    EFDocPresenceType_BR FiscalOperationPresenceType?;
+    NoYes WillPurchaseOrderProcessingSummaryUpdatePurchaseOrder?;
+    string PersonHobbies?;
+    int AddressRecordId?;
+    NoYes IsGSTCompositionSchemeEnabled?;
+    string PrimaryFaxNumberDescription?;
+    string DefaultPurchaseOrderPoolId?;
+    InventProfileType_RU InventoryProfileType?;
+    string ForeignerId?;
+    string PrimaryTwitter?;
+    string BirthPlace?;
+    NoYes IsVendorLocatedInHUBZone?;
+    string CreditRating?;
+    string Notes?;
+    string PrimaryFacebookDescription?;
+    NoYes ArePricesIncludingSalesTax?;
+    string PrimaryTwitterPurpose?;
+    string BuyerGroupId?;
+    NoYes IsForeignEntity?;
+    string CentralBankPurposeText?;
+    string ZakatServiceType?;
+    string DefaultProcumentWarehouseId?;
+    VendorOperationType_MX DIOTOperationType?;
+    string PersonPersonalSuffix?;
+    string VendorPartyType?;
+    string AddressStreetNumber?;
+    NoYes IsChangeManagementActivated?;
+    string BrazilianCNPJOrCPF?;
+    NoYes WillProductReceiptProcessingSummaryUpdatePurchaseOrder?;
+    string CUSIPDetails?;
+    VendVendorCollaborationType VendorPortalCollaborationMethod?;
+    string AddressStreetInKana?;
+    string PersonLastNamePrefix?;
+    string LanguageId?;
+    string CUSIPIdentificationNumber?;
+    string MultilineDiscountVendorGroupCode?;
+    string BirthCountyCode?;
+    string PersonPhoneticFirstName?;
+    string AddressValidTo?;
+    string DefaultVendorPaymentMethodName?;
+    string AddressPostBox?;
+    NoYes WillPurchaseOrderIncludePricesAndAmounts?;
+    string PrimaryLinkedInPurpose?;
+    string AddressZipCode?;
+    int PrimaryContactEmailRecordId?;
+    VendCISStatus CISStatus?;
+    NoYes GTAVendor?;
+    string VendorPaymentFinancialInterestCode?;
+    string PrimaryLinkedInDescription?;
+    string TDSGroup?;
+    string ISNationalRegistryNumber?;
+    string PrimaryPhoneNumberExtension?;
+    string DefaultSupplementaryProductVendorGroupId?;
+    NoYes IsPrimaryEmailAddressIMEnabled?;
+    string BrazilianCNAE?;
+    Gender PersonGender?;
+    int PrimaryContactURLRecordId?;
+    string CISVerificationDate?;
+    NoYes IsW9CheckingEnabled?;
+    string BusinessSegmentCode?;
+    string PaymentFeeGroupId?;
+    string SeparateDivisionId?;
+    LedgerJournalACType DefaultOffsetAccountType?;
+    string AddressBooks?;
+    int:Signed32 PersonBirthYear?;
+    NoYes IsSmallBusiness?;
+    string NationalRegistryNumberId?;
+    string CurrencyCode?;
+    string DefaultLedgerDimensionDisplayValue?;
+    string SSIValidityDate?;
+    int:Signed32 PersonAnniversaryDay?;
+    int:Signed32 PurchaseOrderConsolidationDayOfMonth?;
+    string DefaultDeliveryModeId?;
+    string BusinessSubsegmentCode?;
+    DirPersonMaritalStatus PersonMaritalStatus?;
+    string ZakatFileNumber?;
+    string UPSFreightZone?;
+    NoYes IsSubcontractor?;
+    InvestorType OIDInvestorType?;
+    string PaymentSpecificationId?;
+    NoYes PreferentialVendor?;
+    string TaxExemptNumber?;
+    string ClearingPeriodPaymentTermsId?;
+    NoYes IsFlaggedWithSecondTIN?;
+    string PersonPhoneticLastName?;
+    string ServiceCategory?;
+    string DestinationCode?;
+    string PrimaryEmailAddressDescription?;
+    string PersonInitials?;
+    int:Signed32 PersonAnniversaryYear?;
+    string OurAccountNumber?;
+    string PANReferenceNumber?;
+    string EnterpriseNumber?;
+    string PrimaryTelexDescription?;
+    string PersonChildrenNames?;
+    NatureOfAssessee_IN NatureOfAssessee?;
+    string CISCompanyRegistrationNumber?;
+    NoYes IsChangeMangementOverrideByVendorAllowed?;
+    string EthnicOriginId?;
+    NoYes IsWithholdingTaxCalculated?;
+    NoYes IsPublicSector_IT?;
+};
+
+# Represents the Headers record for the operation: deleteVendorRebateAgreementProductSelections
+public type DeleteVendorRebateAgreementProductSelectionsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteVendors
+public type DeleteVendorsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type VendorRetentionTermsCollection record {
+    *ODataCollection;
+    VendorRetentionTerm[] value?;
+};
+
+public type VendTableChangeProposalDataEntityBehavior "AllowWithoutApproval"|"RejectChanges"|"CreateChangeProposal";
+
+# Represents the Headers record for the operation: deleteVendorInvoiceLines
+public type DeleteVendorInvoiceLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type PSNPurchasingCardTransactionType "None"|"BalancePayOff"|"RecordPurchase";
+
+public type Vendor record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string VendorAccountNumber?;
+    string BrazilianINSSCEI?;
+    string CUSIPDetails?;
+    NoYes IsPrimaryPhoneNumberMobile?;
+    NoYes IsW9Received?;
+    string DefaultPurchaseOrderPoolId?;
+    string UPSFreightZone?;
+    string ElectronicLocationId?;
+    string ProductDescriptionVendorGroupId?;
+    TaxIDType Tax1099IdType?;
+    InvestorType OIDInvestorType?;
+    string PANNumber?;
+    string PaymentFeeGroupId?;
+    string PersonPersonalSuffix?;
+    NoYes IsWithholdingTaxCalculated?;
+    string InvoiceVendorAccountNumber?;
+    NoYes IsCUSIPIdentificationNumberApplicable?;
+    string PrimaryTelex?;
+    string Tax1099FederalTaxId?;
+    string DIOTCountryCode?;
+    string ISNationalRegistryNumber?;
+    string CommercialRegisterInsetNumber?;
+    string PrimaryFaxNumberPurpose?;
+    string CISUniqueTaxPayerReference?;
+    string DUNSNumber?;
+    NoYes IsMinorityOwned?;
+    NoYes HasOnlyTakenBids?;
+    string PersonChildrenNames?;
+    Timezone AddressTimeZone?;
+    string CreditRating?;
+    string PrimaryEmailAddressPurpose?;
+    VendorType_MX DIOTVendorType?;
+    string WithholdingTaxGroupCode?;
+    string NumberSequenceGroupId?;
+    string BrazilianCNPJOrCPF?;
+    string PrimaryEmailAddress?;
+    string PersonInitials?;
+    string DefaultDeliveryTermsCode?;
+    string AddressDescription?;
+    string OurAccountNumber?;
+    string AddressLocationRoles?;
+    NoYes GTAVendor?;
+    string PersonProfessionalTitle?;
+    string CommercialRegisterName?;
+    string AddressBrazilianCNPJOrCPF?;
+    NoYes IsForeignEntity?;
+    string PrimaryEmailAddressDescription?;
+    string ZakatRegistrationNumber?;
+    string FormattedPrimaryAddress?;
+    string Tax1099DoingBusinessAsName?;
+    VendorOperationType_MX DIOTOperationType?;
+    NoYes IsW9CheckingEnabled?;
+    string PersonPhoneticLastName?;
+    EFDocPresenceType_BR FiscalOperationPresenceType?;
+    decimal AddressLongitude?;
+    NoYes SSIVendor?;
+    string PriceVendorGroupId?;
+    string MainContactPersonnelNumber?;
+    decimal CreditLimit?;
+    string PrimaryURLPurpose?;
+    string PrimaryFaxNumberExtension?;
+    string PrimaryPhoneNumberDescription?;
+    string AddressValidFrom?;
+    string PrimaryFaxNumberDescription?;
+    string EnterpriseNumber?;
+    string ClearingPeriodPaymentTermsId?;
+    string CISVerificationDate?;
+    string PurchaseWorkCalendarId?;
+    Tax1099NameChoice Tax1099NameToUse?;
+    PurchMatchingPolicyWithNotSetOption VendorInvoiceLineMatchingPolicy?;
+    string PrimaryTwitter?;
+    string VendorSearchName?;
+    string VendorHoldReleaseDate?;
+    string BrazilianCCM?;
+    NoYes WillReceiptsListProcessingSummaryUpdatePurchaseOrder?;
+    string TDSGroup?;
+    string AddressCountryRegionISOCode?;
+    string CompanyChainName?;
+    string ZakatServiceType?;
+    string VendorPaymentFineCode?;
+    string CashDiscountCode?;
+    string DefaultInventoryStatusId?;
+    string PrimaryFacebookPurpose?;
+    string MultilineDiscountVendorGroupCode?;
+    string CISVerificationNumber?;
+    string AddressLocationId?;
+    string PrimaryLinkedInDescription?;
+    string PrimaryTwitterPurpose?;
+    string PrimaryContactPersonId?;
+    string VendorGroupId?;
+    MonthsOfYear PersonBirthMonth?;
+    string SalesTaxGroupCode?;
+    string PersonPhoneticFirstName?;
+    string PrimaryPhoneNumberPurpose?;
+    PANStatus_IN PANStatus?;
+    NoYes IsSmallBusiness?;
+    string BrazilianNIT?;
+    string AddressCountyId?;
+    NoYes IsFlaggedWithSecondTIN?;
+    string PrimaryTelexPurpose?;
+    string NAFCode?;
+    string PrimaryURL?;
+    string OIDNomineeDetails?;
+    CustVendorBlocked OnHoldStatus?;
+    int:Signed32 PersonAnniversaryYear?;
+    string ForeignerId?;
+    string PrimaryPhoneNumberExtension?;
+    string PrimaryFacebook?;
+    string VendorPriceToleranceGroupId?;
+    NoYes WillProductReceiptProcessingSummaryUpdatePurchaseOrder?;
+    string BusinessSubsegmentCode?;
+    string PersonPhoneticMiddleName?;
+    string VendorPartyNumber?;
+    NoYes IsIncomingFiscalDocumentGenerated?;
+    string Notes?;
+    string AddressCity?;
+    NoYes IsVendorPayingBankPaymentFee?;
+    NoYes IsOneTimeVendor?;
+    string FiscalDocumentIncomeCode?;
+    string PrimaryFacebookDescription?;
+    string PaymentSpecificationId?;
+    string DefaultPaymentTermsName?;
+    string DefaultVendorPaymentMethodName?;
+    string AddressBooks?;
+    string AddressZipCode?;
+    string StateInscription?;
+    string DefaultPurchaseSiteId?;
+    string PaymentTransactionCode?;
+    NoYes IsVendorLocatedInHUBZone?;
+    string DestinationCode?;
+    string OrganizationNumber?;
+    string VendorPaymentFinancialInterestCode?;
+    string EthnicOriginId?;
+    string PersonHobbies?;
+    ABC OrganizationABCCode?;
+    NoYes ForeignVendor?;
+    int:Signed32 OrganizationEmployeeAmount?;
+    string PrimaryTelexDescription?;
+    NatureOfAssessee_IN NatureOfAssessee?;
+    UseCashDisc DefaultCashDiscountUsage?;
+    string UniquePopulationRegistryCode?;
+    string SSIValidityDate?;
+    string DefaultDeliveryModeId?;
+    string DefaultSupplementaryProductVendorGroupId?;
+    string BrazilianIE?;
+    string AddressBrazilianIE?;
+    string PrimaryFaxNumber?;
+    string PrimaryLinkedIn?;
+    NoYes IsICMSContributor?;
+    NoYes ArePricesIncludingSalesTax?;
+    VendCISStatus CISStatus?;
+    int:Signed32 PersonBirthYear?;
+    decimal AddressLatitude?;
+    string NameControl?;
+    string Tax1099BoxId?;
+    NoYes IsReportingTax1099?;
+    string LineDiscountVendorGroupCode?;
+    string PaymentId?;
+    string BrazilianCNAE?;
+    string TCSGroup?;
+    CompanyType_MX CompanyType?;
+    string BirthCountyCode?;
+    NoYes WillInvoiceProcessingSummaryUpdatePurchaseOrder?;
+    string AddressStreet?;
+    Tax1099Type Tax1099Type?;
+    string PersonProfessionalSuffix?;
+    string LineOfBusinessId?;
+    string SiretNumber?;
+    NoYes WillPurchaseOrderIncludePricesAndAmounts?;
+    MonthsOfYear PersonAnniversaryMonth?;
+    string FactoringVendorAccountNumber?;
+    string PrimaryURLDescription?;
+    NoYes IsChangeMangementOverrideByVendorAllowed?;
+    TaxWithholdVendorType_TH WithholdingTaxVendorType?;
+    NoYes WillPurchaseOrderProcessingSummaryUpdatePurchaseOrder?;
+    NoYes PreferentialVendor?;
+    string DefaultPaymentScheduleName?;
+    NoYes IsVendorLocallyOwned?;
+    string DefaultPaymentDayName?;
+    string Nationality?;
+    string VendorName?;
+    string NationalRegistryNumberId?;
+    string PrimaryLinkedInPurpose?;
+    string DefaultOffsetLedgerAccountDisplayValue?;
+    NoYes IsChangeManagementActivated?;
+    NoYes IsServiceVeteranOwned?;
+    string PrimaryPhoneNumber?;
+    string VendorKnownAsName?;
+    string VendorInvoiceDeclarationId?;
+    string VendorPartyType?;
+    DirPersonMaritalStatus PersonMaritalStatus?;
+    string ChargeVendorGroupId?;
+    string PurchaseRebateVendorGroupId?;
+    string PersonPersonalTitle?;
+    string BankAccountId?;
+    string OrganizationPhoneticName?;
+    string AddressCountryRegionId?;
+    NoYes IsWomanOwner?;
+    string AddressDistrictName?;
+    string ForeignVendorTaxRegistrationId?;
+    string LanguageId?;
+    NoYes CompositionScheme?;
+    string CUSIPIdentificationNumber?;
+    NoYes IsServiceDeliveryAddressBased?;
+    NoYes IsOwnerDisabled?;
+    NoYes IsSubcontractor?;
+    string BusinessSegmentCode?;
+    string CommercialRegisterSection?;
+    string CISNationalInsuranceNumber?;
+    NoYes IsPurchaseConsumed?;
+    int:Signed32 PersonBirthDay?;
+    int:Signed32 PersonAnniversaryDay?;
+    string CISCompanyRegistrationNumber?;
+    string VendorExceptionGroupId?;
+    string AddressStateId?;
+    string TaxExemptNumber?;
+    LedgerJournalACType DefaultOffsetAccountType?;
+    string BirthPlace?;
+    string CurrencyCode?;
+    string DefaultProcumentWarehouseId?;
+    Gender PersonGender?;
+    string ResidenceForeignCountryRegionId?;
+    string CentralBankPurposeCode?;
+    string DefaultLedgerDimensionDisplayValue?;
+    NoYes IsPrimaryEmailAddressIMEnabled?;
+    string FiscalCode?;
+    int:Signed32 PurchaseOrderConsolidationDayOfMonth?;
+    string DefaultTotalDiscountVendorGroupCode?;
+    NoYes IsPurchaseOrderChangeRequestOverrideAllowed?;
+    string ZakatFileNumber?;
+    string BuyerGroupId?;
+    VendVendorCollaborationType VendorPortalCollaborationMethod?;
+    string PrimaryTwitterDescription?;
+    string PANReferenceNumber?;
+    string CentralBankPurposeText?;
+    string AddressValidTo?;
+    string RFCFederalTaxNumber?;
+};
+
+# Represents the Queries record for the operation: listVendorPriceToleranceGroups
+public type ListVendorPriceToleranceGroupsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type VendPriceAdmTransCollection record {
+    *ODataCollection;
+    VendPriceAdmTrans[] value?;
+};
+
+public type VendorRebateAgreementProductSelection record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string RebateAgreementId?;
+    string ItemNumber?;
+    string ProductConfigurationId?;
+    string ProductColorId?;
+    string QualifyingWarehouseId?;
+    string QualifyingSiteId?;
+    string ProductSizeId?;
+    string ProductStyleId?;
+    string VendorAccountNumber?;
+    string ProductUnitSymbol?;
+};
+
+# Represents the Headers record for the operation: deleteVendorDocumentAttachments
+public type DeleteVendorDocumentAttachmentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type VendorRetentionTermSchedule record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string RuleID?;
+    decimal PercentageOfUnitsDelivered?;
+    decimal PercentageToRetain?;
+    decimal PercentageToRelease?;
+};
+
+public type CustVendorBlocked "No"|"Invoice"|"All"|"Payment"|"Requisition"|"Never"|"PurchOrder";
+
+public type VendorFormSetup record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    NoYes IsSeparateTaxExemptBalanceInForms?;
+    TaxSpecPrintLevel SalesTaxSpecification?;
+    NoYes PrintTaxExemptNumberOnInvoice?;
+    FirstLast Totals?;
+    int:Signed32 InventoryDimensionsForPrintingInvoice?;
+    NoYes PrintAmountInEuroCurrency?;
+};
+
+public type TaxSpecPrintLevel "None"|"Currency"|"CurrencyMST";
+
+# Represents the Headers record for the operation: updateVendorProductDescriptionsV2
+public type UpdateVendorProductDescriptionsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type VendVendorRequestEntityType "NewVendor"|"ExtendProcurementCategory"|"ExtendVendorToOtherLegalEntity"|"ChangeVendorOnHoldStatus"|"NewProcurementCategory";
+
+# Represents the Headers record for the operation: updateVendorsV3
+public type UpdateVendorsV3Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type TAMCumulationPeriod "Invoice"|"Week"|"Month"|"Year"|"Lifetime"|"CustomizedPeriod";

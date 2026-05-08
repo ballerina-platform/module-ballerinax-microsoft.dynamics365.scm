@@ -19,18 +19,17 @@
 
 import ballerina/data.jsondata;
 import ballerina/http;
+import ballerinax/microsoft.dynamics365.scm.common as d365;
 
 # Ballerina connector module for the 'transfer' slice of the Microsoft Dynamics 365 Supply Chain Management OData REST API.
 public isolated client class Client {
     final http:Client clientEp;
     # Gets invoked to initialize the `connector`.
     #
-    # + config - The configurations to be used when initializing the `connector` 
-    # + serviceUrl - URL of the target service 
-    # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://your-org.operations.dynamics.com/data") returns error? {
-        http:ClientConfiguration httpClientConfig = {auth: config.auth, httpVersion: config.httpVersion, http1Settings: config.http1Settings, http2Settings: config.http2Settings, timeout: config.timeout, forwarded: config.forwarded, followRedirects: config.followRedirects, poolConfig: config.poolConfig, cache: config.cache, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, cookieConfig: config.cookieConfig, responseLimits: config.responseLimits, secureSocket: config.secureSocket, proxy: config.proxy, socketConfig: config.socketConfig, validation: config.validation, laxDataBinding: config.laxDataBinding};
-        self.clientEp = check new (serviceUrl, httpClientConfig);
+    # + conn - The shared D365 connection (built once at the top level)
+    # + return - An error if connector initialization failed
+    public isolated function init(d365:Connection conn) returns error? {
+        self.clientEp = conn.getHttpClient();
     }
 
     # List TransferLineFiscalInfo
@@ -90,6 +89,291 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List TransferOrderHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of TransferOrderHeader 
+    remote isolated function listTransferOrderHeaders(map<string|string[]> headers = {}, *ListTransferOrderHeadersQueries queries) returns TransferOrderHeadersCollection|error {
+        string resourcePath = string `/TransferOrderHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create TransferOrderHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferOrderHeader created 
+    remote isolated function createTransferOrderHeaders(TransferOrderHeader payload, map<string|string[]> headers = {}) returns TransferOrderHeader|error {
+        string resourcePath = string `/TransferOrderHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get TransferOrderHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - TransferOrderHeader record 
+    remote isolated function getTransferOrderHeaders(string dataAreaId, string transferOrderNumber, map<string|string[]> headers = {}, *GetTransferOrderHeadersQueries queries) returns TransferOrderHeader|error {
+        string resourcePath = string `/TransferOrderHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',TransferOrderNumber='${getEncodedUri(transferOrderNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete TransferOrderHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferOrderHeader deleted 
+    remote isolated function deleteTransferOrderHeaders(string dataAreaId, string transferOrderNumber, DeleteTransferOrderHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/TransferOrderHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',TransferOrderNumber='${getEncodedUri(transferOrderNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update TransferOrderHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferOrderHeader updated 
+    remote isolated function updateTransferOrderHeaders(string dataAreaId, string transferOrderNumber, TransferOrderHeader payload, UpdateTransferOrderHeadersHeaders headers = {}) returns TransferOrderHeader|error {
+        string resourcePath = string `/TransferOrderHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',TransferOrderNumber='${getEncodedUri(transferOrderNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List TransferOrderLandedCostGroups
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of TransferOrderLandedCostGroup 
+    remote isolated function listTransferOrderLandedCostGroups(map<string|string[]> headers = {}, *ListTransferOrderLandedCostGroupsQueries queries) returns TransferOrderLandedCostGroupsCollection|error {
+        string resourcePath = string `/TransferOrderLandedCostGroups`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create TransferOrderLandedCostGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferOrderLandedCostGroup created 
+    remote isolated function createTransferOrderLandedCostGroups(TransferOrderLandedCostGroup payload, map<string|string[]> headers = {}) returns TransferOrderLandedCostGroup|error {
+        string resourcePath = string `/TransferOrderLandedCostGroups`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get TransferOrderLandedCostGroup by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - TransferOrderLandedCostGroup record 
+    remote isolated function getTransferOrderLandedCostGroups(string dataAreaId, string groupId, map<string|string[]> headers = {}, *GetTransferOrderLandedCostGroupsQueries queries) returns TransferOrderLandedCostGroup|error {
+        string resourcePath = string `/TransferOrderLandedCostGroups(dataAreaId='${getEncodedUri(dataAreaId)}',GroupId='${getEncodedUri(groupId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete TransferOrderLandedCostGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferOrderLandedCostGroup deleted 
+    remote isolated function deleteTransferOrderLandedCostGroups(string dataAreaId, string groupId, DeleteTransferOrderLandedCostGroupsHeaders headers = {}) returns error? {
+        string resourcePath = string `/TransferOrderLandedCostGroups(dataAreaId='${getEncodedUri(dataAreaId)}',GroupId='${getEncodedUri(groupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update TransferOrderLandedCostGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferOrderLandedCostGroup updated 
+    remote isolated function updateTransferOrderLandedCostGroups(string dataAreaId, string groupId, TransferOrderLandedCostGroup payload, UpdateTransferOrderLandedCostGroupsHeaders headers = {}) returns TransferOrderLandedCostGroup|error {
+        string resourcePath = string `/TransferOrderLandedCostGroups(dataAreaId='${getEncodedUri(dataAreaId)}',GroupId='${getEncodedUri(groupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List TransferOrderLineAutoCostHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of TransferOrderLineAutoCostHeader 
+    remote isolated function listTransferOrderLineAutoCostHeaders(map<string|string[]> headers = {}, *ListTransferOrderLineAutoCostHeadersQueries queries) returns TransferOrderLineAutoCostHeadersCollection|error {
+        string resourcePath = string `/TransferOrderLineAutoCostHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create TransferOrderLineAutoCostHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferOrderLineAutoCostHeader created 
+    remote isolated function createTransferOrderLineAutoCostHeaders(TransferOrderLineAutoCostHeader payload, map<string|string[]> headers = {}) returns TransferOrderLineAutoCostHeader|error {
+        string resourcePath = string `/TransferOrderLineAutoCostHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get TransferOrderLineAutoCostHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - TransferOrderLineAutoCostHeader record 
+    remote isolated function getTransferOrderLineAutoCostHeaders(string dataAreaId, string transferOrderLineCostAutoNumber, map<string|string[]> headers = {}, *GetTransferOrderLineAutoCostHeadersQueries queries) returns TransferOrderLineAutoCostHeader|error {
+        string resourcePath = string `/TransferOrderLineAutoCostHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',TransferOrderLineCostAutoNumber='${getEncodedUri(transferOrderLineCostAutoNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete TransferOrderLineAutoCostHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferOrderLineAutoCostHeader deleted 
+    remote isolated function deleteTransferOrderLineAutoCostHeaders(string dataAreaId, string transferOrderLineCostAutoNumber, DeleteTransferOrderLineAutoCostHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/TransferOrderLineAutoCostHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',TransferOrderLineCostAutoNumber='${getEncodedUri(transferOrderLineCostAutoNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update TransferOrderLineAutoCostHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferOrderLineAutoCostHeader updated 
+    remote isolated function updateTransferOrderLineAutoCostHeaders(string dataAreaId, string transferOrderLineCostAutoNumber, TransferOrderLineAutoCostHeader payload, UpdateTransferOrderLineAutoCostHeadersHeaders headers = {}) returns TransferOrderLineAutoCostHeader|error {
+        string resourcePath = string `/TransferOrderLineAutoCostHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',TransferOrderLineCostAutoNumber='${getEncodedUri(transferOrderLineCostAutoNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List TransferOrderLines
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of TransferOrderLine 
+    remote isolated function listTransferOrderLines(map<string|string[]> headers = {}, *ListTransferOrderLinesQueries queries) returns TransferOrderLinesCollection|error {
+        string resourcePath = string `/TransferOrderLines`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create TransferOrderLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferOrderLine created 
+    remote isolated function createTransferOrderLines(TransferOrderLine payload, map<string|string[]> headers = {}) returns TransferOrderLine|error {
+        string resourcePath = string `/TransferOrderLines`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get TransferOrderLine by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - TransferOrderLine record 
+    remote isolated function getTransferOrderLines(string dataAreaId, string transferOrderNumber, decimal lineNumber, map<string|string[]> headers = {}, *GetTransferOrderLinesQueries queries) returns TransferOrderLine|error {
+        string resourcePath = string `/TransferOrderLines(dataAreaId='${getEncodedUri(dataAreaId)}',TransferOrderNumber='${getEncodedUri(transferOrderNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete TransferOrderLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferOrderLine deleted 
+    remote isolated function deleteTransferOrderLines(string dataAreaId, string transferOrderNumber, decimal lineNumber, DeleteTransferOrderLinesHeaders headers = {}) returns error? {
+        string resourcePath = string `/TransferOrderLines(dataAreaId='${getEncodedUri(dataAreaId)}',TransferOrderNumber='${getEncodedUri(transferOrderNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update TransferOrderLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferOrderLine updated 
+    remote isolated function updateTransferOrderLines(string dataAreaId, string transferOrderNumber, decimal lineNumber, TransferOrderLine payload, UpdateTransferOrderLinesHeaders headers = {}) returns TransferOrderLine|error {
+        string resourcePath = string `/TransferOrderLines(dataAreaId='${getEncodedUri(dataAreaId)}',TransferOrderNumber='${getEncodedUri(transferOrderNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List TransferOrderLinesV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of TransferOrderLineV2 
+    remote isolated function listTransferOrderLinesV2(map<string|string[]> headers = {}, *ListTransferOrderLinesV2Queries queries) returns TransferOrderLinesV2Collection|error {
+        string resourcePath = string `/TransferOrderLinesV2`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create TransferOrderLineV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferOrderLineV2 created 
+    remote isolated function createTransferOrderLinesV2(TransferOrderLineV2 payload, map<string|string[]> headers = {}) returns TransferOrderLineV2|error {
+        string resourcePath = string `/TransferOrderLinesV2`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get TransferOrderLineV2 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - TransferOrderLineV2 record 
+    remote isolated function getTransferOrderLinesV2(string dataAreaId, string transferOrderNumber, decimal lineNumber, map<string|string[]> headers = {}, *GetTransferOrderLinesV2Queries queries) returns TransferOrderLineV2|error {
+        string resourcePath = string `/TransferOrderLinesV2(dataAreaId='${getEncodedUri(dataAreaId)}',TransferOrderNumber='${getEncodedUri(transferOrderNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete TransferOrderLineV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferOrderLineV2 deleted 
+    remote isolated function deleteTransferOrderLinesV2(string dataAreaId, string transferOrderNumber, decimal lineNumber, DeleteTransferOrderLinesV2Headers headers = {}) returns error? {
+        string resourcePath = string `/TransferOrderLinesV2(dataAreaId='${getEncodedUri(dataAreaId)}',TransferOrderNumber='${getEncodedUri(transferOrderNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update TransferOrderLineV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferOrderLineV2 updated 
+    remote isolated function updateTransferOrderLinesV2(string dataAreaId, string transferOrderNumber, decimal lineNumber, TransferOrderLineV2 payload, UpdateTransferOrderLinesV2Headers headers = {}) returns TransferOrderLineV2|error {
+        string resourcePath = string `/TransferOrderLinesV2(dataAreaId='${getEncodedUri(dataAreaId)}',TransferOrderNumber='${getEncodedUri(transferOrderNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List TransferPrices
     #
     # + headers - Headers to be sent with the request 
@@ -140,6 +424,63 @@ public isolated client class Client {
     # + return - TransferPrice updated 
     remote isolated function updateTransferPrices(string dataAreaId, string resourceId, string borrowingLegalEntity, string projectId, string categoryId, string effectiveDate, string salesCurrency, string transactionType, string projectContractId, string roleId, TransferPrice payload, UpdateTransferPricesHeaders headers = {}) returns TransferPrice|error {
         string resourcePath = string `/TransferPrices(dataAreaId='${getEncodedUri(dataAreaId)}',ResourceId='${getEncodedUri(resourceId)}',BorrowingLegalEntity='${getEncodedUri(borrowingLegalEntity)}',ProjectId='${getEncodedUri(projectId)}',CategoryId='${getEncodedUri(categoryId)}',EffectiveDate=${getEncodedUri(effectiveDate)},SalesCurrency='${getEncodedUri(salesCurrency)}',TransactionType='${getEncodedUri(transactionType)}',ProjectContractId='${getEncodedUri(projectContractId)}',RoleId='${getEncodedUri(roleId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List TransferredTimeAndAttendanceActivityRegistrations
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of TransferredTimeAndAttendanceActivityRegistration 
+    remote isolated function listTransferredTimeAndAttendanceActivityRegistrations(map<string|string[]> headers = {}, *ListTransferredTimeAndAttendanceActivityRegistrationsQueries queries) returns TransferredTimeAndAttendanceActivityRegistrationsCollection|error {
+        string resourcePath = string `/TransferredTimeAndAttendanceActivityRegistrations`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create TransferredTimeAndAttendanceActivityRegistration
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferredTimeAndAttendanceActivityRegistration created 
+    remote isolated function createTransferredTimeAndAttendanceActivityRegistrations(TransferredTimeAndAttendanceActivityRegistration payload, map<string|string[]> headers = {}) returns TransferredTimeAndAttendanceActivityRegistration|error {
+        string resourcePath = string `/TransferredTimeAndAttendanceActivityRegistrations`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get TransferredTimeAndAttendanceActivityRegistration by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - TransferredTimeAndAttendanceActivityRegistration record 
+    remote isolated function getTransferredTimeAndAttendanceActivityRegistrations(string dataAreaId, string workerPersonnelNumber, string timeProfileDate, int transferredActivityRegistrationEntryNumber, map<string|string[]> headers = {}, *GetTransferredTimeAndAttendanceActivityRegistrationsQueries queries) returns TransferredTimeAndAttendanceActivityRegistration|error {
+        string resourcePath = string `/TransferredTimeAndAttendanceActivityRegistrations(dataAreaId='${getEncodedUri(dataAreaId)}',WorkerPersonnelNumber='${getEncodedUri(workerPersonnelNumber)}',TimeProfileDate=${getEncodedUri(timeProfileDate)},TransferredActivityRegistrationEntryNumber=${getEncodedUri(transferredActivityRegistrationEntryNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete TransferredTimeAndAttendanceActivityRegistration
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferredTimeAndAttendanceActivityRegistration deleted 
+    remote isolated function deleteTransferredTimeAndAttendanceActivityRegistrations(string dataAreaId, string workerPersonnelNumber, string timeProfileDate, int transferredActivityRegistrationEntryNumber, DeleteTransferredTimeAndAttendanceActivityRegistrationsHeaders headers = {}) returns error? {
+        string resourcePath = string `/TransferredTimeAndAttendanceActivityRegistrations(dataAreaId='${getEncodedUri(dataAreaId)}',WorkerPersonnelNumber='${getEncodedUri(workerPersonnelNumber)}',TimeProfileDate=${getEncodedUri(timeProfileDate)},TransferredActivityRegistrationEntryNumber=${getEncodedUri(transferredActivityRegistrationEntryNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update TransferredTimeAndAttendanceActivityRegistration
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TransferredTimeAndAttendanceActivityRegistration updated 
+    remote isolated function updateTransferredTimeAndAttendanceActivityRegistrations(string dataAreaId, string workerPersonnelNumber, string timeProfileDate, int transferredActivityRegistrationEntryNumber, TransferredTimeAndAttendanceActivityRegistration payload, UpdateTransferredTimeAndAttendanceActivityRegistrationsHeaders headers = {}) returns TransferredTimeAndAttendanceActivityRegistration|error {
+        string resourcePath = string `/TransferredTimeAndAttendanceActivityRegistrations(dataAreaId='${getEncodedUri(dataAreaId)}',WorkerPersonnelNumber='${getEncodedUri(workerPersonnelNumber)}',TimeProfileDate=${getEncodedUri(timeProfileDate)},TransferredActivityRegistrationEntryNumber=${getEncodedUri(transferredActivityRegistrationEntryNumber)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);

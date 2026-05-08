@@ -19,12 +19,648 @@
 
 import ballerina/http;
 
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-|};
+public type Timezone "GMTMINUS1200INTERNATIONALDATELINEWEST"|"GMTMINUS1100COORDINATEDUNIVERSALTIME"|"GMTMINUS1100MIDWAYISLAND_SAMOA"|"GMTMINUS1000HAWAII"|"GMTMINUS0900ALASKA"|"GMTMINUS0800PACIFICTIME"|"GMTMINUS0800TIJUANA_BAJACALIFORNIA"|"GMTMINUS0700ARIZONA"|"GMTMINUS0700MOUNTAINTIME"|"GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN"|"GMTMINUS0600CENTRALAMERICA"|"GMTMINUS0600CENTRALTIME"|"GMTMINUS0600GUADALAJARA_MEXICOCITY"|"GMTMINUS0600SASKATCHEWAN"|"GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO"|"GMTMINUS0500EASTERNTIME"|"GMTMINUS0500INDIANA"|"GMTMINUS0500CHETUMAL"|"GMTMINUS0400ASUNCION"|"GMTMINUS0400ATLANTICTIME"|"GMTMINUS0400LAPAZ"|"GMTMINUS0400MANAUS"|"GMTMINUS0300SANTIAGO"|"GMTMINUS0430CARACAS"|"GMTMINUS0330NEWFOUNDLAND"|"GMTMINUS0300_SALVADOR"|"GMTMINUS0300BRASILIA"|"GMTMINUS0300BUENOSAIRES"|"GMTMINUS0300BUENOSAIRES_GEORGETOWN"|"GMTMINUS0300GREENLAND"|"GMTMINUS0300MONTEVIDEO"|"GMTMINUS0200MIDATLANTIC"|"GMTMINUS0100AZORES"|"GMTMINUS0100CAPEVERDIS"|"GMT_CASABLANCA"|"GMT_CASABLANCA_MONTROVIA_REYKJAVIK"|"GMT_COORDINATEDUNIVERSALTIME"|"GMT_DUBLIN_EDINBURGH_LISBON_LONDON"|"GMT_PLUS0300KALININGRAD_MINSK"|"GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME"|"GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST"|"GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID"|"GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB"|"GMTPLUS0100TRIPOLI"|"GMTPLUS0100WESTCENTRALAFRICA"|"GMTPLUS0200_DAMASCUS"|"GMTPLUS0200AMMAN"|"GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL"|"GMTPLUS0200BEIRUT"|"GMTPLUS0200MINSK"|"GMTPLUS0200CAIRO"|"GMTPLUS0200HARARE_PRETORIA"|"GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS"|"GMTPLUS0300ISTANBUL"|"GMTPLUS0200JERUSALEM"|"GMTPLUS0200WINDHOEK"|"GMTPLUS0300BAGHDAD"|"GMTPLUS0300KUWAIT_RIYADH"|"GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD"|"GMTPLUS0300NAIROBI"|"GMTPLUS0300TBILISI"|"GMTPLUS0330TEHRAN"|"GMTPLUS0400ABUDHABI_MUSCAT"|"GMTPLUS0400BAKU"|"GMTPLUS0400IZHEVSK_SAMARA"|"GMTPLUS0400CAUCASUSSTANDARDTIME"|"GMTPLUS0400PORTLOUIS"|"GMTPLUS0400YEREVAN"|"GMTPLUS0430KABUL"|"GMTPLUS0500EKATERINBURG"|"GMTPLUS0500ISLAMABAD_KARACHI"|"GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT"|"GMTPLUS0530CHENNAI_KOLKATA_MUMBAI"|"GMTPLUS0530SRIJAYAWARDENEPURA"|"GMTPLUS0545KATHMANDU"|"GMTPLUS0600ALMATY_NOVOSIBIRSK"|"GMTPLUS0600ASTANA_DHAKA"|"GMTPLUS0600DHAKA"|"GMTPLUS0600MAGADAN"|"GMTPLUS0630_YANGON"|"GMTPLUS0700_BANGKOK_HANOI_JAKARTA"|"GMTPLUS0700KRASNOYARSK"|"GMTPLUS0800_ULAANBAATAR"|"GMTPLUS0800BEIJING_CHONGQING_HONGKONG"|"GMTPLUS0800IRKUTSK_ULAANBATAAR"|"GMTPLUS0800KUALALUMPUR_SINGAPORE"|"GMTPLUS0800PERTH"|"GMTPLUS0800TAIPEI"|"GMTPLUS0900OSAKA_SAPPORO_TOKYO"|"GMTPLUS0900SEOUL"|"GMTPLUS0900YAKUTSK"|"GMTPLUS0930ADELAIDE"|"GMTPLUS0930DARWIN"|"GMTPLUS1000BRISBANE"|"GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY"|"GMTPLUS1000GUAM_PORTMORESBY"|"GMTPLUS1000HOBART"|"GMTPLUS1000VLADIVOSTOK"|"GMTPLUS1100CHOKURDAKH"|"GMTPLUS1100MAGADAN_SOLOMONIS"|"GMTPLUS1200ANADYR_PETRO_KAMCHATSKY"|"GMTPLUS1200AUCKLAND_WELLINGTON"|"GMTPLUS1200COORDINATEDUNIVERSALTIME"|"GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS"|"GMTPLUS1300NUKU_ALOFA";
+
+public type InventTransferRemainStatus "None"|"Receiving"|"Shipping";
+
+
+# Represents the Queries record for the operation: getTransferOrderLinesV2
+public type GetTransferOrderLinesV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type JmgJourRegTypeEnum "Empty"|"Absence"|"SignIn"|"StartTeam"|"BreakReg"|"IndActivity"|"MrpQueueBefore"|"MrpSetup"|"MrpProcess"|"MrpOverlap"|"MrpTransport"|"MrpQueueAfter"|"PrjProject"|"PrjActivity"|"StopTeam"|"SignOut"|"SwitchCode";
+
+public type JmgJournalRegWorkflowStatus "None"|"NotSubmitted"|"Submitted"|"Completed";
+
+public type TransferOrderLandedCostGroupsCollection record {
+    *ODataCollection;
+    TransferOrderLandedCostGroup[] value?;
+};
+
+public type ProjTransferPriceModel "TransferPrice"|"Contributionratio"|"PercentMarkup"|"AmountMarkup"|"PercentSalePrice"|"AmountSalesPrice";
+
+# Represents the Headers record for the operation: updateTransferredTimeAndAttendanceActivityRegistrations
+public type UpdateTransferredTimeAndAttendanceActivityRegistrationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type TransferLineFiscalInfoCollection record {
+    *ODataCollection;
+    TransferLineFiscalInfo[] value?;
+};
+
+public type FreightSlipType "None"|"UPS";
+
+# Represents the Headers record for the operation: deleteTransferredTimeAndAttendanceActivityRegistrations
+public type DeleteTransferredTimeAndAttendanceActivityRegistrationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listTransferOrderLinesV2
+public type ListTransferOrderLinesV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type WHSOutboundShipmentPolicy "None"|"ReleaseToWarehouse"|"ShipConfirm"|"ReleaseAndShipConfirm";
+
+# Represents the Headers record for the operation: deleteTransferOrderLineAutoCostHeaders
+public type DeleteTransferOrderLineAutoCostHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type JmgStampTypeEnum "Work"|"Absence"|"Break"|"EventCode"|"Error"|"OnCall";
+
+public type TransferOrderLineAutoCostHeadersCollection record {
+    *ODataCollection;
+    TransferOrderLineAutoCostHeader[] value?;
+};
+
+# Represents the Queries record for the operation: getTransferLineFiscalInfo
+public type GetTransferLineFiscalInfoQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteTransferOrderHeaders
+public type DeleteTransferOrderHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getTransferOrderLines
+public type GetTransferOrderLinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type TransferLineFiscalInfo record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TransferId?;
+    decimal LineNum?;
+    string ShipTaxItemGroup?;
+    NoYes PriceChangedManually?;
+    string ReceiveTaxGroup?;
+    string ShipCFOPId?;
+    decimal PriceUnit?;
+    string ShipTaxGroup?;
+    string ReceiveTaxItemGroup?;
+    decimal ShipPrice?;
+    decimal ReceivePrice?;
+    string ReceiveCFOPId?;
+};
+
+# Represents the Queries record for the operation: listTransferOrderLandedCostGroups
+public type ListTransferOrderLandedCostGroupsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+
+# Represents the Headers record for the operation: deleteTransferOrderLines
+public type DeleteTransferOrderLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteTransferOrderLandedCostGroups
+public type DeleteTransferOrderLandedCostGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getTransferOrderLandedCostGroups
+public type GetTransferOrderLandedCostGroupsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type TransferOrderLandedCostGroup record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string GroupId?;
+    string GroupDescription?;
+};
+
+# Represents the Headers record for the operation: updateTransferPrices
+public type UpdateTransferPricesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteTransferLineFiscalInfo
+public type DeleteTransferLineFiscalInfoHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type NoYes "No"|"Yes";
+
+public type JmgJobPayTypeEnum "Empty"|"Hours"|"PieceRate";
+
+# Represents the Queries record for the operation: listTransferPrices
+public type ListTransferPricesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type TransferPricesCollection record {
+    *ODataCollection;
+    TransferPrice[] value?;
+};
+
+public type JmgJobTypeEnum "Normal"|"Bundle1"|"Bundle2"|"Bundle3"|"Bundle4";
+
+public type TransferPrice record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ResourceId?;
+    string BorrowingLegalEntity?;
+    string ProjectId?;
+    string CategoryId?;
+    string EffectiveDate?;
+    string SalesCurrency?;
+    ProjTransferPriceTransType TransactionType?;
+    string ProjectContractId?;
+    string RoleId?;
+    ProjTransferPriceModel TransferPriceModel?;
+    decimal Pricing?;
+};
+
+public type TransferOrderLineAutoCostHeader record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TransferOrderLineCostAutoNumber?;
+    string InventorySiteId?;
+    string ItemBatchNumber?;
+    string ProductConfigurationId?;
+    string TransferOrderLandedCostGroupId?;
+    string LicensePlateNumber?;
+    string ToWarehouseId?;
+    string WarehouseId?;
+    string InventoryOwnerId?;
+    string ProductSizeId?;
+    string ItemNumber?;
+    string ProductColorId?;
+    string InventoryStatusId?;
+    string ProductStyleId?;
+    string WarehouseLocationId?;
+    string ItemSerialNumber?;
+};
+
+# Represents the Headers record for the operation: updateTransferOrderLineAutoCostHeaders
+public type UpdateTransferOrderLineAutoCostHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type TransferOrderLineV2 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TransferOrderNumber?;
+    decimal LineNumber?;
+    string IntrastatSpecialMovementCode?;
+    int:Signed32 ATPTimeFenceDays?;
+    decimal AllowedUnderdeliveryPercentage?;
+    NoYes WillProductReceivingCrossDockProducts?;
+    string IntrastatPortId?;
+    string OrderedInventoryStatusId?;
+    string ProductStyleId?;
+    decimal TransferQuantity?;
+    string ShippingSiteId?;
+    InventTransferRemainStatus LineStatus?;
+    decimal ScrappedCatchWeightQuantity?;
+    string OriginStateId?;
+    string IntrastatCommodityCode?;
+    string ShippingWarehouseLocationId?;
+    string SalesTaxGroupCodeReceipt?;
+    string ItemNumber?;
+    string ReceivingLedgerDimensionDisplayValue?;
+    string ShippingWarehouseId?;
+    int:Signed32 ATPBackwardDemandTimeFenceDays?;
+    string RequestedReceiptDate?;
+    string SalesTaxItemGroupCodeReceipt?;
+    string SalesTaxGroupCodeShipment?;
+    string ProductSizeId?;
+    string ShippingLedgerDimensionDisplayValue?;
+    decimal ScrappedQuantity?;
+    decimal ShippedCatchWeightQuantity?;
+    NoYes OverrideFEFODateControl?;
+    string IntrastatTransactionCode?;
+    decimal ReceivedQuantity?;
+    decimal ShippedQuantity?;
+    decimal IntrastatCostAmount?;
+    int:Signed32 ATPDelayedSupplyOffsetDays?;
+    decimal IntrastatStatisticalValue?;
+    string ItemInventProfile?;
+    string ReceivingInventoryLotId?;
+    string ShippingInventoryLotId?;
+    decimal RemainingShippedQuantity?;
+    NoYes OverrideSalesTaxShipment?;
+    decimal RemainingReceivedCatchWeightQuantity?;
+    string OriginCountyId?;
+    string IntrastatTransportModeCode?;
+    string ItemSerialNumber?;
+    string ScrapInventoryLotId?;
+    string SalesTaxItemGroupCodeShipment?;
+    string ProductConfigurationId?;
+    decimal ReceivedCatchWeightQuantity?;
+    decimal TransferCatchWeightQuantity?;
+    decimal PlanningPriority?;
+    string RequestedShippingDate?;
+    string ProductVersionId?;
+    NoYes OverrideSalesTaxReceipt?;
+    string OriginCountryRegionId?;
+    decimal AllowedOverdeliveryPercentage?;
+    SalesDeliveryDateControlType TransferOrderPromisingMethod?;
+    WHSOutboundShipmentPolicy OutboundShipmentPolicy?;
+    string ReceivingTransitInventoryLotId?;
+    int:Signed32 ATPBackwardSupplyTimeFenceDays?;
+    decimal RemainingShippedCatchWeightQuantity?;
+    string ItemBatchNumber?;
+    string ProductColorId?;
+    string IntrastatStatisticsProcedureCode?;
+    string InventoryUnitSymbol?;
+    NoYes IsAutomaticallyReserved?;
+    string ItemInventProfileTo?;
+    boolean IsATPIncludingPlannedOrders?;
+    string ShippingTransitInventoryLotId?;
+    decimal RemainingReceivedQuantity?;
+    int:Signed32 ATPDelayedDemandOffsetDays?;
+    decimal InventCostPriceCalculated?;
+    decimal MaximumRetailPrice?;
+    string CurrencyCode?;
+    decimal NetAmount?;
+    string TaxItemGroup?;
+    string DefaultLedgerDimensionDisplayValue?;
+    PriceType_IN PriceType?;
+    decimal UnitPrice?;
+    decimal AssessableValueTransactionCurrency?;
+    string VATRetentionCode?;
+    string TaxGroup?;
+    decimal InvntCostPrice?;
+    decimal Retention?;
+    string UnitId?;
+    PriceType_IN VATPriceType?;
+};
+
+public type PriceType_IN "CostPrice"|"TransferPrice";
+
+# Represents the Queries record for the operation: listTransferOrderLineAutoCostHeaders
+public type ListTransferOrderLineAutoCostHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type TransferOrderHeadersCollection record {
+    *ODataCollection;
+    TransferOrderHeader[] value?;
+};
+
+# Represents the Headers record for the operation: updateTransferOrderHeaders
+public type UpdateTransferOrderHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type RouteJobType "QueueBefore"|"Setup"|"Process"|"Overlap"|"Transport"|"QueueAfter"|"Burden";
+
+public type ProdErrorCause "None"|"Material"|"Machine"|"OperatingStaff";
+
+public type TransferOrderLinesCollection record {
+    *ODataCollection;
+    TransferOrderLine[] value?;
+};
+
+# Represents the Headers record for the operation: updateTransferOrderLines
+public type UpdateTransferOrderLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type JmgStampTypeSpecEnum "Work"|"AbsLegal"|"AbsIllegal"|"AbsLegalFlex"|"AbsIllegalFlex"|"AbsNotSpec"|"BreakNoPayFlow"|"BreakPayFlow"|"BreakDropOne"|"BreakDropAll"|"FlexNoWork"|"Error"|"SignIn"|"SignOut";
+
+# Represents the Queries record for the operation: getTransferredTimeAndAttendanceActivityRegistrations
+public type GetTransferredTimeAndAttendanceActivityRegistrationsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateTransferLineFiscalInfo
+public type UpdateTransferLineFiscalInfoHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ProjTransferPriceTransType "All"|"Timesheet"|"Expense"|"VendInvoiceLine";
+
+# Represents the Queries record for the operation: getTransferOrderHeaders
+public type GetTransferOrderHeadersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type TransferOrderLine record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TransferOrderNumber?;
+    decimal LineNumber?;
+    string IntrastatSpecialMovementCode?;
+    int:Signed32 ATPTimeFenceDays?;
+    decimal AllowedUnderdeliveryPercentage?;
+    NoYes WillProductReceivingCrossDockProducts?;
+    string IntrastatPortId?;
+    string OrderedInventoryStatusId?;
+    string ProductStyleId?;
+    decimal TransferQuantity?;
+    string ShippingSiteId?;
+    InventTransferRemainStatus LineStatus?;
+    decimal ScrappedCatchWeightQuantity?;
+    string OriginStateId?;
+    string IntrastatCommodityCode?;
+    string ShippingWarehouseLocationId?;
+    string SalesTaxGroupCodeReceipt?;
+    string ItemNumber?;
+    string ReceivingLedgerDimensionDisplayValue?;
+    string ShippingWarehouseId?;
+    int:Signed32 ATPBackwardDemandTimeFenceDays?;
+    string RequestedReceiptDate?;
+    string SalesTaxItemGroupCodeReceipt?;
+    string SalesTaxGroupCodeShipment?;
+    string ProductSizeId?;
+    string ShippingLedgerDimensionDisplayValue?;
+    decimal ScrappedQuantity?;
+    decimal ShippedCatchWeightQuantity?;
+    NoYes OverrideFEFODateControl?;
+    string IntrastatTransactionCode?;
+    decimal ReceivedQuantity?;
+    decimal ShippedQuantity?;
+    decimal IntrastatCostAmount?;
+    int:Signed32 ATPDelayedSupplyOffsetDays?;
+    decimal IntrastatStatisticalValue?;
+    string ItemInventProfile?;
+    string ReceivingInventoryLotId?;
+    string ShippingInventoryLotId?;
+    decimal RemainingShippedQuantity?;
+    NoYes OverrideSalesTaxShipment?;
+    decimal RemainingReceivedCatchWeightQuantity?;
+    string OriginCountyId?;
+    string IntrastatTransportModeCode?;
+    string ItemSerialNumber?;
+    string ScrapInventoryLotId?;
+    string SalesTaxItemGroupCodeShipment?;
+    string ProductConfigurationId?;
+    decimal ReceivedCatchWeightQuantity?;
+    decimal TransferCatchWeightQuantity?;
+    decimal PlanningPriority?;
+    string RequestedShippingDate?;
+    string ProductVersionId?;
+    NoYes OverrideSalesTaxReceipt?;
+    string OriginCountryRegionId?;
+    decimal AllowedOverdeliveryPercentage?;
+    SalesDeliveryDateControlType TransferOrderPromisingMethod?;
+    WHSOutboundShipmentPolicy OutboundShipmentPolicy?;
+    string ReceivingTransitInventoryLotId?;
+    int:Signed32 ATPBackwardSupplyTimeFenceDays?;
+    decimal RemainingShippedCatchWeightQuantity?;
+    string ItemBatchNumber?;
+    string ProductColorId?;
+    string IntrastatStatisticsProcedureCode?;
+    string InventoryUnitSymbol?;
+    NoYes IsAutomaticallyReserved?;
+    string ItemInventProfileTo?;
+    boolean IsATPIncludingPlannedOrders?;
+    string ShippingTransitInventoryLotId?;
+    decimal RemainingReceivedQuantity?;
+    int:Signed32 ATPDelayedDemandOffsetDays?;
+    decimal InventCostPriceCalculated?;
+    decimal MaximumRetailPrice?;
+    string CurrencyCode?;
+    decimal NetAmount?;
+    string TaxItemGroup?;
+    int DefaultDimension?;
+    PriceType_IN PriceType?;
+    decimal UnitPrice?;
+    decimal AssessableValueTransactionCurrency?;
+    string VATRetentionCode?;
+    string TaxGroup?;
+    decimal InvntCostPrice?;
+    decimal Retention?;
+    string UnitId?;
+    PriceType_IN VATPriceType?;
+};
+
+public type TransferredTimeAndAttendanceActivityRegistration record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string WorkerPersonnelNumber?;
+    string TimeProfileDate?;
+    int TransferredActivityRegistrationEntryNumber?;
+    string ErrorSpecification?;
+    decimal ReportedGoodQuantity?;
+    string OperationsResourcePilotId?;
+    int:Signed32 CalculatedTimeSeconds?;
+    decimal AbsencePayUnits?;
+    int:Signed32 CorrectedEndTime?;
+    decimal CostOverTime?;
+    string CorrectedStartDate?;
+    decimal CostAbsenceTime?;
+    int:Signed32 BreakToleranceSeconds?;
+    decimal ReportedGoodCatchWeightQuantity?;
+    NoYes IsJobFinished?;
+    int:Signed32 CorrectedStartTime?;
+    JmgJobTypeEnum TimeAllocationType?;
+    string DefaultDimensionDisplayValue?;
+    string IndirectActivityCategoryId?;
+    string PilotPersonnelNumber?;
+    int:Signed32 OperationNumber?;
+    string EndDate?;
+    string AbsenceCodeTimeAndAttendanceJobId?;
+    string VoucherNumber?;
+    decimal CostFlexTimeMinus?;
+    decimal CostManualPremiums?;
+    JmgJobPayTypeEnum JobPayRateMethod?;
+    decimal CostNormTime?;
+    decimal CostAutomaticPremiums?;
+    decimal CostFlexTimePlus?;
+    string OperationsResourceId?;
+    decimal CostPriceFactor?;
+    string IndirectActivityName?;
+    JmgJobRefTypeEnum ActivityType?;
+    decimal StartedQuantity?;
+    string CorrectedEndDate?;
+    int:Signed32 CalculatedTimeAfterAllocationSeconds?;
+    string StopRegistrationTerminalId?;
+    int:Signed32 BreakSeconds?;
+    JmgStampTypeEnum RegistrationType?;
+    string ProjectId?;
+    string TimeAndAttendanceJobId?;
+    RouteJobType RouteJobType?;
+    decimal CostBreakTime?;
+    string ProductionOrderNumber?;
+    string StartDate?;
+    decimal ReportedErrorQuantity?;
+    decimal ReportedErrorCatchWeightQuantity?;
+    string TransferredActivityRegistrationTransactionId?;
+    JmgStampTypeSpecEnum RegistrationSubType?;
+    string OnCallTimeAndAttendanceJobId?;
+    string ProjectCategoryId?;
+    JmgJournalRegWorkflowStatus WorkflowStatus?;
+    int:Signed32 EndTime?;
+    int:Signed32 CalculatedTimeBeforeAllocationSeconds?;
+    int:Signed32 StartTime?;
+    string StartRegistrationTerminalId?;
+    decimal CostPriceHour?;
+    decimal StartedCatchWeightQuantity?;
+    JmgJourRegTypeEnum JournalRegistrationType?;
+    ProdErrorCause ErrorCause?;
+};
+
+# Represents the Queries record for the operation: listTransferredTimeAndAttendanceActivityRegistrations
+public type ListTransferredTimeAndAttendanceActivityRegistrationsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
 
 # Standard OData collection envelope.
 public type ODataCollection record {
@@ -33,7 +669,7 @@ public type ODataCollection record {
     string \@odata\.nextLink?;
 };
 
-public type ProjTransferPriceModel "TransferPrice"|"Contributionratio"|"PercentMarkup"|"AmountMarkup"|"PercentSalePrice"|"AmountSalesPrice";
+public type InventTransferStatus "Created"|"Shipped"|"Received";
 
 # Represents the Headers record for the operation: deleteTransferPrices
 public type DeleteTransferPricesHeaders record {
@@ -41,9 +677,105 @@ public type DeleteTransferPricesHeaders record {
     string If\-Match?;
 };
 
-public type TransferLineFiscalInfoCollection record {
-    *ODataCollection;
-    TransferLineFiscalInfo[] value?;
+public type SalesDeliveryDateControlType "None"|"SalesLeadTime"|"ATP"|"ATPPlusIssueMargin"|"CTP"|"FullRunCTP";
+
+public type TransferOrderHeader record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TransferOrderNumber?;
+    string IntrastatSpecialMovementCode?;
+    int:Signed32 ATPTimeFenceDays?;
+    string IntrastatPortId?;
+    string ReceivingAddressLocationId?;
+    string ShippingAddressLocationId?;
+    string ReceivingAddressCountyId?;
+    string ShippingFreightZone?;
+    string ReceivingAddressStateId?;
+    string ReceivingContactPersonnelNumber?;
+    string ReceivingAddressStreet?;
+    NoYes IsShippingAddressPrivate?;
+    string ReceivingAddressCountryRegionId?;
+    string ShippingAddressPostBox?;
+    NoYes AreLinesAutomaticallyReservedByDefault?;
+    string ShippingCarrierServiceId?;
+    decimal ShippingAddressLatitude?;
+    string ReceivingAddressDunsNumber?;
+    InventTransferStatus TransferOrderStatus?;
+    string ShippingBuildingCompliment?;
+    string ShippingWarehouseId?;
+    int:Signed32 ATPBackwardDemandTimeFenceDays?;
+    string RequestedReceiptDate?;
+    string ShippingCarrierId?;
+    string FormattedReceivingAddress?;
+    string ReceivingBuildingCompliment?;
+    decimal ReceivingAddressLongitude?;
+    string ShippingAddressStreetInKana?;
+    string ShippingAddressDunsNumber?;
+    string ReceivingAddressCityInKana?;
+    NoYes IsReceivingAddressPrivate?;
+    string ReceivingAddressStreetInKana?;
+    string ShippingAddressCountryRegionId?;
+    NoYes OverrideFEFODateControl?;
+    string IntrastatTransactionCode?;
+    string FormattedShippingAddress?;
+    int:Signed32 ATPDelayedSupplyOffsetDays?;
+    string ReceivingAddressCountryRegionISOCode?;
+    string ShippingAddressCity?;
+    decimal ReceivingAddressLatitude?;
+    string IntrastatTransportModeCode?;
+    Timezone ShippingAddressTimeZone?;
+    string ShippingAddressStreet?;
+    string ShippingAddressStreetNumber?;
+    NoYes CreateCFDIPackingSlip?;
+    string TransportationModeId?;
+    string DeliveryTermsCode?;
+    string ReceivingAddressPostBox?;
+    string ShippingAddressName?;
+    string RequestedShippingDate?;
+    FreightSlipType ShippingFreightCompany?;
+    string ShippingAddressStateId?;
+    string ShippingContactPersonnelNumber?;
+    string ReceivingAddressDistrictName?;
+    decimal ShippingAddressLongitude?;
+    string ReceivingAddressStreetNumber?;
+    SalesDeliveryDateControlType TransferOrderPromisingMethod?;
+    string ShippingAddressDistrictName?;
+    string ReceivingAddressDescription?;
+    int:Signed32 ATPBackwardSupplyTimeFenceDays?;
+    string DeliveryModeCode?;
+    string ReceivingAddressZipCode?;
+    string ShippingAddressDescription?;
+    string ShippingAddressCityInKana?;
+    string ReceivingAddressCity?;
+    Timezone ReceivingAddressTimeZone?;
+    string ShippingCarrierServiceGroupId?;
+    string IntrastatStatisticsProcedureCode?;
+    string TransitWarehouseId?;
+    boolean IsATPIncludingPlannedOrders?;
+    string ShippingAddressZipCode?;
+    int:Signed32 ATPDelayedDemandOffsetDays?;
+    string ShippingAddressCountyId?;
+    string ReceivingAddressName?;
+    string ReceivingWarehouseId?;
+    string ShippingAddressCountryRegionISOCode?;
+    NoYes TransferOrderIsEnhancedStockTransfer?;
+    PriceType_IN TransferOrderStockTransferPriceType?;
+};
+
+# Represents the Queries record for the operation: getTransferOrderLineAutoCostHeaders
+public type GetTransferOrderLineAutoCostHeadersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteTransferOrderLinesV2
+public type DeleteTransferOrderLinesV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: listTransferLineFiscalInfo
@@ -74,22 +806,19 @@ public type ListTransferLineFiscalInfoQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: updateTransferPrices
-public type UpdateTransferPricesHeaders record {
+public type TransferOrderLinesV2Collection record {
+    *ODataCollection;
+    TransferOrderLineV2[] value?;
+};
+
+# Represents the Headers record for the operation: updateTransferOrderLandedCostGroups
+public type UpdateTransferOrderLandedCostGroupsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: deleteTransferLineFiscalInfo
-public type DeleteTransferLineFiscalInfoHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type NoYes "No"|"Yes";
-
-# Represents the Queries record for the operation: listTransferPrices
-public type ListTransferPricesQueries record {
+# Represents the Queries record for the operation: listTransferOrderLines
+public type ListTransferOrderLinesQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -116,27 +845,11 @@ public type ListTransferPricesQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: updateTransferLineFiscalInfo
-public type UpdateTransferLineFiscalInfoHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
+public type JmgJobRefTypeEnum "MrpQueueBefore"|"MrpSetup"|"MrpProcess"|"MrpOverlap"|"MrpTransport"|"MrpQueueAfter"|"IpcCategory"|"IpcActivity"|"PrjProject"|"PrjActivity";
 
-# Represents the Queries record for the operation: getTransferLineFiscalInfo
-public type GetTransferLineFiscalInfoQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type ProjTransferPriceTransType "All"|"Timesheet"|"Expense"|"VendInvoiceLine";
-
-public type TransferPricesCollection record {
+public type TransferredTimeAndAttendanceActivityRegistrationsCollection record {
     *ODataCollection;
-    TransferPrice[] value?;
+    TransferredTimeAndAttendanceActivityRegistration[] value?;
 };
 
 # Represents the Queries record for the operation: getTransferPrices
@@ -149,79 +862,36 @@ public type GetTransferPricesQueries record {
     string selectFields?;
 };
 
-public type TransferLineFiscalInfo record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string TransferId?;
-    decimal LineNum?;
-    string ShipTaxItemGroup?;
-    NoYes PriceChangedManually?;
-    string ReceiveTaxGroup?;
-    string ShipCFOPId?;
-    decimal PriceUnit?;
-    string ShipTaxGroup?;
-    string ReceiveTaxItemGroup?;
-    decimal ShipPrice?;
-    decimal ReceivePrice?;
-    string ReceiveCFOPId?;
+# Represents the Queries record for the operation: listTransferOrderHeaders
+public type ListTransferOrderHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
-public type TransferPrice record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string ResourceId?;
-    string BorrowingLegalEntity?;
-    string ProjectId?;
-    string CategoryId?;
-    string EffectiveDate?;
-    string SalesCurrency?;
-    ProjTransferPriceTransType TransactionType?;
-    string ProjectContractId?;
-    string RoleId?;
-    ProjTransferPriceModel TransferPriceModel?;
-    decimal Pricing?;
+# Represents the Headers record for the operation: updateTransferOrderLinesV2
+public type UpdateTransferOrderLinesV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
-
-# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
-@display {label: "Connection Config"}
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig|http:BearerTokenConfig auth;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};

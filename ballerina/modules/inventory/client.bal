@@ -19,18 +19,416 @@
 
 import ballerina/data.jsondata;
 import ballerina/http;
+import ballerinax/microsoft.dynamics365.scm.common as d365;
 
 # Ballerina connector module for the 'inventory' slice of the Microsoft Dynamics 365 Supply Chain Management OData REST API.
 public isolated client class Client {
     final http:Client clientEp;
     # Gets invoked to initialize the `connector`.
     #
-    # + config - The configurations to be used when initializing the `connector` 
-    # + serviceUrl - URL of the target service 
-    # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://your-org.operations.dynamics.com/data") returns error? {
-        http:ClientConfiguration httpClientConfig = {auth: config.auth, httpVersion: config.httpVersion, http1Settings: config.http1Settings, http2Settings: config.http2Settings, timeout: config.timeout, forwarded: config.forwarded, followRedirects: config.followRedirects, poolConfig: config.poolConfig, cache: config.cache, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, cookieConfig: config.cookieConfig, responseLimits: config.responseLimits, secureSocket: config.secureSocket, proxy: config.proxy, socketConfig: config.socketConfig, validation: config.validation, laxDataBinding: config.laxDataBinding};
-        self.clientEp = check new (serviceUrl, httpClientConfig);
+    # + conn - The shared D365 connection (built once at the top level)
+    # + return - An error if connector initialization failed
+    public isolated function init(d365:Connection conn) returns error? {
+        self.clientEp = conn.getHttpClient();
+    }
+
+    # List InventCountingReasonCodePolicies
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventCountingReasonCodePolicy 
+    remote isolated function listInventCountingReasonCodePolicies(map<string|string[]> headers = {}, *ListInventCountingReasonCodePoliciesQueries queries) returns InventCountingReasonCodePoliciesCollection|error {
+        string resourcePath = string `/InventCountingReasonCodePolicies`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventCountingReasonCodePolicy
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventCountingReasonCodePolicy created 
+    remote isolated function createInventCountingReasonCodePolicies(InventCountingReasonCodePolicy payload, map<string|string[]> headers = {}) returns InventCountingReasonCodePolicy|error {
+        string resourcePath = string `/InventCountingReasonCodePolicies`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventCountingReasonCodePolicy by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventCountingReasonCodePolicy record 
+    remote isolated function getInventCountingReasonCodePolicies(string dataAreaId, string name, map<string|string[]> headers = {}, *GetInventCountingReasonCodePoliciesQueries queries) returns InventCountingReasonCodePolicy|error {
+        string resourcePath = string `/InventCountingReasonCodePolicies(dataAreaId='${getEncodedUri(dataAreaId)}',Name='${getEncodedUri(name)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventCountingReasonCodePolicy
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventCountingReasonCodePolicy deleted 
+    remote isolated function deleteInventCountingReasonCodePolicies(string dataAreaId, string name, DeleteInventCountingReasonCodePoliciesHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventCountingReasonCodePolicies(dataAreaId='${getEncodedUri(dataAreaId)}',Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventCountingReasonCodePolicy
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventCountingReasonCodePolicy updated 
+    remote isolated function updateInventCountingReasonCodePolicies(string dataAreaId, string name, InventCountingReasonCodePolicy payload, UpdateInventCountingReasonCodePoliciesHeaders headers = {}) returns InventCountingReasonCodePolicy|error {
+        string resourcePath = string `/InventCountingReasonCodePolicies(dataAreaId='${getEncodedUri(dataAreaId)}',Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventInventoryDataServiceNumberSequenceEntities
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventInventoryDataServiceNumberSequenceEntity 
+    remote isolated function listInventInventoryDataServiceNumberSequenceEntities(map<string|string[]> headers = {}, *ListInventInventoryDataServiceNumberSequenceEntitiesQueries queries) returns InventInventoryDataServiceNumberSequenceEntitiesCollection|error {
+        string resourcePath = string `/InventInventoryDataServiceNumberSequenceEntities`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventInventoryDataServiceNumberSequenceEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventInventoryDataServiceNumberSequenceEntity created 
+    remote isolated function createInventInventoryDataServiceNumberSequenceEntities(InventInventoryDataServiceNumberSequenceEntity payload, map<string|string[]> headers = {}) returns InventInventoryDataServiceNumberSequenceEntity|error {
+        string resourcePath = string `/InventInventoryDataServiceNumberSequenceEntities`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventInventoryDataServiceNumberSequenceEntity by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventInventoryDataServiceNumberSequenceEntity record 
+    remote isolated function getInventInventoryDataServiceNumberSequenceEntities(string dataAreaId, string iVDataAreaId, string numberSequence, map<string|string[]> headers = {}, *GetInventInventoryDataServiceNumberSequenceEntitiesQueries queries) returns InventInventoryDataServiceNumberSequenceEntity|error {
+        string resourcePath = string `/InventInventoryDataServiceNumberSequenceEntities(dataAreaId='${getEncodedUri(dataAreaId)}',IVDataAreaId='${getEncodedUri(iVDataAreaId)}',NumberSequence='${getEncodedUri(numberSequence)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventInventoryDataServiceNumberSequenceEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventInventoryDataServiceNumberSequenceEntity deleted 
+    remote isolated function deleteInventInventoryDataServiceNumberSequenceEntities(string dataAreaId, string iVDataAreaId, string numberSequence, DeleteInventInventoryDataServiceNumberSequenceEntitiesHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventInventoryDataServiceNumberSequenceEntities(dataAreaId='${getEncodedUri(dataAreaId)}',IVDataAreaId='${getEncodedUri(iVDataAreaId)}',NumberSequence='${getEncodedUri(numberSequence)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventInventoryDataServiceNumberSequenceEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventInventoryDataServiceNumberSequenceEntity updated 
+    remote isolated function updateInventInventoryDataServiceNumberSequenceEntities(string dataAreaId, string iVDataAreaId, string numberSequence, InventInventoryDataServiceNumberSequenceEntity payload, UpdateInventInventoryDataServiceNumberSequenceEntitiesHeaders headers = {}) returns InventInventoryDataServiceNumberSequenceEntity|error {
+        string resourcePath = string `/InventInventoryDataServiceNumberSequenceEntities(dataAreaId='${getEncodedUri(dataAreaId)}',IVDataAreaId='${getEncodedUri(iVDataAreaId)}',NumberSequence='${getEncodedUri(numberSequence)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventItemPendingPrices
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventItemPendingPrice 
+    remote isolated function listInventItemPendingPrices(map<string|string[]> headers = {}, *ListInventItemPendingPricesQueries queries) returns InventItemPendingPricesCollection|error {
+        string resourcePath = string `/InventItemPendingPrices`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventItemPendingPrice
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventItemPendingPrice created 
+    remote isolated function createInventItemPendingPrices(InventItemPendingPrice payload, map<string|string[]> headers = {}) returns InventItemPendingPrice|error {
+        string resourcePath = string `/InventItemPendingPrices`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventItemPendingPrice by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventItemPendingPrice record 
+    remote isolated function getInventItemPendingPrices(string dataAreaId, string itemNumber, string costingVersionId, string fromDate, string priceType, string priceSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, map<string|string[]> headers = {}, *GetInventItemPendingPricesQueries queries) returns InventItemPendingPrice|error {
+        string resourcePath = string `/InventItemPendingPrices(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',CostingVersionId='${getEncodedUri(costingVersionId)}',FromDate=${getEncodedUri(fromDate)},PriceType='${getEncodedUri(priceType)}',PriceSiteId='${getEncodedUri(priceSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventItemPendingPrice
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventItemPendingPrice deleted 
+    remote isolated function deleteInventItemPendingPrices(string dataAreaId, string itemNumber, string costingVersionId, string fromDate, string priceType, string priceSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, DeleteInventItemPendingPricesHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventItemPendingPrices(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',CostingVersionId='${getEncodedUri(costingVersionId)}',FromDate=${getEncodedUri(fromDate)},PriceType='${getEncodedUri(priceType)}',PriceSiteId='${getEncodedUri(priceSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventItemPendingPrice
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventItemPendingPrice updated 
+    remote isolated function updateInventItemPendingPrices(string dataAreaId, string itemNumber, string costingVersionId, string fromDate, string priceType, string priceSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, InventItemPendingPrice payload, UpdateInventItemPendingPricesHeaders headers = {}) returns InventItemPendingPrice|error {
+        string resourcePath = string `/InventItemPendingPrices(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',CostingVersionId='${getEncodedUri(costingVersionId)}',FromDate=${getEncodedUri(fromDate)},PriceType='${getEncodedUri(priceType)}',PriceSiteId='${getEncodedUri(priceSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventItemPendingPricesV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventItemPendingPriceV2 
+    remote isolated function listInventItemPendingPricesV2(map<string|string[]> headers = {}, *ListInventItemPendingPricesV2Queries queries) returns InventItemPendingPricesV2Collection|error {
+        string resourcePath = string `/InventItemPendingPricesV2`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventItemPendingPriceV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventItemPendingPriceV2 created 
+    remote isolated function createInventItemPendingPricesV2(InventItemPendingPriceV2 payload, map<string|string[]> headers = {}) returns InventItemPendingPriceV2|error {
+        string resourcePath = string `/InventItemPendingPricesV2`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventItemPendingPriceV2 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventItemPendingPriceV2 record 
+    remote isolated function getInventItemPendingPricesV2(string dataAreaId, string itemNumber, string costingVersionId, string fromDate, string priceType, string priceSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, map<string|string[]> headers = {}, *GetInventItemPendingPricesV2Queries queries) returns InventItemPendingPriceV2|error {
+        string resourcePath = string `/InventItemPendingPricesV2(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',CostingVersionId='${getEncodedUri(costingVersionId)}',FromDate=${getEncodedUri(fromDate)},PriceType='${getEncodedUri(priceType)}',PriceSiteId='${getEncodedUri(priceSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventItemPendingPriceV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventItemPendingPriceV2 deleted 
+    remote isolated function deleteInventItemPendingPricesV2(string dataAreaId, string itemNumber, string costingVersionId, string fromDate, string priceType, string priceSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, DeleteInventItemPendingPricesV2Headers headers = {}) returns error? {
+        string resourcePath = string `/InventItemPendingPricesV2(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',CostingVersionId='${getEncodedUri(costingVersionId)}',FromDate=${getEncodedUri(fromDate)},PriceType='${getEncodedUri(priceType)}',PriceSiteId='${getEncodedUri(priceSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventItemPendingPriceV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventItemPendingPriceV2 updated 
+    remote isolated function updateInventItemPendingPricesV2(string dataAreaId, string itemNumber, string costingVersionId, string fromDate, string priceType, string priceSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, InventItemPendingPriceV2 payload, UpdateInventItemPendingPricesV2Headers headers = {}) returns InventItemPendingPriceV2|error {
+        string resourcePath = string `/InventItemPendingPricesV2(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',CostingVersionId='${getEncodedUri(costingVersionId)}',FromDate=${getEncodedUri(fromDate)},PriceType='${getEncodedUri(priceType)}',PriceSiteId='${getEncodedUri(priceSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventItemPrices
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventItemPrice 
+    remote isolated function listInventItemPrices(map<string|string[]> headers = {}, *ListInventItemPricesQueries queries) returns InventItemPricesCollection|error {
+        string resourcePath = string `/InventItemPrices`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventItemPrice
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventItemPrice created 
+    remote isolated function createInventItemPrices(InventItemPrice payload, map<string|string[]> headers = {}) returns InventItemPrice|error {
+        string resourcePath = string `/InventItemPrices`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventItemPrice by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventItemPrice record 
+    remote isolated function getInventItemPrices(string dataAreaId, string itemNumber, string costingVersionId, string priceType, string fromDate, string priceSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string isActive, string priceCreatedDateTime, map<string|string[]> headers = {}, *GetInventItemPricesQueries queries) returns InventItemPrice|error {
+        string resourcePath = string `/InventItemPrices(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',CostingVersionId='${getEncodedUri(costingVersionId)}',PriceType='${getEncodedUri(priceType)}',FromDate=${getEncodedUri(fromDate)},PriceSiteId='${getEncodedUri(priceSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',IsActive='${getEncodedUri(isActive)}',PriceCreatedDateTime=${getEncodedUri(priceCreatedDateTime)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventItemPrice
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventItemPrice deleted 
+    remote isolated function deleteInventItemPrices(string dataAreaId, string itemNumber, string costingVersionId, string priceType, string fromDate, string priceSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string isActive, string priceCreatedDateTime, DeleteInventItemPricesHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventItemPrices(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',CostingVersionId='${getEncodedUri(costingVersionId)}',PriceType='${getEncodedUri(priceType)}',FromDate=${getEncodedUri(fromDate)},PriceSiteId='${getEncodedUri(priceSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',IsActive='${getEncodedUri(isActive)}',PriceCreatedDateTime=${getEncodedUri(priceCreatedDateTime)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventItemPrice
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventItemPrice updated 
+    remote isolated function updateInventItemPrices(string dataAreaId, string itemNumber, string costingVersionId, string priceType, string fromDate, string priceSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string isActive, string priceCreatedDateTime, InventItemPrice payload, UpdateInventItemPricesHeaders headers = {}) returns InventItemPrice|error {
+        string resourcePath = string `/InventItemPrices(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',CostingVersionId='${getEncodedUri(costingVersionId)}',PriceType='${getEncodedUri(priceType)}',FromDate=${getEncodedUri(fromDate)},PriceSiteId='${getEncodedUri(priceSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',IsActive='${getEncodedUri(isActive)}',PriceCreatedDateTime=${getEncodedUri(priceCreatedDateTime)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventItemPricesV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventItemPriceV2 
+    remote isolated function listInventItemPricesV2(map<string|string[]> headers = {}, *ListInventItemPricesV2Queries queries) returns InventItemPricesV2Collection|error {
+        string resourcePath = string `/InventItemPricesV2`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventItemPriceV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventItemPriceV2 created 
+    remote isolated function createInventItemPricesV2(InventItemPriceV2 payload, map<string|string[]> headers = {}) returns InventItemPriceV2|error {
+        string resourcePath = string `/InventItemPricesV2`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventItemPriceV2 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventItemPriceV2 record 
+    remote isolated function getInventItemPricesV2(string dataAreaId, string itemNumber, string costingVersionId, string priceType, string fromDate, string priceSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string isActive, string priceCreatedDateTime, map<string|string[]> headers = {}, *GetInventItemPricesV2Queries queries) returns InventItemPriceV2|error {
+        string resourcePath = string `/InventItemPricesV2(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',CostingVersionId='${getEncodedUri(costingVersionId)}',PriceType='${getEncodedUri(priceType)}',FromDate=${getEncodedUri(fromDate)},PriceSiteId='${getEncodedUri(priceSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive='${getEncodedUri(isActive)}',PriceCreatedDateTime=${getEncodedUri(priceCreatedDateTime)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventItemPriceV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventItemPriceV2 deleted 
+    remote isolated function deleteInventItemPricesV2(string dataAreaId, string itemNumber, string costingVersionId, string priceType, string fromDate, string priceSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string isActive, string priceCreatedDateTime, DeleteInventItemPricesV2Headers headers = {}) returns error? {
+        string resourcePath = string `/InventItemPricesV2(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',CostingVersionId='${getEncodedUri(costingVersionId)}',PriceType='${getEncodedUri(priceType)}',FromDate=${getEncodedUri(fromDate)},PriceSiteId='${getEncodedUri(priceSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive='${getEncodedUri(isActive)}',PriceCreatedDateTime=${getEncodedUri(priceCreatedDateTime)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventItemPriceV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventItemPriceV2 updated 
+    remote isolated function updateInventItemPricesV2(string dataAreaId, string itemNumber, string costingVersionId, string priceType, string fromDate, string priceSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string isActive, string priceCreatedDateTime, InventItemPriceV2 payload, UpdateInventItemPricesV2Headers headers = {}) returns InventItemPriceV2|error {
+        string resourcePath = string `/InventItemPricesV2(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',CostingVersionId='${getEncodedUri(costingVersionId)}',PriceType='${getEncodedUri(priceType)}',FromDate=${getEncodedUri(fromDate)},PriceSiteId='${getEncodedUri(priceSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive='${getEncodedUri(isActive)}',PriceCreatedDateTime=${getEncodedUri(priceCreatedDateTime)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventItemPricesV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventItemPriceV3 
+    remote isolated function listInventItemPricesV3(map<string|string[]> headers = {}, *ListInventItemPricesV3Queries queries) returns InventItemPricesV3Collection|error {
+        string resourcePath = string `/InventItemPricesV3`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventItemPriceV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventItemPriceV3 created 
+    remote isolated function createInventItemPricesV3(InventItemPriceV3 payload, map<string|string[]> headers = {}) returns InventItemPriceV3|error {
+        string resourcePath = string `/InventItemPricesV3`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventItemPriceV3 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventItemPriceV3 record 
+    remote isolated function getInventItemPricesV3(string dataAreaId, string itemNumber, string costingVersionId, string priceType, string fromDate, string priceSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string isActive, string priceCreatedDateTime, int recordId, map<string|string[]> headers = {}, *GetInventItemPricesV3Queries queries) returns InventItemPriceV3|error {
+        string resourcePath = string `/InventItemPricesV3(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',CostingVersionId='${getEncodedUri(costingVersionId)}',PriceType='${getEncodedUri(priceType)}',FromDate=${getEncodedUri(fromDate)},PriceSiteId='${getEncodedUri(priceSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive='${getEncodedUri(isActive)}',PriceCreatedDateTime=${getEncodedUri(priceCreatedDateTime)},RecordId=${getEncodedUri(recordId)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventItemPriceV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventItemPriceV3 deleted 
+    remote isolated function deleteInventItemPricesV3(string dataAreaId, string itemNumber, string costingVersionId, string priceType, string fromDate, string priceSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string isActive, string priceCreatedDateTime, int recordId, DeleteInventItemPricesV3Headers headers = {}) returns error? {
+        string resourcePath = string `/InventItemPricesV3(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',CostingVersionId='${getEncodedUri(costingVersionId)}',PriceType='${getEncodedUri(priceType)}',FromDate=${getEncodedUri(fromDate)},PriceSiteId='${getEncodedUri(priceSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive='${getEncodedUri(isActive)}',PriceCreatedDateTime=${getEncodedUri(priceCreatedDateTime)},RecordId=${getEncodedUri(recordId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventItemPriceV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventItemPriceV3 updated 
+    remote isolated function updateInventItemPricesV3(string dataAreaId, string itemNumber, string costingVersionId, string priceType, string fromDate, string priceSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string isActive, string priceCreatedDateTime, int recordId, InventItemPriceV3 payload, UpdateInventItemPricesV3Headers headers = {}) returns InventItemPriceV3|error {
+        string resourcePath = string `/InventItemPricesV3(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',CostingVersionId='${getEncodedUri(costingVersionId)}',PriceType='${getEncodedUri(priceType)}',FromDate=${getEncodedUri(fromDate)},PriceSiteId='${getEncodedUri(priceSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive='${getEncodedUri(isActive)}',PriceCreatedDateTime=${getEncodedUri(priceCreatedDateTime)},RecordId=${getEncodedUri(recordId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
     # List InventOperationalSiteCurrentPostalAddresses
@@ -90,6 +488,63 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List InventTransArchiveEntities
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventTransArchiveEntity 
+    remote isolated function listInventTransArchiveEntities(map<string|string[]> headers = {}, *ListInventTransArchiveEntitiesQueries queries) returns InventTransArchiveEntitiesCollection|error {
+        string resourcePath = string `/InventTransArchiveEntities`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventTransArchiveEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventTransArchiveEntity created 
+    remote isolated function createInventTransArchiveEntities(InventTransArchiveEntity payload, map<string|string[]> headers = {}) returns InventTransArchiveEntity|error {
+        string resourcePath = string `/InventTransArchiveEntities`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventTransArchiveEntity by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventTransArchiveEntity record 
+    remote isolated function getInventTransArchiveEntities(string dataAreaId, int inventTrans, map<string|string[]> headers = {}, *GetInventTransArchiveEntitiesQueries queries) returns InventTransArchiveEntity|error {
+        string resourcePath = string `/InventTransArchiveEntities(dataAreaId='${getEncodedUri(dataAreaId)}',InventTrans=${getEncodedUri(inventTrans)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventTransArchiveEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventTransArchiveEntity deleted 
+    remote isolated function deleteInventTransArchiveEntities(string dataAreaId, int inventTrans, DeleteInventTransArchiveEntitiesHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventTransArchiveEntities(dataAreaId='${getEncodedUri(dataAreaId)}',InventTrans=${getEncodedUri(inventTrans)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventTransArchiveEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventTransArchiveEntity updated 
+    remote isolated function updateInventTransArchiveEntities(string dataAreaId, int inventTrans, InventTransArchiveEntity payload, UpdateInventTransArchiveEntitiesHeaders headers = {}) returns InventTransArchiveEntity|error {
+        string resourcePath = string `/InventTransArchiveEntities(dataAreaId='${getEncodedUri(dataAreaId)}',InventTrans=${getEncodedUri(inventTrans)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List InventoryAccountingKPIGoals
     #
     # + headers - Headers to be sent with the request 
@@ -140,6 +595,63 @@ public isolated client class Client {
     # + return - InventoryAccountingKPIGoals updated 
     remote isolated function updateInventoryAccountingKPIGoals(string dataAreaId, InventoryAccountingKPIGoals payload, UpdateInventoryAccountingKPIGoalsHeaders headers = {}) returns InventoryAccountingKPIGoals|error {
         string resourcePath = string `/InventoryAccountingKPIGoals(dataAreaId='${getEncodedUri(dataAreaId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventoryAdjustmentJournalEntriesV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryAdjustmentJournalEntryV2 
+    remote isolated function listInventoryAdjustmentJournalEntriesV2(map<string|string[]> headers = {}, *ListInventoryAdjustmentJournalEntriesV2Queries queries) returns InventoryAdjustmentJournalEntriesV2Collection|error {
+        string resourcePath = string `/InventoryAdjustmentJournalEntriesV2`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryAdjustmentJournalEntryV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryAdjustmentJournalEntryV2 created 
+    remote isolated function createInventoryAdjustmentJournalEntriesV2(InventoryAdjustmentJournalEntryV2 payload, map<string|string[]> headers = {}) returns InventoryAdjustmentJournalEntryV2|error {
+        string resourcePath = string `/InventoryAdjustmentJournalEntriesV2`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryAdjustmentJournalEntryV2 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryAdjustmentJournalEntryV2 record 
+    remote isolated function getInventoryAdjustmentJournalEntriesV2(string dataAreaId, string journalNumber, string itemNumber, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string inventorySiteId, string inventoryWarehouseId, string itemBatchNumber, string itemSerialNumber, string warehouseLocationId, string licensePlateNumber, string inventoryStatusId, decimal lineNumber, map<string|string[]> headers = {}, *GetInventoryAdjustmentJournalEntriesV2Queries queries) returns InventoryAdjustmentJournalEntryV2|error {
+        string resourcePath = string `/InventoryAdjustmentJournalEntriesV2(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}',InventoryWarehouseId='${getEncodedUri(inventoryWarehouseId)}',ItemBatchNumber='${getEncodedUri(itemBatchNumber)}',ItemSerialNumber='${getEncodedUri(itemSerialNumber)}',WarehouseLocationId='${getEncodedUri(warehouseLocationId)}',LicensePlateNumber='${getEncodedUri(licensePlateNumber)}',InventoryStatusId='${getEncodedUri(inventoryStatusId)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryAdjustmentJournalEntryV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryAdjustmentJournalEntryV2 deleted 
+    remote isolated function deleteInventoryAdjustmentJournalEntriesV2(string dataAreaId, string journalNumber, string itemNumber, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string inventorySiteId, string inventoryWarehouseId, string itemBatchNumber, string itemSerialNumber, string warehouseLocationId, string licensePlateNumber, string inventoryStatusId, decimal lineNumber, DeleteInventoryAdjustmentJournalEntriesV2Headers headers = {}) returns error? {
+        string resourcePath = string `/InventoryAdjustmentJournalEntriesV2(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}',InventoryWarehouseId='${getEncodedUri(inventoryWarehouseId)}',ItemBatchNumber='${getEncodedUri(itemBatchNumber)}',ItemSerialNumber='${getEncodedUri(itemSerialNumber)}',WarehouseLocationId='${getEncodedUri(warehouseLocationId)}',LicensePlateNumber='${getEncodedUri(licensePlateNumber)}',InventoryStatusId='${getEncodedUri(inventoryStatusId)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryAdjustmentJournalEntryV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryAdjustmentJournalEntryV2 updated 
+    remote isolated function updateInventoryAdjustmentJournalEntriesV2(string dataAreaId, string journalNumber, string itemNumber, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string inventorySiteId, string inventoryWarehouseId, string itemBatchNumber, string itemSerialNumber, string warehouseLocationId, string licensePlateNumber, string inventoryStatusId, decimal lineNumber, InventoryAdjustmentJournalEntryV2 payload, UpdateInventoryAdjustmentJournalEntriesV2Headers headers = {}) returns InventoryAdjustmentJournalEntryV2|error {
+        string resourcePath = string `/InventoryAdjustmentJournalEntriesV2(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}',InventoryWarehouseId='${getEncodedUri(inventoryWarehouseId)}',ItemBatchNumber='${getEncodedUri(itemBatchNumber)}',ItemSerialNumber='${getEncodedUri(itemSerialNumber)}',WarehouseLocationId='${getEncodedUri(warehouseLocationId)}',LicensePlateNumber='${getEncodedUri(licensePlateNumber)}',InventoryStatusId='${getEncodedUri(inventoryStatusId)}',LineNumber=${getEncodedUri(lineNumber)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -254,6 +766,291 @@ public isolated client class Client {
     # + return - InventoryCountingGroup updated 
     remote isolated function updateInventoryCountingGroups(string dataAreaId, string groupId, InventoryCountingGroup payload, UpdateInventoryCountingGroupsHeaders headers = {}) returns InventoryCountingGroup|error {
         string resourcePath = string `/InventoryCountingGroups(dataAreaId='${getEncodedUri(dataAreaId)}',GroupId='${getEncodedUri(groupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventoryCountingJournalHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryCountingJournalHeader 
+    remote isolated function listInventoryCountingJournalHeaders(map<string|string[]> headers = {}, *ListInventoryCountingJournalHeadersQueries queries) returns InventoryCountingJournalHeadersCollection|error {
+        string resourcePath = string `/InventoryCountingJournalHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryCountingJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryCountingJournalHeader created 
+    remote isolated function createInventoryCountingJournalHeaders(InventoryCountingJournalHeader payload, map<string|string[]> headers = {}) returns InventoryCountingJournalHeader|error {
+        string resourcePath = string `/InventoryCountingJournalHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryCountingJournalHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryCountingJournalHeader record 
+    remote isolated function getInventoryCountingJournalHeaders(string dataAreaId, string journalNumber, map<string|string[]> headers = {}, *GetInventoryCountingJournalHeadersQueries queries) returns InventoryCountingJournalHeader|error {
+        string resourcePath = string `/InventoryCountingJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryCountingJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryCountingJournalHeader deleted 
+    remote isolated function deleteInventoryCountingJournalHeaders(string dataAreaId, string journalNumber, DeleteInventoryCountingJournalHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventoryCountingJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryCountingJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryCountingJournalHeader updated 
+    remote isolated function updateInventoryCountingJournalHeaders(string dataAreaId, string journalNumber, InventoryCountingJournalHeader payload, UpdateInventoryCountingJournalHeadersHeaders headers = {}) returns InventoryCountingJournalHeader|error {
+        string resourcePath = string `/InventoryCountingJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventoryCountingJournalLines
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryCountingJournalLine 
+    remote isolated function listInventoryCountingJournalLines(map<string|string[]> headers = {}, *ListInventoryCountingJournalLinesQueries queries) returns InventoryCountingJournalLinesCollection|error {
+        string resourcePath = string `/InventoryCountingJournalLines`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryCountingJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryCountingJournalLine created 
+    remote isolated function createInventoryCountingJournalLines(InventoryCountingJournalLine payload, map<string|string[]> headers = {}) returns InventoryCountingJournalLine|error {
+        string resourcePath = string `/InventoryCountingJournalLines`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryCountingJournalLine by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryCountingJournalLine record 
+    remote isolated function getInventoryCountingJournalLines(string dataAreaId, string journalNumber, decimal lineNumber, map<string|string[]> headers = {}, *GetInventoryCountingJournalLinesQueries queries) returns InventoryCountingJournalLine|error {
+        string resourcePath = string `/InventoryCountingJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryCountingJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryCountingJournalLine deleted 
+    remote isolated function deleteInventoryCountingJournalLines(string dataAreaId, string journalNumber, decimal lineNumber, DeleteInventoryCountingJournalLinesHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventoryCountingJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryCountingJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryCountingJournalLine updated 
+    remote isolated function updateInventoryCountingJournalLines(string dataAreaId, string journalNumber, decimal lineNumber, InventoryCountingJournalLine payload, UpdateInventoryCountingJournalLinesHeaders headers = {}) returns InventoryCountingJournalLine|error {
+        string resourcePath = string `/InventoryCountingJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventoryCountingReasonCodes
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryCountingReasonCode 
+    remote isolated function listInventoryCountingReasonCodes(map<string|string[]> headers = {}, *ListInventoryCountingReasonCodesQueries queries) returns InventoryCountingReasonCodesCollection|error {
+        string resourcePath = string `/InventoryCountingReasonCodes`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryCountingReasonCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryCountingReasonCode created 
+    remote isolated function createInventoryCountingReasonCodes(InventoryCountingReasonCode payload, map<string|string[]> headers = {}) returns InventoryCountingReasonCode|error {
+        string resourcePath = string `/InventoryCountingReasonCodes`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryCountingReasonCode by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryCountingReasonCode record 
+    remote isolated function getInventoryCountingReasonCodes(string dataAreaId, string reasonCode, map<string|string[]> headers = {}, *GetInventoryCountingReasonCodesQueries queries) returns InventoryCountingReasonCode|error {
+        string resourcePath = string `/InventoryCountingReasonCodes(dataAreaId='${getEncodedUri(dataAreaId)}',ReasonCode='${getEncodedUri(reasonCode)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryCountingReasonCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryCountingReasonCode deleted 
+    remote isolated function deleteInventoryCountingReasonCodes(string dataAreaId, string reasonCode, DeleteInventoryCountingReasonCodesHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventoryCountingReasonCodes(dataAreaId='${getEncodedUri(dataAreaId)}',ReasonCode='${getEncodedUri(reasonCode)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryCountingReasonCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryCountingReasonCode updated 
+    remote isolated function updateInventoryCountingReasonCodes(string dataAreaId, string reasonCode, InventoryCountingReasonCode payload, UpdateInventoryCountingReasonCodesHeaders headers = {}) returns InventoryCountingReasonCode|error {
+        string resourcePath = string `/InventoryCountingReasonCodes(dataAreaId='${getEncodedUri(dataAreaId)}',ReasonCode='${getEncodedUri(reasonCode)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventoryCountingReasonCodesV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryCountingReasonCodeV2 
+    remote isolated function listInventoryCountingReasonCodesV2(map<string|string[]> headers = {}, *ListInventoryCountingReasonCodesV2Queries queries) returns InventoryCountingReasonCodesV2Collection|error {
+        string resourcePath = string `/InventoryCountingReasonCodesV2`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryCountingReasonCodeV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryCountingReasonCodeV2 created 
+    remote isolated function createInventoryCountingReasonCodesV2(InventoryCountingReasonCodeV2 payload, map<string|string[]> headers = {}) returns InventoryCountingReasonCodeV2|error {
+        string resourcePath = string `/InventoryCountingReasonCodesV2`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryCountingReasonCodeV2 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryCountingReasonCodeV2 record 
+    remote isolated function getInventoryCountingReasonCodesV2(string dataAreaId, string reasonCode, map<string|string[]> headers = {}, *GetInventoryCountingReasonCodesV2Queries queries) returns InventoryCountingReasonCodeV2|error {
+        string resourcePath = string `/InventoryCountingReasonCodesV2(dataAreaId='${getEncodedUri(dataAreaId)}',ReasonCode='${getEncodedUri(reasonCode)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryCountingReasonCodeV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryCountingReasonCodeV2 deleted 
+    remote isolated function deleteInventoryCountingReasonCodesV2(string dataAreaId, string reasonCode, DeleteInventoryCountingReasonCodesV2Headers headers = {}) returns error? {
+        string resourcePath = string `/InventoryCountingReasonCodesV2(dataAreaId='${getEncodedUri(dataAreaId)}',ReasonCode='${getEncodedUri(reasonCode)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryCountingReasonCodeV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryCountingReasonCodeV2 updated 
+    remote isolated function updateInventoryCountingReasonCodesV2(string dataAreaId, string reasonCode, InventoryCountingReasonCodeV2 payload, UpdateInventoryCountingReasonCodesV2Headers headers = {}) returns InventoryCountingReasonCodeV2|error {
+        string resourcePath = string `/InventoryCountingReasonCodesV2(dataAreaId='${getEncodedUri(dataAreaId)}',ReasonCode='${getEncodedUri(reasonCode)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventoryFixedAssetTransferJournalNames
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryFixedAssetTransferJournalName 
+    remote isolated function listInventoryFixedAssetTransferJournalNames(map<string|string[]> headers = {}, *ListInventoryFixedAssetTransferJournalNamesQueries queries) returns InventoryFixedAssetTransferJournalNamesCollection|error {
+        string resourcePath = string `/InventoryFixedAssetTransferJournalNames`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryFixedAssetTransferJournalName
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryFixedAssetTransferJournalName created 
+    remote isolated function createInventoryFixedAssetTransferJournalNames(InventoryFixedAssetTransferJournalName payload, map<string|string[]> headers = {}) returns InventoryFixedAssetTransferJournalName|error {
+        string resourcePath = string `/InventoryFixedAssetTransferJournalNames`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryFixedAssetTransferJournalName by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryFixedAssetTransferJournalName record 
+    remote isolated function getInventoryFixedAssetTransferJournalNames(string dataAreaId, string journalNameId, map<string|string[]> headers = {}, *GetInventoryFixedAssetTransferJournalNamesQueries queries) returns InventoryFixedAssetTransferJournalName|error {
+        string resourcePath = string `/InventoryFixedAssetTransferJournalNames(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNameId='${getEncodedUri(journalNameId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryFixedAssetTransferJournalName
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryFixedAssetTransferJournalName deleted 
+    remote isolated function deleteInventoryFixedAssetTransferJournalNames(string dataAreaId, string journalNameId, DeleteInventoryFixedAssetTransferJournalNamesHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventoryFixedAssetTransferJournalNames(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNameId='${getEncodedUri(journalNameId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryFixedAssetTransferJournalName
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryFixedAssetTransferJournalName updated 
+    remote isolated function updateInventoryFixedAssetTransferJournalNames(string dataAreaId, string journalNameId, InventoryFixedAssetTransferJournalName payload, UpdateInventoryFixedAssetTransferJournalNamesHeaders headers = {}) returns InventoryFixedAssetTransferJournalName|error {
+        string resourcePath = string `/InventoryFixedAssetTransferJournalNames(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNameId='${getEncodedUri(journalNameId)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -432,6 +1229,234 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List InventoryMovementJournalEntries
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryMovementJournalEntry 
+    remote isolated function listInventoryMovementJournalEntries(map<string|string[]> headers = {}, *ListInventoryMovementJournalEntriesQueries queries) returns InventoryMovementJournalEntriesCollection|error {
+        string resourcePath = string `/InventoryMovementJournalEntries`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryMovementJournalEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryMovementJournalEntry created 
+    remote isolated function createInventoryMovementJournalEntries(InventoryMovementJournalEntry payload, map<string|string[]> headers = {}) returns InventoryMovementJournalEntry|error {
+        string resourcePath = string `/InventoryMovementJournalEntries`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryMovementJournalEntry by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryMovementJournalEntry record 
+    remote isolated function getInventoryMovementJournalEntries(string dataAreaId, string journalNumber, string itemNumber, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string inventorySiteId, string inventoryWarehouseId, string itemBatchNumber, string itemSerialNumber, string warehouseLocationId, string licensePlateNumber, string inventoryStatusId, map<string|string[]> headers = {}, *GetInventoryMovementJournalEntriesQueries queries) returns InventoryMovementJournalEntry|error {
+        string resourcePath = string `/InventoryMovementJournalEntries(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}',InventoryWarehouseId='${getEncodedUri(inventoryWarehouseId)}',ItemBatchNumber='${getEncodedUri(itemBatchNumber)}',ItemSerialNumber='${getEncodedUri(itemSerialNumber)}',WarehouseLocationId='${getEncodedUri(warehouseLocationId)}',LicensePlateNumber='${getEncodedUri(licensePlateNumber)}',InventoryStatusId='${getEncodedUri(inventoryStatusId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryMovementJournalEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryMovementJournalEntry deleted 
+    remote isolated function deleteInventoryMovementJournalEntries(string dataAreaId, string journalNumber, string itemNumber, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string inventorySiteId, string inventoryWarehouseId, string itemBatchNumber, string itemSerialNumber, string warehouseLocationId, string licensePlateNumber, string inventoryStatusId, DeleteInventoryMovementJournalEntriesHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventoryMovementJournalEntries(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}',InventoryWarehouseId='${getEncodedUri(inventoryWarehouseId)}',ItemBatchNumber='${getEncodedUri(itemBatchNumber)}',ItemSerialNumber='${getEncodedUri(itemSerialNumber)}',WarehouseLocationId='${getEncodedUri(warehouseLocationId)}',LicensePlateNumber='${getEncodedUri(licensePlateNumber)}',InventoryStatusId='${getEncodedUri(inventoryStatusId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryMovementJournalEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryMovementJournalEntry updated 
+    remote isolated function updateInventoryMovementJournalEntries(string dataAreaId, string journalNumber, string itemNumber, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string inventorySiteId, string inventoryWarehouseId, string itemBatchNumber, string itemSerialNumber, string warehouseLocationId, string licensePlateNumber, string inventoryStatusId, InventoryMovementJournalEntry payload, UpdateInventoryMovementJournalEntriesHeaders headers = {}) returns InventoryMovementJournalEntry|error {
+        string resourcePath = string `/InventoryMovementJournalEntries(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}',InventoryWarehouseId='${getEncodedUri(inventoryWarehouseId)}',ItemBatchNumber='${getEncodedUri(itemBatchNumber)}',ItemSerialNumber='${getEncodedUri(itemSerialNumber)}',WarehouseLocationId='${getEncodedUri(warehouseLocationId)}',LicensePlateNumber='${getEncodedUri(licensePlateNumber)}',InventoryStatusId='${getEncodedUri(inventoryStatusId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventoryMovementJournalEntriesV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryMovementJournalEntryV2 
+    remote isolated function listInventoryMovementJournalEntriesV2(map<string|string[]> headers = {}, *ListInventoryMovementJournalEntriesV2Queries queries) returns InventoryMovementJournalEntriesV2Collection|error {
+        string resourcePath = string `/InventoryMovementJournalEntriesV2`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryMovementJournalEntryV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryMovementJournalEntryV2 created 
+    remote isolated function createInventoryMovementJournalEntriesV2(InventoryMovementJournalEntryV2 payload, map<string|string[]> headers = {}) returns InventoryMovementJournalEntryV2|error {
+        string resourcePath = string `/InventoryMovementJournalEntriesV2`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryMovementJournalEntryV2 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryMovementJournalEntryV2 record 
+    remote isolated function getInventoryMovementJournalEntriesV2(string dataAreaId, string journalNumber, string itemNumber, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string inventorySiteId, string inventoryWarehouseId, string itemBatchNumber, string itemSerialNumber, string warehouseLocationId, string licensePlateNumber, string inventoryStatusId, string inventoryGtdId, string inventoryOwnerId, string inventoryProfileId, map<string|string[]> headers = {}, *GetInventoryMovementJournalEntriesV2Queries queries) returns InventoryMovementJournalEntryV2|error {
+        string resourcePath = string `/InventoryMovementJournalEntriesV2(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}',InventoryWarehouseId='${getEncodedUri(inventoryWarehouseId)}',ItemBatchNumber='${getEncodedUri(itemBatchNumber)}',ItemSerialNumber='${getEncodedUri(itemSerialNumber)}',WarehouseLocationId='${getEncodedUri(warehouseLocationId)}',LicensePlateNumber='${getEncodedUri(licensePlateNumber)}',InventoryStatusId='${getEncodedUri(inventoryStatusId)}',InventoryGtdId='${getEncodedUri(inventoryGtdId)}',InventoryOwnerId='${getEncodedUri(inventoryOwnerId)}',InventoryProfileId='${getEncodedUri(inventoryProfileId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryMovementJournalEntryV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryMovementJournalEntryV2 deleted 
+    remote isolated function deleteInventoryMovementJournalEntriesV2(string dataAreaId, string journalNumber, string itemNumber, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string inventorySiteId, string inventoryWarehouseId, string itemBatchNumber, string itemSerialNumber, string warehouseLocationId, string licensePlateNumber, string inventoryStatusId, string inventoryGtdId, string inventoryOwnerId, string inventoryProfileId, DeleteInventoryMovementJournalEntriesV2Headers headers = {}) returns error? {
+        string resourcePath = string `/InventoryMovementJournalEntriesV2(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}',InventoryWarehouseId='${getEncodedUri(inventoryWarehouseId)}',ItemBatchNumber='${getEncodedUri(itemBatchNumber)}',ItemSerialNumber='${getEncodedUri(itemSerialNumber)}',WarehouseLocationId='${getEncodedUri(warehouseLocationId)}',LicensePlateNumber='${getEncodedUri(licensePlateNumber)}',InventoryStatusId='${getEncodedUri(inventoryStatusId)}',InventoryGtdId='${getEncodedUri(inventoryGtdId)}',InventoryOwnerId='${getEncodedUri(inventoryOwnerId)}',InventoryProfileId='${getEncodedUri(inventoryProfileId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryMovementJournalEntryV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryMovementJournalEntryV2 updated 
+    remote isolated function updateInventoryMovementJournalEntriesV2(string dataAreaId, string journalNumber, string itemNumber, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string inventorySiteId, string inventoryWarehouseId, string itemBatchNumber, string itemSerialNumber, string warehouseLocationId, string licensePlateNumber, string inventoryStatusId, string inventoryGtdId, string inventoryOwnerId, string inventoryProfileId, InventoryMovementJournalEntryV2 payload, UpdateInventoryMovementJournalEntriesV2Headers headers = {}) returns InventoryMovementJournalEntryV2|error {
+        string resourcePath = string `/InventoryMovementJournalEntriesV2(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}',InventoryWarehouseId='${getEncodedUri(inventoryWarehouseId)}',ItemBatchNumber='${getEncodedUri(itemBatchNumber)}',ItemSerialNumber='${getEncodedUri(itemSerialNumber)}',WarehouseLocationId='${getEncodedUri(warehouseLocationId)}',LicensePlateNumber='${getEncodedUri(licensePlateNumber)}',InventoryStatusId='${getEncodedUri(inventoryStatusId)}',InventoryGtdId='${getEncodedUri(inventoryGtdId)}',InventoryOwnerId='${getEncodedUri(inventoryOwnerId)}',InventoryProfileId='${getEncodedUri(inventoryProfileId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventoryMovementJournalEntriesV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryMovementJournalEntryV3 
+    remote isolated function listInventoryMovementJournalEntriesV3(map<string|string[]> headers = {}, *ListInventoryMovementJournalEntriesV3Queries queries) returns InventoryMovementJournalEntriesV3Collection|error {
+        string resourcePath = string `/InventoryMovementJournalEntriesV3`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryMovementJournalEntryV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryMovementJournalEntryV3 created 
+    remote isolated function createInventoryMovementJournalEntriesV3(InventoryMovementJournalEntryV3 payload, map<string|string[]> headers = {}) returns InventoryMovementJournalEntryV3|error {
+        string resourcePath = string `/InventoryMovementJournalEntriesV3`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryMovementJournalEntryV3 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryMovementJournalEntryV3 record 
+    remote isolated function getInventoryMovementJournalEntriesV3(string dataAreaId, string journalNumber, string itemNumber, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string inventorySiteId, string inventoryWarehouseId, string itemBatchNumber, string itemSerialNumber, string warehouseLocationId, string licensePlateNumber, string inventoryStatusId, string inventoryGtdId, string inventoryOwnerId, string inventoryProfileId, map<string|string[]> headers = {}, *GetInventoryMovementJournalEntriesV3Queries queries) returns InventoryMovementJournalEntryV3|error {
+        string resourcePath = string `/InventoryMovementJournalEntriesV3(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}',InventoryWarehouseId='${getEncodedUri(inventoryWarehouseId)}',ItemBatchNumber='${getEncodedUri(itemBatchNumber)}',ItemSerialNumber='${getEncodedUri(itemSerialNumber)}',WarehouseLocationId='${getEncodedUri(warehouseLocationId)}',LicensePlateNumber='${getEncodedUri(licensePlateNumber)}',InventoryStatusId='${getEncodedUri(inventoryStatusId)}',InventoryGtdId='${getEncodedUri(inventoryGtdId)}',InventoryOwnerId='${getEncodedUri(inventoryOwnerId)}',InventoryProfileId='${getEncodedUri(inventoryProfileId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryMovementJournalEntryV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryMovementJournalEntryV3 deleted 
+    remote isolated function deleteInventoryMovementJournalEntriesV3(string dataAreaId, string journalNumber, string itemNumber, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string inventorySiteId, string inventoryWarehouseId, string itemBatchNumber, string itemSerialNumber, string warehouseLocationId, string licensePlateNumber, string inventoryStatusId, string inventoryGtdId, string inventoryOwnerId, string inventoryProfileId, DeleteInventoryMovementJournalEntriesV3Headers headers = {}) returns error? {
+        string resourcePath = string `/InventoryMovementJournalEntriesV3(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}',InventoryWarehouseId='${getEncodedUri(inventoryWarehouseId)}',ItemBatchNumber='${getEncodedUri(itemBatchNumber)}',ItemSerialNumber='${getEncodedUri(itemSerialNumber)}',WarehouseLocationId='${getEncodedUri(warehouseLocationId)}',LicensePlateNumber='${getEncodedUri(licensePlateNumber)}',InventoryStatusId='${getEncodedUri(inventoryStatusId)}',InventoryGtdId='${getEncodedUri(inventoryGtdId)}',InventoryOwnerId='${getEncodedUri(inventoryOwnerId)}',InventoryProfileId='${getEncodedUri(inventoryProfileId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryMovementJournalEntryV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryMovementJournalEntryV3 updated 
+    remote isolated function updateInventoryMovementJournalEntriesV3(string dataAreaId, string journalNumber, string itemNumber, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string inventorySiteId, string inventoryWarehouseId, string itemBatchNumber, string itemSerialNumber, string warehouseLocationId, string licensePlateNumber, string inventoryStatusId, string inventoryGtdId, string inventoryOwnerId, string inventoryProfileId, InventoryMovementJournalEntryV3 payload, UpdateInventoryMovementJournalEntriesV3Headers headers = {}) returns InventoryMovementJournalEntryV3|error {
+        string resourcePath = string `/InventoryMovementJournalEntriesV3(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}',InventoryWarehouseId='${getEncodedUri(inventoryWarehouseId)}',ItemBatchNumber='${getEncodedUri(itemBatchNumber)}',ItemSerialNumber='${getEncodedUri(itemSerialNumber)}',WarehouseLocationId='${getEncodedUri(warehouseLocationId)}',LicensePlateNumber='${getEncodedUri(licensePlateNumber)}',InventoryStatusId='${getEncodedUri(inventoryStatusId)}',InventoryGtdId='${getEncodedUri(inventoryGtdId)}',InventoryOwnerId='${getEncodedUri(inventoryOwnerId)}',InventoryProfileId='${getEncodedUri(inventoryProfileId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventoryMovementJournalEntriesV4
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryMovementJournalEntryV4 
+    remote isolated function listInventoryMovementJournalEntriesV4(map<string|string[]> headers = {}, *ListInventoryMovementJournalEntriesV4Queries queries) returns InventoryMovementJournalEntriesV4Collection|error {
+        string resourcePath = string `/InventoryMovementJournalEntriesV4`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryMovementJournalEntryV4
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryMovementJournalEntryV4 created 
+    remote isolated function createInventoryMovementJournalEntriesV4(InventoryMovementJournalEntryV4 payload, map<string|string[]> headers = {}) returns InventoryMovementJournalEntryV4|error {
+        string resourcePath = string `/InventoryMovementJournalEntriesV4`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryMovementJournalEntryV4 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryMovementJournalEntryV4 record 
+    remote isolated function getInventoryMovementJournalEntriesV4(string dataAreaId, string journalNumber, string itemNumber, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string inventorySiteId, string inventoryWarehouseId, string itemBatchNumber, string itemSerialNumber, string warehouseLocationId, string licensePlateNumber, string inventoryStatusId, string inventoryGtdId, string inventoryOwnerId, string inventoryProfileId, decimal lineNumber, map<string|string[]> headers = {}, *GetInventoryMovementJournalEntriesV4Queries queries) returns InventoryMovementJournalEntryV4|error {
+        string resourcePath = string `/InventoryMovementJournalEntriesV4(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}',InventoryWarehouseId='${getEncodedUri(inventoryWarehouseId)}',ItemBatchNumber='${getEncodedUri(itemBatchNumber)}',ItemSerialNumber='${getEncodedUri(itemSerialNumber)}',WarehouseLocationId='${getEncodedUri(warehouseLocationId)}',LicensePlateNumber='${getEncodedUri(licensePlateNumber)}',InventoryStatusId='${getEncodedUri(inventoryStatusId)}',InventoryGtdId='${getEncodedUri(inventoryGtdId)}',InventoryOwnerId='${getEncodedUri(inventoryOwnerId)}',InventoryProfileId='${getEncodedUri(inventoryProfileId)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryMovementJournalEntryV4
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryMovementJournalEntryV4 deleted 
+    remote isolated function deleteInventoryMovementJournalEntriesV4(string dataAreaId, string journalNumber, string itemNumber, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string inventorySiteId, string inventoryWarehouseId, string itemBatchNumber, string itemSerialNumber, string warehouseLocationId, string licensePlateNumber, string inventoryStatusId, string inventoryGtdId, string inventoryOwnerId, string inventoryProfileId, decimal lineNumber, DeleteInventoryMovementJournalEntriesV4Headers headers = {}) returns error? {
+        string resourcePath = string `/InventoryMovementJournalEntriesV4(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}',InventoryWarehouseId='${getEncodedUri(inventoryWarehouseId)}',ItemBatchNumber='${getEncodedUri(itemBatchNumber)}',ItemSerialNumber='${getEncodedUri(itemSerialNumber)}',WarehouseLocationId='${getEncodedUri(warehouseLocationId)}',LicensePlateNumber='${getEncodedUri(licensePlateNumber)}',InventoryStatusId='${getEncodedUri(inventoryStatusId)}',InventoryGtdId='${getEncodedUri(inventoryGtdId)}',InventoryOwnerId='${getEncodedUri(inventoryOwnerId)}',InventoryProfileId='${getEncodedUri(inventoryProfileId)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryMovementJournalEntryV4
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryMovementJournalEntryV4 updated 
+    remote isolated function updateInventoryMovementJournalEntriesV4(string dataAreaId, string journalNumber, string itemNumber, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string inventorySiteId, string inventoryWarehouseId, string itemBatchNumber, string itemSerialNumber, string warehouseLocationId, string licensePlateNumber, string inventoryStatusId, string inventoryGtdId, string inventoryOwnerId, string inventoryProfileId, decimal lineNumber, InventoryMovementJournalEntryV4 payload, UpdateInventoryMovementJournalEntriesV4Headers headers = {}) returns InventoryMovementJournalEntryV4|error {
+        string resourcePath = string `/InventoryMovementJournalEntriesV4(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}',InventoryWarehouseId='${getEncodedUri(inventoryWarehouseId)}',ItemBatchNumber='${getEncodedUri(itemBatchNumber)}',ItemSerialNumber='${getEncodedUri(itemSerialNumber)}',WarehouseLocationId='${getEncodedUri(warehouseLocationId)}',LicensePlateNumber='${getEncodedUri(licensePlateNumber)}',InventoryStatusId='${getEncodedUri(inventoryStatusId)}',InventoryGtdId='${getEncodedUri(inventoryGtdId)}',InventoryOwnerId='${getEncodedUri(inventoryOwnerId)}',InventoryProfileId='${getEncodedUri(inventoryProfileId)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List InventoryMovementJournalHeaders
     #
     # + headers - Headers to be sent with the request 
@@ -482,6 +1507,63 @@ public isolated client class Client {
     # + return - InventoryMovementJournalHeader updated 
     remote isolated function updateInventoryMovementJournalHeaders(string dataAreaId, string journalNumber, InventoryMovementJournalHeader payload, UpdateInventoryMovementJournalHeadersHeaders headers = {}) returns InventoryMovementJournalHeader|error {
         string resourcePath = string `/InventoryMovementJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventoryOnHandMobileEntries
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryOnHandMobileEntry 
+    remote isolated function listInventoryOnHandMobileEntries(map<string|string[]> headers = {}, *ListInventoryOnHandMobileEntriesQueries queries) returns InventoryOnHandMobileEntriesCollection|error {
+        string resourcePath = string `/InventoryOnHandMobileEntries`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryOnHandMobileEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryOnHandMobileEntry created 
+    remote isolated function createInventoryOnHandMobileEntries(InventoryOnHandMobileEntry payload, map<string|string[]> headers = {}) returns InventoryOnHandMobileEntry|error {
+        string resourcePath = string `/InventoryOnHandMobileEntries`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryOnHandMobileEntry by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryOnHandMobileEntry record 
+    remote isolated function getInventoryOnHandMobileEntries(string productNumber, map<string|string[]> headers = {}, *GetInventoryOnHandMobileEntriesQueries queries) returns InventoryOnHandMobileEntry|error {
+        string resourcePath = string `/InventoryOnHandMobileEntries(ProductNumber='${getEncodedUri(productNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryOnHandMobileEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryOnHandMobileEntry deleted 
+    remote isolated function deleteInventoryOnHandMobileEntries(string productNumber, DeleteInventoryOnHandMobileEntriesHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventoryOnHandMobileEntries(ProductNumber='${getEncodedUri(productNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryOnHandMobileEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryOnHandMobileEntry updated 
+    remote isolated function updateInventoryOnHandMobileEntries(string productNumber, InventoryOnHandMobileEntry payload, UpdateInventoryOnHandMobileEntriesHeaders headers = {}) returns InventoryOnHandMobileEntry|error {
+        string resourcePath = string `/InventoryOnHandMobileEntries(ProductNumber='${getEncodedUri(productNumber)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -603,6 +1685,120 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List InventoryPolicies
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryPolicy 
+    remote isolated function listInventoryPolicies(map<string|string[]> headers = {}, *ListInventoryPoliciesQueries queries) returns InventoryPoliciesCollection|error {
+        string resourcePath = string `/InventoryPolicies`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryPolicy
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryPolicy created 
+    remote isolated function createInventoryPolicies(InventoryPolicy payload, map<string|string[]> headers = {}) returns InventoryPolicy|error {
+        string resourcePath = string `/InventoryPolicies`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryPolicy by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryPolicy record 
+    remote isolated function getInventoryPolicies(string dataAreaId, string policyId, map<string|string[]> headers = {}, *GetInventoryPoliciesQueries queries) returns InventoryPolicy|error {
+        string resourcePath = string `/InventoryPolicies(dataAreaId='${getEncodedUri(dataAreaId)}',PolicyId='${getEncodedUri(policyId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryPolicy
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryPolicy deleted 
+    remote isolated function deleteInventoryPolicies(string dataAreaId, string policyId, DeleteInventoryPoliciesHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventoryPolicies(dataAreaId='${getEncodedUri(dataAreaId)}',PolicyId='${getEncodedUri(policyId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryPolicy
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryPolicy updated 
+    remote isolated function updateInventoryPolicies(string dataAreaId, string policyId, InventoryPolicy payload, UpdateInventoryPoliciesHeaders headers = {}) returns InventoryPolicy|error {
+        string resourcePath = string `/InventoryPolicies(dataAreaId='${getEncodedUri(dataAreaId)}',PolicyId='${getEncodedUri(policyId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventoryProjectConsumptionJournalNames
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryProjectConsumptionJournalName 
+    remote isolated function listInventoryProjectConsumptionJournalNames(map<string|string[]> headers = {}, *ListInventoryProjectConsumptionJournalNamesQueries queries) returns InventoryProjectConsumptionJournalNamesCollection|error {
+        string resourcePath = string `/InventoryProjectConsumptionJournalNames`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryProjectConsumptionJournalName
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryProjectConsumptionJournalName created 
+    remote isolated function createInventoryProjectConsumptionJournalNames(InventoryProjectConsumptionJournalName payload, map<string|string[]> headers = {}) returns InventoryProjectConsumptionJournalName|error {
+        string resourcePath = string `/InventoryProjectConsumptionJournalNames`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryProjectConsumptionJournalName by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryProjectConsumptionJournalName record 
+    remote isolated function getInventoryProjectConsumptionJournalNames(string dataAreaId, string journalNameId, map<string|string[]> headers = {}, *GetInventoryProjectConsumptionJournalNamesQueries queries) returns InventoryProjectConsumptionJournalName|error {
+        string resourcePath = string `/InventoryProjectConsumptionJournalNames(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNameId='${getEncodedUri(journalNameId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryProjectConsumptionJournalName
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryProjectConsumptionJournalName deleted 
+    remote isolated function deleteInventoryProjectConsumptionJournalNames(string dataAreaId, string journalNameId, DeleteInventoryProjectConsumptionJournalNamesHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventoryProjectConsumptionJournalNames(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNameId='${getEncodedUri(journalNameId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryProjectConsumptionJournalName
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryProjectConsumptionJournalName updated 
+    remote isolated function updateInventoryProjectConsumptionJournalNames(string dataAreaId, string journalNameId, InventoryProjectConsumptionJournalName payload, UpdateInventoryProjectConsumptionJournalNamesHeaders headers = {}) returns InventoryProjectConsumptionJournalName|error {
+        string resourcePath = string `/InventoryProjectConsumptionJournalNames(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNameId='${getEncodedUri(journalNameId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List InventoryReservationHierarchies
     #
     # + headers - Headers to be sent with the request 
@@ -653,6 +1849,462 @@ public isolated client class Client {
     # + return - InventoryReservationHierarchy updated 
     remote isolated function updateInventoryReservationHierarchies(string hierarchyName, InventoryReservationHierarchy payload, UpdateInventoryReservationHierarchiesHeaders headers = {}) returns InventoryReservationHierarchy|error {
         string resourcePath = string `/InventoryReservationHierarchies(HierarchyName='${getEncodedUri(hierarchyName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventoryServiceAdjustmentJournalEntries
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryServiceAdjustmentJournalEntry 
+    remote isolated function listInventoryServiceAdjustmentJournalEntries(map<string|string[]> headers = {}, *ListInventoryServiceAdjustmentJournalEntriesQueries queries) returns InventoryServiceAdjustmentJournalEntriesCollection|error {
+        string resourcePath = string `/InventoryServiceAdjustmentJournalEntries`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryServiceAdjustmentJournalEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryServiceAdjustmentJournalEntry created 
+    remote isolated function createInventoryServiceAdjustmentJournalEntries(InventoryServiceAdjustmentJournalEntry payload, map<string|string[]> headers = {}) returns InventoryServiceAdjustmentJournalEntry|error {
+        string resourcePath = string `/InventoryServiceAdjustmentJournalEntries`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryServiceAdjustmentJournalEntry by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryServiceAdjustmentJournalEntry record 
+    remote isolated function getInventoryServiceAdjustmentJournalEntries(string dataAreaId, string inventoryServiceTransactionId, map<string|string[]> headers = {}, *GetInventoryServiceAdjustmentJournalEntriesQueries queries) returns InventoryServiceAdjustmentJournalEntry|error {
+        string resourcePath = string `/InventoryServiceAdjustmentJournalEntries(dataAreaId='${getEncodedUri(dataAreaId)}',InventoryServiceTransactionId='${getEncodedUri(inventoryServiceTransactionId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryServiceAdjustmentJournalEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryServiceAdjustmentJournalEntry deleted 
+    remote isolated function deleteInventoryServiceAdjustmentJournalEntries(string dataAreaId, string inventoryServiceTransactionId, DeleteInventoryServiceAdjustmentJournalEntriesHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventoryServiceAdjustmentJournalEntries(dataAreaId='${getEncodedUri(dataAreaId)}',InventoryServiceTransactionId='${getEncodedUri(inventoryServiceTransactionId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryServiceAdjustmentJournalEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryServiceAdjustmentJournalEntry updated 
+    remote isolated function updateInventoryServiceAdjustmentJournalEntries(string dataAreaId, string inventoryServiceTransactionId, InventoryServiceAdjustmentJournalEntry payload, UpdateInventoryServiceAdjustmentJournalEntriesHeaders headers = {}) returns InventoryServiceAdjustmentJournalEntry|error {
+        string resourcePath = string `/InventoryServiceAdjustmentJournalEntries(dataAreaId='${getEncodedUri(dataAreaId)}',InventoryServiceTransactionId='${getEncodedUri(inventoryServiceTransactionId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventoryServiceAdjustmentJournalHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryServiceAdjustmentJournalHeader 
+    remote isolated function listInventoryServiceAdjustmentJournalHeaders(map<string|string[]> headers = {}, *ListInventoryServiceAdjustmentJournalHeadersQueries queries) returns InventoryServiceAdjustmentJournalHeadersCollection|error {
+        string resourcePath = string `/InventoryServiceAdjustmentJournalHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryServiceAdjustmentJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryServiceAdjustmentJournalHeader created 
+    remote isolated function createInventoryServiceAdjustmentJournalHeaders(InventoryServiceAdjustmentJournalHeader payload, map<string|string[]> headers = {}) returns InventoryServiceAdjustmentJournalHeader|error {
+        string resourcePath = string `/InventoryServiceAdjustmentJournalHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryServiceAdjustmentJournalHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryServiceAdjustmentJournalHeader record 
+    remote isolated function getInventoryServiceAdjustmentJournalHeaders(string dataAreaId, string journalNumber, map<string|string[]> headers = {}, *GetInventoryServiceAdjustmentJournalHeadersQueries queries) returns InventoryServiceAdjustmentJournalHeader|error {
+        string resourcePath = string `/InventoryServiceAdjustmentJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryServiceAdjustmentJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryServiceAdjustmentJournalHeader deleted 
+    remote isolated function deleteInventoryServiceAdjustmentJournalHeaders(string dataAreaId, string journalNumber, DeleteInventoryServiceAdjustmentJournalHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventoryServiceAdjustmentJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryServiceAdjustmentJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryServiceAdjustmentJournalHeader updated 
+    remote isolated function updateInventoryServiceAdjustmentJournalHeaders(string dataAreaId, string journalNumber, InventoryServiceAdjustmentJournalHeader payload, UpdateInventoryServiceAdjustmentJournalHeadersHeaders headers = {}) returns InventoryServiceAdjustmentJournalHeader|error {
+        string resourcePath = string `/InventoryServiceAdjustmentJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventorySiteOnHandIncludingCatchWeightItems
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventorySiteOnHandIncludingCatchWeightItem 
+    remote isolated function listInventorySiteOnHandIncludingCatchWeightItems(map<string|string[]> headers = {}, *ListInventorySiteOnHandIncludingCatchWeightItemsQueries queries) returns InventorySiteOnHandIncludingCatchWeightItemsCollection|error {
+        string resourcePath = string `/InventorySiteOnHandIncludingCatchWeightItems`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventorySiteOnHandIncludingCatchWeightItem
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventorySiteOnHandIncludingCatchWeightItem created 
+    remote isolated function createInventorySiteOnHandIncludingCatchWeightItems(InventorySiteOnHandIncludingCatchWeightItem payload, map<string|string[]> headers = {}) returns InventorySiteOnHandIncludingCatchWeightItem|error {
+        string resourcePath = string `/InventorySiteOnHandIncludingCatchWeightItems`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventorySiteOnHandIncludingCatchWeightItem by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventorySiteOnHandIncludingCatchWeightItem record 
+    remote isolated function getInventorySiteOnHandIncludingCatchWeightItems(string dataAreaId, string itemNumber, string productColorId, string productConfigurationId, string productSizeId, string productStyleId, string productVersionId, string inventorySiteId, map<string|string[]> headers = {}, *GetInventorySiteOnHandIncludingCatchWeightItemsQueries queries) returns InventorySiteOnHandIncludingCatchWeightItem|error {
+        string resourcePath = string `/InventorySiteOnHandIncludingCatchWeightItems(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductColorId='${getEncodedUri(productColorId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventorySiteOnHandIncludingCatchWeightItem
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventorySiteOnHandIncludingCatchWeightItem deleted 
+    remote isolated function deleteInventorySiteOnHandIncludingCatchWeightItems(string dataAreaId, string itemNumber, string productColorId, string productConfigurationId, string productSizeId, string productStyleId, string productVersionId, string inventorySiteId, DeleteInventorySiteOnHandIncludingCatchWeightItemsHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventorySiteOnHandIncludingCatchWeightItems(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductColorId='${getEncodedUri(productColorId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventorySiteOnHandIncludingCatchWeightItem
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventorySiteOnHandIncludingCatchWeightItem updated 
+    remote isolated function updateInventorySiteOnHandIncludingCatchWeightItems(string dataAreaId, string itemNumber, string productColorId, string productConfigurationId, string productSizeId, string productStyleId, string productVersionId, string inventorySiteId, InventorySiteOnHandIncludingCatchWeightItem payload, UpdateInventorySiteOnHandIncludingCatchWeightItemsHeaders headers = {}) returns InventorySiteOnHandIncludingCatchWeightItem|error {
+        string resourcePath = string `/InventorySiteOnHandIncludingCatchWeightItems(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductColorId='${getEncodedUri(productColorId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventorySitesOnHand
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventorySiteOnHand 
+    remote isolated function listInventorySitesOnHand(map<string|string[]> headers = {}, *ListInventorySitesOnHandQueries queries) returns InventorySitesOnHandCollection|error {
+        string resourcePath = string `/InventorySitesOnHand`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventorySiteOnHand
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventorySiteOnHand created 
+    remote isolated function createInventorySitesOnHand(InventorySiteOnHand payload, map<string|string[]> headers = {}) returns InventorySiteOnHand|error {
+        string resourcePath = string `/InventorySitesOnHand`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventorySiteOnHand by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventorySiteOnHand record 
+    remote isolated function getInventorySitesOnHand(string dataAreaId, string itemNumber, string productColorId, string productConfigurationId, string productSizeId, string productStyleId, string inventorySiteId, map<string|string[]> headers = {}, *GetInventorySitesOnHandQueries queries) returns InventorySiteOnHand|error {
+        string resourcePath = string `/InventorySitesOnHand(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductColorId='${getEncodedUri(productColorId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventorySiteOnHand
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventorySiteOnHand deleted 
+    remote isolated function deleteInventorySitesOnHand(string dataAreaId, string itemNumber, string productColorId, string productConfigurationId, string productSizeId, string productStyleId, string inventorySiteId, DeleteInventorySitesOnHandHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventorySitesOnHand(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductColorId='${getEncodedUri(productColorId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventorySiteOnHand
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventorySiteOnHand updated 
+    remote isolated function updateInventorySitesOnHand(string dataAreaId, string itemNumber, string productColorId, string productConfigurationId, string productSizeId, string productStyleId, string inventorySiteId, InventorySiteOnHand payload, UpdateInventorySitesOnHandHeaders headers = {}) returns InventorySiteOnHand|error {
+        string resourcePath = string `/InventorySitesOnHand(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductColorId='${getEncodedUri(productColorId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventorySitesOnHandV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventorySiteOnHandV2 
+    remote isolated function listInventorySitesOnHandV2(map<string|string[]> headers = {}, *ListInventorySitesOnHandV2Queries queries) returns InventorySitesOnHandV2Collection|error {
+        string resourcePath = string `/InventorySitesOnHandV2`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventorySiteOnHandV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventorySiteOnHandV2 created 
+    remote isolated function createInventorySitesOnHandV2(InventorySiteOnHandV2 payload, map<string|string[]> headers = {}) returns InventorySiteOnHandV2|error {
+        string resourcePath = string `/InventorySitesOnHandV2`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventorySiteOnHandV2 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventorySiteOnHandV2 record 
+    remote isolated function getInventorySitesOnHandV2(string dataAreaId, string itemNumber, string productColorId, string productConfigurationId, string productSizeId, string productStyleId, string productVersionId, string inventorySiteId, map<string|string[]> headers = {}, *GetInventorySitesOnHandV2Queries queries) returns InventorySiteOnHandV2|error {
+        string resourcePath = string `/InventorySitesOnHandV2(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductColorId='${getEncodedUri(productColorId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventorySiteOnHandV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventorySiteOnHandV2 deleted 
+    remote isolated function deleteInventorySitesOnHandV2(string dataAreaId, string itemNumber, string productColorId, string productConfigurationId, string productSizeId, string productStyleId, string productVersionId, string inventorySiteId, DeleteInventorySitesOnHandV2Headers headers = {}) returns error? {
+        string resourcePath = string `/InventorySitesOnHandV2(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductColorId='${getEncodedUri(productColorId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventorySiteOnHandV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventorySiteOnHandV2 updated 
+    remote isolated function updateInventorySitesOnHandV2(string dataAreaId, string itemNumber, string productColorId, string productConfigurationId, string productSizeId, string productStyleId, string productVersionId, string inventorySiteId, InventorySiteOnHandV2 payload, UpdateInventorySitesOnHandV2Headers headers = {}) returns InventorySiteOnHandV2|error {
+        string resourcePath = string `/InventorySitesOnHandV2(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductColorId='${getEncodedUri(productColorId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',InventorySiteId='${getEncodedUri(inventorySiteId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventoryTagCountingJournalHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryTagCountingJournalHeader 
+    remote isolated function listInventoryTagCountingJournalHeaders(map<string|string[]> headers = {}, *ListInventoryTagCountingJournalHeadersQueries queries) returns InventoryTagCountingJournalHeadersCollection|error {
+        string resourcePath = string `/InventoryTagCountingJournalHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryTagCountingJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryTagCountingJournalHeader created 
+    remote isolated function createInventoryTagCountingJournalHeaders(InventoryTagCountingJournalHeader payload, map<string|string[]> headers = {}) returns InventoryTagCountingJournalHeader|error {
+        string resourcePath = string `/InventoryTagCountingJournalHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryTagCountingJournalHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryTagCountingJournalHeader record 
+    remote isolated function getInventoryTagCountingJournalHeaders(string dataAreaId, string journalNumber, map<string|string[]> headers = {}, *GetInventoryTagCountingJournalHeadersQueries queries) returns InventoryTagCountingJournalHeader|error {
+        string resourcePath = string `/InventoryTagCountingJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryTagCountingJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryTagCountingJournalHeader deleted 
+    remote isolated function deleteInventoryTagCountingJournalHeaders(string dataAreaId, string journalNumber, DeleteInventoryTagCountingJournalHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventoryTagCountingJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryTagCountingJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryTagCountingJournalHeader updated 
+    remote isolated function updateInventoryTagCountingJournalHeaders(string dataAreaId, string journalNumber, InventoryTagCountingJournalHeader payload, UpdateInventoryTagCountingJournalHeadersHeaders headers = {}) returns InventoryTagCountingJournalHeader|error {
+        string resourcePath = string `/InventoryTagCountingJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventoryTagCountingJournalLines
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryTagCountingJournalLine 
+    remote isolated function listInventoryTagCountingJournalLines(map<string|string[]> headers = {}, *ListInventoryTagCountingJournalLinesQueries queries) returns InventoryTagCountingJournalLinesCollection|error {
+        string resourcePath = string `/InventoryTagCountingJournalLines`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryTagCountingJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryTagCountingJournalLine created 
+    remote isolated function createInventoryTagCountingJournalLines(InventoryTagCountingJournalLine payload, map<string|string[]> headers = {}) returns InventoryTagCountingJournalLine|error {
+        string resourcePath = string `/InventoryTagCountingJournalLines`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryTagCountingJournalLine by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryTagCountingJournalLine record 
+    remote isolated function getInventoryTagCountingJournalLines(string dataAreaId, string journalNumber, string tagId, map<string|string[]> headers = {}, *GetInventoryTagCountingJournalLinesQueries queries) returns InventoryTagCountingJournalLine|error {
+        string resourcePath = string `/InventoryTagCountingJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',TagId='${getEncodedUri(tagId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryTagCountingJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryTagCountingJournalLine deleted 
+    remote isolated function deleteInventoryTagCountingJournalLines(string dataAreaId, string journalNumber, string tagId, DeleteInventoryTagCountingJournalLinesHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventoryTagCountingJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',TagId='${getEncodedUri(tagId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryTagCountingJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryTagCountingJournalLine updated 
+    remote isolated function updateInventoryTagCountingJournalLines(string dataAreaId, string journalNumber, string tagId, InventoryTagCountingJournalLine payload, UpdateInventoryTagCountingJournalLinesHeaders headers = {}) returns InventoryTagCountingJournalLine|error {
+        string resourcePath = string `/InventoryTagCountingJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',TagId='${getEncodedUri(tagId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List InventoryTransferJournalEntries
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of InventoryTransferJournalEntry 
+    remote isolated function listInventoryTransferJournalEntries(map<string|string[]> headers = {}, *ListInventoryTransferJournalEntriesQueries queries) returns InventoryTransferJournalEntriesCollection|error {
+        string resourcePath = string `/InventoryTransferJournalEntries`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create InventoryTransferJournalEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryTransferJournalEntry created 
+    remote isolated function createInventoryTransferJournalEntries(InventoryTransferJournalEntry payload, map<string|string[]> headers = {}) returns InventoryTransferJournalEntry|error {
+        string resourcePath = string `/InventoryTransferJournalEntries`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get InventoryTransferJournalEntry by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - InventoryTransferJournalEntry record 
+    remote isolated function getInventoryTransferJournalEntries(string dataAreaId, string journalNumber, decimal lineNumber, map<string|string[]> headers = {}, *GetInventoryTransferJournalEntriesQueries queries) returns InventoryTransferJournalEntry|error {
+        string resourcePath = string `/InventoryTransferJournalEntries(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete InventoryTransferJournalEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryTransferJournalEntry deleted 
+    remote isolated function deleteInventoryTransferJournalEntries(string dataAreaId, string journalNumber, decimal lineNumber, DeleteInventoryTransferJournalEntriesHeaders headers = {}) returns error? {
+        string resourcePath = string `/InventoryTransferJournalEntries(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update InventoryTransferJournalEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - InventoryTransferJournalEntry updated 
+    remote isolated function updateInventoryTransferJournalEntries(string dataAreaId, string journalNumber, decimal lineNumber, InventoryTransferJournalEntry payload, UpdateInventoryTransferJournalEntriesHeaders headers = {}) returns InventoryTransferJournalEntry|error {
+        string resourcePath = string `/InventoryTransferJournalEntries(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNumber='${getEncodedUri(journalNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);

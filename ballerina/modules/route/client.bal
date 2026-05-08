@@ -19,18 +19,131 @@
 
 import ballerina/data.jsondata;
 import ballerina/http;
+import ballerinax/microsoft.dynamics365.scm.common as d365;
 
 # Ballerina connector module for the 'route' slice of the Microsoft Dynamics 365 Supply Chain Management OData REST API.
 public isolated client class Client {
     final http:Client clientEp;
     # Gets invoked to initialize the `connector`.
     #
-    # + config - The configurations to be used when initializing the `connector` 
-    # + serviceUrl - URL of the target service 
-    # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://your-org.operations.dynamics.com/data") returns error? {
-        http:ClientConfiguration httpClientConfig = {auth: config.auth, httpVersion: config.httpVersion, http1Settings: config.http1Settings, http2Settings: config.http2Settings, timeout: config.timeout, forwarded: config.forwarded, followRedirects: config.followRedirects, poolConfig: config.poolConfig, cache: config.cache, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, cookieConfig: config.cookieConfig, responseLimits: config.responseLimits, secureSocket: config.secureSocket, proxy: config.proxy, socketConfig: config.socketConfig, validation: config.validation, laxDataBinding: config.laxDataBinding};
-        self.clientEp = check new (serviceUrl, httpClientConfig);
+    # + conn - The shared D365 connection (built once at the top level)
+    # + return - An error if connector initialization failed
+    public isolated function init(d365:Connection conn) returns error? {
+        self.clientEp = conn.getHttpClient();
+    }
+
+    # List RouteCardProductionJournalEntries
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of RouteCardProductionJournalEntry 
+    remote isolated function listRouteCardProductionJournalEntries(map<string|string[]> headers = {}, *ListRouteCardProductionJournalEntriesQueries queries) returns RouteCardProductionJournalEntriesCollection|error {
+        string resourcePath = string `/RouteCardProductionJournalEntries`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create RouteCardProductionJournalEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - RouteCardProductionJournalEntry created 
+    remote isolated function createRouteCardProductionJournalEntries(RouteCardProductionJournalEntry payload, map<string|string[]> headers = {}) returns RouteCardProductionJournalEntry|error {
+        string resourcePath = string `/RouteCardProductionJournalEntries`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get RouteCardProductionJournalEntry by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - RouteCardProductionJournalEntry record 
+    remote isolated function getRouteCardProductionJournalEntries(string dataAreaId, decimal journalLineNumber, string journalNumber, map<string|string[]> headers = {}, *GetRouteCardProductionJournalEntriesQueries queries) returns RouteCardProductionJournalEntry|error {
+        string resourcePath = string `/RouteCardProductionJournalEntries(dataAreaId='${getEncodedUri(dataAreaId)}',JournalLineNumber=${getEncodedUri(journalLineNumber)},JournalNumber='${getEncodedUri(journalNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete RouteCardProductionJournalEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - RouteCardProductionJournalEntry deleted 
+    remote isolated function deleteRouteCardProductionJournalEntries(string dataAreaId, decimal journalLineNumber, string journalNumber, DeleteRouteCardProductionJournalEntriesHeaders headers = {}) returns error? {
+        string resourcePath = string `/RouteCardProductionJournalEntries(dataAreaId='${getEncodedUri(dataAreaId)}',JournalLineNumber=${getEncodedUri(journalLineNumber)},JournalNumber='${getEncodedUri(journalNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update RouteCardProductionJournalEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - RouteCardProductionJournalEntry updated 
+    remote isolated function updateRouteCardProductionJournalEntries(string dataAreaId, decimal journalLineNumber, string journalNumber, RouteCardProductionJournalEntry payload, UpdateRouteCardProductionJournalEntriesHeaders headers = {}) returns RouteCardProductionJournalEntry|error {
+        string resourcePath = string `/RouteCardProductionJournalEntries(dataAreaId='${getEncodedUri(dataAreaId)}',JournalLineNumber=${getEncodedUri(journalLineNumber)},JournalNumber='${getEncodedUri(journalNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List RouteHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of RouteHeader 
+    remote isolated function listRouteHeaders(map<string|string[]> headers = {}, *ListRouteHeadersQueries queries) returns RouteHeadersCollection|error {
+        string resourcePath = string `/RouteHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create RouteHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - RouteHeader created 
+    remote isolated function createRouteHeaders(RouteHeader payload, map<string|string[]> headers = {}) returns RouteHeader|error {
+        string resourcePath = string `/RouteHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get RouteHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - RouteHeader record 
+    remote isolated function getRouteHeaders(string dataAreaId, string routeId, map<string|string[]> headers = {}, *GetRouteHeadersQueries queries) returns RouteHeader|error {
+        string resourcePath = string `/RouteHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',RouteId='${getEncodedUri(routeId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete RouteHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - RouteHeader deleted 
+    remote isolated function deleteRouteHeaders(string dataAreaId, string routeId, DeleteRouteHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/RouteHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',RouteId='${getEncodedUri(routeId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update RouteHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - RouteHeader updated 
+    remote isolated function updateRouteHeaders(string dataAreaId, string routeId, RouteHeader payload, UpdateRouteHeadersHeaders headers = {}) returns RouteHeader|error {
+        string resourcePath = string `/RouteHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',RouteId='${getEncodedUri(routeId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
     # List RouteOperationPropertiesResourceRequirements
@@ -140,6 +253,63 @@ public isolated client class Client {
     # + return - RouteOperation updated 
     remote isolated function updateRouteOperations(string dataAreaId, string routeId, int:Signed32 operationNumber, int:Signed32 operationPriority, RouteOperation payload, UpdateRouteOperationsHeaders headers = {}) returns RouteOperation|error {
         string resourcePath = string `/RouteOperations(dataAreaId='${getEncodedUri(dataAreaId)}',RouteId='${getEncodedUri(routeId)}',OperationNumber=${getEncodedUri(operationNumber)},OperationPriority=${getEncodedUri(operationPriority)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List RouteOperationsProperties
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of RouteOperationProperties 
+    remote isolated function listRouteOperationsProperties(map<string|string[]> headers = {}, *ListRouteOperationsPropertiesQueries queries) returns RouteOperationsPropertiesCollection|error {
+        string resourcePath = string `/RouteOperationsProperties`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create RouteOperationProperties
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - RouteOperationProperties created 
+    remote isolated function createRouteOperationsProperties(RouteOperationProperties payload, map<string|string[]> headers = {}) returns RouteOperationProperties|error {
+        string resourcePath = string `/RouteOperationsProperties`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get RouteOperationProperties by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - RouteOperationProperties record 
+    remote isolated function getRouteOperationsProperties(string dataAreaId, string operationId, string itemNumber, string productConfigurationId, string routeId, string productionSiteId, string productGroupId, map<string|string[]> headers = {}, *GetRouteOperationsPropertiesQueries queries) returns RouteOperationProperties|error {
+        string resourcePath = string `/RouteOperationsProperties(dataAreaId='${getEncodedUri(dataAreaId)}',OperationId='${getEncodedUri(operationId)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',RouteId='${getEncodedUri(routeId)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductGroupId='${getEncodedUri(productGroupId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete RouteOperationProperties
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - RouteOperationProperties deleted 
+    remote isolated function deleteRouteOperationsProperties(string dataAreaId, string operationId, string itemNumber, string productConfigurationId, string routeId, string productionSiteId, string productGroupId, DeleteRouteOperationsPropertiesHeaders headers = {}) returns error? {
+        string resourcePath = string `/RouteOperationsProperties(dataAreaId='${getEncodedUri(dataAreaId)}',OperationId='${getEncodedUri(operationId)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',RouteId='${getEncodedUri(routeId)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductGroupId='${getEncodedUri(productGroupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update RouteOperationProperties
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - RouteOperationProperties updated 
+    remote isolated function updateRouteOperationsProperties(string dataAreaId, string operationId, string itemNumber, string productConfigurationId, string routeId, string productionSiteId, string productGroupId, RouteOperationProperties payload, UpdateRouteOperationsPropertiesHeaders headers = {}) returns RouteOperationProperties|error {
+        string resourcePath = string `/RouteOperationsProperties(dataAreaId='${getEncodedUri(dataAreaId)}',OperationId='${getEncodedUri(operationId)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',RouteId='${getEncodedUri(routeId)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductGroupId='${getEncodedUri(productGroupId)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -311,6 +481,63 @@ public isolated client class Client {
     # + return - RouteVersion updated 
     remote isolated function updateRouteVersions(string dataAreaId, decimal validFromQuantity, string validFromDate, string routeId, string productSizeId, string productColorId, string productionSiteId, string productConfigurationId, string productStyleId, string itemNumber, int:Signed32 isActive, RouteVersion payload, UpdateRouteVersionsHeaders headers = {}) returns RouteVersion|error {
         string resourcePath = string `/RouteVersions(dataAreaId='${getEncodedUri(dataAreaId)}',ValidFromQuantity=${getEncodedUri(validFromQuantity)},ValidFromDate=${getEncodedUri(validFromDate)},RouteId='${getEncodedUri(routeId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ItemNumber='${getEncodedUri(itemNumber)}',IsActive=${getEncodedUri(isActive)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List RouteVersionsV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of RouteVersionV2 
+    remote isolated function listRouteVersionsV2(map<string|string[]> headers = {}, *ListRouteVersionsV2Queries queries) returns RouteVersionsV2Collection|error {
+        string resourcePath = string `/RouteVersionsV2`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create RouteVersionV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - RouteVersionV2 created 
+    remote isolated function createRouteVersionsV2(RouteVersionV2 payload, map<string|string[]> headers = {}) returns RouteVersionV2|error {
+        string resourcePath = string `/RouteVersionsV2`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get RouteVersionV2 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - RouteVersionV2 record 
+    remote isolated function getRouteVersionsV2(string dataAreaId, decimal validFromQuantity, string validFromDate, string routeId, string productSizeId, string productColorId, string productionSiteId, string productConfigurationId, string productStyleId, string productVersionId, string itemNumber, int:Signed32 isActive, map<string|string[]> headers = {}, *GetRouteVersionsV2Queries queries) returns RouteVersionV2|error {
+        string resourcePath = string `/RouteVersionsV2(dataAreaId='${getEncodedUri(dataAreaId)}',ValidFromQuantity=${getEncodedUri(validFromQuantity)},ValidFromDate=${getEncodedUri(validFromDate)},RouteId='${getEncodedUri(routeId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',ItemNumber='${getEncodedUri(itemNumber)}',IsActive=${getEncodedUri(isActive)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete RouteVersionV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - RouteVersionV2 deleted 
+    remote isolated function deleteRouteVersionsV2(string dataAreaId, decimal validFromQuantity, string validFromDate, string routeId, string productSizeId, string productColorId, string productionSiteId, string productConfigurationId, string productStyleId, string productVersionId, string itemNumber, int:Signed32 isActive, DeleteRouteVersionsV2Headers headers = {}) returns error? {
+        string resourcePath = string `/RouteVersionsV2(dataAreaId='${getEncodedUri(dataAreaId)}',ValidFromQuantity=${getEncodedUri(validFromQuantity)},ValidFromDate=${getEncodedUri(validFromDate)},RouteId='${getEncodedUri(routeId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',ItemNumber='${getEncodedUri(itemNumber)}',IsActive=${getEncodedUri(isActive)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update RouteVersionV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - RouteVersionV2 updated 
+    remote isolated function updateRouteVersionsV2(string dataAreaId, decimal validFromQuantity, string validFromDate, string routeId, string productSizeId, string productColorId, string productionSiteId, string productConfigurationId, string productStyleId, string productVersionId, string itemNumber, int:Signed32 isActive, RouteVersionV2 payload, UpdateRouteVersionsV2Headers headers = {}) returns RouteVersionV2|error {
+        string resourcePath = string `/RouteVersionsV2(dataAreaId='${getEncodedUri(dataAreaId)}',ValidFromQuantity=${getEncodedUri(validFromQuantity)},ValidFromDate=${getEncodedUri(validFromDate)},RouteId='${getEncodedUri(routeId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',ItemNumber='${getEncodedUri(itemNumber)}',IsActive=${getEncodedUri(isActive)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);

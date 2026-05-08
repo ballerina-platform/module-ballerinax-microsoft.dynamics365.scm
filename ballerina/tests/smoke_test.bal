@@ -15,21 +15,16 @@
 // under the License.
 
 import ballerina/test;
-import ballerinax/microsoft.dynamics365.scm.warehouse;
+import ballerinax/microsoft.dynamics365.scm.common;
 import ballerinax/microsoft.dynamics365.scm.production;
+import ballerinax/microsoft.dynamics365.scm.warehouse;
 
 @test:Config
-function testWarehouseClientInstantiates() returns error? {
-    warehouse:Client _ = check new (
+function testSharedConnectionAcrossModules() returns error? {
+    common:Connection conn = check new (
         config = {auth: {token: "demo-bearer-token"}},
         serviceUrl = "http://localhost:9091/data"
     );
-}
-
-@test:Config
-function testProductionClientInstantiates() returns error? {
-    production:Client _ = check new (
-        config = {auth: {token: "demo-bearer-token"}},
-        serviceUrl = "http://localhost:9091/data"
-    );
+    warehouse:Client _ = check new (conn);
+    production:Client _ = check new (conn);
 }

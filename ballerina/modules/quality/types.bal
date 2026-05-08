@@ -19,12 +19,43 @@
 
 import ballerina/http;
 
-public type Timezone "GMTMINUS1200INTERNATIONALDATELINEWEST"|"GMTMINUS1100COORDINATEDUNIVERSALTIME"|"GMTMINUS1100MIDWAYISLAND_SAMOA"|"GMTMINUS1000HAWAII"|"GMTMINUS0900ALASKA"|"GMTMINUS0800PACIFICTIME"|"GMTMINUS0800TIJUANA_BAJACALIFORNIA"|"GMTMINUS0700ARIZONA"|"GMTMINUS0700MOUNTAINTIME"|"GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN"|"GMTMINUS0600CENTRALAMERICA"|"GMTMINUS0600CENTRALTIME"|"GMTMINUS0600GUADALAJARA_MEXICOCITY"|"GMTMINUS0600SASKATCHEWAN"|"GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO"|"GMTMINUS0500EASTERNTIME"|"GMTMINUS0500INDIANA"|"GMTMINUS0500CHETUMAL"|"GMTMINUS0400ASUNCION"|"GMTMINUS0400ATLANTICTIME"|"GMTMINUS0400LAPAZ"|"GMTMINUS0400MANAUS"|"GMTMINUS0300SANTIAGO"|"GMTMINUS0430CARACAS"|"GMTMINUS0330NEWFOUNDLAND"|"GMTMINUS0300_SALVADOR"|"GMTMINUS0300BRASILIA"|"GMTMINUS0300BUENOSAIRES"|"GMTMINUS0300BUENOSAIRES_GEORGETOWN"|"GMTMINUS0300GREENLAND"|"GMTMINUS0300MONTEVIDEO"|"GMTMINUS0200MIDATLANTIC"|"GMTMINUS0100AZORES"|"GMTMINUS0100CAPEVERDIS"|"GMT_CASABLANCA"|"GMT_CASABLANCA_MONTROVIA_REYKJAVIK"|"GMT_COORDINATEDUNIVERSALTIME"|"GMT_DUBLIN_EDINBURGH_LISBON_LONDON"|"GMT_PLUS0300KALININGRAD_MINSK"|"GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME"|"GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST"|"GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID"|"GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB"|"GMTPLUS0100TRIPOLI"|"GMTPLUS0100WESTCENTRALAFRICA"|"GMTPLUS0200_DAMASCUS"|"GMTPLUS0200AMMAN"|"GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL"|"GMTPLUS0200BEIRUT"|"GMTPLUS0200MINSK"|"GMTPLUS0200CAIRO"|"GMTPLUS0200HARARE_PRETORIA"|"GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS"|"GMTPLUS0300ISTANBUL"|"GMTPLUS0200JERUSALEM"|"GMTPLUS0200WINDHOEK"|"GMTPLUS0300BAGHDAD"|"GMTPLUS0300KUWAIT_RIYADH"|"GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD"|"GMTPLUS0300NAIROBI"|"GMTPLUS0300TBILISI"|"GMTPLUS0330TEHRAN"|"GMTPLUS0400ABUDHABI_MUSCAT"|"GMTPLUS0400BAKU"|"GMTPLUS0400IZHEVSK_SAMARA"|"GMTPLUS0400CAUCASUSSTANDARDTIME"|"GMTPLUS0400PORTLOUIS"|"GMTPLUS0400YEREVAN"|"GMTPLUS0430KABUL"|"GMTPLUS0500EKATERINBURG"|"GMTPLUS0500ISLAMABAD_KARACHI"|"GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT"|"GMTPLUS0530CHENNAI_KOLKATA_MUMBAI"|"GMTPLUS0530SRIJAYAWARDENEPURA"|"GMTPLUS0545KATHMANDU"|"GMTPLUS0600ALMATY_NOVOSIBIRSK"|"GMTPLUS0600ASTANA_DHAKA"|"GMTPLUS0600DHAKA"|"GMTPLUS0600MAGADAN"|"GMTPLUS0630_YANGON"|"GMTPLUS0700_BANGKOK_HANOI_JAKARTA"|"GMTPLUS0700KRASNOYARSK"|"GMTPLUS0800_ULAANBAATAR"|"GMTPLUS0800BEIJING_CHONGQING_HONGKONG"|"GMTPLUS0800IRKUTSK_ULAANBATAAR"|"GMTPLUS0800KUALALUMPUR_SINGAPORE"|"GMTPLUS0800PERTH"|"GMTPLUS0800TAIPEI"|"GMTPLUS0900OSAKA_SAPPORO_TOKYO"|"GMTPLUS0900SEOUL"|"GMTPLUS0900YAKUTSK"|"GMTPLUS0930ADELAIDE"|"GMTPLUS0930DARWIN"|"GMTPLUS1000BRISBANE"|"GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY"|"GMTPLUS1000GUAM_PORTMORESBY"|"GMTPLUS1000HOBART"|"GMTPLUS1000VLADIVOSTOK"|"GMTPLUS1100CHOKURDAKH"|"GMTPLUS1100MAGADAN_SOLOMONIS"|"GMTPLUS1200ANADYR_PETRO_KAMCHATSKY"|"GMTPLUS1200AUCKLAND_WELLINGTON"|"GMTPLUS1200COORDINATEDUNIVERSALTIME"|"GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS"|"GMTPLUS1300NUKU_ALOFA";
-
 # Represents the Headers record for the operation: updateQualityTestLocations
 public type UpdateQualityTestLocationsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listTestInstrumentCalibrationProcedures
+public type ListTestInstrumentCalibrationProceduresQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type QualityOrderPrioritiesCollection record {
+    *ODataCollection;
+    QualityOrderPriority[] value?;
 };
 
 public type QualitySampleProcedureType record {
@@ -88,8 +119,6 @@ public type TestInstrumentCalibrationGroupsCollection record {
     TestInstrumentCalibrationGroup[] value?;
 };
 
-public type MCRSOAllocPriority "AllocationPriority1"|"AllocationPriority2"|"AllocationPriority3"|"AllocationPriority4"|"AllocationPriority5"|"AllocationPriority6"|"AllocationPriority7"|"AllocationPriority8"|"AllocationPriority9"|"AllocationPriority10";
-
 public type QMSFailActionCode "None"|"Alert"|"Expire";
 
 public type QualitySample record {
@@ -130,16 +159,40 @@ public type QualitySample record {
     string ProductStyleId?;
 };
 
+# Represents the Queries record for the operation: listQualitySampleAssociationProcedures
+public type ListQualitySampleAssociationProceduresQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type CAPAType record {
     string \@odata\.etag?;
     string dataAreaId?;
     string TypeId?;
     string TypeDescription?;
 };
-
-public type Gender "Unknown"|"Male"|"Female"|"NonSpecific";
-
-public type FederalNonFederalIndicatorCode "None"|"Federal"|"NonFederal"|"NonFederalException";
 
 # Represents the Queries record for the operation: getNonConformanceDiagnosticGroupDiagnosticAssignments
 public type GetNonConformanceDiagnosticGroupDiagnosticAssignmentsQueries record {
@@ -213,8 +266,115 @@ public type DeleteQualitySampleAssociationProceduresHeaders record {
     string If\-Match?;
 };
 
+# Represents the Queries record for the operation: listNonConformanceDiagnosticGroupDiagnosticAssignments
+public type ListNonConformanceDiagnosticGroupDiagnosticAssignmentsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type QualitySampleProcedure record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SampleProcedureId?;
+    string SampleProcedureTypeId?;
+    string SampleProcedureDescription?;
+    QMSSampleInspectionMethod InspectionMethod?;
+    string SampleProcedureDetails?;
+};
+
 # Represents the Headers record for the operation: updateQualitySamples
 public type UpdateQualitySamplesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listQualityTestDepartments
+public type ListQualityTestDepartmentsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type CAPAResolutionType record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TypeCode?;
+    string TypeDescription?;
+};
+
+# Represents the Queries record for the operation: listCertificateOfAnalysisCustomerGroupCustomerAssignments
+public type ListCertificateOfAnalysisCustomerGroupCustomerAssignmentsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateQualityTestGroupTestAssignmentCertificateOfAnalysisCustomerRequirements
+public type UpdateQualityTestGroupTestAssignmentCertificateOfAnalysisCustomerRequirementsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -229,7 +389,24 @@ public type GetQualityTestInstrumentTagsQueries record {
     string selectFields?;
 };
 
-public type DirPersonMaritalStatus "None"|"Single"|"Married"|"Divorced"|"Widowhood";
+# Represents the Headers record for the operation: updateQualitySampleProcedureTypes
+public type UpdateQualitySampleProcedureTypesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type QualitySampleAssociation record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    TableGroupAll ItemCode?;
+    string ItemRelation?;
+    int:Signed32 ContinuousScrapDays?;
+    string ContinuousSampleTypeId?;
+    int:Signed32 InlineScrapDays?;
+    string InlineDefaultTestGroupId?;
+    string InlineSampleTypeId?;
+    string InlineDefaultItemSamplingId?;
+};
 
 public type QualitySampleLabelLayoutsCollection record {
     *ODataCollection;
@@ -249,13 +426,50 @@ public type CertificateOfAnalysisCustomerGroupCustomerAssignment record {
     string GroupId?;
 };
 
+
 # Represents the Headers record for the operation: deleteCAPACases
 public type DeleteCAPACasesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-public type CompanyType_MX "Blank"|"LegalEntity"|"LegalPerson"|"ForeignCompany";
+public type QualityTestMeasuringDevicesCollection record {
+    *ODataCollection;
+    QualityTestMeasuringDevice[] value?;
+};
+
+public type TestInstrumentCalibrationLabelLayoutsCollection record {
+    *ODataCollection;
+    TestInstrumentCalibrationLabelLayout[] value?;
+};
+
+# Represents the Queries record for the operation: listQualitySampleProcedureTypes
+public type ListQualitySampleProcedureTypesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
 
 public type CAPAResolutionTypesCollection record {
     *ODataCollection;
@@ -272,7 +486,11 @@ public type CAPASourcesCollection record {
     CAPASource[] value?;
 };
 
-public type PaymentStub "None"|"FIK"|"BBS"|"ESR_blue_PTT"|"ESR_red_bank"|"FIK762"|"ESR_orange"|"BelSMS101"|"BelSMS102"|"Finnish"|"FIK751"|"FIK752"|"QRBill";
+# Represents the Headers record for the operation: deleteQualityTestInstrumentTags
+public type DeleteQualityTestInstrumentTagsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
 
 public type CAPACategory record {
     string \@odata\.etag?;
@@ -282,12 +500,11 @@ public type CAPACategory record {
     string CategoryDescription?;
 };
 
-public type NatureOfAssessee_IN "Company"|"HUF"|"Firm"|"Individual"|"AOP"|"BOI"|"LocalAuthority"|"Others";
-
-# Represents the Headers record for the operation: updateCustomersV3
-public type UpdateCustomersV3Headers record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
+public type CAPARootCause record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string RootCauseCode?;
+    string RootCauseDescription?;
 };
 
 # Represents the Queries record for the operation: listApprovedItemGroups
@@ -313,6 +530,66 @@ public type ListApprovedItemGroupsQueries record {
     # When true, the response includes `@odata.count`.
     @http:Query {name: "$count"}
     boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateCertificateOfAnalysisCustomerGroups
+public type UpdateCertificateOfAnalysisCustomerGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateQualitySampleAssociationProcedures
+public type UpdateQualitySampleAssociationProceduresHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getCertificateOfAnalysisCustomerGroupCustomerAssignments
+public type GetCertificateOfAnalysisCustomerGroupCustomerAssignmentsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listCAPAResolutionTypes
+public type ListCAPAResolutionTypesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getQualityGroupItemAssignments
+public type GetQualityGroupItemAssignmentsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -346,10 +623,45 @@ public type ListQualitySampleProceduresQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: updateQualityTestGroups
+public type UpdateQualityTestGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateNonConformanceRootCauses
+public type UpdateNonConformanceRootCausesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getQualityTestDepartments
+public type GetQualityTestDepartmentsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: updateQualityOrderHeaders
 public type UpdateQualityOrderHeadersHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateCertificateOfAnalysisCustomerGroupCustomerAssignments
+public type UpdateCertificateOfAnalysisCustomerGroupCustomerAssignmentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type CAPAClassification record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ClassificationCode?;
+    string ClassificationDescription?;
 };
 
 public type CAPAWorkerGroup record {
@@ -383,7 +695,21 @@ public type UpdateAQLIndexesHeaders record {
     string If\-Match?;
 };
 
-public type ABC "None"|"A"|"B"|"C";
+# Represents the Headers record for the operation: deleteNonConformanceWorkGroups
+public type DeleteNonConformanceWorkGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getCertificateOfAnalysisCustomerGroups
+public type GetCertificateOfAnalysisCustomerGroupsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
 
 # Represents the Queries record for the operation: getQualitySampleTypeStateAssignments
 public type GetQualitySampleTypeStateAssignmentsQueries record {
@@ -393,6 +719,60 @@ public type GetQualitySampleTypeStateAssignmentsQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Queries record for the operation: listApprovedCustomerGroups
+public type ListApprovedCustomerGroupsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getCAPAProcessTemplateNodes
+public type GetCAPAProcessTemplateNodesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getFlexibleSamplingPlans
+public type GetFlexibleSamplingPlansQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteCAPAWorkerGroups
+public type DeleteCAPAWorkerGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: listNonConformanceWorkGroups
@@ -434,6 +814,8 @@ public type QualityOrderHeadersCollection record {
     QualityOrderHeader[] value?;
 };
 
+public type QMSTestInstrumentCalibrationCheck "NoCheck"|"WarningOnly"|"NotAllowed";
+
 # Represents the Queries record for the operation: getTestInstrumentCalibrationLabelLayouts
 public type GetTestInstrumentCalibrationLabelLayoutsQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -446,6 +828,50 @@ public type GetTestInstrumentCalibrationLabelLayoutsQueries record {
 
 # Represents the Queries record for the operation: getQualityOrderLineCertificateOfAnalysisCustomerRequirements
 public type GetQualityOrderLineCertificateOfAnalysisCustomerRequirementsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateCAPACategories
+public type UpdateCAPACategoriesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listNonConformanceOperationGroups
+public type ListNonConformanceOperationGroupsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getTestInstrumentCalibrationGroups
+public type GetTestInstrumentCalibrationGroupsQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
@@ -469,6 +895,34 @@ public type QualityTestGroup record {
     string Description?;
     NoYes IsInventoryStatusDefaultedWithTestMeasurement?;
     NoYes IsDestructiveTest?;
+};
+
+# Represents the Queries record for the operation: listCAPACaseAssociationDimensions
+public type ListCAPACaseAssociationDimensionsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Queries record for the operation: listCAPAWorkerGroups
@@ -505,10 +959,42 @@ public type DeleteCAPAClassificationsHeaders record {
     string If\-Match?;
 };
 
-public type CustWhtContributionType_BR "Other"|"FederalAgencyAutarchyOrFoundation"|"OtherFederalAdministrationEntity"|"PrivateCompany"|"Cooperative"|"MachineOrVehicleManufacturer";
+# Represents the Queries record for the operation: listCAPACaseEmailNotifications
+public type ListCAPACaseEmailNotificationsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
 
 # Represents the Headers record for the operation: deleteNonConformanceOperationGroups
 public type DeleteNonConformanceOperationGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateQualitySampleAssociations
+public type UpdateQualitySampleAssociationsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -519,8 +1005,6 @@ public type DeleteCAPAUserDefinedSubCategoriesHeaders record {
     string If\-Match?;
 };
 
-public type InvoiceOrderAccount "InvoiceAccount"|"OrderAccount";
-
 # Represents the Queries record for the operation: getQualityOrderHeaders
 public type GetQualityOrderHeadersQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -529,6 +1013,24 @@ public type GetQualityOrderHeadersQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteQualitySamples
+public type DeleteQualitySamplesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteCAPACaseEmailNotifications
+public type DeleteCAPACaseEmailNotificationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateCAPACaseEmailNotifications
+public type UpdateCAPACaseEmailNotificationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type QMSCalibrationUsageUpdateMethod "None"|"FixedIncrement"|"TestQuantity";
@@ -561,14 +1063,74 @@ public type QualityTestVariableOutcome record {
     string OutcomeDescription?;
 };
 
+public type QualitySampleLifecycleState record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string LifecycleStateId?;
+    NoYes IsQualityOrderCreated?;
+    NoYes IsQualityOrderValidated?;
+    NoYes IsSampleScrapped?;
+    string LifecycleStateDescription?;
+};
+
+# Represents the Queries record for the operation: listQualityTestInstrumentTags
+public type ListQualityTestInstrumentTagsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type QMSTestInstrumentUsageStatus "None"|"Available"|"Calibration"|"OutOfService";
 
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-|};
+# Represents the Queries record for the operation: listQualityTestLocations
+public type ListQualityTestLocationsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 
 # Represents the Headers record for the operation: deleteApprovedCustomerGroups
 public type DeleteApprovedCustomerGroupsHeaders record {
@@ -592,10 +1154,38 @@ public type DeleteQualitySampleAssociationsHeaders record {
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: updateReturnDispositionCodes
-public type UpdateReturnDispositionCodesHeaders record {
+# Represents the Headers record for the operation: updateCAPACases
+public type UpdateCAPACasesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listFlexibleSamplingPlanLines
+public type ListFlexibleSamplingPlanLinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type NonConformanceDiagnosticGroupDiagnosticAssignmentsCollection record {
@@ -708,6 +1298,34 @@ public type ListQualityTestGroupTestAssignmentTestPlansQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: listQualityOrderLineResults
+public type ListQualityOrderLineResultsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type QualitySampleAuditLogsCollection record {
     *ODataCollection;
     QualitySampleAuditLog[] value?;
@@ -722,8 +1340,6 @@ public type GetCAPACaseEmailNotificationsQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
-
-public type PANStatus_IN "NotAvailable"|"Received"|"Applied"|"Invalid";
 
 public type QualitySampleTrackingEntry record {
     string \@odata\.etag?;
@@ -755,1871 +1371,6 @@ public type QualitySampleTrackingEntry record {
 public type DeleteQualityTestMeasuringDevicesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateQualityTestInstrumentTags
-public type UpdateQualityTestInstrumentTagsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: listQualityOrderHeaders
-public type ListQualityOrderHeadersQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: updateQualitySampleTypeStateAssignments
-public type UpdateQualitySampleTypeStateAssignmentsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateTestInstrumentCalibrationGroups
-public type UpdateTestInstrumentCalibrationGroupsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: listCAPAProcessTemplateNodes
-public type ListCAPAProcessTemplateNodesQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type TableGroupAll "Table"|"GroupId"|"All";
-
-# Represents the Queries record for the operation: getCAPAWorkerGroups
-public type GetCAPAWorkerGroupsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type QualityTestGroupTestAssignmentCertificateOfAnalysisCustomerRequirement record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string CustomerGroup?;
-    string CustomerAccountNumber?;
-    string TestGroupId?;
-    int:Signed32 TestSequenceNumber?;
-    string TestId?;
-    string TestEffectiveDateTime?;
-    string TestExpirationDateTime?;
-    string ReplaceFailResults?;
-    NoYes UseCustBatchAttribRange?;
-    string ReplacePassResults?;
-    NoYes SupressMinMaxValues?;
-    NoYes ExcludeFromCOA?;
-};
-
-public type NonConformanceRootCause record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string RootCauseCode?;
-    string RootCauseDescription?;
-};
-
-public type QualityOrderPriority record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string PriorityId?;
-    string PriorityDescription?;
-};
-
-# Represents the Queries record for the operation: listCAPAClassifications
-public type ListCAPAClassificationsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: getCAPAUserDefinedSubCategories
-public type GetCAPAUserDefinedSubCategoriesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type UseCashDisc "Normal"|"Always"|"Never";
-
-public type InventTestOutcomeStatus "Fail"|"Pass";
-
-public type QualitySampleAssociationProceduresCollection record {
-    *ODataCollection;
-    QualitySampleAssociationProcedure[] value?;
-};
-
-# Represents the Queries record for the operation: listCAPAUserDefinedSubCategories
-public type ListCAPAUserDefinedSubCategoriesQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: updateAQLInspectionLevels
-public type UpdateAQLInspectionLevelsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type QualityOrderLineCertificateOfAnalysisCustomerRequirement record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string CustomerGroup?;
-    string CustomerAccountNumber?;
-    string QualityOrderNumber?;
-    int:Signed32 QualityOrderSequenceNumber?;
-    string ReplaceFailResults?;
-    NoYes UseCustBatchAttribRange?;
-    string ReplacePassResults?;
-    NoYes SupressMinMaxValues?;
-    NoYes ExcludeFromCOA?;
-};
-
-# Represents the Queries record for the operation: listQualitySampleLabelLayouts
-public type ListQualitySampleLabelLayoutsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: getQualityTestGroupTestAssignmentCertificateOfAnalysisCustomerRequirements
-public type GetQualityTestGroupTestAssignmentCertificateOfAnalysisCustomerRequirementsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type CAPAUserDefinedSubCategoriesCollection record {
-    *ODataCollection;
-    CAPAUserDefinedSubCategory[] value?;
-};
-
-public type InventTestOrderStatus "Open"|"Fail"|"Pass";
-
-# Represents the Headers record for the operation: updateCAPAUserDefinedSubCategories
-public type UpdateCAPAUserDefinedSubCategoriesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateQualityTestMeasuringDevices
-public type UpdateQualityTestMeasuringDevicesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type QMSCAPACaseClassification "None"|"Corrective"|"Preventive"|"CorrectiveAndPreventive";
-
-public type CAPATypesCollection record {
-    *ODataCollection;
-    CAPAType[] value?;
-};
-
-# Represents the Headers record for the operation: updateQualityTestDepartments
-public type UpdateQualityTestDepartmentsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type AQLIndexesCollection record {
-    *ODataCollection;
-    AQLIndex[] value?;
-};
-
-# Represents the Queries record for the operation: getCAPACategories
-public type GetCAPACategoriesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: listNonConformanceRootCauses
-public type ListNonConformanceRootCausesQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: updateCAPAProcessTemplateNodes
-public type UpdateCAPAProcessTemplateNodesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type BOMConsumpType "Variable"|"Constant";
-
-public type FlexibleSamplingPlanLinesCollection record {
-    *ODataCollection;
-    FlexibleSamplingPlanLine[] value?;
-};
-
-# Represents the Headers record for the operation: deleteTestInstrumentCalibrationLabelLayouts
-public type DeleteTestInstrumentCalibrationLabelLayoutsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type CAPAClassificationsCollection record {
-    *ODataCollection;
-    CAPAClassification[] value?;
-};
-
-# Represents the Headers record for the operation: updateTestInstrumentCalibrationLabelLayouts
-public type UpdateTestInstrumentCalibrationLabelLayoutsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type CAPACaseEmailNotificationsCollection record {
-    *ODataCollection;
-    CAPACaseEmailNotification[] value?;
-};
-
-# Represents the Queries record for the operation: getCustomersV3
-public type GetCustomersV3Queries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: getCAPAClassifications
-public type GetCAPAClassificationsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: updateQualityGroupItemAssignments
-public type UpdateQualityGroupItemAssignmentsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: deleteCertificateOfAnalysisCustomerGroups
-public type DeleteCertificateOfAnalysisCustomerGroupsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: listCAPARootCauses
-public type ListCAPARootCausesQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type NonConformanceDiagnosticGroupDiagnosticAssignment record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string DiagnosticGroupId?;
-    string DiagnosticTypeId?;
-    string ResponsibleWorkerPersonnelNumber?;
-};
-
-# Represents the Headers record for the operation: updateCAPAClassifications
-public type UpdateCAPAClassificationsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type QMSAQLInspectionLevelType "General"|"Special";
-
-# Represents the Queries record for the operation: getCAPAWorkerGroupAssignments
-public type GetCAPAWorkerGroupAssignmentsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: deleteReturnDispositionCodes
-public type DeleteReturnDispositionCodesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type ApprovedItemGroupsCollection record {
-    *ODataCollection;
-    ApprovedItemGroup[] value?;
-};
-
-# Represents the Headers record for the operation: deleteAQLDefectTypes
-public type DeleteAQLDefectTypesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getAQLInspectionLevels
-public type GetAQLInspectionLevelsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type CAPAProcessTemplateNodesCollection record {
-    *ODataCollection;
-    CAPAProcessTemplateNode[] value?;
-};
-
-public type QualityTestInstrumentTagsCollection record {
-    *ODataCollection;
-    QualityTestInstrumentTag[] value?;
-};
-
-public type QualitySampleAssociationProcedure record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    TableGroupAll AssociationItemCode?;
-    string AssociationItemRelation?;
-    string SampleProcedureId?;
-};
-
-public type CaseStatus "None"|"Planned"|"InProcess"|"Closed"|"Cancelled";
-
-# Represents the Queries record for the operation: listFlexibleSamplingPlans
-public type ListFlexibleSamplingPlansQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type NoYes "No"|"Yes";
-
-public type CustCollectionLetterCode "None"|"CollectionLetter1"|"CollectionLetter2"|"CollectionLetter3"|"CollectionLetter4"|"Collection"|"All"|"CollectionPerCust";
-
-# Represents the Queries record for the operation: listQualitySampleAssociations
-public type ListQualitySampleAssociationsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: updateQualityOrderPriorities
-public type UpdateQualityOrderPrioritiesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type QualitySampleTrackingEntriesCollection record {
-    *ODataCollection;
-    QualitySampleTrackingEntry[] value?;
-};
-
-# Represents the Headers record for the operation: deleteQualityTestLocations
-public type DeleteQualityTestLocationsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateQualityTestGroupTestAssignmentTestPlans
-public type UpdateQualityTestGroupTestAssignmentTestPlansHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: deleteNonConformanceDiagnosticGroupDiagnosticAssignments
-public type DeleteNonConformanceDiagnosticGroupDiagnosticAssignmentsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: listQualityGroupItemAssignments
-public type ListQualityGroupItemAssignmentsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: deleteCAPARootCauses
-public type DeleteCAPARootCausesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: listAQLInspectionLevels
-public type ListAQLInspectionLevelsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type CAPACaseAssociationDimension record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string CaseId?;
-    string ItemNumber?;
-    string InventorySiteId?;
-    string ItemBatchNumber?;
-    string ProductConfigurationId?;
-    string LicensePlateNumber?;
-    string InventoryOwnerId?;
-    string ProductSizeId?;
-    string ImpactedCatchWeightUnitId?;
-    decimal ImpactedCatchWeightQuantity?;
-    string ProductColorId?;
-    string InventoryStatusId?;
-    string ProductVersionId?;
-    string ProductStyleId?;
-    string WarehouseLocationId?;
-    string InventoryWarehouseId?;
-    decimal ImpactedQuantity?;
-    string ItemSerialNumber?;
-    string ImpactedUnitId?;
-};
-
-public type CreditCardCVC "None"|"No"|"Yes";
-
-public type ApprovedCustomerGroupsCollection record {
-    *ODataCollection;
-    ApprovedCustomerGroup[] value?;
-};
-
-# Represents the Headers record for the operation: deleteApprovedItemGroups
-public type DeleteApprovedItemGroupsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getQualitySampleAssociations
-public type GetQualitySampleAssociationsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: deleteQualityOrderLineResults
-public type DeleteQualityOrderLineResultsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type AQLDefectType record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string DefectTypeId?;
-    QMSAQLDefectCategory DefectCategory?;
-    string DefectDescription?;
-};
-
-# Represents the Headers record for the operation: updateCAPACaseAssociationDimensions
-public type UpdateCAPACaseAssociationDimensionsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getNonConformanceDiagnosticGroups
-public type GetNonConformanceDiagnosticGroupsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type QMSLabelPrintDensity "Six"|"Eight"|"Twelve"|"TwentyFour";
-
-public type SalesInvoicePostingType_RU "Standard"|"GoodsInRoute";
-
-public type QualityTestDepartment record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string DepartmentName?;
-    string DepartmentDescription?;
-};
-
-public type QMSCalibrationPeriod "None"|"Day"|"Month"|"Year";
-
-# Represents the Headers record for the operation: deleteQualitySampleProcedures
-public type DeleteQualitySampleProceduresHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getNonConformanceOperationGroupOperationCategoryAssignments
-public type GetNonConformanceOperationGroupOperationCategoryAssignmentsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: deleteQualitySampleLabelLayouts
-public type DeleteQualitySampleLabelLayoutsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type QualitySampleProcedureTypesCollection record {
-    *ODataCollection;
-    QualitySampleProcedureType[] value?;
-};
-
-# Represents the Queries record for the operation: getCAPATypes
-public type GetCAPATypesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: getQualitySampleAssociationProcedures
-public type GetQualitySampleAssociationProceduresQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: getQualitySampleLabelLayouts
-public type GetQualitySampleLabelLayoutsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type DocuRestriction "Internal"|"External";
-
-# Represents the Headers record for the operation: updateBillOfMaterialsLinesV3
-public type UpdateBillOfMaterialsLinesV3Headers record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getApprovedCustomerGroups
-public type GetApprovedCustomerGroupsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type QualitySampleTypeStateAssignmentsCollection record {
-    *ODataCollection;
-    QualitySampleTypeStateAssignment[] value?;
-};
-
-# Represents the Headers record for the operation: deleteQualityTestVariableOutcomes
-public type DeleteQualityTestVariableOutcomesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: deleteQualitySampleLifecycleStates
-public type DeleteQualitySampleLifecycleStatesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type smmShowTimeAs "Free"|"Tentative"|"Busy"|"OutOfOffice";
-
-public type RetailReceiptOptionBase "RetailEx3"|"Email"|"Both";
-
-# Represents the Queries record for the operation: getQualityOrderPriorities
-public type GetQualityOrderPrioritiesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: listCAPACases
-public type ListCAPACasesQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: listQualitySampleTypes
-public type ListQualitySampleTypesQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: listQualityTestMeasuringDevices
-public type ListQualityTestMeasuringDevicesQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: updateCAPARootCauses
-public type UpdateCAPARootCausesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type QualityTestGroupTestAssignmentCertificateOfAnalysisCustomerRequirementsCollection record {
-    *ODataCollection;
-    QualityTestGroupTestAssignmentCertificateOfAnalysisCustomerRequirement[] value?;
-};
-
-# Represents the Headers record for the operation: deleteCAPACaseAssociationDimensions
-public type DeleteCAPACaseAssociationDimensionsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type NonConformanceOperationGroupOperationCategoryAssignmentsCollection record {
-    *ODataCollection;
-    NonConformanceOperationGroupOperationCategoryAssignment[] value?;
-};
-
-# Represents the Queries record for the operation: getQualitySampleTrackingEntries
-public type GetQualitySampleTrackingEntriesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type QualityTestGroupTestAssignmentTestPlansCollection record {
-    *ODataCollection;
-    QualityTestGroupTestAssignmentTestPlan[] value?;
-};
-
-# Represents the Headers record for the operation: deleteCAPASources
-public type DeleteCAPASourcesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getApprovedItemGroups
-public type GetApprovedItemGroupsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type TestInstrumentCalibrationProceduresCollection record {
-    *ODataCollection;
-    TestInstrumentCalibrationProcedure[] value?;
-};
-
-public type QualitySampleAuditLog record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string SampleId?;
-    decimal LineNumber?;
-    string ChangeFromValue?;
-    string ChangeToValue?;
-    QMSSampleEventType SampleEventType?;
-    string AuditReference?;
-};
-
-public type ApprovedItemGroup record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string GroupId?;
-    string GroupDescription?;
-};
-
-public type BomWHSReleasePolicy "AllowPartialReservation"|"RequireFullReservation";
-
-# Represents the Queries record for the operation: getTestInstrumentCalibrationProcedures
-public type GetTestInstrumentCalibrationProceduresQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: deleteQualityTestDepartments
-public type DeleteQualityTestDepartmentsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type CertificateOfAnalysisCustomerGroupCustomerAssignmentsCollection record {
-    *ODataCollection;
-    CertificateOfAnalysisCustomerGroupCustomerAssignment[] value?;
-};
-
-public type NonConformanceWorkGroupsCollection record {
-    *ODataCollection;
-    NonConformanceWorkGroup[] value?;
-};
-
-public type QualitySampleLifecycleStatesCollection record {
-    *ODataCollection;
-    QualitySampleLifecycleState[] value?;
-};
-
-# Represents the Headers record for the operation: updateNonConformanceWorkGroups
-public type UpdateNonConformanceWorkGroupsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type DispositionAction "Credit"|"CreditOnly"|"Scrap"|"ReplaceCredit"|"ReplaceScrap"|"ReturnToCust";
-
-# Represents the Headers record for the operation: updateAQLDefectTypes
-public type UpdateAQLDefectTypesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateApprovedCustomerGroups
-public type UpdateApprovedCustomerGroupsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getBillOfMaterialsLinesV3
-public type GetBillOfMaterialsLinesV3Queries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: deleteQualitySampleAuditLogs
-public type DeleteQualitySampleAuditLogsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type ProdFlushingPrincipBOM "Blank"|"Start"|"Finish"|"Manual"|"Picked";
-
-# Represents the Headers record for the operation: deleteQualityOrderLineCertificateOfAnalysisCustomerRequirements
-public type DeleteQualityOrderLineCertificateOfAnalysisCustomerRequirementsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: listQualitySampleLifecycleStates
-public type ListQualitySampleLifecycleStatesQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: updateQualitySampleLabelLayouts
-public type UpdateQualitySampleLabelLayoutsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateNonConformanceDiagnosticGroups
-public type UpdateNonConformanceDiagnosticGroupsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateTestInstrumentCalibrationProcedures
-public type UpdateTestInstrumentCalibrationProceduresHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type FlexibleSamplingPlan record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string PlanCode?;
-    string PlanDescription?;
-    string AlertSecurityRoleName?;
-    NoYes IsPlanApproved?;
-    int:Signed32 PlanLastLevel?;
-};
-
-public type NonConformanceOperationGroup record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string GroupId?;
-    string GroupDescription?;
-};
-
-# Represents the Queries record for the operation: getQualityTestMeasuringDevices
-public type GetQualityTestMeasuringDevicesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: deleteNonConformanceRootCauses
-public type DeleteNonConformanceRootCausesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: listTestInstrumentCalibrationProcedures
-public type ListTestInstrumentCalibrationProceduresQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type QualityOrderPrioritiesCollection record {
-    *ODataCollection;
-    QualityOrderPriority[] value?;
-};
-
-# Represents the Queries record for the operation: listQualitySampleAssociationProcedures
-public type ListQualitySampleAssociationProceduresQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: listNonConformanceDiagnosticGroupDiagnosticAssignments
-public type ListNonConformanceDiagnosticGroupDiagnosticAssignmentsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type QualitySampleProcedure record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string SampleProcedureId?;
-    string SampleProcedureTypeId?;
-    string SampleProcedureDescription?;
-    QMSSampleInspectionMethod InspectionMethod?;
-    string SampleProcedureDetails?;
-};
-
-# Represents the Queries record for the operation: listQualityTestDepartments
-public type ListQualityTestDepartmentsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type CAPAResolutionType record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string TypeCode?;
-    string TypeDescription?;
-};
-
-# Represents the Queries record for the operation: listCertificateOfAnalysisCustomerGroupCustomerAssignments
-public type ListCertificateOfAnalysisCustomerGroupCustomerAssignmentsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: updateQualityTestGroupTestAssignmentCertificateOfAnalysisCustomerRequirements
-public type UpdateQualityTestGroupTestAssignmentCertificateOfAnalysisCustomerRequirementsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateQualitySampleProcedureTypes
-public type UpdateQualitySampleProcedureTypesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type QualitySampleAssociation record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    TableGroupAll ItemCode?;
-    string ItemRelation?;
-    int:Signed32 ContinuousScrapDays?;
-    string ContinuousSampleTypeId?;
-    int:Signed32 InlineScrapDays?;
-    string InlineDefaultTestGroupId?;
-    string InlineSampleTypeId?;
-    string InlineDefaultItemSamplingId?;
-};
-
-# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
-@display {label: "Connection Config"}
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig|http:BearerTokenConfig auth;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
-
-public type QualityTestMeasuringDevicesCollection record {
-    *ODataCollection;
-    QualityTestMeasuringDevice[] value?;
-};
-
-public type TestInstrumentCalibrationLabelLayoutsCollection record {
-    *ODataCollection;
-    TestInstrumentCalibrationLabelLayout[] value?;
-};
-
-# Represents the Queries record for the operation: listQualitySampleProcedureTypes
-public type ListQualitySampleProcedureTypesQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: deleteQualityTestInstrumentTags
-public type DeleteQualityTestInstrumentTagsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type CAPARootCause record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string RootCauseCode?;
-    string RootCauseDescription?;
-};
-
-# Represents the Headers record for the operation: updateCertificateOfAnalysisCustomerGroups
-public type UpdateCertificateOfAnalysisCustomerGroupsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateQualitySampleAssociationProcedures
-public type UpdateQualitySampleAssociationProceduresHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getCertificateOfAnalysisCustomerGroupCustomerAssignments
-public type GetCertificateOfAnalysisCustomerGroupCustomerAssignmentsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: listCAPAResolutionTypes
-public type ListCAPAResolutionTypesQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: getQualityGroupItemAssignments
-public type GetQualityGroupItemAssignmentsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: updateQualityTestGroups
-public type UpdateQualityTestGroupsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type BOMFormula "Formula0"|"Formula1"|"Formula2"|"Formula3"|"Formula4"|"Formula5";
-
-# Represents the Headers record for the operation: updateNonConformanceRootCauses
-public type UpdateNonConformanceRootCausesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getQualityTestDepartments
-public type GetQualityTestDepartmentsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: updateCertificateOfAnalysisCustomerGroupCustomerAssignments
-public type UpdateCertificateOfAnalysisCustomerGroupCustomerAssignmentsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type CAPAClassification record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string ClassificationCode?;
-    string ClassificationDescription?;
-};
-
-# Represents the Headers record for the operation: deleteNonConformanceWorkGroups
-public type DeleteNonConformanceWorkGroupsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getCertificateOfAnalysisCustomerGroups
-public type GetCertificateOfAnalysisCustomerGroupsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: listApprovedCustomerGroups
-public type ListApprovedCustomerGroupsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: getCAPAProcessTemplateNodes
-public type GetCAPAProcessTemplateNodesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: getFlexibleSamplingPlans
-public type GetFlexibleSamplingPlansQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: deleteCAPAWorkerGroups
-public type DeleteCAPAWorkerGroupsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type QMSTestInstrumentCalibrationCheck "NoCheck"|"WarningOnly"|"NotAllowed";
-
-# Represents the Headers record for the operation: updateCAPACategories
-public type UpdateCAPACategoriesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: listNonConformanceOperationGroups
-public type ListNonConformanceOperationGroupsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: getTestInstrumentCalibrationGroups
-public type GetTestInstrumentCalibrationGroupsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type CustomerType_IN "None"|"GovtCompanyOrOtherAgencies"|"ECommerceOperator";
-
-# Represents the Queries record for the operation: listCAPACaseAssociationDimensions
-public type ListCAPACaseAssociationDimensionsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: listCAPACaseEmailNotifications
-public type ListCAPACaseEmailNotificationsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: updateQualitySampleAssociations
-public type UpdateQualitySampleAssociationsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: deleteQualitySamples
-public type DeleteQualitySamplesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: deleteCAPACaseEmailNotifications
-public type DeleteCAPACaseEmailNotificationsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateCAPACaseEmailNotifications
-public type UpdateCAPACaseEmailNotificationsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type BOMType "Item"|"Phantom"|"PeggedSupply"|"Vendor";
-
-public type QualitySampleLifecycleState record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string LifecycleStateId?;
-    NoYes IsQualityOrderCreated?;
-    NoYes IsQualityOrderValidated?;
-    NoYes IsSampleScrapped?;
-    string LifecycleStateDescription?;
-};
-
-# Represents the Queries record for the operation: listQualityTestInstrumentTags
-public type ListQualityTestInstrumentTagsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: listQualityTestLocations
-public type ListQualityTestLocationsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: updateCAPACases
-public type UpdateCAPACasesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: listFlexibleSamplingPlanLines
-public type ListFlexibleSamplingPlanLinesQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type QMSCustomerCheckItem "NoCheck"|"WarningOnly"|"NotAllowed";
-
-# Represents the Queries record for the operation: listQualityOrderLineResults
-public type ListQualityOrderLineResultsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
 };
 
 public type NonConformanceOperationGroupOperationCategoryAssignment record {
@@ -2664,6 +1415,12 @@ public type CAPAProcessTemplateNode record {
     ElementNodeType NodeType?;
 };
 
+# Represents the Headers record for the operation: updateQualityTestInstrumentTags
+public type UpdateQualityTestInstrumentTagsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: updateQualityOrderLineResults
 public type UpdateQualityOrderLineResultsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -2698,6 +1455,40 @@ public type ListQualityTestGroupTestAssignmentCertificateOfAnalysisCustomerRequi
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: listQualityOrderHeaders
+public type ListQualityOrderHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateQualitySampleTypeStateAssignments
+public type UpdateQualitySampleTypeStateAssignmentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: deleteTestInstrumentCalibrationGroups
 public type DeleteTestInstrumentCalibrationGroupsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -2720,11 +1511,6 @@ public type UpdateApprovedItemGroupsHeaders record {
     string If\-Match?;
 };
 
-public type BillOfMaterialsLinesV3Collection record {
-    *ODataCollection;
-    BillOfMaterialsLineV3[] value?;
-};
-
 public type CAPASource record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -2732,8 +1518,14 @@ public type CAPASource record {
     string SourceDescription?;
 };
 
-# Represents the Queries record for the operation: listReturnDispositionCodes
-public type ListReturnDispositionCodesQueries record {
+# Represents the Headers record for the operation: updateTestInstrumentCalibrationGroups
+public type UpdateTestInstrumentCalibrationGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listCAPAProcessTemplateNodes
+public type ListCAPAProcessTemplateNodesQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -2755,6 +1547,18 @@ public type ListReturnDispositionCodesQueries record {
     # When true, the response includes `@odata.count`.
     @http:Query {name: "$count"}
     boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type TableGroupAll "Table"|"GroupId"|"All";
+
+# Represents the Queries record for the operation: getCAPAWorkerGroups
+public type GetCAPAWorkerGroupsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -2839,6 +1643,23 @@ public type ListNonConformanceOperationGroupOperationCategoryAssignmentsQueries 
     string selectFields?;
 };
 
+public type QualityTestGroupTestAssignmentCertificateOfAnalysisCustomerRequirement record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string CustomerGroup?;
+    string CustomerAccountNumber?;
+    string TestGroupId?;
+    int:Signed32 TestSequenceNumber?;
+    string TestId?;
+    string TestEffectiveDateTime?;
+    string TestExpirationDateTime?;
+    string ReplaceFailResults?;
+    NoYes UseCustBatchAttribRange?;
+    string ReplacePassResults?;
+    NoYes SupressMinMaxValues?;
+    NoYes ExcludeFromCOA?;
+};
+
 # Represents the Queries record for the operation: getCAPACaseAssociationDimensions
 public type GetCAPACaseAssociationDimensionsQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -2854,6 +1675,13 @@ public type QualityGroupItemAssignmentsCollection record {
     QualityGroupItemAssignment[] value?;
 };
 
+public type NonConformanceRootCause record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string RootCauseCode?;
+    string RootCauseDescription?;
+};
+
 public type QualitySamplesCollection record {
     *ODataCollection;
     QualitySample[] value?;
@@ -2861,12 +1689,64 @@ public type QualitySamplesCollection record {
 
 public type smmActivityTaskTimeType "NotStarted"|"InProgress"|"Completed"|"Waiting"|"Deferred";
 
+public type QualityOrderPriority record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string PriorityId?;
+    string PriorityDescription?;
+};
+
+# Represents the Queries record for the operation: listCAPAClassifications
+public type ListCAPAClassificationsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getCAPAUserDefinedSubCategories
+public type GetCAPAUserDefinedSubCategoriesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type InventTestOutcomeStatus "Fail"|"Pass";
+
 public type AQLInspectionLevel record {
     string \@odata\.etag?;
     string dataAreaId?;
     string InspectionLevelId?;
     string InspectionLevelDescription?;
     QMSAQLInspectionLevelType InspectionLevelType?;
+};
+
+public type QualitySampleAssociationProceduresCollection record {
+    *ODataCollection;
+    QualitySampleAssociationProcedure[] value?;
 };
 
 # Represents the Queries record for the operation: getQualityOrderLineResults
@@ -2879,11 +1759,104 @@ public type GetQualityOrderLineResultsQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: listCAPAUserDefinedSubCategories
+public type ListCAPAUserDefinedSubCategoriesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateAQLInspectionLevels
+public type UpdateAQLInspectionLevelsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: deleteNonConformanceDiagnosticGroups
 public type DeleteNonConformanceDiagnosticGroupsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
+
+public type QualityOrderLineCertificateOfAnalysisCustomerRequirement record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string CustomerGroup?;
+    string CustomerAccountNumber?;
+    string QualityOrderNumber?;
+    int:Signed32 QualityOrderSequenceNumber?;
+    string ReplaceFailResults?;
+    NoYes UseCustBatchAttribRange?;
+    string ReplacePassResults?;
+    NoYes SupressMinMaxValues?;
+    NoYes ExcludeFromCOA?;
+};
+
+# Represents the Queries record for the operation: listQualitySampleLabelLayouts
+public type ListQualitySampleLabelLayoutsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getQualityTestGroupTestAssignmentCertificateOfAnalysisCustomerRequirements
+public type GetQualityTestGroupTestAssignmentCertificateOfAnalysisCustomerRequirementsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type CAPAUserDefinedSubCategoriesCollection record {
+    *ODataCollection;
+    CAPAUserDefinedSubCategory[] value?;
+};
+
+public type InventTestOrderStatus "Open"|"Fail"|"Pass";
 
 public type CaseResolutionType "None"|"Accept"|"Reject";
 
@@ -2930,6 +1903,12 @@ public type ListTestInstrumentCalibrationLabelLayoutsQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateCAPAUserDefinedSubCategories
+public type UpdateCAPAUserDefinedSubCategoriesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: getQualitySampleProcedureTypes
@@ -2980,9 +1959,33 @@ public type UpdateNonConformanceOperationGroupOperationCategoryAssignmentsHeader
 
 public type smmActivityCategory "Appointment"|"Task"|"Action"|"Event";
 
+# Represents the Headers record for the operation: updateQualityTestMeasuringDevices
+public type UpdateQualityTestMeasuringDevicesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type QMSCAPACaseClassification "None"|"Corrective"|"Preventive"|"CorrectiveAndPreventive";
+
+public type CAPATypesCollection record {
+    *ODataCollection;
+    CAPAType[] value?;
+};
+
 public type QualityOrderLineCertificateOfAnalysisCustomerRequirementsCollection record {
     *ODataCollection;
     QualityOrderLineCertificateOfAnalysisCustomerRequirement[] value?;
+};
+
+# Represents the Headers record for the operation: updateQualityTestDepartments
+public type UpdateQualityTestDepartmentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type AQLIndexesCollection record {
+    *ODataCollection;
+    AQLIndex[] value?;
 };
 
 # Represents the Headers record for the operation: deleteAQLIndexes
@@ -2991,11 +1994,47 @@ public type DeleteAQLIndexesHeaders record {
     string If\-Match?;
 };
 
-public type CreditCardAddressVerification "None"|"No"|"Yes";
+# Represents the Queries record for the operation: getCAPACategories
+public type GetCAPACategoriesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
 
 public type QualitySampleAssociationsCollection record {
     *ODataCollection;
     QualitySampleAssociation[] value?;
+};
+
+# Represents the Queries record for the operation: listNonConformanceRootCauses
+public type ListNonConformanceRootCausesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type InventTestReferenceType "Inventory"|"Sales"|"Purch"|"Production"|"Quarantine"|"RouteOpr"|"PmfProdCoBy"|"ITMGoodsInTransitOrder"|"WHSInboundShipmentOrder"|"QMSReturn"|"QMSTransfer";
@@ -3095,8 +2134,8 @@ public type QualityOrderHeader record {
     string QMSSampleId?;
 };
 
-# Represents the Headers record for the operation: deleteCustomersV3
-public type DeleteCustomersV3Headers record {
+# Represents the Headers record for the operation: updateCAPAProcessTemplateNodes
+public type UpdateCAPAProcessTemplateNodesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -3128,6 +2167,11 @@ public type FlexibleSamplingPlanLine record {
     QMSFailActionCode FailActionCode?;
 };
 
+public type FlexibleSamplingPlanLinesCollection record {
+    *ODataCollection;
+    FlexibleSamplingPlanLine[] value?;
+};
+
 # Represents the Queries record for the operation: listQualityOrderPriorities
 public type ListQualityOrderPrioritiesQueries record {
     # Number of records to skip.
@@ -3154,6 +2198,12 @@ public type ListQualityOrderPrioritiesQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteTestInstrumentCalibrationLabelLayouts
+public type DeleteTestInstrumentCalibrationLabelLayoutsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type AQLIndex record {
@@ -3236,11 +2286,14 @@ public type UpdateQualitySampleAuditLogsHeaders record {
     string If\-Match?;
 };
 
-public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
-
 public type CertificateOfAnalysisCustomerGroupsCollection record {
     *ODataCollection;
     CertificateOfAnalysisCustomerGroup[] value?;
+};
+
+public type CAPAClassificationsCollection record {
+    *ODataCollection;
+    CAPAClassification[] value?;
 };
 
 # Represents the Headers record for the operation: deleteCertificateOfAnalysisCustomerGroupCustomerAssignments
@@ -3249,15 +2302,31 @@ public type DeleteCertificateOfAnalysisCustomerGroupCustomerAssignmentsHeaders r
     string If\-Match?;
 };
 
-public type CustomersV3Collection record {
+# Represents the Headers record for the operation: updateTestInstrumentCalibrationLabelLayouts
+public type UpdateTestInstrumentCalibrationLabelLayoutsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type CAPACaseEmailNotificationsCollection record {
     *ODataCollection;
-    CustomerV3[] value?;
+    CAPACaseEmailNotification[] value?;
 };
 
 # Represents the Headers record for the operation: deleteQualitySampleTrackingEntries
 public type DeleteQualitySampleTrackingEntriesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getCAPAClassifications
+public type GetCAPAClassificationsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Headers record for the operation: updateFlexibleSamplingPlanLines
@@ -3294,9 +2363,57 @@ public type ListNonConformanceDiagnosticGroupsQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: updateQualityGroupItemAssignments
+public type UpdateQualityGroupItemAssignmentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type NonConformanceRootCausesCollection record {
     *ODataCollection;
     NonConformanceRootCause[] value?;
+};
+
+# Represents the Headers record for the operation: deleteCertificateOfAnalysisCustomerGroups
+public type DeleteCertificateOfAnalysisCustomerGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listCAPARootCauses
+public type ListCAPARootCausesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type NonConformanceDiagnosticGroupDiagnosticAssignment record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string DiagnosticGroupId?;
+    string DiagnosticTypeId?;
+    string ResponsibleWorkerPersonnelNumber?;
 };
 
 public type NonConformanceDiagnosticGroup record {
@@ -3306,10 +2423,8 @@ public type NonConformanceDiagnosticGroup record {
     string GroupDescription?;
 };
 
-public type CreditCardAddressVerificationLevel "Accept"|"AccountHolderName"|"BillingPostalCode"|"BillingAddress";
-
-# Represents the Headers record for the operation: deleteBillOfMaterialsLinesV3
-public type DeleteBillOfMaterialsLinesV3Headers record {
+# Represents the Headers record for the operation: updateCAPAClassifications
+public type UpdateCAPAClassificationsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -3320,10 +2435,27 @@ public type DeleteFlexibleSamplingPlanLinesHeaders record {
     string If\-Match?;
 };
 
+public type QMSAQLInspectionLevelType "General"|"Special";
+
+# Represents the Queries record for the operation: getCAPAWorkerGroupAssignments
+public type GetCAPAWorkerGroupAssignmentsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: deleteQualitySampleProcedureTypes
 public type DeleteQualitySampleProcedureTypesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type ApprovedItemGroupsCollection record {
+    *ODataCollection;
+    ApprovedItemGroup[] value?;
 };
 
 public type NonConformanceOperationGroupsCollection record {
@@ -3343,10 +2475,76 @@ public type QualitySampleLabelLayout record {
     int:Signed32 LabelLength?;
 };
 
+# Represents the Headers record for the operation: deleteAQLDefectTypes
+public type DeleteAQLDefectTypesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getAQLInspectionLevels
+public type GetAQLInspectionLevelsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type CAPAProcessTemplateNodesCollection record {
+    *ODataCollection;
+    CAPAProcessTemplateNode[] value?;
+};
+
 public type FlexibleSamplingPlansCollection record {
     *ODataCollection;
     FlexibleSamplingPlan[] value?;
 };
+
+public type QualityTestInstrumentTagsCollection record {
+    *ODataCollection;
+    QualityTestInstrumentTag[] value?;
+};
+
+public type QualitySampleAssociationProcedure record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    TableGroupAll AssociationItemCode?;
+    string AssociationItemRelation?;
+    string SampleProcedureId?;
+};
+
+public type CaseStatus "None"|"Planned"|"InProcess"|"Closed"|"Cancelled";
+
+# Represents the Queries record for the operation: listFlexibleSamplingPlans
+public type ListFlexibleSamplingPlansQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type NoYes "No"|"Yes";
 
 # Represents the Queries record for the operation: getQualitySampleAuditLogs
 public type GetQualitySampleAuditLogsQueries record {
@@ -3374,6 +2572,34 @@ public type DeleteQualitySampleTypeStateAssignmentsHeaders record {
 public type DeleteCAPAWorkerGroupAssignmentsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listQualitySampleAssociations
+public type ListQualitySampleAssociationsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type SMALogStatus "None"|"Open"|"Closed"|"Cancel";
@@ -3420,6 +2646,23 @@ public type GetAQLDefectTypesQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: updateQualityOrderPriorities
+public type UpdateQualityOrderPrioritiesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type QualitySampleTrackingEntriesCollection record {
+    *ODataCollection;
+    QualitySampleTrackingEntry[] value?;
+};
+
+# Represents the Headers record for the operation: deleteQualityTestLocations
+public type DeleteQualityTestLocationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type TestInstrumentCalibrationGroup record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -3435,7 +2678,17 @@ public type TestInstrumentCalibrationGroup record {
     int:Signed32 UsageCountCalibrationTrigger?;
 };
 
-public type CustAccountStatement "Always"|"Quarter"|"Biannually"|"Yearly"|"Never";
+# Represents the Headers record for the operation: updateQualityTestGroupTestAssignmentTestPlans
+public type UpdateQualityTestGroupTestAssignmentTestPlansHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteNonConformanceDiagnosticGroupDiagnosticAssignments
+public type DeleteNonConformanceDiagnosticGroupDiagnosticAssignmentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
 
 # Represents the Headers record for the operation: updateNonConformanceOperationGroups
 public type UpdateNonConformanceOperationGroupsHeaders record {
@@ -3448,6 +2701,34 @@ public type GetCAPASourcesQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listQualityGroupItemAssignments
+public type ListQualityGroupItemAssignmentsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -3471,6 +2752,12 @@ public type GetNonConformanceWorkGroupsQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteCAPARootCauses
+public type DeleteCAPARootCausesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: listAQLIndexes
@@ -3499,6 +2786,58 @@ public type ListAQLIndexesQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Queries record for the operation: listAQLInspectionLevels
+public type ListAQLInspectionLevelsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type CAPACaseAssociationDimension record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string CaseId?;
+    string ItemNumber?;
+    string InventorySiteId?;
+    string ItemBatchNumber?;
+    string ProductConfigurationId?;
+    string LicensePlateNumber?;
+    string InventoryOwnerId?;
+    string ProductSizeId?;
+    string ImpactedCatchWeightUnitId?;
+    decimal ImpactedCatchWeightQuantity?;
+    string ProductColorId?;
+    string InventoryStatusId?;
+    string ProductVersionId?;
+    string ProductStyleId?;
+    string WarehouseLocationId?;
+    string InventoryWarehouseId?;
+    decimal ImpactedQuantity?;
+    string ItemSerialNumber?;
+    string ImpactedUnitId?;
 };
 
 public type QualityTestInstrumentTag record {
@@ -3576,6 +2915,11 @@ public type ListQualitySampleAuditLogsQueries record {
     string selectFields?;
 };
 
+public type ApprovedCustomerGroupsCollection record {
+    *ODataCollection;
+    ApprovedCustomerGroup[] value?;
+};
+
 # Represents the Queries record for the operation: listQualitySampleTypeStateAssignments
 public type ListQualitySampleTypeStateAssignmentsQueries record {
     # Number of records to skip.
@@ -3604,16 +2948,6 @@ public type ListQualitySampleTypeStateAssignmentsQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: getReturnDispositionCodes
-public type GetReturnDispositionCodesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
 # Standard OData collection envelope.
 public type ODataCollection record {
     string \@odata\.context?;
@@ -3621,10 +2955,26 @@ public type ODataCollection record {
     string \@odata\.nextLink?;
 };
 
+# Represents the Headers record for the operation: deleteApprovedItemGroups
+public type DeleteApprovedItemGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: deleteNonConformanceOperationGroupOperationCategoryAssignments
 public type DeleteNonConformanceOperationGroupOperationCategoryAssignmentsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getQualitySampleAssociations
+public type GetQualitySampleAssociationsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type ApprovedCustomerGroup record {
@@ -3640,35 +2990,37 @@ public type DeleteQualityOrderHeadersHeaders record {
     string If\-Match?;
 };
 
-# Represents the Queries record for the operation: listBillOfMaterialsLinesV3
-public type ListBillOfMaterialsLinesV3Queries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
+# Represents the Headers record for the operation: deleteQualityOrderLineResults
+public type DeleteQualityOrderLineResultsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type AQLDefectType record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string DefectTypeId?;
+    QMSAQLDefectCategory DefectCategory?;
+    string DefectDescription?;
+};
+
+# Represents the Headers record for the operation: updateCAPACaseAssociationDimensions
+public type UpdateCAPACaseAssociationDimensionsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getNonConformanceDiagnosticGroups
+public type GetNonConformanceDiagnosticGroupsQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
 };
 
-public type EFDocPresenceType_BR "DoesNotApply"|"InPerson"|"Internet"|"Telesales"|"InPersonOut"|"Others";
+public type QMSLabelPrintDensity "Six"|"Eight"|"Twelve"|"TwentyFour";
 
 public type QualityTestGroupsCollection record {
     *ODataCollection;
@@ -3692,6 +3044,21 @@ public type NonConformanceWorkGroup record {
     string GroupDescription?;
 };
 
+public type QualityTestDepartment record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string DepartmentName?;
+    string DepartmentDescription?;
+};
+
+public type QMSCalibrationPeriod "None"|"Day"|"Month"|"Year";
+
+# Represents the Headers record for the operation: deleteQualitySampleProcedures
+public type DeleteQualitySampleProceduresHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: deleteQualityTestGroups
 public type DeleteQualityTestGroupsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -3706,6 +3073,16 @@ public type CAPAUserDefinedSubCategory record {
     string SubCategoryDescription?;
 };
 
+# Represents the Queries record for the operation: getNonConformanceOperationGroupOperationCategoryAssignments
+public type GetNonConformanceOperationGroupOperationCategoryAssignmentsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type QMSCalibrationMethod "None"|"Manual"|"Usage"|"Periodic";
 
 public type TestInstrumentCalibrationProcedure record {
@@ -3717,10 +3094,53 @@ public type TestInstrumentCalibrationProcedure record {
     string ExternalCalibratingVendorAccountNumber?;
 };
 
+# Represents the Headers record for the operation: deleteQualitySampleLabelLayouts
+public type DeleteQualitySampleLabelLayoutsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type QualitySampleProcedureTypesCollection record {
+    *ODataCollection;
+    QualitySampleProcedureType[] value?;
+};
+
+# Represents the Queries record for the operation: getCAPATypes
+public type GetCAPATypesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getQualitySampleAssociationProcedures
+public type GetQualitySampleAssociationProceduresQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type CAPACaseAssociationDimensionsCollection record {
     *ODataCollection;
     CAPACaseAssociationDimension[] value?;
 };
+
+# Represents the Queries record for the operation: getQualitySampleLabelLayouts
+public type GetQualitySampleLabelLayoutsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type DocuRestriction "Internal"|"External";
 
 public type QualitySampleProceduresCollection record {
     *ODataCollection;
@@ -3749,319 +3169,6 @@ public type UpdateCAPASourcesHeaders record {
     string If\-Match?;
 };
 
-public type CustomerV3 record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string CustomerAccount?;
-    string AddressBrazilianCNPJOrCPF?;
-    string PartyType?;
-    string PrimaryContactFaxExtension?;
-    NoYes IsFuelSurchargeApplied?;
-    string SalesTaxGroup?;
-    string AddressCountryRegionId?;
-    string ContactPersonId?;
-    string CustomerPaymentFineCode?;
-    string BirthCountyCode?;
-    InvoiceOrderAccount InvoiceAddress?;
-    string PackingMaterialFeeLicenseNumber?;
-    EFDocPresenceType_BR TransactionPresenceType?;
-    string PrimaryContactTwitter?;
-    NoYes PrimaryContactEmailIsIM?;
-    string InvoiceAddressCity?;
-    NoYes IsFinalUser?;
-    string PrimaryContactEmail?;
-    string DeliveryAddressCounty?;
-    NoYes HasSuframaDiscountPISandCOFINS?;
-    string InvoiceAddressStreet?;
-    string CURPNumber?;
-    string PrimaryContactLinkedInDescription?;
-    string DeliveryAddressCountryRegionId?;
-    string ItemCustomerGroupId?;
-    string PersonProfessionalTitle?;
-    string SalesSegmentId?;
-    NoYes IsServiceDeliveryAddressBased?;
-    string PrimaryContactTelexDescription?;
-    string InvoiceAddressDistrictName?;
-    Timezone InvoiceAddressTimeZone?;
-    string SalesAccountNumber?;
-    string PrimaryContactFacebookDescription?;
-    NoYes PrimaryContactPhoneIsMobile?;
-    int PrimaryContactFaxRecordId?;
-    string TCSGroup?;
-    string DeliveryAddressLocationId?;
-    NoYes InterCompanyAutoCreateOrders?;
-    string AddressZipCode?;
-    PaymentStub GiroTypeProjInvoice?;
-    string LineOfBusinessId?;
-    string OrganizationPhoneticName?;
-    CreditCardCVC CreditCardCVC?;
-    string DeliveryAddressCountryRegionISOCode?;
-    string DeliveryAddressValidFrom?;
-    PaymentStub GiroTypeAccountStatement?;
-    NoYes CalculateWithholdingTax?;
-    string ElectronicInvoiceEAN?;
-    string DeliveryFreightZone?;
-    string PrimaryContactFax?;
-    string TaxExemptNumber?;
-    string DeliveryAddressDescription?;
-    decimal DeliveryAddressLongitude?;
-    string BirthPlace?;
-    string AddressCity?;
-    string PersonInitials?;
-    string DefaultECommerceOperator?;
-    string CentralBankPurposeCode?;
-    PaymentStub GiroTypeCollectionletter?;
-    string FullPrimaryAddress?;
-    string OrderEntryDeadline?;
-    string ForeignerId?;
-    NoYes WarehouseIsASNGenerated?;
-    decimal AddressLongitude?;
-    CustomerType_IN CustomerType?;
-    string PrimaryContactLinkedIn?;
-    string PrimaryContactURL?;
-    NoYes IsFreightAccrued?;
-    string PartyState?;
-    string PartyNumber?;
-    string InvoiceAccount?;
-    string CentralBankPurposeNotes?;
-    string AddressBuildingComplement?;
-    string CollectionsContactPersonId?;
-    DirPersonMaritalStatus PersonMaritalStatus?;
-    string AddressLocationId?;
-    string PaymentSchedule?;
-    string PrimaryContactTwitterPurpose?;
-    PaymentStub GiroType?;
-    string InvoiceAddressDescription?;
-    string AddressDistrictName?;
-    string DeliveryTerms?;
-    string NumberSequenceGroup?;
-    string PersonChildrenNames?;
-    string PaymentMethod?;
-    NoYes ForeignResident?;
-    string DeliveryMode?;
-    string PersonProfessionalSuffix?;
-    CustVendorBlocked OnHoldStatus?;
-    string WarehouseId?;
-    CustAccountStatement AccountStatement?;
-    string DestinationCode?;
-    NoYes EInvoiceRegister?;
-    NoYes IRS1099CIndicator?;
-    string FrenchSiret?;
-    string PaymentDay?;
-    string BrazilianNIT?;
-    FederalNonFederalIndicatorCode FederalIndicator?;
-    string EmployeeResponsibleNumber?;
-    int:Signed32 PersonAnniversaryYear?;
-    string DefaultInventoryStatusId?;
-    string PrimaryContactEmailDescription?;
-    Timezone AddressTimeZone?;
-    string PrimaryContactPhone?;
-    int PrimaryContactPhoneRecordId?;
-    string DeliveryAddressCity?;
-    string InvoiceAddressCounty?;
-    string PANReferenceNumber?;
-    string DeliveryAddressStreet?;
-    string SalesCurrencyCode?;
-    MCRSOAllocPriority Priority?;
-    NoYes IsSalesTaxIncludedInPrices?;
-    string BrazilianCNPJOrCPF?;
-    string PaymentFactoringAccount?;
-    string PANNumber?;
-    string PrimaryContactTwitterDescription?;
-    string PersonFirstName?;
-    string BrazilianCCM?;
-    string ReceiptEmail?;
-    string TDSGroup?;
-    string MultiLineDiscountCode?;
-    int:Signed32 PersonAnniversaryDay?;
-    string DefaultDimensionDisplayValue?;
-    string SupplementaryItemGroupId?;
-    NoYes IsWithholdingTaxCalculated?;
-    string PaymentSpecification?;
-    int AddressRecordId?;
-    string AddressBooks?;
-    string PrimaryContactEmailPurpose?;
-    string FulfillmentPolicyName?;
-    string SalesDistrict?;
-    int:Signed32 ConsolidationDay?;
-    NoYes IsExpressBillOfLadingAccepted?;
-    CreditCardAddressVerification CreditCardAddressVerification?;
-    string InvoiceAddressBuildingComplement?;
-    string AddressState?;
-    NoYes AllowOnAccount?;
-    NoYes IsExcludedFromCollectionFeeCalculation?;
-    string CustomerPaymentFinancialInterestCode?;
-    NoYes IsTransactionPostedAsShipment?;
-    NoYes IsExternallyMaintained?;
-    NoYes CreditLimitIsMandatory?;
-    int:Signed32 PaymentTermsBaseDays?;
-    string FiscalCode?;
-    string KnownAs?;
-    string PrimaryContactTelex?;
-    string PaymentBankAccount?;
-    string BrazilianIE?;
-    int PrimaryContactEmailRecordId?;
-    NoYes PreferentialCustomer?;
-    RetailReceiptOptionBase ReceiptOption?;
-    string AddressBrazilianIE?;
-    MonthsOfYear PersonAnniversaryMonth?;
-    string PrimaryContactPhoneExtension?;
-    string InvoiceAddressStreetNumber?;
-    string PrimaryContactPhonePurpose?;
-    NoYes ExportSale?;
-    string OrganizationNumber?;
-    SalesInvoicePostingType_RU InvoicePostingType?;
-    NoYes CreditCardAddressVerificationIsAuthorizationVoidedOnFailure?;
-    string InvoiceAddressState?;
-    string ReceiptCalendar?;
-    string DeliveryAddressState?;
-    string StateInscription?;
-    string PersonLastNamePrefix?;
-    string SalesReturnTaxGroup?;
-    string PrimaryContactURLDescription?;
-    CustWhtContributionType_BR CustomerWithholdingContributionType?;
-    NoYes IsElectronicInvoice?;
-    string FederalAgencyLocationCode?;
-    PaymentStub GiroTypeFreeTextInvoice?;
-    string DeliveryAddressValidTo?;
-    string PersonPhoneticMiddleName?;
-    ABC OrganizationABCCode?;
-    string BrazilianCNAE?;
-    string WithholdingTaxGroupCode?;
-    string NAFCode?;
-    decimal AddressLatitude?;
-    string TotalDiscountCode?;
-    string PaymentCashDiscount?;
-    string AddressLocationRoles?;
-    string DeliveryAddressDistrictName?;
-    CustCollectionLetterCode CollectionLetterCode?;
-    NoYes EInvoiceAttachment?;
-    string MerchantID?;
-    string CreditRating?;
-    string PrimaryContactFacebook?;
-    string DeliveryAddressBuildingComplement?;
-    string DeliveryAddressStreetNumber?;
-    decimal InvoiceAddressLongitude?;
-    string LineDiscountCode?;
-    string PartyCountry?;
-    decimal InvoiceAddressLatitude?;
-    NoYes IsInSuframaRegion?;
-    NoYes IsIncomingFiscalDocumentGenerated?;
-    string SalesMemo?;
-    string ReliefGroupId?;
-    NoYes IsExcludedFromInterestChargeCalculation?;
-    string StatisticsGroupId?;
-    string SalesOrderPoolId?;
-    string OrganizationName?;
-    NoYes IsOrderNumberReferenceUsed?;
-    string CustClassificationId?;
-    string AddressValidTo?;
-    string FederalComments?;
-    Gender PersonGender?;
-    string PaymentTerms?;
-    string PrimaryContactPhoneDescription?;
-    string AddressPostbox?;
-    string SalesSubsegmentId?;
-    string CustomerRebateGroupId?;
-    string WarehouseOutboundShipmentProcessingPolicyName?;
-    string AddressCounty?;
-    int PrimaryContactURLRecordId?;
-    NoYes IsICMSContributor?;
-    string InvoiceAddressValidTo?;
-    Timezone DeliveryAddressTimeZone?;
-    string InvoiceAddressValidFrom?;
-    decimal CreditLimit?;
-    CreditCardAddressVerificationLevel CreditCardAddressVerificationLevel?;
-    NoYes WarehouseIsEntireShipmentFilled?;
-    string PackingDutyLicense?;
-    string NationalRegistryNumber?;
-    string SiteId?;
-    string InvoiceAddressCountryRegionISOCode?;
-    NoYes IsAllowCreateIndirectOrderLines?;
-    string PrimaryContactURLPurpose?;
-    string ChargesGroupId?;
-    PANStatus_IN PanStatus?;
-    string CommissionSalesGroupId?;
-    string NameAlias?;
-    string PrimaryContactFaxPurpose?;
-    string AddressStreetNumber?;
-    string PersonLastName?;
-    string PaymentIdType?;
-    string VendorAccount?;
-    string AddressCountryRegionISOCode?;
-    string ResidenceForeignCountryRegionId?;
-    string RFCNumber?;
-    string PersonHobbies?;
-    string ElectronicLocationId?;
-    string InvoiceAddressZipCode?;
-    string PrimaryContactLinkedInPurpose?;
-    NoYes IsOneTimeCustomer?;
-    NoYes ForeignCustomer?;
-    string CustomerTMAGroupId?;
-    string AddressValidFrom?;
-    int:Signed32 OrganizationNumberOfEmployees?;
-    CompanyType_MX CompanyType?;
-    string CustomerGroupId?;
-    PaymentStub GiroTypeInterestNote?;
-    string DeliveryAddressZipCode?;
-    string DeliveryReason?;
-    string TaxRegistrationId?;
-    UseCashDisc PaymentUseCashDiscount?;
-    string DiscountPriceGroupId?;
-    string AddressDescription?;
-    string SuframaNumber?;
-    string IdentificationNumber?;
-    string AuthorityOffice?;
-    string PersonPhoneticFirstName?;
-    string PrimaryContactTelexPurpose?;
-    decimal DeliveryAddressLatitude?;
-    string InvoiceAddressCountryRegionId?;
-    string PrimaryContactFacebookPurpose?;
-    string CompanyChain?;
-    NoYes OverrideSalesTax?;
-    string BrazilianINSSCEI?;
-    string CommissionCustomerGroupId?;
-    string PrimaryContactFaxDescription?;
-    NatureOfAssessee_IN NatureOfAssessee?;
-    string WriteoffReason?;
-    string PersonMiddleName?;
-    string InvoiceAddressLocationId?;
-    string PersonPhoneticLastName?;
-    string LanguageId?;
-    NoYes IsPurchRequestUsed?;
-    string AddressStreet?;
-    NoYes IsPublicSector_IT?;
-    string SATRegistrationName_MX?;
-    string TaxRegimeCode_MX?;
-    NoYes CFDITemporaryExport_MX?;
-    NoYes IsSimplifiedPrimaryAddress?;
-    NoYes IsSimplifiedDeliveryAddress?;
-    NoYes IsSimplifiedInvoiceAddress?;
-    string CredManEligibleCreditLimitCurrency?;
-    decimal CredManCustCreditMaxAlt?;
-    string CredManStatusReasonId?;
-    decimal CredManEligibleCreditMax?;
-    NoYes CredManCustUnlimitedCredit?;
-    string CredManEligibleCreditLimitDate?;
-    NoYes CredManWithAgency?;
-    string CredManCreditLimitDate?;
-    string CredManNextSchedReviewDate?;
-    string CredManLastReviewDate?;
-    string CredManCustomerSince?;
-    NoYes CredManTitleHeld?;
-    NoYes CredManExclude?;
-    string CredManBusinessStarted?;
-    string CredManNotes?;
-    string CredManCollectionGroupId?;
-    string CredManGroupId?;
-    string CredManAccountStatusId?;
-    string CredManCreditLimitExpiryDate?;
-    string QMSApprovedCustomerGroupId?;
-    NoYes QMSWillPrintCustomerSpecificCertificateOfAnalysis?;
-    string QMSCertificateOfAnalysisCustomerGroupId?;
-    QMSCustomerCheckItem QMSApprovedCustomerListCheckMethod?;
-};
-
 public type QualitySampleTypeStateAssignment record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -4088,8 +3195,29 @@ public type QualityTestGroupTestAssignmentTestPlan record {
     string TestEffectiveDateTime?;
 };
 
+# Represents the Queries record for the operation: getApprovedCustomerGroups
+public type GetApprovedCustomerGroupsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type QualitySampleTypeStateAssignmentsCollection record {
+    *ODataCollection;
+    QualitySampleTypeStateAssignment[] value?;
+};
+
 # Represents the Headers record for the operation: updateQualitySampleTrackingEntries
 public type UpdateQualitySampleTrackingEntriesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteQualityTestVariableOutcomes
+public type DeleteQualityTestVariableOutcomesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -4097,6 +3225,12 @@ public type UpdateQualitySampleTrackingEntriesHeaders record {
 public type CAPACategoriesCollection record {
     *ODataCollection;
     CAPACategory[] value?;
+};
+
+# Represents the Headers record for the operation: deleteQualitySampleLifecycleStates
+public type DeleteQualitySampleLifecycleStatesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Headers record for the operation: updateCAPAWorkerGroups
@@ -4166,7 +3300,7 @@ public type ListCAPAWorkerGroupAssignmentsQueries record {
     string selectFields?;
 };
 
-public type BOMRoundUp "No"|"Qty"|"MeasureConfig"|"Consumption";
+public type smmShowTimeAs "Free"|"Tentative"|"Busy"|"OutOfOffice";
 
 public type CAPACasesCollection record {
     *ODataCollection;
@@ -4210,10 +3344,20 @@ public type ListQualitySampleTrackingEntriesQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: getQualityOrderPriorities
+public type GetQualityOrderPrioritiesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type NoYesCombo "No"|"Yes";
 
-# Represents the Queries record for the operation: listCustomersV3
-public type ListCustomersV3Queries record {
+# Represents the Queries record for the operation: listCAPACases
+public type ListCAPACasesQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -4240,6 +3384,68 @@ public type ListCustomersV3Queries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: listQualitySampleTypes
+public type ListQualitySampleTypesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listQualityTestMeasuringDevices
+public type ListQualityTestMeasuringDevicesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateCAPARootCauses
+public type UpdateCAPARootCausesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type QualityOrderLineResult record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -4259,6 +3465,17 @@ public type QualityOrderLineResult record {
     string QMSResultNote?;
     int:Signed32 QMSAQLDefectQuantity?;
     decimal QMSAQLSampleTestQuantity?;
+};
+
+public type QualityTestGroupTestAssignmentCertificateOfAnalysisCustomerRequirementsCollection record {
+    *ODataCollection;
+    QualityTestGroupTestAssignmentCertificateOfAnalysisCustomerRequirement[] value?;
+};
+
+# Represents the Headers record for the operation: deleteCAPACaseAssociationDimensions
+public type DeleteCAPACaseAssociationDimensionsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: listQualitySamples
@@ -4300,10 +3517,30 @@ public type QualityTestLocationsCollection record {
     QualityTestLocation[] value?;
 };
 
+public type NonConformanceOperationGroupOperationCategoryAssignmentsCollection record {
+    *ODataCollection;
+    NonConformanceOperationGroupOperationCategoryAssignment[] value?;
+};
+
+# Represents the Queries record for the operation: getQualitySampleTrackingEntries
+public type GetQualitySampleTrackingEntriesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: updateNonConformanceDiagnosticGroupDiagnosticAssignments
 public type UpdateNonConformanceDiagnosticGroupDiagnosticAssignmentsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type QualityTestGroupTestAssignmentTestPlansCollection record {
+    *ODataCollection;
+    QualityTestGroupTestAssignmentTestPlan[] value?;
 };
 
 # Represents the Headers record for the operation: updateCAPAResolutionTypes
@@ -4318,16 +3555,76 @@ public type DeleteCAPAProcessTemplateNodesHeaders record {
     string If\-Match?;
 };
 
+# Represents the Headers record for the operation: deleteCAPASources
+public type DeleteCAPASourcesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: deleteFlexibleSamplingPlans
 public type DeleteFlexibleSamplingPlansHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
+# Represents the Queries record for the operation: getApprovedItemGroups
+public type GetApprovedItemGroupsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type TestInstrumentCalibrationProceduresCollection record {
+    *ODataCollection;
+    TestInstrumentCalibrationProcedure[] value?;
+};
+
+public type QualitySampleAuditLog record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SampleId?;
+    decimal LineNumber?;
+    string ChangeFromValue?;
+    string ChangeToValue?;
+    QMSSampleEventType SampleEventType?;
+    string AuditReference?;
+};
+
 # Represents the Headers record for the operation: updateQualityTestVariableOutcomes
 public type UpdateQualityTestVariableOutcomesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type ApprovedItemGroup record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string GroupId?;
+    string GroupDescription?;
+};
+
+# Represents the Queries record for the operation: getTestInstrumentCalibrationProcedures
+public type GetTestInstrumentCalibrationProceduresQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteQualityTestDepartments
+public type DeleteQualityTestDepartmentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type CertificateOfAnalysisCustomerGroupCustomerAssignmentsCollection record {
+    *ODataCollection;
+    CertificateOfAnalysisCustomerGroupCustomerAssignment[] value?;
 };
 
 public type QualityTestMeasuringDevice record {
@@ -4345,10 +3642,20 @@ public type DeleteQualitySampleTypesHeaders record {
     string If\-Match?;
 };
 
+public type NonConformanceWorkGroupsCollection record {
+    *ODataCollection;
+    NonConformanceWorkGroup[] value?;
+};
+
 # Represents the Headers record for the operation: updateFlexibleSamplingPlans
 public type UpdateFlexibleSamplingPlansHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type QualitySampleLifecycleStatesCollection record {
+    *ODataCollection;
+    QualitySampleLifecycleState[] value?;
 };
 
 public type CAPAWorkerGroupAssignmentsCollection record {
@@ -4357,6 +3664,12 @@ public type CAPAWorkerGroupAssignmentsCollection record {
 };
 
 public type QMSNoYesInherit "Inherit"|"No"|"Yes";
+
+# Represents the Headers record for the operation: updateNonConformanceWorkGroups
+public type UpdateNonConformanceWorkGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
 
 # Represents the Headers record for the operation: updateQualityOrderLineCertificateOfAnalysisCustomerRequirements
 public type UpdateQualityOrderLineCertificateOfAnalysisCustomerRequirementsHeaders record {
@@ -4392,68 +3705,28 @@ public type DeleteQualityTestGroupTestAssignmentCertificateOfAnalysisCustomerReq
     string If\-Match?;
 };
 
-public type BillOfMaterialsLineV3 record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string BOMId?;
-    int:Signed32 LineCreationSequenceNumber?;
-    string ProductConfigurationId?;
-    int:Signed32 SubstitutionPriority?;
-    string PositionNumber?;
-    BOMFormula ConsumptionCalculationMethod?;
-    NoYes IsConsumedAtOperationComplete?;
-    decimal LineNumber?;
-    decimal ConsumptionCalculationConstant?;
-    string ProductSizeId?;
-    string ItemNumber?;
-    string ProductVersionId?;
-    string ConsumptionWarehouseId?;
-    string ValidFromDate?;
-    string ConsumptionSiteId?;
-    NoYes WillCostCalculationIncludeLine?;
-    string SubBOMId?;
-    boolean IsResourceConsumptionUsed?;
-    NoYes WillManufacturedItemInheritBatchAttributes?;
-    string ProductUnitSymbol?;
-    string SubstitutionGroupId?;
-    BOMType LineType?;
-    decimal QuantityRoundingUpMultiples?;
-    decimal PhysicalProductDepth?;
-    decimal PhysicalProductHeight?;
-    decimal VariableScrapPercentage?;
-    string ValidToDate?;
-    decimal PhysicalProductDensity?;
-    BOMRoundUp RoundingUpMethod?;
-    BOMConsumpType ConsumptionType?;
-    NoYes WillManufacturedItemInheritShelfLifeDates?;
-    BomWHSReleasePolicy WarehouseBomReleaseReservationRequirementRule?;
-    decimal MaterialOverpickPercentage?;
-    decimal QuantityDenominator?;
-    ProdFlushingPrincipBOM FlushingPrinciple?;
-    string VendorAccountNumber?;
-    string ProductColorId?;
-    decimal CatchWeightQuantity?;
-    decimal PhysicalProductWidth?;
-    int:Signed32 RouteOperationNumber?;
-    string ConfigurationGroupId?;
-    decimal ConstantScrapQuantity?;
-    string ProductStyleId?;
-    decimal Quantity?;
-    string SubRouteId?;
-    NoYes QMSAllowOverDispensing?;
-    decimal QMSUnderDispensePercentage?;
-    decimal QMSOverDispensePercentage?;
-};
-
 # Represents the Headers record for the operation: updateCAPATypes
 public type UpdateCAPATypesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-public type ReturnDispositionCodesCollection record {
-    *ODataCollection;
-    ReturnDispositionCode[] value?;
+# Represents the Headers record for the operation: updateAQLDefectTypes
+public type UpdateAQLDefectTypesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateApprovedCustomerGroups
+public type UpdateApprovedCustomerGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteQualitySampleAuditLogs
+public type DeleteQualitySampleAuditLogsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: getQualitySampleProcedures
@@ -4472,17 +3745,67 @@ public type DeleteCAPAResolutionTypesHeaders record {
     string If\-Match?;
 };
 
-public type ReturnDispositionCode record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string DispositionCode?;
-    string DispositionDescription?;
-    DispositionAction DispositionAction?;
-    string KittingDispositionCodeId?;
-    NoYes QMSMustCheckQualityAssociation?;
+# Represents the Headers record for the operation: deleteQualityOrderLineCertificateOfAnalysisCustomerRequirements
+public type DeleteQualityOrderLineCertificateOfAnalysisCustomerRequirementsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
-public type CustVendorBlocked "No"|"Invoice"|"All"|"Payment"|"Requisition"|"Never"|"PurchOrder";
+# Represents the Queries record for the operation: listQualitySampleLifecycleStates
+public type ListQualitySampleLifecycleStatesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateQualitySampleLabelLayouts
+public type UpdateQualitySampleLabelLayoutsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateNonConformanceDiagnosticGroups
+public type UpdateNonConformanceDiagnosticGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateTestInstrumentCalibrationProcedures
+public type UpdateTestInstrumentCalibrationProceduresHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type FlexibleSamplingPlan record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string PlanCode?;
+    string PlanDescription?;
+    string AlertSecurityRoleName?;
+    NoYes IsPlanApproved?;
+    int:Signed32 PlanLastLevel?;
+};
 
 public type AQLDefectTypesCollection record {
     *ODataCollection;
@@ -4501,6 +3824,29 @@ public type GetQualitySampleLifecycleStatesQueries record {
 
 # Represents the Headers record for the operation: deleteTestInstrumentCalibrationProcedures
 public type DeleteTestInstrumentCalibrationProceduresHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type NonConformanceOperationGroup record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string GroupId?;
+    string GroupDescription?;
+};
+
+# Represents the Queries record for the operation: getQualityTestMeasuringDevices
+public type GetQualityTestMeasuringDevicesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteNonConformanceRootCauses
+public type DeleteNonConformanceRootCausesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };

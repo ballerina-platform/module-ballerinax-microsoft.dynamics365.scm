@@ -19,18 +19,245 @@
 
 import ballerina/data.jsondata;
 import ballerina/http;
+import ballerinax/microsoft.dynamics365.scm.common as d365;
 
 # Ballerina connector module for the 'bom' slice of the Microsoft Dynamics 365 Supply Chain Management OData REST API.
 public isolated client class Client {
     final http:Client clientEp;
     # Gets invoked to initialize the `connector`.
     #
-    # + config - The configurations to be used when initializing the `connector` 
-    # + serviceUrl - URL of the target service 
-    # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://your-org.operations.dynamics.com/data") returns error? {
-        http:ClientConfiguration httpClientConfig = {auth: config.auth, httpVersion: config.httpVersion, http1Settings: config.http1Settings, http2Settings: config.http2Settings, timeout: config.timeout, forwarded: config.forwarded, followRedirects: config.followRedirects, poolConfig: config.poolConfig, cache: config.cache, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, cookieConfig: config.cookieConfig, responseLimits: config.responseLimits, secureSocket: config.secureSocket, proxy: config.proxy, socketConfig: config.socketConfig, validation: config.validation, laxDataBinding: config.laxDataBinding};
-        self.clientEp = check new (serviceUrl, httpClientConfig);
+    # + conn - The shared D365 connection (built once at the top level)
+    # + return - An error if connector initialization failed
+    public isolated function init(d365:Connection conn) returns error? {
+        self.clientEp = conn.getHttpClient();
+    }
+
+    # List BillOfMaterialsHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BillOfMaterialsHeader 
+    remote isolated function listBillOfMaterialsHeaders(map<string|string[]> headers = {}, *ListBillOfMaterialsHeadersQueries queries) returns BillOfMaterialsHeadersCollection|error {
+        string resourcePath = string `/BillOfMaterialsHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BillOfMaterialsHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsHeader created 
+    remote isolated function createBillOfMaterialsHeaders(BillOfMaterialsHeader payload, map<string|string[]> headers = {}) returns BillOfMaterialsHeader|error {
+        string resourcePath = string `/BillOfMaterialsHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BillOfMaterialsHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BillOfMaterialsHeader record 
+    remote isolated function getBillOfMaterialsHeaders(string dataAreaId, string bOMId, map<string|string[]> headers = {}, *GetBillOfMaterialsHeadersQueries queries) returns BillOfMaterialsHeader|error {
+        string resourcePath = string `/BillOfMaterialsHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BillOfMaterialsHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsHeader deleted 
+    remote isolated function deleteBillOfMaterialsHeaders(string dataAreaId, string bOMId, DeleteBillOfMaterialsHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/BillOfMaterialsHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BillOfMaterialsHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsHeader updated 
+    remote isolated function updateBillOfMaterialsHeaders(string dataAreaId, string bOMId, BillOfMaterialsHeader payload, UpdateBillOfMaterialsHeadersHeaders headers = {}) returns BillOfMaterialsHeader|error {
+        string resourcePath = string `/BillOfMaterialsHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List BillOfMaterialsLines
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BillOfMaterialsLine 
+    remote isolated function listBillOfMaterialsLines(map<string|string[]> headers = {}, *ListBillOfMaterialsLinesQueries queries) returns BillOfMaterialsLinesCollection|error {
+        string resourcePath = string `/BillOfMaterialsLines`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BillOfMaterialsLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsLine created 
+    remote isolated function createBillOfMaterialsLines(BillOfMaterialsLine payload, map<string|string[]> headers = {}) returns BillOfMaterialsLine|error {
+        string resourcePath = string `/BillOfMaterialsLines`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BillOfMaterialsLine by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BillOfMaterialsLine record 
+    remote isolated function getBillOfMaterialsLines(string dataAreaId, string bOMId, decimal lineNumber, map<string|string[]> headers = {}, *GetBillOfMaterialsLinesQueries queries) returns BillOfMaterialsLine|error {
+        string resourcePath = string `/BillOfMaterialsLines(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BillOfMaterialsLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsLine deleted 
+    remote isolated function deleteBillOfMaterialsLines(string dataAreaId, string bOMId, decimal lineNumber, DeleteBillOfMaterialsLinesHeaders headers = {}) returns error? {
+        string resourcePath = string `/BillOfMaterialsLines(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BillOfMaterialsLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsLine updated 
+    remote isolated function updateBillOfMaterialsLines(string dataAreaId, string bOMId, decimal lineNumber, BillOfMaterialsLine payload, UpdateBillOfMaterialsLinesHeaders headers = {}) returns BillOfMaterialsLine|error {
+        string resourcePath = string `/BillOfMaterialsLines(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List BillOfMaterialsLinesV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BillOfMaterialsLineV2 
+    remote isolated function listBillOfMaterialsLinesV2(map<string|string[]> headers = {}, *ListBillOfMaterialsLinesV2Queries queries) returns BillOfMaterialsLinesV2Collection|error {
+        string resourcePath = string `/BillOfMaterialsLinesV2`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BillOfMaterialsLineV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsLineV2 created 
+    remote isolated function createBillOfMaterialsLinesV2(BillOfMaterialsLineV2 payload, map<string|string[]> headers = {}) returns BillOfMaterialsLineV2|error {
+        string resourcePath = string `/BillOfMaterialsLinesV2`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BillOfMaterialsLineV2 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BillOfMaterialsLineV2 record 
+    remote isolated function getBillOfMaterialsLinesV2(string dataAreaId, string bOMId, int:Signed32 lineCreationSequenceNumber, map<string|string[]> headers = {}, *GetBillOfMaterialsLinesV2Queries queries) returns BillOfMaterialsLineV2|error {
+        string resourcePath = string `/BillOfMaterialsLinesV2(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}',LineCreationSequenceNumber=${getEncodedUri(lineCreationSequenceNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BillOfMaterialsLineV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsLineV2 deleted 
+    remote isolated function deleteBillOfMaterialsLinesV2(string dataAreaId, string bOMId, int:Signed32 lineCreationSequenceNumber, DeleteBillOfMaterialsLinesV2Headers headers = {}) returns error? {
+        string resourcePath = string `/BillOfMaterialsLinesV2(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}',LineCreationSequenceNumber=${getEncodedUri(lineCreationSequenceNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BillOfMaterialsLineV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsLineV2 updated 
+    remote isolated function updateBillOfMaterialsLinesV2(string dataAreaId, string bOMId, int:Signed32 lineCreationSequenceNumber, BillOfMaterialsLineV2 payload, UpdateBillOfMaterialsLinesV2Headers headers = {}) returns BillOfMaterialsLineV2|error {
+        string resourcePath = string `/BillOfMaterialsLinesV2(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}',LineCreationSequenceNumber=${getEncodedUri(lineCreationSequenceNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List BillOfMaterialsLinesV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BillOfMaterialsLineV3 
+    remote isolated function listBillOfMaterialsLinesV3(map<string|string[]> headers = {}, *ListBillOfMaterialsLinesV3Queries queries) returns BillOfMaterialsLinesV3Collection|error {
+        string resourcePath = string `/BillOfMaterialsLinesV3`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BillOfMaterialsLineV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsLineV3 created 
+    remote isolated function createBillOfMaterialsLinesV3(BillOfMaterialsLineV3 payload, map<string|string[]> headers = {}) returns BillOfMaterialsLineV3|error {
+        string resourcePath = string `/BillOfMaterialsLinesV3`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BillOfMaterialsLineV3 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BillOfMaterialsLineV3 record 
+    remote isolated function getBillOfMaterialsLinesV3(string dataAreaId, string bOMId, int:Signed32 lineCreationSequenceNumber, map<string|string[]> headers = {}, *GetBillOfMaterialsLinesV3Queries queries) returns BillOfMaterialsLineV3|error {
+        string resourcePath = string `/BillOfMaterialsLinesV3(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}',LineCreationSequenceNumber=${getEncodedUri(lineCreationSequenceNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BillOfMaterialsLineV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsLineV3 deleted 
+    remote isolated function deleteBillOfMaterialsLinesV3(string dataAreaId, string bOMId, int:Signed32 lineCreationSequenceNumber, DeleteBillOfMaterialsLinesV3Headers headers = {}) returns error? {
+        string resourcePath = string `/BillOfMaterialsLinesV3(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}',LineCreationSequenceNumber=${getEncodedUri(lineCreationSequenceNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BillOfMaterialsLineV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsLineV3 updated 
+    remote isolated function updateBillOfMaterialsLinesV3(string dataAreaId, string bOMId, int:Signed32 lineCreationSequenceNumber, BillOfMaterialsLineV3 payload, UpdateBillOfMaterialsLinesV3Headers headers = {}) returns BillOfMaterialsLineV3|error {
+        string resourcePath = string `/BillOfMaterialsLinesV3(dataAreaId='${getEncodedUri(dataAreaId)}',BOMId='${getEncodedUri(bOMId)}',LineCreationSequenceNumber=${getEncodedUri(lineCreationSequenceNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
     # List BillOfMaterialsVersions
@@ -90,6 +317,63 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List BillOfMaterialsVersionsODataV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BillOfMaterialsVersionODataV2 
+    remote isolated function listBillOfMaterialsVersionsODataV2(map<string|string[]> headers = {}, *ListBillOfMaterialsVersionsODataV2Queries queries) returns BillOfMaterialsVersionsODataV2Collection|error {
+        string resourcePath = string `/BillOfMaterialsVersionsODataV2`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BillOfMaterialsVersionODataV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsVersionODataV2 created 
+    remote isolated function createBillOfMaterialsVersionsODataV2(BillOfMaterialsVersionODataV2 payload, map<string|string[]> headers = {}) returns BillOfMaterialsVersionODataV2|error {
+        string resourcePath = string `/BillOfMaterialsVersionsODataV2`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BillOfMaterialsVersionODataV2 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BillOfMaterialsVersionODataV2 record 
+    remote isolated function getBillOfMaterialsVersionsODataV2(string dataAreaId, string manufacturedItemNumber, string bOMId, string productionSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, int:Signed32 isActive, string validFromDate, decimal fromQuantity, map<string|string[]> headers = {}, *GetBillOfMaterialsVersionsODataV2Queries queries) returns BillOfMaterialsVersionODataV2|error {
+        string resourcePath = string `/BillOfMaterialsVersionsODataV2(dataAreaId='${getEncodedUri(dataAreaId)}',ManufacturedItemNumber='${getEncodedUri(manufacturedItemNumber)}',BOMId='${getEncodedUri(bOMId)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive=${getEncodedUri(isActive)},ValidFromDate=${getEncodedUri(validFromDate)},FromQuantity=${getEncodedUri(fromQuantity)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BillOfMaterialsVersionODataV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsVersionODataV2 deleted 
+    remote isolated function deleteBillOfMaterialsVersionsODataV2(string dataAreaId, string manufacturedItemNumber, string bOMId, string productionSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, int:Signed32 isActive, string validFromDate, decimal fromQuantity, DeleteBillOfMaterialsVersionsODataV2Headers headers = {}) returns error? {
+        string resourcePath = string `/BillOfMaterialsVersionsODataV2(dataAreaId='${getEncodedUri(dataAreaId)}',ManufacturedItemNumber='${getEncodedUri(manufacturedItemNumber)}',BOMId='${getEncodedUri(bOMId)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive=${getEncodedUri(isActive)},ValidFromDate=${getEncodedUri(validFromDate)},FromQuantity=${getEncodedUri(fromQuantity)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BillOfMaterialsVersionODataV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsVersionODataV2 updated 
+    remote isolated function updateBillOfMaterialsVersionsODataV2(string dataAreaId, string manufacturedItemNumber, string bOMId, string productionSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, int:Signed32 isActive, string validFromDate, decimal fromQuantity, BillOfMaterialsVersionODataV2 payload, UpdateBillOfMaterialsVersionsODataV2Headers headers = {}) returns BillOfMaterialsVersionODataV2|error {
+        string resourcePath = string `/BillOfMaterialsVersionsODataV2(dataAreaId='${getEncodedUri(dataAreaId)}',ManufacturedItemNumber='${getEncodedUri(manufacturedItemNumber)}',BOMId='${getEncodedUri(bOMId)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive=${getEncodedUri(isActive)},ValidFromDate=${getEncodedUri(validFromDate)},FromQuantity=${getEncodedUri(fromQuantity)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List BillOfMaterialsVersionsV2
     #
     # + headers - Headers to be sent with the request 
@@ -140,6 +424,120 @@ public isolated client class Client {
     # + return - BillOfMaterialsVersionV2 updated 
     remote isolated function updateBillOfMaterialsVersionsV2(string dataAreaId, string manufacturedItemNumber, string bOMId, string productionSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string isActive, string validFromDate, decimal fromQuantity, BillOfMaterialsVersionV2 payload, UpdateBillOfMaterialsVersionsV2Headers headers = {}) returns BillOfMaterialsVersionV2|error {
         string resourcePath = string `/BillOfMaterialsVersionsV2(dataAreaId='${getEncodedUri(dataAreaId)}',ManufacturedItemNumber='${getEncodedUri(manufacturedItemNumber)}',BOMId='${getEncodedUri(bOMId)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',IsActive='${getEncodedUri(isActive)}',ValidFromDate=${getEncodedUri(validFromDate)},FromQuantity=${getEncodedUri(fromQuantity)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List BillOfMaterialsVersionsV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BillOfMaterialsVersionV3 
+    remote isolated function listBillOfMaterialsVersionsV3(map<string|string[]> headers = {}, *ListBillOfMaterialsVersionsV3Queries queries) returns BillOfMaterialsVersionsV3Collection|error {
+        string resourcePath = string `/BillOfMaterialsVersionsV3`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BillOfMaterialsVersionV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsVersionV3 created 
+    remote isolated function createBillOfMaterialsVersionsV3(BillOfMaterialsVersionV3 payload, map<string|string[]> headers = {}) returns BillOfMaterialsVersionV3|error {
+        string resourcePath = string `/BillOfMaterialsVersionsV3`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BillOfMaterialsVersionV3 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BillOfMaterialsVersionV3 record 
+    remote isolated function getBillOfMaterialsVersionsV3(string dataAreaId, string manufacturedItemNumber, string bOMId, string productionSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string isActive, string validFromDate, decimal fromQuantity, map<string|string[]> headers = {}, *GetBillOfMaterialsVersionsV3Queries queries) returns BillOfMaterialsVersionV3|error {
+        string resourcePath = string `/BillOfMaterialsVersionsV3(dataAreaId='${getEncodedUri(dataAreaId)}',ManufacturedItemNumber='${getEncodedUri(manufacturedItemNumber)}',BOMId='${getEncodedUri(bOMId)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive='${getEncodedUri(isActive)}',ValidFromDate=${getEncodedUri(validFromDate)},FromQuantity=${getEncodedUri(fromQuantity)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BillOfMaterialsVersionV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsVersionV3 deleted 
+    remote isolated function deleteBillOfMaterialsVersionsV3(string dataAreaId, string manufacturedItemNumber, string bOMId, string productionSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string isActive, string validFromDate, decimal fromQuantity, DeleteBillOfMaterialsVersionsV3Headers headers = {}) returns error? {
+        string resourcePath = string `/BillOfMaterialsVersionsV3(dataAreaId='${getEncodedUri(dataAreaId)}',ManufacturedItemNumber='${getEncodedUri(manufacturedItemNumber)}',BOMId='${getEncodedUri(bOMId)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive='${getEncodedUri(isActive)}',ValidFromDate=${getEncodedUri(validFromDate)},FromQuantity=${getEncodedUri(fromQuantity)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BillOfMaterialsVersionV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsVersionV3 updated 
+    remote isolated function updateBillOfMaterialsVersionsV3(string dataAreaId, string manufacturedItemNumber, string bOMId, string productionSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string isActive, string validFromDate, decimal fromQuantity, BillOfMaterialsVersionV3 payload, UpdateBillOfMaterialsVersionsV3Headers headers = {}) returns BillOfMaterialsVersionV3|error {
+        string resourcePath = string `/BillOfMaterialsVersionsV3(dataAreaId='${getEncodedUri(dataAreaId)}',ManufacturedItemNumber='${getEncodedUri(manufacturedItemNumber)}',BOMId='${getEncodedUri(bOMId)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive='${getEncodedUri(isActive)}',ValidFromDate=${getEncodedUri(validFromDate)},FromQuantity=${getEncodedUri(fromQuantity)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List BillOfMaterialsVersionsV4
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BillOfMaterialsVersionV4 
+    remote isolated function listBillOfMaterialsVersionsV4(map<string|string[]> headers = {}, *ListBillOfMaterialsVersionsV4Queries queries) returns BillOfMaterialsVersionsV4Collection|error {
+        string resourcePath = string `/BillOfMaterialsVersionsV4`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BillOfMaterialsVersionV4
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsVersionV4 created 
+    remote isolated function createBillOfMaterialsVersionsV4(BillOfMaterialsVersionV4 payload, map<string|string[]> headers = {}) returns BillOfMaterialsVersionV4|error {
+        string resourcePath = string `/BillOfMaterialsVersionsV4`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BillOfMaterialsVersionV4 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BillOfMaterialsVersionV4 record 
+    remote isolated function getBillOfMaterialsVersionsV4(string dataAreaId, string manufacturedItemNumber, string bOMId, string productionSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string isActive, string validFromDate, decimal fromQuantity, int:Signed32 sequenceId, map<string|string[]> headers = {}, *GetBillOfMaterialsVersionsV4Queries queries) returns BillOfMaterialsVersionV4|error {
+        string resourcePath = string `/BillOfMaterialsVersionsV4(dataAreaId='${getEncodedUri(dataAreaId)}',ManufacturedItemNumber='${getEncodedUri(manufacturedItemNumber)}',BOMId='${getEncodedUri(bOMId)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive='${getEncodedUri(isActive)}',ValidFromDate=${getEncodedUri(validFromDate)},FromQuantity=${getEncodedUri(fromQuantity)},SequenceId=${getEncodedUri(sequenceId)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BillOfMaterialsVersionV4
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsVersionV4 deleted 
+    remote isolated function deleteBillOfMaterialsVersionsV4(string dataAreaId, string manufacturedItemNumber, string bOMId, string productionSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string isActive, string validFromDate, decimal fromQuantity, int:Signed32 sequenceId, DeleteBillOfMaterialsVersionsV4Headers headers = {}) returns error? {
+        string resourcePath = string `/BillOfMaterialsVersionsV4(dataAreaId='${getEncodedUri(dataAreaId)}',ManufacturedItemNumber='${getEncodedUri(manufacturedItemNumber)}',BOMId='${getEncodedUri(bOMId)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive='${getEncodedUri(isActive)}',ValidFromDate=${getEncodedUri(validFromDate)},FromQuantity=${getEncodedUri(fromQuantity)},SequenceId=${getEncodedUri(sequenceId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BillOfMaterialsVersionV4
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BillOfMaterialsVersionV4 updated 
+    remote isolated function updateBillOfMaterialsVersionsV4(string dataAreaId, string manufacturedItemNumber, string bOMId, string productionSiteId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string productVersionId, string isActive, string validFromDate, decimal fromQuantity, int:Signed32 sequenceId, BillOfMaterialsVersionV4 payload, UpdateBillOfMaterialsVersionsV4Headers headers = {}) returns BillOfMaterialsVersionV4|error {
+        string resourcePath = string `/BillOfMaterialsVersionsV4(dataAreaId='${getEncodedUri(dataAreaId)}',ManufacturedItemNumber='${getEncodedUri(manufacturedItemNumber)}',BOMId='${getEncodedUri(bOMId)}',ProductionSiteId='${getEncodedUri(productionSiteId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',ProductVersionId='${getEncodedUri(productVersionId)}',IsActive='${getEncodedUri(isActive)}',ValidFromDate=${getEncodedUri(validFromDate)},FromQuantity=${getEncodedUri(fromQuantity)},SequenceId=${getEncodedUri(sequenceId)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);

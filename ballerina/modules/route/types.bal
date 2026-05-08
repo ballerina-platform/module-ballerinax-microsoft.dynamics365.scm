@@ -19,53 +19,26 @@
 
 import ballerina/http;
 
-# Represents the Headers record for the operation: deleteRouteOperationsV2
-public type DeleteRouteOperationsV2Headers record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-|};
-
-# Represents the Headers record for the operation: deleteRouteVersions
-public type DeleteRouteVersionsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
 
 public type RoutePendingRouteCostCategoryUnitCostsCollection record {
     *ODataCollection;
     RoutePendingRouteCostCategoryUnitCost[] value?;
 };
 
-# Represents the Headers record for the operation: updateRouteOperationsV2
-public type UpdateRouteOperationsV2Headers record {
+# Represents the Headers record for the operation: updateRouteCardProductionJournalEntries
+public type UpdateRouteCardProductionJournalEntriesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-public type RouteVersion record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    decimal ValidFromQuantity?;
-    string ValidFromDate?;
-    string RouteId?;
-    string ProductSizeId?;
-    string ProductColorId?;
-    string ProductionSiteId?;
-    string ProductConfigurationId?;
-    string ProductStyleId?;
-    string ItemNumber?;
-    int:Signed32 IsActive?;
-    string ApproverPersonnelNumber?;
-    NoYes IsApproved?;
-    string VersionName?;
-    string ValidToDate?;
+# Represents the Queries record for the operation: getRouteOperationsProperties
+public type GetRouteOperationsPropertiesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Queries record for the operation: getRouteVersions
@@ -91,6 +64,12 @@ public type RouteOperationV2 record {
     string OperationId?;
 };
 
+# Represents the Headers record for the operation: deleteRouteVersionsV2
+public type DeleteRouteVersionsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type RouteOperation record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -102,6 +81,323 @@ public type RouteOperation record {
     decimal ScrapPercentage?;
     SchedJobLinkType NextOperationAttachmentType?;
     string OperationId?;
+};
+
+public type RouteOperationPropertiesResourceRequirement record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    int RecordId?;
+    string RequiredSkillLevel?;
+    string ProductGroupId?;
+    WrkCtrType RequiredOperationsResourceType?;
+    string ProductConfigurationId?;
+    string RouteId?;
+    NoYes WillJobSchedulingUseRequirement?;
+    decimal MinimumRequiredCapabilityLevel?;
+    NoYes WillOperationSchedulingUseRequirement?;
+    string RequiredTitleId?;
+    string ItemNumber?;
+    string RequiredSkillId?;
+    string RequiredCertificateType?;
+    string RequiredCourseId?;
+    string RequiredOperationsResourceGroupId?;
+    string RouteOperationId?;
+    string ProductionSiteId?;
+    string RequiredOperationsResourceId?;
+    string RequiredCapabilityName?;
+};
+
+public type RouteHeadersCollection record {
+    *ODataCollection;
+    RouteHeader[] value?;
+};
+
+# Represents the Headers record for the operation: deleteRoutePendingRouteCostCategoryUnitCosts
+public type DeleteRoutePendingRouteCostCategoryUnitCostsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SchedJobLinkType "None"|"Soft"|"Hard";
+
+# Represents the Queries record for the operation: listRouteVersionsV2
+public type ListRouteVersionsV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+
+# Represents the Queries record for the operation: getRouteOperationsV2
+public type GetRouteOperationsV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteRouteHeaders
+public type DeleteRouteHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type RouteVersionsV2Collection record {
+    *ODataCollection;
+    RouteVersionV2[] value?;
+};
+
+public type WrkCtrType "Vendor"|"Personnel"|"Machine"|"Tool"|"Location"|"Group"|"Facility";
+
+# Represents the Queries record for the operation: getRouteCardProductionJournalEntries
+public type GetRouteCardProductionJournalEntriesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateRouteOperationPropertiesResourceRequirements
+public type UpdateRouteOperationPropertiesResourceRequirementsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteRouteOperations
+public type DeleteRouteOperationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type RouteFormula "Formula0"|"Formula1"|"Formula2"|"Formula3";
+
+# Represents the Queries record for the operation: listRouteOperationPropertiesResourceRequirements
+public type ListRouteOperationPropertiesResourceRequirementsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type RouteOprType "Standard"|"Vendor";
+
+public type RouteOprPriority "Primary"|"Secondary1"|"Secondary2"|"Secondary3"|"Secondary4"|"Secondary5"|"Secondary6"|"Secondary7"|"Secondary8"|"Secondary9"|"Secondary10"|"Secondary11"|"Secondary12"|"Secondary13"|"Secondary14"|"Secondary15"|"Secondary16"|"Secondary17"|"Secondary18"|"Secondary19"|"Secondary20";
+
+public type NoYes "No"|"Yes";
+
+# Represents the Headers record for the operation: updateRouteOperations
+public type UpdateRouteOperationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listRouteCardProductionJournalEntries
+public type ListRouteCardProductionJournalEntriesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listRouteOperationsProperties
+public type ListRouteOperationsPropertiesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteRouteOperationsV2
+public type DeleteRouteOperationsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type RouteHeader record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string RouteId?;
+    string ProductGroupId?;
+    string RouteName?;
+    string ApproverPersonnelNumber?;
+    NoYes IsApproved?;
+    string DisplayProductNumber?;
+    string EngineeringVersionId?;
+    string EngChgEngineeringReference?;
+};
+
+# Represents the Headers record for the operation: deleteRouteVersions
+public type DeleteRouteVersionsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateRouteVersionsV2
+public type UpdateRouteVersionsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type RouteCardProductionJournalEntry record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    decimal JournalLineNumber?;
+    string JournalNumber?;
+    string OperationsResourceId?;
+    string RouteOperationId?;
+    string ProductConfigurationId?;
+    decimal JobProcessingPercentage?;
+    string PostedDateTime?;
+    string ConsumptionDate?;
+    NoYes IsPosted?;
+    string ProductionSiteId?;
+    string ProductSizeId?;
+    string ProductVersionId?;
+    string JournalDescription?;
+    string ItemSerialNumber?;
+    string InventoryOwnerId?;
+    decimal HourlyCostCategoryRate?;
+    decimal QuantityCostCategoryUnitCost?;
+    string FinTagDisplayValue?;
+    RouteOprPriority RouteOperationPriority?;
+    string VoucherNumber?;
+    string JournalName?;
+    decimal ReportedGoodCatchWeightQuantity?;
+    decimal ReportedGoodInventoryQuantity?;
+    string ProductionPickingListJournalNumber?;
+    string ReceivedInventoryStatusId?;
+    string ReportAsFinishedProductionJournalNumber?;
+    string WarehouseLocationId?;
+    string ProductionOrderNumber?;
+    RouteJobType RouteJobType?;
+    NoYes WillRouteCardPostingAutomaticallyPostPickingList?;
+    NoYes WillLastOperationEndingExecuteReportAsFinished?;
+    decimal ReportedErrorCatchWeightQuantity?;
+    string HoursRouteCostCategoryId?;
+    string ItemBatchNumber?;
+    string WarehouseId?;
+    NoYes IsJobCancelled?;
+    string QuantityRouteCostCategoryId?;
+    NoYes IsOperationCompleted?;
+    string ProductColorId?;
+    decimal RegisteredHours?;
+    ProdErrorCause ErrorCause?;
+    decimal ReportedErrorInventoryQuantity?;
+    int:Signed32 RouteOperationNumber?;
+    string LicensePlateNumber?;
+    string DefaultDimensionDisplayValue?;
+    string PostedUserId?;
+    string ProductStyleId?;
+};
+
+# Represents the Headers record for the operation: updateRouteOperationsV2
+public type UpdateRouteOperationsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type RouteVersion record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    decimal ValidFromQuantity?;
+    string ValidFromDate?;
+    string RouteId?;
+    string ProductSizeId?;
+    string ProductColorId?;
+    string ProductionSiteId?;
+    string ProductConfigurationId?;
+    string ProductStyleId?;
+    string ItemNumber?;
+    int:Signed32 IsActive?;
+    string ApproverPersonnelNumber?;
+    NoYes IsApproved?;
+    string VersionName?;
+    string ValidToDate?;
 };
 
 # Represents the Queries record for the operation: listRouteVersions
@@ -132,32 +428,18 @@ public type ListRouteVersionsQueries record {
     string selectFields?;
 };
 
-public type RouteOperationPropertiesResourceRequirement record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    int RecordId?;
-    string RequiredSkillLevel?;
-    string ProductGroupId?;
-    WrkCtrType RequiredOperationsResourceType?;
-    string ProductConfigurationId?;
-    string RouteId?;
-    NoYes WillJobSchedulingUseRequirement?;
-    decimal MinimumRequiredCapabilityLevel?;
-    NoYes WillOperationSchedulingUseRequirement?;
-    string RequiredTitleId?;
-    string ItemNumber?;
-    string RequiredSkillId?;
-    string RequiredCertificateType?;
-    string RequiredCourseId?;
-    string RequiredOperationsResourceGroupId?;
-    string RouteOperationId?;
-    string ProductionSiteId?;
-    string RequiredOperationsResourceId?;
-    string RequiredCapabilityName?;
-};
+public type RouteJobType "QueueBefore"|"Setup"|"Process"|"Overlap"|"Transport"|"QueueAfter"|"Burden";
 
 # Represents the Headers record for the operation: updateRouteVersions
 public type UpdateRouteVersionsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ProdErrorCause "None"|"Material"|"Machine"|"OperatingStaff";
+
+# Represents the Headers record for the operation: updateRouteOperationsProperties
+public type UpdateRouteOperationsPropertiesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -168,71 +450,48 @@ public type UpdateRoutePendingRouteCostCategoryUnitCostsHeaders record {
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: deleteRoutePendingRouteCostCategoryUnitCosts
-public type DeleteRoutePendingRouteCostCategoryUnitCostsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
 public type RouteOperationPropertiesResourceRequirementsCollection record {
     *ODataCollection;
     RouteOperationPropertiesResourceRequirement[] value?;
 };
 
-public type SchedJobLinkType "None"|"Soft"|"Hard";
+public type RouteCardProductionJournalEntriesCollection record {
+    *ODataCollection;
+    RouteCardProductionJournalEntry[] value?;
+};
 
-# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
-@display {label: "Connection Config"}
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig|http:BearerTokenConfig auth;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
-
-# Represents the Queries record for the operation: getRouteOperationsV2
-public type GetRouteOperationsV2Queries record {
+# Represents the Queries record for the operation: listRouteHeaders
+public type ListRouteHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateRouteHeaders
+public type UpdateRouteHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: getRouteOperationPropertiesResourceRequirements
@@ -267,7 +526,36 @@ public type ODataCollection record {
     string \@odata\.nextLink?;
 };
 
-public type WrkCtrType "Vendor"|"Personnel"|"Machine"|"Tool"|"Location"|"Group"|"Facility";
+public type RouteOperationProperties record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string OperationId?;
+    string ItemNumber?;
+    string ProductConfigurationId?;
+    string RouteId?;
+    string ProductionSiteId?;
+    string ProductGroupId?;
+    decimal ProcessQuantity?;
+    string QuantityCostCategoryId?;
+    string RouteGroupId?;
+    decimal LoadPercentage?;
+    int:Signed32 ResourceQuantity?;
+    decimal OperationsTimeToHourConversionFactor?;
+    decimal SetupTime?;
+    decimal QueueTimeBefore?;
+    string CostingOperationResourceId?;
+    string WorkingTimeSchedulingPropertyId?;
+    decimal ConsumptionCalculationFactor?;
+    RouteFormula ConsumptionCalculationFormula?;
+    decimal QueueTimeAfter?;
+    decimal ProcessTime?;
+    string SetupCostCategoryId?;
+    decimal TransferBatchQuantity?;
+    RouteOprType RouteType?;
+    decimal TransitTime?;
+    string ProcessCostCategoryId?;
+    decimal DelayNotificationThresholdPercent?;
+};
 
 # Represents the Headers record for the operation: deleteRouteOperationPropertiesResourceRequirements
 public type DeleteRouteOperationPropertiesResourceRequirementsHeaders record {
@@ -275,10 +563,30 @@ public type DeleteRouteOperationPropertiesResourceRequirementsHeaders record {
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: updateRouteOperationPropertiesResourceRequirements
-public type UpdateRouteOperationPropertiesResourceRequirementsHeaders record {
+# Represents the Queries record for the operation: getRouteHeaders
+public type GetRouteHeadersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteRouteOperationsProperties
+public type DeleteRouteOperationsPropertiesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getRouteVersionsV2
+public type GetRouteVersionsV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Queries record for the operation: getRouteOperations
@@ -319,43 +627,29 @@ public type ListRoutePendingRouteCostCategoryUnitCostsQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: deleteRouteOperations
-public type DeleteRouteOperationsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: listRouteOperationPropertiesResourceRequirements
-public type ListRouteOperationPropertiesResourceRequirementsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
 public type RouteOperationsCollection record {
     *ODataCollection;
     RouteOperation[] value?;
+};
+
+public type RouteVersionV2 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    decimal ValidFromQuantity?;
+    string ValidFromDate?;
+    string RouteId?;
+    string ProductSizeId?;
+    string ProductColorId?;
+    string ProductionSiteId?;
+    string ProductConfigurationId?;
+    string ProductStyleId?;
+    string ProductVersionId?;
+    string ItemNumber?;
+    int:Signed32 IsActive?;
+    string ApproverPersonnelNumber?;
+    NoYes IsApproved?;
+    string VersionName?;
+    string ValidToDate?;
 };
 
 # Represents the Queries record for the operation: listRouteOperationsV2
@@ -386,8 +680,6 @@ public type ListRouteOperationsV2Queries record {
     string selectFields?;
 };
 
-public type RouteOprPriority "Primary"|"Secondary1"|"Secondary2"|"Secondary3"|"Secondary4"|"Secondary5"|"Secondary6"|"Secondary7"|"Secondary8"|"Secondary9"|"Secondary10"|"Secondary11"|"Secondary12"|"Secondary13"|"Secondary14"|"Secondary15"|"Secondary16"|"Secondary17"|"Secondary18"|"Secondary19"|"Secondary20";
-
 public type RoutePendingRouteCostCategoryUnitCost record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -398,17 +690,15 @@ public type RoutePendingRouteCostCategoryUnitCost record {
     decimal UnitCost?;
 };
 
-public type NoYes "No"|"Yes";
-
-# Represents the Headers record for the operation: updateRouteOperations
-public type UpdateRouteOperationsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
 public type RouteOperationsV2Collection record {
     *ODataCollection;
     RouteOperationV2[] value?;
+};
+
+# Represents the Headers record for the operation: deleteRouteCardProductionJournalEntries
+public type DeleteRouteCardProductionJournalEntriesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: listRouteOperations
@@ -437,4 +727,9 @@ public type ListRouteOperationsQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+public type RouteOperationsPropertiesCollection record {
+    *ODataCollection;
+    RouteOperationProperties[] value?;
 };
