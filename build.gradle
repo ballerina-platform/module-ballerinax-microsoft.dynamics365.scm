@@ -54,7 +54,10 @@ allprojects {
     }
 }
 
-task build {
+if (!tasks.names.contains('build')) {
+    tasks.register('build')
+}
+tasks.named('build') {
     dependsOn(":microsoft.dynamics365.scm-ballerina:build")
 }
 
