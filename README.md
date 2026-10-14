@@ -1,7 +1,7 @@
 # Ballerina Microsoft Dynamics 365 Supply Chain Management Connector
 
 [![Build](https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.scm/actions/workflows/ci.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.scm/actions/workflows/ci.yml)
-[![Trivy](https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.scm/actions/workflows/trivy-scan.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.scm/actions/workflows/trivy-scan.yml)
+[![Security Scan](https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.scm/actions/workflows/security-scan.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.scm/actions/workflows/security-scan.yml)
 [![GraalVM Check](https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.scm/actions/workflows/build-with-bal-test-graalvm.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.scm/actions/workflows/build-with-bal-test-graalvm.yml)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/ballerina-platform/module-ballerinax-microsoft.dynamics365.scm.svg)](https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.scm/commits/main)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
