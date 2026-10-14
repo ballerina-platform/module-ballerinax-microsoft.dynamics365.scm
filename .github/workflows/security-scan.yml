@@ -17,3 +17,4 @@ jobs:
     secrets: inherit
     with:
       additional-build-flags: "-x test"
+      setup-ballerina: true
