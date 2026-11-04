@@ -1,6 +1,8 @@
 ## Overview
 
-Microsoft Dynamics 365 Supply Chain Management is Microsoft's cloud enterprise-resource-planning application for end-to-end supply chain operations, covering warehousing, inventory, manufacturing, planning, transportation, and procurement. The Dynamics 365 Supply Chain Management connector enables integration with the Supply Chain OData REST API, providing programmatic access to master and transactional data including warehouses and warehouse locations, released products and product variants, bills of materials, production orders and routes, transfer orders, sales and purchase orders, on-hand inventory, and inventory movement / transfer / counting journals.
+Microsoft Dynamics 365 Supply Chain Management is Microsoft's cloud enterprise-resource-planning application for end-to-end supply chain operations, covering warehousing, inventory, manufacturing, planning, transportation, and procurement.
+
+The Dynamics 365 Supply Chain Management connector enables integration with the Supply Chain OData REST API, providing programmatic access to master and transactional data including warehouses and warehouse locations, released products and product variants, bills of materials, production orders and routes, transfer orders, sales and purchase orders, on-hand inventory, and inventory movement / transfer / counting journals.
 
 ### Key Features
 
